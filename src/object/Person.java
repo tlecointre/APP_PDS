@@ -37,7 +37,6 @@ public abstract class Person {
     protected String job;
     
     //All methods
-    public abstract void Consult();
     public abstract void CreatePerson();
     public abstract void UpdatePerson();
     public abstract void DeletePerson(int id);
