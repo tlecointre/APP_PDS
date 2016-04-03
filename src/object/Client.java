@@ -8,9 +8,9 @@ package object;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+//import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pds_model.PdsDatabase;
@@ -21,7 +21,8 @@ import pds_model.PdsDatabase;
  * @author hubanato
  */
 public class Client extends Person {
-
+    
+    int generatedId;
     /**
      * Constructor This method is used to create a new client
      *
@@ -89,10 +90,16 @@ public class Client extends Person {
         try {
             Connection connexion = PdsDatabase.getConnection();
             
-            String requeteAddress = "INSERT INTO ADDRESS(NBER,STREET,ADDITIONAL,ZIP_CODE,CITY,COUNTRY) "
-                    + "VALUES (?,?,?,?,?,?)";
-            PreparedStatement ordre = connexion.prepareStatement(requeteAddress, Statement.RETURN_GENERATED_KEYS);
-            //PreparedStatement ordre = connexion.prepareStatement(requeteAddress);
+            String requeteAddress = "SET SERVEROUTPUT ON\n" +
+                                    "BEGIN\n" +
+                                    "  INSERT INTO ADDRESS(NBER,STREET,ADDITIONAL,ZIP_CODE,CITY,COUNTRY) VALUES (?,?,?,?,?,?)\n" +
+                                    "  RETURNING id_adr INTO ?;\n" +
+                                    "  COMMIT;\n" +
+                                    "END";
+                    //+ "INSERT INTO ADDRESS(NBER,STREET,ADDITIONAL,ZIP_CODE,CITY,COUNTRY) "
+                    //+ "VALUES (?,?,?,?,?,?)";
+            //PreparedStatement ordre = connexion.prepareStatement(requeteAddress, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ordre = connexion.prepareStatement(requeteAddress);
 
             ordre.setInt(1, number);
             ordre.setString(2, Street);
@@ -100,21 +107,23 @@ public class Client extends Person {
             ordre.setInt(4, cp);
             ordre.setString(5, city);
             ordre.setString(6, country);
+            ordre.setInt(7, generatedId);
 
             ordre.executeUpdate();
             System.out.println(requeteAddress);
             
             
-            ResultSet rs = ordre.getGeneratedKeys();
+            /*ResultSet rs = ordre.getGeneratedKeys();
             int generatedId = 0;
             if(rs.next()) {            
                 //Get the last id
                 generatedId = rs.getInt(1);
                 System.out.println(generatedId);
-            }
+            }*/
+            System.out.println(generatedId);
             
             ordre.close();
-
+            
             String requeteClient = "INSERT INTO PERSON(ID_ADR,CIVILITY,FIRST_NAME,NAME,SEX,BIRTH_DATE,BIRTH_PLACE,NATIONALITY,PHONE_HOME,PHONE_MOBIL,EMAIL,JOB,PHONE_BUSINESS) "
                     + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ordre2 = connexion.prepareStatement(requeteClient);
