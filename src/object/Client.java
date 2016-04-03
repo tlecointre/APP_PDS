@@ -10,10 +10,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pds_model.PdsDatabase;
 
 /**
@@ -79,66 +76,61 @@ public class Client extends Person {
     /**
      *
      *
+     * @throws java.sql.SQLException
      */
     @Override
-    public void CreatePerson() {
-        try {
-            Connection connexion = PdsDatabase.getConnection();
+    public void CreatePerson() throws SQLException {
 
-            //This query is used to insert first into the table "ADDRESS"
-            String requeteAddress = "INSERT INTO ADDRESS(NBER,STREET,ADDITIONAL,ZIP_CODE,CITY,COUNTRY) VALUES (?,?,?,?,?,?)";
-            //PreparedStatement ordre = connexion.prepareStatement(requeteAddress, Statement.RETURN_GENERATED_KEYS);
-            PreparedStatement ordre = connexion.prepareStatement(requeteAddress);
+        Connection connexion = PdsDatabase.getConnection();
 
-            ordre.setInt(1, number);
-            ordre.setString(2, Street);
-            ordre.setString(3, Additional);
-            ordre.setInt(4, cp);
-            ordre.setString(5, city);
-            ordre.setString(6, country);
+        //This query is used to insert first into the table "ADDRESS"
+        String requeteAddress = "INSERT INTO ADDRESS(NBER,STREET,ADDITIONAL,ZIP_CODE,CITY,COUNTRY) VALUES (?,?,?,?,?,?)";
+        //PreparedStatement ordre = connexion.prepareStatement(requeteAddress, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement ordre = connexion.prepareStatement(requeteAddress);
 
-            ordre.executeUpdate();
-            System.out.println(requeteAddress);
+        ordre.setInt(1, number);
+        ordre.setString(2, Street);
+        ordre.setString(3, Additional);
+        ordre.setInt(4, cp);
+        ordre.setString(5, city);
+        ordre.setString(6, country);
 
-            ////This query is used to select the max(id) into the table "ADDRESS"
-            String requeteIdMax = "SELECT MAX(id_adr) INTO idMax FROM ADDRESS";
-            Statement IdRecup = connexion.createStatement();
-            ResultSet rs = IdRecup.executeQuery(requeteIdMax);
+        ordre.executeUpdate();
+        System.out.println(requeteAddress);
 
-            while (rs.next()) {
-                id_adr = rs.getInt("idMax");
-            }
+        ////This query is used to select the max(id) into the table "ADDRESS"
+        String queryID = "SELECT MAX(id_adr) as idMax FROM ADDRESS";
+        ordre = connexion.prepareStatement(queryID);
+        ResultSet rs = ordre.executeQuery();
+        rs.next();
+        id_adr = rs.getInt("idMax");
 
-            ordre.close();
+        ordre.close();
 
-            //This query is used to insert after into the table "PERSON"
-            String requeteClient = "INSERT INTO PERSON(ID_ADR,CIVILITY,FIRST_NAME,NAME,SEX,BIRTH_DATE,BIRTH_PLACE,NATIONALITY,PHONE_HOME,PHONE_MOBIL,EMAIL,JOB,PHONE_BUSINESS) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
-            PreparedStatement ordre2 = connexion.prepareStatement(requeteClient);
+        //This query is used to insert after into the table "PERSON"
+        String requeteClient = "INSERT INTO PERSON(ID_ADR,CIVILITY,FIRST_NAME,NAME,SEX,BIRTH_DATE,BIRTH_PLACE,NATIONALITY,PHONE_HOME,PHONE_MOBIL,EMAIL,JOB,PHONE_BUSINESS) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement ordre2 = connexion.prepareStatement(requeteClient);
 
-            ordre2.setInt(1, id_adr);
-            ordre2.setString(2, civility);
-            ordre2.setString(3, firstName);
-            ordre2.setString(4, name);
-            ordre2.setString(5, sex);
-            ordre2.setDate(6, birthDate);
-            ordre2.setString(7, birthPlace);
-            ordre2.setString(8, nationality);
-            ordre2.setInt(9, phoneHome);
-            ordre2.setInt(10, phoneNumber);
-            ordre2.setString(11, email);
-            ordre2.setString(12, job);
-            ordre2.setInt(13, phoneBusiness);
+        ordre2.setInt(1, id_adr);
+        ordre2.setString(2, civility);
+        ordre2.setString(3, firstName);
+        ordre2.setString(4, name);
+        ordre2.setString(5, sex);
+        ordre2.setDate(6, birthDate);
+        ordre2.setString(7, birthPlace);
+        ordre2.setString(8, nationality);
+        ordre2.setInt(9, phoneHome);
+        ordre2.setInt(10, phoneNumber);
+        ordre2.setString(11, email);
+        ordre2.setString(12, job);
+        ordre2.setInt(13, phoneBusiness);
 
-            ordre2.executeUpdate();
-            System.out.println(requeteClient);
-            ordre2.close();
+        ordre2.executeUpdate();
+        System.out.println(requeteClient);
+        ordre2.close();
 
-            connexion.close();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        connexion.close();
 
     }
 
@@ -198,43 +190,39 @@ public class Client extends Person {
 
     /**
      *
+     * @throws java.sql.SQLException
      */
     @Override
-    public void UpdatePerson() {
-        try {
-            Connection connexion = PdsDatabase.getConnection();
-            String sql = "UPDATE PERSON SET name = ? , firstName = ? WHERE id = ?";
-            PreparedStatement ordre = connexion.prepareStatement(sql);
-            ordre.setString(1, name);
-            ordre.setString(2, firstName);
-            ordre.setInt(3, id_person);
-            ordre.executeUpdate();
-            ordre.close();
-            connexion.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void UpdatePerson() throws SQLException {
+
+        Connection connexion = PdsDatabase.getConnection();
+        String sql = "UPDATE PERSON SET name = ? , firstName = ? WHERE id = ?";
+        PreparedStatement ordre = connexion.prepareStatement(sql);
+        ordre.setString(1, name);
+        ordre.setString(2, firstName);
+        ordre.setInt(3, id_person);
+        ordre.executeUpdate();
+        ordre.close();
+        connexion.close();
     }
 
     /**
      *
      * @param id
+     * @throws java.sql.SQLException
      */
     @Override
-    public void DeletePerson(int id) {
-        try {
-            Connection connexion = PdsDatabase.getConnection();
+    public void DeletePerson(int id) throws SQLException {
 
-            String deleteQuery = "DELETE FROM PERSON WHERE id = ?";
-            PreparedStatement ordre = connexion.prepareStatement(deleteQuery);
-            ordre.setInt(1, id);
-            ordre.executeUpdate();
-            ordre.close();
-            connexion.close();
+        Connection connexion = PdsDatabase.getConnection();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String deleteQuery = "DELETE FROM PERSON WHERE id = ?";
+        PreparedStatement ordre = connexion.prepareStatement(deleteQuery);
+        ordre.setInt(1, id);
+        ordre.executeUpdate();
+        ordre.close();
+        connexion.close();
+
     }
 
 }
