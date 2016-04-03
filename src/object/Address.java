@@ -6,8 +6,8 @@
 package object;
 
 /**
- *
- * @author Nadia Randria
+ * Release R2
+ * @author hubanato
  */
 class Address {
 
