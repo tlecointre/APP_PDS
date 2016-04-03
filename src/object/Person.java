@@ -6,6 +6,7 @@
 package object;
 
 import java.sql.Date;
+import java.sql.SQLException;
 
 /**
  * Release R2
@@ -37,8 +38,8 @@ public abstract class Person {
     protected String job;
     
     //All methods
-    public abstract void CreatePerson();
-    public abstract void UpdatePerson();
-    public abstract void DeletePerson(int id);
+    public abstract void CreatePerson() throws SQLException;
+    public abstract void UpdatePerson() throws SQLException;;
+    public abstract void DeletePerson(int id) throws SQLException;;
     
 }
