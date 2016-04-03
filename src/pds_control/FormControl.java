@@ -116,7 +116,7 @@ public class FormControl implements ActionListener {
 
             /*System.out.println("Informations sur le client :");
              System.out.println("Civilité : " + civility.getSelectedItem());
-             System.out.println("Client : " + name.getText() + " " + firstName.getText());
+             System.out.println("Client_Old : " + name.getText() + " " + firstName.getText());
              System.out.println("Birth Date / Birth Place : " + birthDate.getDate() + ", " + birthPlace.getText());
              System.out.println("Sex : " + sex.getSelectedItem());
              System.out.println("Nationality : " + nationality.getSelectedItem());
