@@ -194,7 +194,7 @@ public class Client extends Person {
     public void UpdatePerson() {
         try {
             Connection connexion = PdsDatabase.getConnection();
-            String sql = "UPDATE PERSON SET name = ? , firstName = ? WHERE id = ?";
+            String sql = "UPDATE PERSON SET name = ? , firstName = ? WHERE id_pers = ?";
             PreparedStatement ordre = connexion.prepareStatement(sql);
             ordre.setString(1, name);
             ordre.setString(2, firstName);
@@ -216,7 +216,7 @@ public class Client extends Person {
         try {
             Connection connexion = PdsDatabase.getConnection();
 
-            String deleteQuery = "DELETE FROM PERSON WHERE id = ?";
+            String deleteQuery = "DELETE FROM PERSON WHERE id_pers = ?";
             PreparedStatement ordre = connexion.prepareStatement(deleteQuery);
             ordre.setInt(1, id);
             ordre.executeUpdate();
