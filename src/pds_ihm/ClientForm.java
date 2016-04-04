@@ -9,6 +9,7 @@ import pds_control.FormControl;
 
 /**
  * Release R2
+ *
  * @author hubanato
  */
 public class ClientForm extends javax.swing.JFrame {
@@ -21,7 +22,6 @@ public class ClientForm extends javax.swing.JFrame {
         btnCreate.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, btnCreate, btnClear, btnCancel));
         btnClear.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, btnCreate, btnClear, btnCancel));
         btnCancel.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, btnCreate, btnClear, btnCancel));
-        
     }
 
     /**
@@ -297,7 +297,6 @@ public class ClientForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

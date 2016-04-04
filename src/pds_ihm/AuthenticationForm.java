@@ -18,7 +18,8 @@ public class AuthenticationForm extends javax.swing.JFrame {
      */
     public AuthenticationForm() {
         initComponents();
-        btnConnect.addActionListener(new AuthenticationControl(txtLogin, pwdPass, btnConnect));
+        btnConnect.addActionListener(new AuthenticationControl(this,txtLogin, pwdPass, btnConnect));
+        
     }
 
     /**
