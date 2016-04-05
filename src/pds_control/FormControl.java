@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pds_control;
 
 import java.awt.event.*;
@@ -126,16 +121,34 @@ public class FormControl implements ActionListener {
              System.out.println("Phone Business : " + pbusiness.getText());
              System.out.println("Email : " + email.getText());
              System.out.println("Job : " + job.getText());*/
-            
             this.client = new Client(civility.getSelectedItem().toString(), name.getText(), firstName.getText(), convertUtilToSql(birthDate.getDate()), birthPlace.getText(), sex.getSelectedItem().toString(), nationality.getSelectedItem().toString(), Integer.parseInt(nb.getText()), street.getText(), add.getText(), Integer.parseInt(cp.getText()), city.getText(), country.getSelectedItem().toString(), Integer.parseInt(pnumber.getText()), Integer.parseInt(phome.getText()), Integer.parseInt(pbusiness.getText()), email.getText(), job.getText());
             try {
                 client.CreatePerson();
+                JOptionPane.showMessageDialog(null, "Client Added");
             } catch (SQLException ex) {
                 Logger.getLogger(FormControl.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else if (source == btnClear) {
-            System.out.println("Vous voulez effacer les données saisies");
+            //System.out.println("Vous voulez effacer les données saisies");
+            civility.setSelectedItem("Mr");
+            name.setText("");
+            firstName.setText("");
+            birthDate.getDate();
+            birthPlace.setText("");
+            sex.setSelectedItem("M");
+            nationality.setSelectedItem("France");
+            nb.setText("");
+            street.setText("");
+            add.setText("");
+            cp.setText("");
+            city.setText("");
+            country.setSelectedItem("France");
+            pnumber.setText("");
+            phome.setText("");
+            pbusiness.setText("");
+            email.setText("");
+            job.setText("");
 
         } else if (source == btnCancel) {
             System.out.println("Vous voulez annuler la création du client en cours");

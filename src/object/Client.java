@@ -107,7 +107,8 @@ public class Client extends Person {
         ordre.close();
 
         //This query is used to insert after into the table "PERSON"
-        String requeteClient = "INSERT INTO PERSON(ID_ADR,CIVILITY,FIRST_NAME,NAME,SEX,BIRTH_DATE,BIRTH_PLACE,NATIONALITY,PHONE_HOME,PHONE_MOBIL,EMAIL,JOB,PHONE_BUSINESS) "
+        String requeteClient = "INSERT INTO PERSON(ID_ADR,CIVILITY,FIRST_NAME,NAME,SEX,"
+                + "BIRTH_DATE,BIRTH_PLACE,NATIONALITY,PHONE_HOME,PHONE_MOBIL,EMAIL,JOB,PHONE_BUSINESS) "
                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ordre2 = connexion.prepareStatement(requeteClient);
 
