@@ -27,7 +27,6 @@ public class ClientToServer {
 
             socket = new Socket(InetAddress.getLocalHost(), 2009);
             System.out.println("Demande de connexion");
-
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String message_distant = in.readLine();
             System.out.println(message_distant);
