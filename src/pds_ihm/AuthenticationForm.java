@@ -6,6 +6,7 @@
 package pds_ihm;
 
 import pds_control.AuthenticationControl;
+import pds_sclient.Client;
 
 /**
  * Release R2
@@ -100,7 +101,7 @@ public class AuthenticationForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectActionPerformed
-        // TODO add your handling code here:
+        Client client = new Client();
         
     }//GEN-LAST:event_btnConnectActionPerformed
 

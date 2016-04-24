@@ -5,7 +5,7 @@ import java.net.*;
 
 public class Client {
     
-    public Client(String name){
+    public Client(){
         Socket socket;
 	try {
             socket = new Socket("localhost",5678);
