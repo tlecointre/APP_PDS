@@ -6,7 +6,7 @@
 package pds_control;
 
 /**
- * This class is used to calcultate the intersest rate
+ * This class is used to calcultate the interest rate
  * @author Nadia Randria
  */
 public class CalcInteret {
