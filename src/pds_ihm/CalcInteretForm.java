@@ -5,6 +5,8 @@
  */
 package pds_ihm;
 
+import pds_control.CalcInteret;
+
 /**
  *
  * @author Nadia Randria
@@ -16,6 +18,7 @@ public class CalcInteretForm extends javax.swing.JFrame {
      */
     public CalcInteretForm() {
         initComponents();
+        btnCalculer.addActionListener(new CalcInteret(txtMontEmp, txtDurRemb, txtAppPerso, txtTauxApp, btnCalculer));
     }
 
     /**
@@ -32,7 +35,7 @@ public class CalcInteretForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCalculer = new javax.swing.JButton();
         txtMontEmp = new javax.swing.JTextField();
         txtDurRemb = new javax.swing.JTextField();
         txtAppPerso = new javax.swing.JTextField();
@@ -52,7 +55,7 @@ public class CalcInteretForm extends javax.swing.JFrame {
 
         jLabel5.setText("Taux appliqué :");
 
-        jButton1.setText("Calculer");
+        btnCalculer.setText("Calculer");
 
         txtTauxApp.setEnabled(false);
 
@@ -62,7 +65,7 @@ public class CalcInteretForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnCalculer)
                 .addGap(181, 181, 181))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +109,7 @@ public class CalcInteretForm extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtTauxApp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnCalculer)
                 .addContainerGap())
         );
 
@@ -149,7 +152,7 @@ public class CalcInteretForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCalculer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
