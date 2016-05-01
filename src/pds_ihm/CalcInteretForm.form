@@ -42,9 +42,13 @@
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtMontEmp" max="32767" attributes="0"/>
-                          <Component id="txtDurRemb" max="32767" attributes="0"/>
                           <Component id="txtAppPerso" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtTauxApp" alignment="0" pref="162" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="spnDuree" min="-2" pref="69" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -69,7 +73,8 @@
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDurRemb" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="spnDuree" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -124,13 +129,18 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtMontEmp">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDurRemb">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtAppPerso">
     </Component>
     <Component class="javax.swing.JTextField" name="txtTauxApp">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="spnDuree">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel6">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="mois"/>
       </Properties>
     </Component>
   </SubComponents>

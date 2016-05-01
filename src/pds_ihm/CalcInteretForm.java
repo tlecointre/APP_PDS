@@ -18,7 +18,7 @@ public class CalcInteretForm extends javax.swing.JFrame {
      */
     public CalcInteretForm() {
         initComponents();
-        btnCalculer.addActionListener(new CalcInteret(txtMontEmp, txtDurRemb, txtAppPerso, txtTauxApp, btnCalculer));
+        btnCalculer.addActionListener(new CalcInteret(txtMontEmp, spnDuree, txtAppPerso, txtTauxApp, btnCalculer));
     }
 
     /**
@@ -37,9 +37,10 @@ public class CalcInteretForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnCalculer = new javax.swing.JButton();
         txtMontEmp = new javax.swing.JTextField();
-        txtDurRemb = new javax.swing.JTextField();
         txtAppPerso = new javax.swing.JTextField();
         txtTauxApp = new javax.swing.JTextField();
+        spnDuree = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calcul des taux d'intérêts");
@@ -58,6 +59,8 @@ public class CalcInteretForm extends javax.swing.JFrame {
         btnCalculer.setText("Calculer");
 
         txtTauxApp.setEnabled(false);
+
+        jLabel6.setText("mois");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,9 +82,12 @@ public class CalcInteretForm extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtMontEmp)
-                            .addComponent(txtDurRemb)
                             .addComponent(txtAppPerso)
-                            .addComponent(txtTauxApp, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
+                            .addComponent(txtTauxApp, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(spnDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(jLabel1)))
@@ -99,7 +105,8 @@ public class CalcInteretForm extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtDurRemb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -158,8 +165,9 @@ public class CalcInteretForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JSpinner spnDuree;
     private javax.swing.JTextField txtAppPerso;
-    private javax.swing.JTextField txtDurRemb;
     private javax.swing.JTextField txtMontEmp;
     private javax.swing.JTextField txtTauxApp;
     // End of variables declaration//GEN-END:variables
