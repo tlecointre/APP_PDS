@@ -8,6 +8,8 @@ package pds_control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 /**
@@ -17,12 +19,12 @@ import javax.swing.JTextField;
 public class CalcInteret implements ActionListener{
     
     private JTextField emprunt;
-    private JTextField duree;
+    private JSpinner duree;
     private JTextField apport;
     private JTextField taux;
     private JButton calculer;
 
-    public CalcInteret(JTextField emprunt, JTextField duree, JTextField apport, JTextField taux, JButton calculer) {
+    public CalcInteret(JTextField emprunt, JSpinner duree, JTextField apport, JTextField taux, JButton calculer) {
         this.emprunt = emprunt;
         this.duree = duree;
         this.apport = apport;
@@ -42,6 +44,13 @@ public class CalcInteret implements ActionListener{
     public void actionPerformed(ActionEvent evt) {
         Object source = evt.getSource();
 
-        if (source == calculer) {}
+        if (source == calculer) {
+            int valEmprunt = Integer.parseInt(emprunt.getText());
+            int valDuree = (Integer)duree.getValue();
+            int valApport = Integer.parseInt(apport.getText()); 
+             
+            JOptionPane.showMessageDialog(null,"Vous allez emprunter :" +valEmprunt+ "\n Vous allez le rembourser en " +valDuree+ "\n Avec un apport personnel de " +valApport);
+            JOptionPane.showMessageDialog(null,"Vous aller calculer le taux d'intérêt correspondant");
+        }
     }
 }
