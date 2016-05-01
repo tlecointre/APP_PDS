@@ -7,6 +7,7 @@ package pds_ihm.rate_variable;
 
 import java.util.Observable;
 import java.util.Observer;
+import object.RateVariable;
 
 /**
  *
@@ -14,12 +15,28 @@ import java.util.Observer;
  */
 public class PanelCharacteristics extends javax.swing.JPanel implements Observer{
 
+     RateVariable rateVariable;
+
     /**
-     * Creates new form PanelCharacteristics
+     * @param RateVariable 
      */
-    public PanelCharacteristics() {
+    public PanelCharacteristics(RateVariable rateVariable) {
+        this.rateVariable = rateVariable;
         initComponents();
+        rateVariable.addObserver(this);
     }
+    
+    /**  */
+    public PanelCharacteristics() {
+        this(new RateVariable());
+    }
+    
+//    /**
+//     * Creates new form PanelCharacteristics
+//     */
+//    public PanelCharacteristics() {
+//        initComponents();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,7 +122,8 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        // TODO add your handling code here:
+        
+        System.out.println("Ok btn");
     }//GEN-LAST:event_btnStartActionPerformed
 
 
@@ -123,6 +141,6 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
 
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Ok");
     }
 }
