@@ -5,6 +5,7 @@
  */
 package object;
 
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -13,10 +14,22 @@ import java.util.Observable;
  */
 public class RateVariable extends Observable {
     
+    private List<Year> listGrowth;
+    private List<Year> listStable;
+    private List<Year> listDecreasing;
+    
+    
+    
     /** 
      * propose a table with an increasing variable rate
      */
-    public void growthRate() {
+    public void growthRate(int year) {
+        
+        for (int cmpt=0; cmpt<year; cmpt++){
+        
+            listGrowth.add(new Year(cmpt,2.3,10,5.5,5.5));
+        
+        }
                 
         // Indiquer que l'objet a changé
         setChanged();
