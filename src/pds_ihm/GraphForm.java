@@ -1,7 +1,9 @@
 package pds_ihm;
 
+import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
@@ -52,45 +54,36 @@ public class GraphForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void graphBoutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphBoutonActionPerformed
+        int resteAPayer = 100;
+        int totalAPayer = 1000;
+        int dejaPaye = 900;
+        
         DefaultPieDataset test = new DefaultPieDataset();
-        test.setValue("Reste à payer", new Integer(50));
-        test.setValue("Payé", new Integer(100));
+        test.setValue("Reste à payer: "+resteAPayer+"E", new Integer(resteAPayer));
+        test.setValue("Payé: "+dejaPaye+"E", new Integer(dejaPaye));
+        test.setValue("Total: "+totalAPayer+"E", new Integer(0));
         JFreeChart chart = ChartFactory.createPieChart("Prêt", test, true, true, true);
-        PiePlot P = (PiePlot)chart.getPlot();
-        ChartFrame frame = new ChartFrame("Graphe", chart);
-        frame.setVisible(true);
-        frame.setSize(450,500);
+        
+        DefaultPieDataset test1 = new DefaultPieDataset();
+        test1.setValue("Reste à payer: "+resteAPayer+"E", new Integer(resteAPayer));
+        test1.setValue("Payé: "+dejaPaye+"E", new Integer(dejaPaye));
+        test1.setValue("Total: "+totalAPayer+"E", new Integer(0));
+        JFreeChart chart1 = ChartFactory.createPieChart("Prêt", test1, true, true, true);
+        
+        ChartPanel pan = new ChartPanel(chart, false);
+        pan.setBounds(0, 0, 300, 300);
+
+        ChartPanel pan1 = new ChartPanel(chart1, false);
+        pan1.setBounds(350, 0, 300, 300);
+        
+        this.add(pan);
+        this.add(pan1);
+        this.setVisible(true);
+        this.setSize(1000,1000);
+        
     }//GEN-LAST:event_graphBoutonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GraphForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GraphForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GraphForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GraphForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GraphForm().setVisible(true);
