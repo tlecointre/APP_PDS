@@ -20,6 +20,7 @@ public class GraphForm extends javax.swing.JFrame {
     private void initComponents() {
 
         graphButton = new javax.swing.JButton();
+        amortButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -30,21 +31,27 @@ public class GraphForm extends javax.swing.JFrame {
             }
         });
 
+        amortButton.setText("Tableau d'amortissement");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addContainerGap()
                 .addComponent(graphButton)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(amortButton)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(graphButton)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(graphButton)
+                    .addComponent(amortButton))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,6 +96,7 @@ public class GraphForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton amortButton;
     private javax.swing.JButton graphButton;
     // End of variables declaration//GEN-END:variables
 }
