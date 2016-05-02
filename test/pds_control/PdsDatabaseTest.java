@@ -5,7 +5,7 @@
  */
 package pds_control;
 
-import pds_model.PdsDatabase;
+import edu.hubanato.models.PdsDatabase;
 import java.sql.Connection;
 import org.junit.Test;
 import static org.junit.Assert.*;

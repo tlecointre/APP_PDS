@@ -7,7 +7,7 @@ package pds_ihm.rate_variable;
 
 import java.util.Observable;
 import java.util.Observer;
-import object.RateVariable;
+import edu.hubanato.entities.RateVariable;
 
 /**
  *
