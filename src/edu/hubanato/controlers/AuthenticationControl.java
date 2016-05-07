@@ -6,7 +6,7 @@
 package edu.hubanato.controlers;
 
 import edu.hubanato.forms.GestionClientForm;
-import edu.hubanato.forms.AuthenticationForm;
+import edu.hubanato.forms.AuthenticationAdvisorForm;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -17,13 +17,13 @@ import javax.swing.*;
  */
 public class AuthenticationControl implements ActionListener {
 
-    private AuthenticationForm authentication;
+    private AuthenticationAdvisorForm authentication;
     private JTextField login;
     private JPasswordField password;
 
     private JButton connect;
 
-    public AuthenticationControl(AuthenticationForm authForm, JTextField login, JPasswordField password, JButton connect) {
+    public AuthenticationControl(AuthenticationAdvisorForm authForm, JTextField login, JPasswordField password, JButton connect) {
         this.authentication = authForm;
         this.login = login;
         this.password = password;
