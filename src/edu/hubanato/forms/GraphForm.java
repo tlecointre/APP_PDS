@@ -9,7 +9,7 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author Tony
  */
-public class GraphForm extends javax.swing.JFrame {
+public class GraphForm extends javax.swing.JFrame{
 
     public GraphForm() {
         initComponents();
@@ -82,6 +82,7 @@ public class GraphForm extends javax.swing.JFrame {
         
         this.add(pan);
         this.add(pan1);
+        this.graphButton.setVisible(false);
         this.setVisible(true);
         this.setSize(1000,1000);
         
@@ -99,4 +100,5 @@ public class GraphForm extends javax.swing.JFrame {
     private javax.swing.JButton amortButton;
     private javax.swing.JButton graphButton;
     // End of variables declaration//GEN-END:variables
+
 }
