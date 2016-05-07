@@ -1,5 +1,5 @@
 
-package edu.hubanato.json;
+package edu.hubanato.serialization;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
