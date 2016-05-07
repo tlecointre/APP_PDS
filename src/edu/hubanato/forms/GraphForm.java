@@ -1,5 +1,6 @@
 package edu.hubanato.forms;
 
+import edu.hubanato.controlers.AmortizationCalc;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -32,6 +33,11 @@ public class GraphForm extends javax.swing.JFrame{
         });
 
         amortButton.setText("Tableau d'amortissement");
+        amortButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amortButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,6 +93,10 @@ public class GraphForm extends javax.swing.JFrame{
         this.setSize(1000,1000);
         
     }//GEN-LAST:event_graphButtonActionPerformed
+
+    private void amortButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amortButtonActionPerformed
+        AmortizationCalc am = new AmortizationCalc();
+    }//GEN-LAST:event_amortButtonActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

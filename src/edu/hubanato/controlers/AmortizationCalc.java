@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 
 public class AmortizationCalc {
 
-    public static void main(String[] args) {
+    public AmortizationCalc() {
         double amount, taux;
         int nbYear;
         amount = 10000; //à modifier avec la BDD
