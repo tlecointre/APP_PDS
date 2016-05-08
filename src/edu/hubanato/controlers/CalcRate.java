@@ -18,13 +18,15 @@ import javax.swing.JTextField;
  */
 public class CalcRate implements ActionListener{
     
+    private JTextField rateDirector;
     private JTextField amount;
     private JSpinner duration;
     private JTextField deposit;
     private JTextField rate;
     private JButton calculate;
 
-    public CalcRate(JTextField amt, JSpinner dt, JTextField dep, JTextField intrate, JButton calc) {
+    public CalcRate(JTextField rated, JTextField amt, JSpinner dt, JTextField dep, JTextField intrate, JButton calc) {
+        this.rateDirector = rated;
         this.amount = amt;
         this.duration = dt;
         this.deposit = dep;
@@ -45,11 +47,12 @@ public class CalcRate implements ActionListener{
         Object source = evt.getSource();
 
         if (source == calculate) {
+            int valRateD = Integer.parseInt(rateDirector.getText());
             int valAmount = Integer.parseInt(amount.getText());
             int valDuration = (Integer)duration.getValue();
             int valDeposit = Integer.parseInt(deposit.getText()); 
              
-            JOptionPane.showMessageDialog(null,"Amount (€) : " +valAmount+ "\n Duration (months) : " +valDuration+ "\n Deposit (€) : " +valDeposit);
+            JOptionPane.showMessageDialog(null,"Rate (%) : " +valRateD+ "\n Amount (€) : " +valAmount+ "\n Duration (months) : " +valDuration+ "\n Deposit (€) : " +valDeposit);
             //JOptionPane.showMessageDialog(null,"You are going to calculate the interest rate");
         }
     }
