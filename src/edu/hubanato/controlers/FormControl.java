@@ -18,31 +18,16 @@ public class FormControl implements ActionListener {
     //Client
     private Client client;
 
-    private JComboBox civility;
-    private JTextField name;
-    private JTextField firstName;
+    private JComboBox civility, sex, nationality, country, profession;
+    
     private JXDatePicker birthDate;
-    private JTextField birthPlace;
-    private JComboBox sex;
-    private JComboBox nationality;
 
-    private JTextField nb;
-    private JTextField street;
-    private JTextField add;
-    private JTextField cp;
-    private JTextField city;
-    private JComboBox country;
+    private JTextField name, firstName, birthPlace, nb, street, add, cp, city;
 
-    private JTextField pnumber;
-    private JTextField phome;
-    private JTextField pbusiness;
-    private JTextField email;
-    private JTextField job;
-
+    private JTextField pnumber, phome, pbusiness, email, job, age, income;
+    
     //All the buttons
-    private JButton btnCreate;
-    private JButton btnClear;
-    private JButton btnCancel;
+    private JButton btnCreate, btnClear, btnCancel;
 
     /**
      * Constructor
@@ -65,11 +50,19 @@ public class FormControl implements ActionListener {
      * @param pbusiness
      * @param email
      * @param job
+     * @param age
+     * @param profession
+     * @param income
      * @param create
      * @param clear
      * @param cancel
      */
-    public FormControl(JComboBox civility, JTextField name, JTextField firstName, JXDatePicker date, JTextField birthPlace, JComboBox sex, JComboBox nationality, JTextField number, JTextField street, JTextField add, JTextField cp, JTextField city, JComboBox country, JTextField pnumber, JTextField phome, JTextField pbusiness, JTextField email, JTextField job, JButton create, JButton clear, JButton cancel) {
+    public FormControl(JComboBox civility, JTextField name, JTextField firstName, JXDatePicker date,
+                        JTextField birthPlace, JComboBox sex, JComboBox nationality, JTextField number,
+                        JTextField street, JTextField add, JTextField cp, JTextField city, JComboBox country,
+                        JTextField pnumber, JTextField phome, JTextField pbusiness, JTextField email,
+                        JTextField job, JTextField age, JComboBox profession, JTextField income,
+                        JButton create, JButton clear, JButton cancel) {
 
         this.civility = civility;
         this.name = name;
@@ -91,6 +84,10 @@ public class FormControl implements ActionListener {
         this.pbusiness = pbusiness;
         this.email = email;
         this.job = job;
+        
+        this.age = age;
+        this.income = income;
+        this.profession = profession;
 
         this.btnCreate = create;
         this.btnClear = clear;
@@ -121,7 +118,15 @@ public class FormControl implements ActionListener {
              System.out.println("Phone Business : " + pbusiness.getText());
              System.out.println("Email : " + email.getText());
              System.out.println("Job : " + job.getText());*/
-            this.client = new Client(civility.getSelectedItem().toString(), name.getText(), firstName.getText(), convertUtilToSql(birthDate.getDate()), birthPlace.getText(), sex.getSelectedItem().toString(), nationality.getSelectedItem().toString(), Integer.parseInt(nb.getText()), street.getText(), add.getText(), Integer.parseInt(cp.getText()), city.getText(), country.getSelectedItem().toString(), Integer.parseInt(pnumber.getText()), Integer.parseInt(phome.getText()), Integer.parseInt(pbusiness.getText()), email.getText(), job.getText());
+            this.client = new Client(civility.getSelectedItem().toString(), name.getText(), firstName.getText(),
+                            convertUtilToSql(birthDate.getDate()), birthPlace.getText(),
+                            sex.getSelectedItem().toString(), nationality.getSelectedItem().toString(),
+                            Integer.parseInt(nb.getText()), street.getText(), add.getText(),
+                            Integer.parseInt(cp.getText()), city.getText(), country.getSelectedItem().toString(),
+                            Integer.parseInt(pnumber.getText()), Integer.parseInt(phome.getText()),
+                            Integer.parseInt(pbusiness.getText()), email.getText(), job.getText(),
+                            Integer.parseInt(age.getText()), Integer.parseInt(income.getText()),
+                            profession.getSelectedItem().toString());
             try {
                 client.CreatePerson();
                 JOptionPane.showMessageDialog(null, "Client Added");
@@ -149,6 +154,9 @@ public class FormControl implements ActionListener {
             pbusiness.setText("");
             email.setText("");
             job.setText("");
+            age.setText("");
+            profession.setSelectedItem("Agriculteur exploitant");
+            income.setText("");
 
         } else if (source == btnCancel) {
             System.out.println("Vous voulez annuler la création du client en cours");
