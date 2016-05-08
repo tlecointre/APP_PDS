@@ -10,6 +10,8 @@ import java.awt.PrintJob;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import javax.swing.JDialog;
 
 /**
  *
@@ -96,55 +98,37 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
     }// </editor-fold>//GEN-END:initComponents
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
-        PrintJob job = getToolkit().getPrintJob(this,"essai", null); 
+        /*PrintJob job = getToolkit().getPrintJob(this,"essai", null); 
         if (job != null) { 
-        /** Récupère le Graphics dans lequel on va écrire */ 
+        // Récupère le Graphics dans lequel on va écrire
             Graphics g = job.getGraphics(); 
             if (g != null) { 
                 //Impression du JTable uniquement
                 getTable().printAll(g); 
                 g.dispose(); 
             }    
-        /** Finit le travail  */ 
             job.end(); 
-        }
+        }*/
+        
+        /*PrinterJob job = PrinterJob.getPrinterJob(); //Get the printer's job list
+        job.setPrintable(this); //We print with this class (btnPrintAction, which implements Printable)
+        if (job.printDialog() == true) { //If we clicked OK in the print dialog
+            try {job.print();} catch (PrinterException ex){
+		//It did not work (PrinterException thrown), so add any error handling routines.
+            }
+        }*/
+        try {
+            boolean complete = this.getTable().print();
+            if (complete) {
+                System.out.println("OK");
+            } else {
+                System.out.println("PAS OK");
+            }
+            } 
+        catch (PrinterException pe) {
+            }
     }//GEN-LAST:event_printButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AmortizationScheduleForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AmortizationScheduleForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AmortizationScheduleForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AmortizationScheduleForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AmortizationScheduleForm().setVisible(true);
-            }
-        });
-    }
     
     public javax.swing.JTable getTable(){
         return amortizationTable;
@@ -159,4 +143,5 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
     public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }
