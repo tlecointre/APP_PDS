@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import edu.hubanato.entities.Client;
+import edu.hubanato.forms.AuthenticationClientForm;
 import org.jdesktop.swingx.JXDatePicker;
 
 /**
@@ -159,7 +160,7 @@ public class FormControl implements ActionListener {
             income.setText("");
 
         } else if (source == btnCancel) {
-            System.out.println("Vous voulez annuler la création du client en cours");
+            new AuthenticationClientForm().setVisible(true);
         }
     }
 
