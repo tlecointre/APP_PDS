@@ -19,9 +19,9 @@ public class ClientForm extends javax.swing.JFrame {
      */
     public ClientForm() {
         initComponents();
-        btnCreate.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, btnCreate, btnClear, btnCancel));
-        btnClear.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, btnCreate, btnClear, btnCancel));
-        btnCancel.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, btnCreate, btnClear, btnCancel));
+        btnCreate.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear, btnCancel));
+        btnClear.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear, btnCancel));
+        btnCancel.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear, btnCancel));
     }
 
     /**
@@ -75,11 +75,11 @@ public class ClientForm extends javax.swing.JFrame {
         txtCity = new javax.swing.JTextField();
         txtPHome = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtAge = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cmbProfession = new javax.swing.JComboBox();
         jLabel23 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtIncome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Form to create a client");
@@ -151,23 +151,23 @@ public class ClientForm extends javax.swing.JFrame {
 
         jLabel21.setText("Age * :");
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(60, 20));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtAge.setPreferredSize(new java.awt.Dimension(60, 20));
+        txtAge.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtAgeActionPerformed(evt);
             }
         });
 
         jLabel22.setText("Profession (PCS) * :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Agriculteur exploitant", "Artisan, commerçant et chef d'entreprise", "Cadre et profession intellectuelles supérieures", "Profession intermédiaire", "Employé", "Ouvrier", "Retraité", "Autre" }));
+        cmbProfession.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Agriculteur exploitant", "Artisan, commerçant et chef d'entreprise", "Cadre et profession intellectuelles supérieures", "Profession intermédiaire", "Employé", "Ouvrier", "Retraité", "Autre" }));
 
         jLabel23.setText("Annual income (€ gross) * :");
 
-        jTextField2.setPreferredSize(new java.awt.Dimension(60, 20));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtIncome.setPreferredSize(new java.awt.Dimension(60, 20));
+        txtIncome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtIncomeActionPerformed(evt);
             }
         });
 
@@ -239,9 +239,9 @@ public class ClientForm extends javax.swing.JFrame {
                                             .addComponent(jLabel23))
                                         .addGap(26, 26, 26)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cmbProfession, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jLabel19))
@@ -307,15 +307,15 @@ public class ClientForm extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbProfession, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel23)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -349,13 +349,13 @@ public class ClientForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPHomeActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtAgeActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIncomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtIncomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,8 +402,8 @@ public class ClientForm extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbCivility;
     private javax.swing.JComboBox cmbCountry;
     private javax.swing.JComboBox cmbNationality;
+    private javax.swing.JComboBox cmbProfession;
     private javax.swing.JComboBox cmbSex;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -427,15 +427,15 @@ public class ClientForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private org.jdesktop.swingx.JXDatePicker jxDate;
     private javax.swing.JTextField txtAdd;
+    private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtBirthPlace;
     private javax.swing.JTextField txtCP;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtIncome;
     private javax.swing.JTextField txtJob;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNb;
