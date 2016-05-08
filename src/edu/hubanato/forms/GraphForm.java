@@ -95,7 +95,9 @@ public class GraphForm extends javax.swing.JFrame{
     }//GEN-LAST:event_graphButtonActionPerformed
 
     private void amortButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amortButtonActionPerformed
-        AmortizationCalc am = new AmortizationCalc();
+        //AmortizationCalc am = new AmortizationCalc();
+        AmortizationScheduleForm t1 = new AmortizationScheduleForm();
+        t1.setVisible(true);
     }//GEN-LAST:event_amortButtonActionPerformed
 
     public static void main(String args[]) {

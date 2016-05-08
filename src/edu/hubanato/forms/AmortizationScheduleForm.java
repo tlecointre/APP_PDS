@@ -5,12 +5,15 @@
  */
 package edu.hubanato.forms;
 
+import edu.hubanato.controlers.AmortizationCalc;
 import java.awt.Graphics;
 import java.awt.PrintJob;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.standard.DialogTypeSelection;
 import javax.swing.JDialog;
 
 /**
@@ -19,11 +22,11 @@ import javax.swing.JDialog;
  */
 public class AmortizationScheduleForm extends javax.swing.JFrame implements Printable{
 
-    /**
-     * Creates new form TestForm
-     */
+    private AmortizationCalc am;
+    
     public AmortizationScheduleForm() {
         initComponents();
+        am = new AmortizationCalc(this);
     }
 
     /**
@@ -117,7 +120,9 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
 		//It did not work (PrinterException thrown), so add any error handling routines.
             }
         }*/
-        try {
+        
+        /*try {
+            
             boolean complete = this.getTable().print();
             if (complete) {
                 System.out.println("OK");
@@ -126,7 +131,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
             }
             } 
         catch (PrinterException pe) {
-            }
+            }*/
     }//GEN-LAST:event_printButtonActionPerformed
 
     
