@@ -1,6 +1,7 @@
 package edu.hubanato.controlers;
 
 import edu.hubanato.forms.AmortizationScheduleForm;
+import edu.hubanato.forms.GraphForm;
 import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,7 +12,7 @@ public class AmortizationCalc {
     AmortizationScheduleForm t1;
     
     //public AmortizationCalc(AmortizationScheduleForm t1) {
-    public AmortizationCalc(double amount, double rate, double insuranceRate, int nbYear) {
+    public AmortizationCalc(double amount, double rate, double insuranceRate, int nbYear, GraphForm g) {
         /*double amount, rate, insuranceRate;
         int nbYear;
         amount = 10000; //à modifier avec la BDD
@@ -21,12 +22,12 @@ public class AmortizationCalc {
         t1 = new AmortizationScheduleForm();
         t1.setVisible(true);
         //calAmort(amount, rate, insuranceRate,nbYear,t1);
-        calAmort(amount, rate, insuranceRate,nbYear);
+        calAmort(amount, rate, insuranceRate,nbYear, g);
 
     }
 
     //public void calAmort(double amount, double interestRate, double insuranceRate,int nbYear, AmortizationScheduleForm t1) {
-    public void calAmort(double amount, double interestRate, double insuranceRate,int nbYear) { 
+    public void calAmort(double amount, double interestRate, double insuranceRate,int nbYear, GraphForm g) { 
         double newAmount;
         double monthlyInterest = (interestRate / 12) / 100;
         int nbMonth = nbYear * 12;
@@ -45,6 +46,7 @@ public class AmortizationCalc {
             newAmount = amount - principalPaid; //Restant à payer
             tab.addRow(new String[]{Integer.toString(i),df.format(principalPaid),df.format(interestPaid),df.format(newAmount),df.format(monthlyPayment),df.format(insurance),df.format(monthlyPayment+insurance)});
             amount = newAmount;  //On met le nouveau montant comme montant principal
+            t1.insertData(amount, nbMonth);
         }
         //Dernier mois
         principalPaid = amount;

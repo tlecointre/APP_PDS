@@ -4,6 +4,8 @@ import edu.hubanato.controlers.AmortizationCalc;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 /**
@@ -12,6 +14,8 @@ import org.jfree.data.general.DefaultPieDataset;
  */
 public class GraphForm extends javax.swing.JFrame{
 
+    //DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+    
     public GraphForm() {
         initComponents();
     }
@@ -127,26 +131,44 @@ public class GraphForm extends javax.swing.JFrame{
         test1.setValue("Total: "+totalToPay+"E", new Integer(0));
         JFreeChart chart1 = ChartFactory.createPieChart("Prêt", test1, true, true, true);*/
         
+//        JFreeChart lineChart = ChartFactory.createLineChart(
+//         "Courbe de paiment",
+//         "Montant","Mois",
+//         dataImport(),
+//         PlotOrientation.VERTICAL,
+//         true,true,false);
+         
+        
         ChartPanel pan = new ChartPanel(chart, false);
         pan.setBounds(0, 0, 300, 300);
 
-        //ChartPanel pan1 = new ChartPanel(chart1, false);
-        //pan1.setBounds(350, 0, 300, 300);
+//        ChartPanel pan1 = new ChartPanel(lineChart, false);
+//        pan1.setBounds(350, 0, 300, 300);
         
         this.add(pan);
-        //this.add(pan1);
+//        this.add(pan1);
         this.graphButton.setVisible(false);
         this.setVisible(true);
         this.setSize(1000,1000);
         
     }//GEN-LAST:event_graphButtonActionPerformed
 
+//    private DefaultCategoryDataset dataImport( )
+//   {
+//      //DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+//      return dataset;
+//   }
+//    
+//    public void insertData(double amount, int month){
+//        dataset.addValue( amount , "Montant" , String.valueOf(month) );
+//    }
     private void amortButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amortButtonActionPerformed
         AmortizationCalc am = new AmortizationCalc(
                 Double.parseDouble(this.textFieldAmount.getText()),
                 Double.parseDouble(this.textFieldRate.getText()),
                 Double.parseDouble(this.textFieldInsuranceRate.getText()),
-                Integer.parseInt(this.textFieldDuration.getText())
+                Integer.parseInt(this.textFieldDuration.getText()),
+                this
         );
         //AmortizationScheduleForm t1 = new AmortizationScheduleForm();
         //t1.setVisible(true);

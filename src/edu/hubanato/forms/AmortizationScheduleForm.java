@@ -1,21 +1,24 @@
 package edu.hubanato.forms;
 
 import edu.hubanato.controlers.AmortizationCalc;
-import java.awt.Graphics;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
  * @author Tony
  */
-public class AmortizationScheduleForm extends javax.swing.JFrame implements Printable{
+public class AmortizationScheduleForm extends javax.swing.JFrame{
 
     private AmortizationCalc am;
+    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
     
     public AmortizationScheduleForm() {
         initComponents();
@@ -38,6 +41,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
         labelDuration = new javax.swing.JLabel();
         labelRate = new javax.swing.JLabel();
         labelInsurance = new javax.swing.JLabel();
+        buttonGraph = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +85,13 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
 
         labelInsurance.setText("Taux d'assurance: ");
 
+        buttonGraph.setText("Graphe");
+        buttonGraph.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGraphActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,6 +107,8 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(printButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonGraph)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -112,7 +125,9 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(printButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(printButton)
+                    .addComponent(buttonGraph))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -148,6 +163,32 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
         }
     }//GEN-LAST:event_printButtonActionPerformed
 
+    private void buttonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGraphActionPerformed
+        JFreeChart lineChart = ChartFactory.createLineChart(
+         "Courbe de paiment",
+         "Montant","Mois",
+         dataImport(),
+         PlotOrientation.VERTICAL,
+         true,true,false);
+        
+        ChartPanel pan1 = new ChartPanel(lineChart, false);
+        pan1.setBounds(0,0,0,0);
+
+        this.add(pan1);
+        this.setVisible(true);
+        this.setSize(100,100);
+        this.repaint();
+    }//GEN-LAST:event_buttonGraphActionPerformed
+    
+    private DefaultCategoryDataset dataImport( )
+   {
+      //DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+      return dataset;
+   }
+    
+    public void insertData(double amount, int month){
+        dataset.addValue( amount , "Montant" , String.valueOf(month) );
+    }
     
     public JTable getTable(){
         return amortizationTable;
@@ -171,6 +212,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable amortizationTable;
+    private javax.swing.JButton buttonGraph;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelAmount;
     private javax.swing.JLabel labelDuration;
@@ -179,8 +221,5 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
     private javax.swing.JButton printButton;
     // End of variables declaration//GEN-END:variables
 
-    public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }
