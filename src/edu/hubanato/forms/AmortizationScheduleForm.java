@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
-import java.text.MessageFormat;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -20,7 +19,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
     
     public AmortizationScheduleForm() {
         initComponents();
-        am = new AmortizationCalc(this);
+        //am = new AmortizationCalc(this);
     }
 
     /**
@@ -122,9 +121,6 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
 
-        MessageFormat header = null;
-        MessageFormat footer = null;
-        
         try {
             /* print the table */
             boolean complete = this.amortizationTable.print();
@@ -133,21 +129,21 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
             if (complete) {
                 /* show a success message */
                 JOptionPane.showMessageDialog(this,
-                                              "Printing Complete",
-                                              "Printing Result",
+                                              "Impression envoyé",
+                                              "Information",
                                               JOptionPane.INFORMATION_MESSAGE);
             } else {
                 /* show a message indicating that printing was cancelled */
                 JOptionPane.showMessageDialog(this,
-                                              "Printing Cancelled",
-                                              "Printing Result",
+                                              "Impression annulée",
+                                              "Information",
                                               JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (PrinterException pe) {
             /* Printing failed, report to the user */
             JOptionPane.showMessageDialog(this,
-                                          "Printing Failed: " + pe.getMessage(),
-                                          "Printing Result",
+                                          "Impression échouée: " + pe.getMessage(),
+                                          "Information",
                                           JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_printButtonActionPerformed

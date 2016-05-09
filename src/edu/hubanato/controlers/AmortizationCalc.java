@@ -7,28 +7,32 @@ import javax.swing.table.DefaultTableModel;
 public class AmortizationCalc {
 
     private DefaultTableModel tab;
-    private DecimalFormat df = new DecimalFormat("########.00"); 
+    private DecimalFormat df = new DecimalFormat("########.00");
+    AmortizationScheduleForm t1;
     
-    public AmortizationCalc(AmortizationScheduleForm t1) {
-        double amount, rate, insuranceRate;
+    //public AmortizationCalc(AmortizationScheduleForm t1) {
+    public AmortizationCalc(double amount, double rate, double insuranceRate, int nbYear) {
+        /*double amount, rate, insuranceRate;
         int nbYear;
         amount = 10000; //à modifier avec la BDD
         rate = 10; //à modifier avec la BDD
         nbYear = 2; //à modifier avec la BDD
-        insuranceRate = 1;
-        
-        calAmort(amount, rate, insuranceRate,nbYear,t1);
+        insuranceRate = 1;*/
+        t1 = new AmortizationScheduleForm();
+        t1.setVisible(true);
+        //calAmort(amount, rate, insuranceRate,nbYear,t1);
+        calAmort(amount, rate, insuranceRate,nbYear);
 
     }
 
-    public void calAmort(double amount, double interestRate, double insuranceRate,int nbYear, AmortizationScheduleForm t1) {
+    //public void calAmort(double amount, double interestRate, double insuranceRate,int nbYear, AmortizationScheduleForm t1) {
+    public void calAmort(double amount, double interestRate, double insuranceRate,int nbYear) { 
         double newAmount;
         double monthlyInterest = (interestRate / 12) / 100;
         int nbMonth = nbYear * 12;
         double monthlyPayment, interestPaid, principalPaid;
         double insurance = amount * (insuranceRate / 100);
-        int i;
-        //DecimalFormat df = new DecimalFormat("########.00"); 
+        int i; 
         tab = (DefaultTableModel)t1.getTable().getModel();
         //t1.getLabelAMount().setText(t1.getLabelAMount().getText()+ df.format(amount) +" Euros");
         updateLabel(amount, nbMonth, interestRate, insuranceRate, t1);
