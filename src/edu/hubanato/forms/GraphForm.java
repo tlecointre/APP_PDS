@@ -1,6 +1,5 @@
 package edu.hubanato.forms;
 
-import edu.hubanato.controlers.AmortizationCalc;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;

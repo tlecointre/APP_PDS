@@ -2,7 +2,6 @@ package edu.hubanato.controlers;
 
 import edu.hubanato.forms.AmortizationScheduleForm;
 import java.text.DecimalFormat;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class AmortizationCalc {
