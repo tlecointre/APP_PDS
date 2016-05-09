@@ -11,10 +11,6 @@ import java.awt.PrintJob;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import javax.print.attribute.standard.DialogTypeSelection;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 
