@@ -15,6 +15,8 @@ import java.awt.print.PrinterJob;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.standard.DialogTypeSelection;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 
 /**
  *
@@ -41,6 +43,10 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
         jScrollPane3 = new javax.swing.JScrollPane();
         amortizationTable = new javax.swing.JTable();
         printButton = new javax.swing.JButton();
+        labelAmount = new javax.swing.JLabel();
+        labelDuration = new javax.swing.JLabel();
+        labelRate = new javax.swing.JLabel();
+        labelInsurance = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,7 +55,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
 
             },
             new String [] {
-                "Mois", "Capital amorti", "Intérêts", "Capital restant", "Mensualité", "Assurance", "Mensualité avec assurance"
+                "Mois", "Capital amorti", "Intérêts", "Capital restant", "Mensualité", "Assurance", "Total"
             }
         ) {
             Class[] types = new Class [] {
@@ -76,24 +82,46 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
             }
         });
 
+        labelAmount.setText("Montant de l'emprunt: ");
+
+        labelDuration.setText("Durée du prêt: ");
+
+        labelRate.setText("Taux annuel: ");
+
+        labelInsurance.setText("Taux d'assurance: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelAmount)
+                    .addComponent(labelDuration)
+                    .addComponent(labelRate)
+                    .addComponent(labelInsurance)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(printButton)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(printButton)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelAmount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelDuration)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelRate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelInsurance)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(printButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -135,13 +163,33 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
     }//GEN-LAST:event_printButtonActionPerformed
 
     
-    public javax.swing.JTable getTable(){
+    public JTable getTable(){
         return amortizationTable;
+    }
+    
+    public JLabel getLabelAMount(){
+        return labelAmount;
+    }
+    
+    public JLabel getLabelDuration(){
+        return labelDuration;
+    }
+    
+    public JLabel getLabelInsurance(){
+        return labelInsurance;
+    }
+    
+    public JLabel getLabelRate(){
+        return labelRate;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable amortizationTable;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel labelAmount;
+    private javax.swing.JLabel labelDuration;
+    private javax.swing.JLabel labelInsurance;
+    private javax.swing.JLabel labelRate;
     private javax.swing.JButton printButton;
     // End of variables declaration//GEN-END:variables
 

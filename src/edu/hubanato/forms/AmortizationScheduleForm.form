@@ -23,12 +23,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane3" min="-2" pref="557" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labelAmount" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelDuration" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelRate" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelInsurance" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" min="-2" pref="551" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
               <Component id="printButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -36,10 +44,17 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="printButton" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane3" min="-2" pref="212" max="-2" attributes="0"/>
-              </Group>
+              <Component id="labelAmount" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="labelDuration" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="labelRate" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="labelInsurance" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane3" min="-2" pref="212" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="printButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -63,7 +78,7 @@
                 <Column editable="false" title="Capital restant" type="java.lang.String"/>
                 <Column editable="false" title="Mensualit&#xe9;" type="java.lang.String"/>
                 <Column editable="false" title="Assurance" type="java.lang.String"/>
-                <Column editable="false" title="Mensualit&#xe9; avec assurance" type="java.lang.String"/>
+                <Column editable="false" title="Total" type="java.lang.String"/>
               </Table>
             </Property>
           </Properties>
@@ -77,6 +92,26 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="printButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelAmount">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Montant de l&apos;emprunt: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelDuration">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Dur&#xe9;e du pr&#xea;t: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelRate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Taux annuel: "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelInsurance">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Taux d&apos;assurance: "/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

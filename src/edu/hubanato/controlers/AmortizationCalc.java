@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 public class AmortizationCalc {
 
     private DefaultTableModel tab;
+    private DecimalFormat df = new DecimalFormat("########.00"); 
     
     public AmortizationCalc(AmortizationScheduleForm t1) {
         double amount, rate, insuranceRate;
@@ -21,16 +22,17 @@ public class AmortizationCalc {
 
     }
 
-    public void calAmort(double amount, double interest, double insuranceRate,int nbYear, AmortizationScheduleForm t1) {
+    public void calAmort(double amount, double interestRate, double insuranceRate,int nbYear, AmortizationScheduleForm t1) {
         double newAmount;
-        double monthlyInterest = (interest / 12) / 100;
+        double monthlyInterest = (interestRate / 12) / 100;
         int nbMonth = nbYear * 12;
         double monthlyPayment, interestPaid, principalPaid;
         double insurance = amount * (insuranceRate / 100);
         int i;
-        DecimalFormat df = new DecimalFormat("########.00"); 
+        //DecimalFormat df = new DecimalFormat("########.00"); 
         tab = (DefaultTableModel)t1.getTable().getModel();
-        
+        //t1.getLabelAMount().setText(t1.getLabelAMount().getText()+ df.format(amount) +" Euros");
+        updateLabel(amount, nbMonth, interestRate, insuranceRate, t1);
         //Formule de calcul des mensualités
         monthlyPayment = amount * monthlyInterest * Math.pow(1 + monthlyInterest, (double) nbMonth) / (Math.pow(1 + monthlyInterest, (double) nbMonth) - 1);
        
@@ -49,4 +51,10 @@ public class AmortizationCalc {
         tab.addRow(new String[]{Integer.toString(i),df.format(principalPaid),df.format(interestPaid),df.format(newAmount),df.format(monthlyPayment),df.format(insurance),df.format(monthlyPayment+insurance)});
     }
 
+    public void updateLabel(double amount, int nbMonth, double interestRate, double insuranceRate, AmortizationScheduleForm t1){
+        t1.getLabelAMount().setText(t1.getLabelAMount().getText()+ df.format(amount) +" Euros");
+        t1.getLabelDuration().setText(t1.getLabelDuration().getText()+ nbMonth +" Mois");
+        t1.getLabelInsurance().setText(t1.getLabelInsurance().getText()+df.format(insuranceRate)+" %");
+        t1.getLabelRate().setText(t1.getLabelRate().getText()+df.format(interestRate)+" %");
+    }
 }
