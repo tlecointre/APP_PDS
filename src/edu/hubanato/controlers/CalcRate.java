@@ -36,10 +36,14 @@ public class CalcRate implements ActionListener{
 
     /**
      * This method permit to calculate the interest rate
+     * @param amt
+     * @param depost
+     * @param dur
      * @return 
      */
-    public float CalculateInterestRate(){
-        return 0;
+    public double CalculateInterestRate(double amt, double depost, int dur){
+        double tx = (1200 * depost)/(amt * dur);
+        return tx;
     }
 
     @Override
@@ -47,10 +51,19 @@ public class CalcRate implements ActionListener{
         Object source = evt.getSource();
 
         if (source == calculate) {
-            int valRateD = Integer.parseInt(rateDirector.getText());
-            int valAmount = Integer.parseInt(amount.getText());
+            /*double valRateD = Integer.parseInt(rateDirector.getText());
+            double valAmount = Integer.parseInt(amount.getText());
             int valDuration = (Integer)duration.getValue();
-            int valDeposit = Integer.parseInt(deposit.getText()); 
+            double valDeposit = Integer.parseInt(deposit.getText());*/
+            
+            double valRateD = Double.parseDouble(rateDirector.getText());
+            double valAmount = Double.parseDouble(amount.getText());
+            int valDuration = (Integer)duration.getValue();
+            double valDeposit = Double.parseDouble(deposit.getText());
+            
+            double resrate = CalculateInterestRate(valAmount, valDeposit, valDuration);
+            
+            rate.setText(String.valueOf(resrate));
              
             JOptionPane.showMessageDialog(null,"Rate (%) : " +valRateD+ "\n Amount (€) : " +valAmount+ "\n Duration (months) : " +valDuration+ "\n Deposit (€) : " +valDeposit);
             //JOptionPane.showMessageDialog(null,"You are going to calculate the interest rate");
