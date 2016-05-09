@@ -5,9 +5,9 @@
  */
 package edu.hubanato.forms;
 
-import java.util.Observable;
 import java.util.Observer;
 import edu.hubanato.entities.RateVariable;
+import java.util.Observable;
 
 /**
  *
@@ -23,20 +23,12 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
     public PanelCharacteristics(RateVariable rateVariable) {
         this.rateVariable = rateVariable;
         initComponents();
-        rateVariable.addObserver(this);
     }
     
     /**  */
     public PanelCharacteristics() {
         this(new RateVariable());
     }
-    
-//    /**
-//     * Creates new form PanelCharacteristics
-//     */
-//    public PanelCharacteristics() {
-//        initComponents();
-//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,8 +114,11 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        
         System.out.println("Ok btn");
+        
+        rateVariable.stableRate(Integer.parseInt(this.txtDuree.getText()));
+
+//        rateVariable.growthRate(Integer.parseInt(this.txtDuree.getText()));
     }//GEN-LAST:event_btnStartActionPerformed
 
 
@@ -141,6 +136,6 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Ok");
     }
+
 }
