@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pds_ihm.rate_variable;
+package edu.hubanato.forms;
 
 /**
  *
  * @author Baptiste
  */
-public class PanelGrowthRate extends javax.swing.JPanel {
+public class PanelStableRate extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelGrowthRate
+     * Creates new form PanelStableRate
      */
-    public PanelGrowthRate() {
+    public PanelStableRate() {
         initComponents();
     }
 

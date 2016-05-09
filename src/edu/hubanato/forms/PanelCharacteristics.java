@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pds_ihm.rate_variable;
+package edu.hubanato.forms;
 
 import java.util.Observable;
 import java.util.Observer;
