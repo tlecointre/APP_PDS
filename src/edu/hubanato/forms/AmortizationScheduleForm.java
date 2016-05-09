@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.hubanato.forms;
 
 import edu.hubanato.controlers.AmortizationCalc;
 import java.awt.Graphics;
-import java.awt.PrintJob;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
+import java.text.MessageFormat;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -125,37 +121,35 @@ public class AmortizationScheduleForm extends javax.swing.JFrame implements Prin
     }// </editor-fold>//GEN-END:initComponents
 
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
-        PrintJob job = getToolkit().getPrintJob(this,"essai", null); 
-        if (job != null) { 
-        // Récupère le Graphics dans lequel on va écrire
-            Graphics g = job.getGraphics(); 
-            if (g != null) { 
-                //Impression du JTable uniquement
-                getTable().printAll(g); 
-                g.dispose(); 
-            }    
-            job.end(); 
-        }
+
+        MessageFormat header = null;
+        MessageFormat footer = null;
         
-        /*PrinterJob job = PrinterJob.getPrinterJob(); //Get the printer's job list
-        job.setPrintable(this); //We print with this class (btnPrintAction, which implements Printable)
-        if (job.printDialog() == true) { //If we clicked OK in the print dialog
-            try {job.print();} catch (PrinterException ex){
-		//It did not work (PrinterException thrown), so add any error handling routines.
-            }
-        }*/
-        
-        /*try {
-            
-            boolean complete = this.getTable().print();
+        try {
+            /* print the table */
+            boolean complete = this.amortizationTable.print();
+
+            /* if printing completes */
             if (complete) {
-                System.out.println("OK");
+                /* show a success message */
+                JOptionPane.showMessageDialog(this,
+                                              "Printing Complete",
+                                              "Printing Result",
+                                              JOptionPane.INFORMATION_MESSAGE);
             } else {
-                System.out.println("PAS OK");
+                /* show a message indicating that printing was cancelled */
+                JOptionPane.showMessageDialog(this,
+                                              "Printing Cancelled",
+                                              "Printing Result",
+                                              JOptionPane.INFORMATION_MESSAGE);
             }
-            } 
-        catch (PrinterException pe) {
-            }*/
+        } catch (PrinterException pe) {
+            /* Printing failed, report to the user */
+            JOptionPane.showMessageDialog(this,
+                                          "Printing Failed: " + pe.getMessage(),
+                                          "Printing Result",
+                                          JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_printButtonActionPerformed
 
     
