@@ -65,8 +65,5 @@ public class Year extends Observable{
 
     public void setRemaining(double remaining) {
         this.remaining = remaining;
-    }
-    
-    
-   
+    }  
 }

@@ -25,12 +25,15 @@ public class RateVariable extends Observable {
      */
     public void growthRate(int year) {
         
+        System.out.println("rentre growth");
+        
         for (int cmpt=0; cmpt<year; cmpt++){
         
-            listGrowth.add(new Year(cmpt,2.3,10,5.5,5.5));
+//            listGrowth.add(new Year(cmpt,2.3,10,5.5,5.5));
+            System.out.println("year:" + cmpt);
         
         }
-                
+            
         // Indiquer que l'objet a changé
         setChanged();
         // Prévenir les observateurs pour qu'ils se mettent à jour
@@ -40,8 +43,15 @@ public class RateVariable extends Observable {
     /** 
      * propose a table with an stable variable rate
      */
-    public void stableRate() {
-                
+    public void stableRate(int year) {
+       
+        for (int cmpt=0; cmpt<year; cmpt++){
+//            listGrowth.add(new Year(cmpt,2.3,10,5.5,5.5));
+            System.out.println("year:" + cmpt);
+        }
+
+        System.out.println("indique objet observable");
+
         // Indiquer que l'objet a changé
         setChanged();
         // Prévenir les observateurs pour qu'ils se mettent à jour
