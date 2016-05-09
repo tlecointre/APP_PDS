@@ -18,10 +18,11 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class AmortizationScheduleForm extends javax.swing.JFrame{
 
     private AmortizationCalc am;
-    DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    DefaultCategoryDataset dataset; 
     
     public AmortizationScheduleForm() {
         initComponents();
+        dataset = new DefaultCategoryDataset();
         //am = new AmortizationCalc(this);
     }
 
@@ -166,18 +167,18 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
     private void buttonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGraphActionPerformed
         JFreeChart lineChart = ChartFactory.createLineChart(
          "Courbe de paiment",
-         "Montant","Mois",
+         "Mois","Montant",
          dataImport(),
          PlotOrientation.VERTICAL,
          true,true,false);
-        
+
         ChartPanel pan1 = new ChartPanel(lineChart, false);
-        pan1.setBounds(0,0,0,0);
+        pan1.setBounds(0, 350, 350, 350);
 
         this.add(pan1);
         this.setVisible(true);
-        this.setSize(100,100);
-        this.repaint();
+        this.setSize(700,800);
+
     }//GEN-LAST:event_buttonGraphActionPerformed
     
     private DefaultCategoryDataset dataImport( )
@@ -187,7 +188,10 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
    }
     
     public void insertData(double amount, int month){
-        dataset.addValue( amount , "Montant" , String.valueOf(month) );
+        //dataset.addValue( amount , "Montant" , String.valueOf(month) );
+        //System.out.println(amount +" : "+ month + " // ");
+        dataset.addValue(amount , "Montant" , String.valueOf(month) );
+        //dataset.addValue( 12 , "Montant" , "non" );
     }
     
     public JTable getTable(){

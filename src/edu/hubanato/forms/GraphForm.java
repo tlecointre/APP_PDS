@@ -131,20 +131,12 @@ public class GraphForm extends javax.swing.JFrame{
         test1.setValue("Total: "+totalToPay+"E", new Integer(0));
         JFreeChart chart1 = ChartFactory.createPieChart("Prêt", test1, true, true, true);*/
         
-//        JFreeChart lineChart = ChartFactory.createLineChart(
-//         "Courbe de paiment",
-//         "Montant","Mois",
-//         dataImport(),
-//         PlotOrientation.VERTICAL,
-//         true,true,false);
-         
-        
         ChartPanel pan = new ChartPanel(chart, false);
         pan.setBounds(0, 0, 300, 300);
 
-//        ChartPanel pan1 = new ChartPanel(lineChart, false);
+//        ChartPanel pan1 = new ChartPanel(chart1, false);
 //        pan1.setBounds(350, 0, 300, 300);
-        
+       
         this.add(pan);
 //        this.add(pan1);
         this.graphButton.setVisible(false);
@@ -153,15 +145,6 @@ public class GraphForm extends javax.swing.JFrame{
         
     }//GEN-LAST:event_graphButtonActionPerformed
 
-//    private DefaultCategoryDataset dataImport( )
-//   {
-//      //DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-//      return dataset;
-//   }
-//    
-//    public void insertData(double amount, int month){
-//        dataset.addValue( amount , "Montant" , String.valueOf(month) );
-//    }
     private void amortButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amortButtonActionPerformed
         AmortizationCalc am = new AmortizationCalc(
                 Double.parseDouble(this.textFieldAmount.getText()),
