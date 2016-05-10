@@ -27,7 +27,7 @@ public abstract class Person {
     protected int number;
     protected String Street;
     protected String Additional;
-    protected int cp;
+    protected String cp;
     protected String city;
     protected String country;
     
@@ -41,5 +41,17 @@ public abstract class Person {
     public abstract void CreatePerson() throws SQLException;
     public abstract void UpdatePerson() throws SQLException;;
     public abstract void DeletePerson(int id) throws SQLException;;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getCp() {
+        return cp;
+    }
     
 }
