@@ -123,7 +123,7 @@ public class FormControl implements ActionListener {
                             convertUtilToSql(birthDate.getDate()), birthPlace.getText(),
                             sex.getSelectedItem().toString(), nationality.getSelectedItem().toString(),
                             Integer.parseInt(nb.getText()), street.getText(), add.getText(),
-                            Integer.parseInt(cp.getText()), city.getText(), country.getSelectedItem().toString(),
+                            cp.getText(), city.getText(), country.getSelectedItem().toString(),
                             Integer.parseInt(pnumber.getText()), Integer.parseInt(phome.getText()),
                             Integer.parseInt(pbusiness.getText()), email.getText(), job.getText(),
                             Integer.parseInt(age.getText()), Integer.parseInt(income.getText()),
