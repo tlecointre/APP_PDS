@@ -18,16 +18,27 @@ public class RateVariable extends Observable {
     private List<Year> listStable;
     private List<Year> listDecreasing;
     
-    
+    /** 
+     * calculate the monthly
+     */
+    public double calculateMonthly (double rate, double duree, double montant){
+
+        double monthly=(montant*(rate/100)/12)/(1-(1/Math.pow((1+(rate/100)/12), 12*duree)));
+        System.out.println("Montlhy for " + montant + "€ and " + duree + "year : "+ monthly);
+        
+        return monthly;
+    }
     
     /** 
      * propose a table with an increasing variable rate
      */
-    public void growthRate(int year) {
+    public void growthRate(double rate, double duree, double montant, double cape) {
         
         System.out.println("rentre growth");
         
-        for (int cmpt=0; cmpt<year; cmpt++){
+        double monthly=calculateMonthly(rate, duree, montant);
+        
+        for (int cmpt=0; cmpt<duree; cmpt++){
         
 //            listGrowth.add(new Year(cmpt,2.3,10,5.5,5.5));
             System.out.println("year:" + cmpt);
@@ -43,11 +54,16 @@ public class RateVariable extends Observable {
     /** 
      * propose a table with an stable variable rate
      */
-    public void stableRate(int year) {
+    public void stableRate(double rate, double duree, double montant, double cape) {
        
-        for (int cmpt=0; cmpt<year; cmpt++){
+        System.out.println("rentre stable");
+        
+        double monthly=calculateMonthly(rate, duree, montant);
+        
+        
+        for (int cmpt=0; cmpt<duree; cmpt++){
 //            listGrowth.add(new Year(cmpt,2.3,10,5.5,5.5));
-            System.out.println("year:" + cmpt);
+//            System.out.println("year:" + cmpt);
         }
 
         System.out.println("indique objet observable");

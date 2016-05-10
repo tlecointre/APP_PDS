@@ -24,10 +24,15 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panelCharacteristics1" min="-2" max="-2" attributes="0"/>
-                  <Component id="panelStableRate2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="panelStableRate2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="panelCharacteristics1" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -46,9 +51,9 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="edu.hubanato.forms.PanelCharacteristics" name="panelCharacteristics1">
-    </Component>
     <Component class="edu.hubanato.forms.PanelStableRate" name="panelStableRate2">
+    </Component>
+    <Component class="edu.hubanato.forms.PanelCharacteristics" name="panelCharacteristics1">
     </Component>
   </SubComponents>
 </Form>

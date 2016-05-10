@@ -51,13 +51,14 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
 
         jLabel4.setText("Montant (en €):");
 
-        jLabel1.setText("Durée (en mois):");
+        jLabel1.setText("Durée (en années):");
 
         jLabel2.setText("Capé:");
 
         jLabel3.setText("Taux:");
 
         txtRate.setEditable(false);
+        txtRate.setText("4");
 
         btnStart.setText("Start simulation");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +93,7 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
                     .addGroup(layout.createSequentialGroup()
                         .addGap(298, 298, 298)
                         .addComponent(btnStart)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +117,7 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         System.out.println("Ok btn");
         
-        rateVariable.stableRate(Integer.parseInt(this.txtDuree.getText()));
+        rateVariable.stableRate(Double.parseDouble(this.txtRate.getText()), Double.parseDouble(this.txtDuree.getText()), Double.parseDouble(this.txtMontant.getText()), Double.parseDouble(this.txtCape.getText()));
 
 //        rateVariable.growthRate(Integer.parseInt(this.txtDuree.getText()));
     }//GEN-LAST:event_btnStartActionPerformed
