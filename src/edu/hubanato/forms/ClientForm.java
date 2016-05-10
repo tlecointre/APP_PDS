@@ -84,62 +84,66 @@ public class ClientForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Form to create a client");
 
-        jLabel1.setText("Name * :");
+        jLabel1.setText("Nom * :");
 
-        jLabel2.setText("First Name * :");
+        jLabel2.setText("Prénom * :");
 
-        jLabel3.setText("Birth Date * :");
+        jLabel3.setText("Date de naissance * :");
 
-        jLabel4.setText("Civility :");
+        jLabel4.setText("Civilité * :");
 
-        cmbCivility.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mr", "Mrs", "Ms" }));
+        cmbCivility.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M.", "Mme" }));
 
-        jLabel5.setText("Birth Place * :");
+        jLabel5.setText("Lieu de naissance * :");
 
-        jLabel6.setText("Nationality * :");
+        jLabel6.setText("Nationalité * :");
 
         jLabel7.setText("N° * :");
 
-        jLabel8.setText("Street * :");
+        jLabel8.setText("Rue * :");
 
-        jLabel9.setText("Additional :");
+        jLabel9.setText("Complément :");
 
-        jLabel10.setText("CP * :");
+        jLabel10.setText("Code postal * :");
 
-        jLabel11.setText("City * :");
+        jLabel11.setText("Ville * :");
 
-        jLabel12.setText("Country * :");
+        jLabel12.setText("Pays * :");
 
-        btnCreate.setText("Create");
+        btnCreate.setText("Créer");
 
-        btnClear.setText("Clear");
+        btnClear.setText("Vider");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
-        btnCancel.setText("Cancel");
+        btnCancel.setText("Retour");
 
-        jLabel13.setText("Phone Number * :");
+        jLabel13.setText("Numéro personnel * :");
 
-        jLabel14.setText("Phone Home :");
+        jLabel14.setText("Numéro du domicile :");
 
-        jLabel15.setText("Phone Business :");
+        jLabel15.setText("Numéro professionnel :");
 
         jLabel16.setText("Email *:");
 
-        jLabel17.setText("Job :");
+        jLabel17.setText("Travail :");
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel18.setText("Client Form");
+        jLabel18.setText("Formulaire de création d'un client");
 
         jLabel19.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel19.setText("* This field is mandatory");
+        jLabel19.setText("* Ce champ est obligatoire");
 
-        cmbNationality.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "France", "United States", "United Kingdom", "Madagascar", "Mautitius" }));
-        cmbNationality.setSelectedItem(cmbCountry);
+        cmbNationality.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Francaise", "Americaine", "Anglaise", "Japonaise", "Espagnole", "Italienne", "Allemande", "Portugaise" }));
         cmbNationality.setToolTipText("");
 
-        cmbCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "France", "United States", "United Kingdom", "Madagascar", "Mautitius" }));
+        cmbCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "France", "Italie", "Etats-Unis", "Royaume-Uni", "Espagne", "Grece", "Croatie", "Portugal" }));
 
-        jLabel20.setText("Sex :");
+        jLabel20.setText("Sexe * :");
 
         cmbSex.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M", "F" }));
 
@@ -158,11 +162,11 @@ public class ClientForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel22.setText("Profession (PCS) * :");
+        jLabel22.setText("Catégorie profesionnelle (PCS) * :");
 
         cmbProfession.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Agriculteur exploitant", "Artisan, commerçant et chef d'entreprise", "Cadre et profession intellectuelles supérieures", "Profession intermédiaire", "Employé", "Ouvrier", "Retraité", "Autre" }));
 
-        jLabel23.setText("Annual income (€ gross) * :");
+        jLabel23.setText("Revenu annuel (en € brut) * :");
 
         txtIncome.setPreferredSize(new java.awt.Dimension(60, 20));
         txtIncome.addActionListener(new java.awt.event.ActionListener() {
@@ -239,14 +243,14 @@ public class ClientForm extends javax.swing.JFrame {
                                             .addComponent(jLabel23))
                                         .addGap(26, 26, 26)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(cmbProfession, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                            .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jLabel19))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(337, 337, 337)
+                        .addGap(209, 209, 209)
                         .addComponent(jLabel18)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -307,7 +311,7 @@ public class ClientForm extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
-                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
@@ -315,8 +319,8 @@ public class ClientForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel23)
-                            .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addComponent(txtIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -332,14 +336,14 @@ public class ClientForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate)
                     .addComponent(btnClear)
                     .addComponent(btnCancel))
                 .addGap(19, 19, 19)
                 .addComponent(jLabel19)
-                .addContainerGap())
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -356,6 +360,10 @@ public class ClientForm extends javax.swing.JFrame {
     private void txtIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIncomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIncomeActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
