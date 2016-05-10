@@ -10,10 +10,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
 import edu.hubanato.models.PdsDatabase;
+import java.util.logging.*;
 
 /**
  * Release R2
@@ -54,7 +53,7 @@ public class Client extends Person {
      * @param income
      */
     public Client(String civility, String name, String firstName, Date birthDate, String birthPlace,
-                    String sex, String nationality, int number, String street, String add, int cp,
+                    String sex, String nationality, int number, String street, String add, String cp,
                     String city, String country, int pNumber, int pHome, int pBusiness, String email,
                     String job, int age, int income, String profession) {
 
@@ -97,15 +96,13 @@ public class Client extends Person {
 
         Connection connexion = PdsDatabase.getConnection();
 
-        //This query is used to insert first into the table "ADDRESS"
         String requeteAddress = "INSERT INTO ADDRESS(NBER,STREET,ADDITIONAL,ZIP_CODE,CITY,COUNTRY) VALUES (?,?,?,?,?,?)";
-        //PreparedStatement ordre = connexion.prepareStatement(requeteAddress, Statement.RETURN_GENERATED_KEYS);
         PreparedStatement ordre = connexion.prepareStatement(requeteAddress);
 
         ordre.setInt(1, number);
         ordre.setString(2, Street);
         ordre.setString(3, Additional);
-        ordre.setInt(4, cp);
+        ordre.setString(4, cp);
         ordre.setString(5, city);
         ordre.setString(6, country);
 
@@ -140,7 +137,6 @@ public class Client extends Person {
         ordre2.setInt(13, phoneBusiness);
         ordre2.setString(14, profession);
         ordre2.setInt(15, age);
-        System.out.println(income);
         ordre2.setInt(16, income);
 
         ordre2.executeUpdate();
@@ -167,7 +163,7 @@ public class Client extends Person {
             return new Client(rs.getString("CIVILITY"), rs.getString("NAME"), rs.getString("FIRST_NAME"),
                     rs.getDate("BIRTH_DATE"), rs.getString("BIRTH_PLACE"), rs.getString("SEX"),
                     rs.getString("NATIONALITY"), rs.getInt("NBER"), rs.getString("STREET"),
-                    rs.getString("ADDITIONAL"), rs.getInt("ZIP_CODE"), rs.getString("CITY"),
+                    rs.getString("ADDITIONAL"), rs.getString("ZIP_CODE"), rs.getString("CITY"),
                     rs.getString("COUNTRY"), rs.getInt("PHONE_MOBIL"), rs.getInt("PHONE_HOME"),
                     rs.getInt("PHONE_BUSINESS"), rs.getString("EMAIL"), rs.getString("JOB"),
                     rs.getInt("AGE"), rs.getInt("ANNUAL_INCOME"), rs.getString("PROFESSION"));
@@ -184,20 +180,22 @@ public class Client extends Person {
      * @return client found
      * @throws SQLException
      */
-    public static ArrayList<Client> getByName(String name, String firstName) throws SQLException {
+    public static List<Client> getByNamePC(String name, String firstName, String postalCode) throws SQLException {
         Connection connexion = PdsDatabase.getConnection();
 
-        String sql = "SELECT * FROM PERSON, ADDRESS WHERE NAME = ? AND FIRST_NAME = ? AND PERSON.ID_ADR = ADDRESS.ID_ADR";
+        String sql = "SELECT * FROM PERSON, ADDRESS WHERE NAME like ? AND FIRST_NAME like ? "
+                + "AND PERSON.ID_ADR = ADDRESS.ID_ADR AND ZIP_CODE like ?";
         PreparedStatement ordre = connexion.prepareStatement(sql);
         ordre.setString(1, name);
         ordre.setString(2, firstName);
+        ordre.setString(3, postalCode);
         ResultSet rs = ordre.executeQuery();
-        ArrayList<Client> clients = new ArrayList<Client>();
+        List<Client> clients = new ArrayList<Client>();
         while (rs.next()) {
             clients.add(new Client(rs.getString("CIVILITY"), rs.getString("NAME"), rs.getString("FIRST_NAME"),
                     rs.getDate("BIRTH_DATE"), rs.getString("BIRTH_PLACE"), rs.getString("SEX"),
                     rs.getString("NATIONALITY"), rs.getInt("NBER"), rs.getString("STREET"),
-                    rs.getString("ADDITIONAL"), rs.getInt("ZIP_CODE"), rs.getString("CITY"),
+                    rs.getString("ADDITIONAL"), rs.getString("ZIP_CODE"), rs.getString("CITY"),
                     rs.getString("COUNTRY"), rs.getInt("PHONE_MOBIL"), rs.getInt("PHONE_HOME"),
                     rs.getInt("PHONE_BUSINESS"), rs.getString("EMAIL"), rs.getString("JOB"),
                     rs.getInt("AGE"), rs.getInt("ANNUAL_INCOME"), rs.getString("PROFESSION")));
