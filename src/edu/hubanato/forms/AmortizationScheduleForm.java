@@ -196,7 +196,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
          true, true, false);
         
         ChartPanel pan2 = new ChartPanel(barChart, false);
-        pan2.setBounds(400, 350, 350, 350);
+        pan2.setBounds(400, 700, 350, 350);
         
         pan2.addMouseMotionListener(new MouseAdapter() {
             public void mouseMoved(MouseEvent me) {
@@ -228,7 +228,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
     }
     
     public void insertDataToBarChart1(double amount, String label ,int month){
-        datasetLineChart1.addValue(amount , label , String.valueOf(month) );
+        datasetBarChart1.addValue(amount , label , String.valueOf(month) );
     }
     
     public JTable getTable(){
