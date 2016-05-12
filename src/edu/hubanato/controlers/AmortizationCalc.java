@@ -46,14 +46,14 @@ public class AmortizationCalc {
             newAmount = amount - principalPaid; //Restant à payer
             tab.addRow(new String[]{Integer.toString(i),df.format(principalPaid),df.format(interestPaid),df.format(newAmount),df.format(monthlyPayment),df.format(insurance),df.format(monthlyPayment+insurance)});
             amount = newAmount;  //On met le nouveau montant comme montant principal
-            t1.insertData(newAmount, i);
+            t1.insertDataToLineChart1(newAmount, i);
         }
         //Dernier mois
         principalPaid = amount;
         interestPaid = amount * monthlyInterest;
         monthlyPayment = principalPaid + interestPaid;
         newAmount = 0.0;
-        t1.insertData(newAmount, i);
+        t1.insertDataToLineChart1(newAmount, i);
         tab.addRow(new String[]{Integer.toString(i),df.format(principalPaid),df.format(interestPaid),df.format(newAmount),df.format(monthlyPayment),df.format(insurance),df.format(monthlyPayment+insurance)});
     }
 

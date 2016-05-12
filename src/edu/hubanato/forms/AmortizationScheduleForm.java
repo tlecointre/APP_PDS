@@ -1,6 +1,8 @@
 package edu.hubanato.forms;
 
 import edu.hubanato.controlers.AmortizationCalc;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,11 +20,12 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class AmortizationScheduleForm extends javax.swing.JFrame{
 
     private AmortizationCalc am;
-    DefaultCategoryDataset dataset; 
+    DefaultCategoryDataset datasetLineChart1, datasetBarChart1; 
     
     public AmortizationScheduleForm() {
         initComponents();
-        dataset = new DefaultCategoryDataset();
+        datasetLineChart1 = new DefaultCategoryDataset();
+        datasetBarChart1 = new DefaultCategoryDataset();
         //am = new AmortizationCalc(this);
     }
 
@@ -165,33 +168,67 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
     }//GEN-LAST:event_printButtonActionPerformed
 
     private void buttonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGraphActionPerformed
+        //Premier graph: Reste à payer -> LineChart
         JFreeChart lineChart = ChartFactory.createLineChart(
-         "Courbe de paiment",
+         "Reste  à payer",
          "Mois","Montant",
-         dataImport(),
+         dataImportLineChart(),
          PlotOrientation.VERTICAL,
          true,true,false);
 
         ChartPanel pan1 = new ChartPanel(lineChart, false);
         pan1.setBounds(0, 350, 350, 350);
 
+        pan1.addMouseMotionListener(new MouseAdapter() {
+            public void mouseMoved(MouseEvent me) {
+            pan1.getEntityForPoint(me.getX(), me.getY());
+          }
+        });
+        //Fin Premier graph
+        
+        //Deuxième graph: Reste à payer -> BarChart
+        JFreeChart barChart = ChartFactory.createBarChart(
+         "Reste à payer",           
+         "Category",            
+         "Score",            
+         dataImportBarChart(),          
+         PlotOrientation.VERTICAL,           
+         true, true, false);
+        
+        ChartPanel pan2 = new ChartPanel(barChart, false);
+        pan2.setBounds(400, 350, 350, 350);
+        
+        pan2.addMouseMotionListener(new MouseAdapter() {
+            public void mouseMoved(MouseEvent me) {
+            pan2.getEntityForPoint(me.getX(), me.getY());
+          }
+        });
+        //Fin Deuxième graph
+        
         this.add(pan1);
+        this.add(pan2);
+        
+        this.pack();
         this.setVisible(true);
-        this.setSize(700,800);
-
+        this.setSize(1000,800);
     }//GEN-LAST:event_buttonGraphActionPerformed
     
-    private DefaultCategoryDataset dataImport( )
-   {
-      //DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-      return dataset;
-   }
+    private DefaultCategoryDataset dataImportLineChart( )
+    {
+      return datasetLineChart1;
+    }
     
-    public void insertData(double amount, int month){
-        //dataset.addValue( amount , "Montant" , String.valueOf(month) );
-        //System.out.println(amount +" : "+ month + " // ");
-        dataset.addValue(amount , "Montant" , String.valueOf(month) );
-        //dataset.addValue( 12 , "Montant" , "non" );
+    private DefaultCategoryDataset dataImportBarChart( )
+    {
+      return datasetBarChart1;
+    }
+    
+    public void insertDataToLineChart1(double amount, int month){
+        datasetLineChart1.addValue(amount , "Montant" , String.valueOf(month) );
+    }
+    
+    public void insertDataToBarChart1(double amount, String label ,int month){
+        datasetLineChart1.addValue(amount , label , String.valueOf(month) );
     }
     
     public JTable getTable(){
