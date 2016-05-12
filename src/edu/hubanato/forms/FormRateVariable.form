@@ -24,17 +24,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panelStableRate2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="panelCharacteristics1" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="panelCharacteristics2" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelStableRate2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="panelGrowthRate1" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="99" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -42,18 +38,22 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelCharacteristics1" min="-2" max="-2" attributes="0"/>
+              <Component id="panelCharacteristics2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelStableRate2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="panelGrowthRate1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="322" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="edu.hubanato.forms.PanelCharacteristics" name="panelCharacteristics2">
+    </Component>
     <Component class="edu.hubanato.forms.PanelStableRate" name="panelStableRate2">
     </Component>
-    <Component class="edu.hubanato.forms.PanelCharacteristics" name="panelCharacteristics1">
+    <Component class="edu.hubanato.forms.PanelGrowthRate" name="panelGrowthRate1">
     </Component>
   </SubComponents>
 </Form>

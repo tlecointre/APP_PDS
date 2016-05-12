@@ -5,17 +5,36 @@
  */
 package edu.hubanato.forms;
 
+import edu.hubanato.entities.RateVariable;
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * @author Baptiste
  */
-public class PanelDecayRate extends javax.swing.JPanel {
+public class PanelDecayRate extends javax.swing.JPanel implements Observer {
 
+    RateVariable rateVariable;
+     
+    /**
+    * Creates new form PanelDecayRate
+    * @param rateVariable
+    */
+    public PanelDecayRate(RateVariable rateVariable) {
+        this.rateVariable = rateVariable;
+        initComponents();
+        
+        // Add this Object GrowthRate to observer
+        rateVariable.addObserver(this);
+        System.out.println("Add this Object DecayRate to observer");
+    }
+    
     /**
      * Creates new form PanelDecayRate
      */
     public PanelDecayRate() {
-        initComponents();
+        this(new RateVariable());
     }
 
     /**
@@ -27,19 +46,95 @@ public class PanelDecayRate extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PanelDecayRate = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableDecayRate = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+
+        TableDecayRate.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Year", "Index", "NewRate", "Monthly", "Remaining"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(TableDecayRate);
+        TableDecayRate.getAccessibleContext().setAccessibleParent(PanelDecayRate);
+
+        jLabel1.setText("Simulation decay rate :");
+
+        javax.swing.GroupLayout PanelDecayRateLayout = new javax.swing.GroupLayout(PanelDecayRate);
+        PanelDecayRate.setLayout(PanelDecayRateLayout);
+        PanelDecayRateLayout.setHorizontalGroup(
+            PanelDecayRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelDecayRateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelDecayRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelDecayRateLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PanelDecayRateLayout.setVerticalGroup(
+            PanelDecayRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelDecayRateLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelDecayRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelDecayRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(8, 8, 8))
         );
+
+        PanelDecayRate.getAccessibleContext().setAccessibleName("DecayRate");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelDecayRate;
+    private javax.swing.JTable TableDecayRate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("update DecayRate");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

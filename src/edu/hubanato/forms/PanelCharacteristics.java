@@ -39,26 +39,27 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PanelGCharacteristics = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        txtMontant = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtRate = new javax.swing.JTextField();
         txtDuree = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtCape = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtRate = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         btnStart = new javax.swing.JButton();
+        txtMontant = new javax.swing.JTextField();
 
         jLabel4.setText("Montant (en €):");
-
-        jLabel1.setText("Durée (en années):");
-
-        jLabel2.setText("Capé:");
 
         jLabel3.setText("Taux:");
 
         txtRate.setEditable(false);
         txtRate.setText("4");
+
+        jLabel2.setText("Capé:");
+
+        jLabel1.setText("Durée (en années):");
 
         btnStart.setText("Start simulation");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
@@ -67,16 +68,16 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        javax.swing.GroupLayout PanelGCharacteristicsLayout = new javax.swing.GroupLayout(PanelGCharacteristics);
+        PanelGCharacteristics.setLayout(PanelGCharacteristicsLayout);
+        PanelGCharacteristicsLayout.setHorizontalGroup(
+            PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
                         .addComponent(txtMontant, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(61, 61, 61)
                         .addComponent(jLabel1)
@@ -90,16 +91,16 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(298, 298, 298)
+                    .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
+                        .addGap(208, 208, 208)
                         .addComponent(btnStart)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        PanelGCharacteristicsLayout.setVerticalGroup(
+            PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtMontant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
@@ -110,20 +111,38 @@ public class PanelCharacteristics extends javax.swing.JPanel implements Observer
                     .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnStart)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelGCharacteristics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelGCharacteristics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        System.out.println("Ok btn");
-        
+ 
+        rateVariable.resetLists();
         rateVariable.stableRate(Double.parseDouble(this.txtRate.getText()), Double.parseDouble(this.txtDuree.getText()), Double.parseDouble(this.txtMontant.getText()), Double.parseDouble(this.txtCape.getText()));
-
-//        rateVariable.growthRate(Integer.parseInt(this.txtDuree.getText()));
+        rateVariable.growthRate(Double.parseDouble(this.txtRate.getText()), Double.parseDouble(this.txtDuree.getText()), Double.parseDouble(this.txtMontant.getText()), Double.parseDouble(this.txtCape.getText()));
+        rateVariable.decayRate(Double.parseDouble(this.txtRate.getText()), Double.parseDouble(this.txtDuree.getText()), Double.parseDouble(this.txtMontant.getText()), Double.parseDouble(this.txtCape.getText()));
     }//GEN-LAST:event_btnStartActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelGCharacteristics;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

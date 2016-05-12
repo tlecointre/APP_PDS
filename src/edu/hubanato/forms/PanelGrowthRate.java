@@ -5,17 +5,36 @@
  */
 package edu.hubanato.forms;
 
+import edu.hubanato.entities.RateVariable;
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * @author Baptiste
  */
-public class PanelGrowthRate extends javax.swing.JPanel {
+public class PanelGrowthRate extends javax.swing.JPanel implements Observer {
 
+    RateVariable rateVariable;
+    
     /**
-     * Creates new form PanelGrowthRate
-     */
-    public PanelGrowthRate() {
+    * Creates new form PanelGrowthRate
+    * @param rateVariable
+    */
+    public PanelGrowthRate(RateVariable rateVariable) {
+        this.rateVariable = rateVariable;
         initComponents();
+        
+        // Add this Object GrowthRate to observer
+        rateVariable.addObserver(this);
+        System.out.println("Add this Object GrowthRate to observer");
+    }
+    
+    /**
+    * Creates new form PanelGrowthRate
+    */
+    public PanelGrowthRate() {
+        this(new RateVariable());
     }
 
     /**
@@ -27,19 +46,96 @@ public class PanelGrowthRate extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PanelGrowthRate = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableGrowthRate = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+
+        setPreferredSize(new java.awt.Dimension(640, 139));
+
+        TableGrowthRate.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Year", "Index", "NewRate", "Monthly", "Remaining"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(TableGrowthRate);
+        TableGrowthRate.getAccessibleContext().setAccessibleParent(PanelGrowthRate);
+
+        jLabel1.setText("Simulation growth rate :");
+
+        javax.swing.GroupLayout PanelGrowthRateLayout = new javax.swing.GroupLayout(PanelGrowthRate);
+        PanelGrowthRate.setLayout(PanelGrowthRateLayout);
+        PanelGrowthRateLayout.setHorizontalGroup(
+            PanelGrowthRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelGrowthRateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelGrowthRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelGrowthRateLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PanelGrowthRateLayout.setVerticalGroup(
+            PanelGrowthRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelGrowthRateLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelGrowthRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelGrowthRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        PanelGrowthRate.getAccessibleContext().setAccessibleName("GrowthRate");
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelGrowthRate;
+    private javax.swing.JTable TableGrowthRate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("Rentre update Growth");
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

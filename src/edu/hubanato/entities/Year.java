@@ -25,7 +25,7 @@ public class Year extends Observable{
         this.newRate = newRate;
         this.monthly = monthly;
         this.remaining = remaining;
-    }
+    } 
 
     public double getYear() {
         return year;
