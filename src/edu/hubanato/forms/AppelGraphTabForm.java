@@ -12,11 +12,11 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author Tony
  */
-public class GraphForm extends javax.swing.JFrame{
+public class AppelGraphTabForm extends javax.swing.JFrame{
 
     //DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
     
-    public GraphForm() {
+    public AppelGraphTabForm() {
         initComponents();
     }
 
@@ -160,7 +160,7 @@ public class GraphForm extends javax.swing.JFrame{
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GraphForm().setVisible(true);
+                new AppelGraphTabForm().setVisible(true);
             }
         });
     }
