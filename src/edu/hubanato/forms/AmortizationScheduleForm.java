@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -20,7 +22,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class AmortizationScheduleForm extends javax.swing.JFrame{
 
     private AmortizationCalc am;
-    DefaultCategoryDataset datasetLineChart1, datasetBarChart1; 
+    private DefaultCategoryDataset datasetLineChart1, datasetBarChart1; 
     
     public AmortizationScheduleForm() {
         initComponents();
@@ -48,6 +50,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
         buttonGraph = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(563, 900));
 
         amortizationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,19 +104,19 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelAmount)
-                    .addComponent(labelDuration)
-                    .addComponent(labelRate)
-                    .addComponent(labelInsurance)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(printButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonGraph)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelAmount)
+                    .addComponent(labelDuration)
+                    .addComponent(labelRate)
+                    .addComponent(labelInsurance))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +129,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
                 .addComponent(labelRate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelInsurance)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -204,11 +207,11 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
           }
         });
         //Fin Deuxième graph
+       
         
         this.add(pan1);
         this.add(pan2);
         
-        this.pack();
         this.setVisible(true);
         this.setSize(1000,800);
     }//GEN-LAST:event_buttonGraphActionPerformed
@@ -228,7 +231,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
     }
     
     public void insertDataToBarChart1(double amount, String label ,int month){
-        datasetLineChart1.addValue(amount , label , String.valueOf(month) );
+        datasetBarChart1.addValue(amount , label , String.valueOf(month) );
     }
     
     public JTable getTable(){

@@ -33,6 +33,7 @@ public class AmortizationCalc {
         int nbMonth = nbYear * 12;
         double monthlyPayment, interestPaid, principalPaid;
         double insurance = amount * (insuranceRate / 100);
+        double amountAlreadyPaid = 0, insuranceAlreadyPaid = 0, interestAlreadyPaid = 0;
         int i; 
         tab = (DefaultTableModel)t1.getTable().getModel();
         //t1.getLabelAMount().setText(t1.getLabelAMount().getText()+ df.format(amount) +" Euros");
@@ -44,16 +45,29 @@ public class AmortizationCalc {
             interestPaid = amount * monthlyInterest;//Intérêt du mois
             principalPaid = monthlyPayment - interestPaid; //Mensualité sans intérêt
             newAmount = amount - principalPaid; //Restant à payer
+            amountAlreadyPaid += principalPaid; //Montant remboursé (prêt uniquement)
+            interestAlreadyPaid += interestPaid; //Interêt payé
+            insuranceAlreadyPaid += insurance; //Assurance payé
             tab.addRow(new String[]{Integer.toString(i),df.format(principalPaid),df.format(interestPaid),df.format(newAmount),df.format(monthlyPayment),df.format(insurance),df.format(monthlyPayment+insurance)});
+            t1.insertDataToBarChart1(amountAlreadyPaid, "Payé", i);
+            t1.insertDataToBarChart1(insuranceAlreadyPaid, "Assurance", i);
+            t1.insertDataToBarChart1(interestAlreadyPaid, "Interêt", i);
             amount = newAmount;  //On met le nouveau montant comme montant principal
             t1.insertDataToLineChart1(newAmount, i);
+            System.out.println("amount:"+amount+" new amount:"+newAmount);
         }
         //Dernier mois
         principalPaid = amount;
         interestPaid = amount * monthlyInterest;
-        monthlyPayment = principalPaid + interestPaid;
+        monthlyPayment = principalPaid + interestPaid;  
         newAmount = 0.0;
+        amountAlreadyPaid += principalPaid;
+        interestAlreadyPaid += interestPaid; //Interêt payé
+        insuranceAlreadyPaid += insurance; //Assurance payé
         t1.insertDataToLineChart1(newAmount, i);
+        t1.insertDataToBarChart1(amountAlreadyPaid, "Payé", i);
+        t1.insertDataToBarChart1(insuranceAlreadyPaid, "Assurance", i);
+        t1.insertDataToBarChart1(interestAlreadyPaid, "Interêt", i);
         tab.addRow(new String[]{Integer.toString(i),df.format(principalPaid),df.format(interestPaid),df.format(newAmount),df.format(monthlyPayment),df.format(insurance),df.format(monthlyPayment+insurance)});
     }
 
