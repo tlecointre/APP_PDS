@@ -23,14 +23,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="panelCharacteristics2" min="-2" max="-2" attributes="0"/>
-                  <Component id="panelStableRate2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="panelGrowthRate1" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="LabelTitle" max="32767" attributes="0"/>
+                  <Component id="panelCharacteristics2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelStableRate2" alignment="1" max="32767" attributes="0"/>
+                  <Component id="panelGrowthRate1" alignment="1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="99" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -38,12 +39,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="LabelTitle" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="panelCharacteristics2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelStableRate2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="panelGrowthRate1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="322" max="32767" attributes="0"/>
+              <EmptySpace pref="299" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,6 +57,15 @@
     <Component class="edu.hubanato.forms.PanelStableRate" name="panelStableRate2">
     </Component>
     <Component class="edu.hubanato.forms.PanelGrowthRate" name="panelGrowthRate1">
+    </Component>
+    <Component class="javax.swing.JLabel" name="LabelTitle">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Simulation rate variable"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
