@@ -8,6 +8,8 @@ package edu.hubanato.controlers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -18,20 +20,26 @@ import javax.swing.JTextField;
  */
 public class CalcRate implements ActionListener{
     
+    private JComboBox loanType;
     private JTextField rateDirector;
     private JTextField amount;
     private JSpinner duration;
     private JTextField deposit;
-    private JTextField rate;
+    private JTextField rateMonth;
+    private JTextField rateYear;
     private JButton calculate;
+    private JLabel infoError;
 
-    public CalcRate(JTextField rated, JTextField amt, JSpinner dt, JTextField dep, JTextField intrate, JButton calc) {
+    public CalcRate(JComboBox loan, JTextField rated, JTextField amt, JSpinner dt, JTextField dep, JTextField intratem, JTextField intratey, JButton calc, JLabel error) {
+        this.loanType = loan;
         this.rateDirector = rated;
         this.amount = amt;
         this.duration = dt;
         this.deposit = dep;
-        this.rate = intrate;
+        this.rateMonth = intratem;
+        this.rateYear = intratey;
         this.calculate = calc;
+        this.infoError = error;
     }
 
     /**
@@ -63,9 +71,9 @@ public class CalcRate implements ActionListener{
             
             double resrate = CalculateInterestRate(valAmount, valDeposit, valDuration);
             
-            rate.setText(String.valueOf(resrate));
+            rateMonth.setText(String.valueOf(resrate));
              
-            JOptionPane.showMessageDialog(null,"Rate (%) : " +valRateD+ "\n Amount (€) : " +valAmount+ "\n Duration (months) : " +valDuration+ "\n Deposit (€) : " +valDeposit);
+            JOptionPane.showMessageDialog(null,"Taux (%) : " +valRateD+ "\n Capital (€) : " +valAmount+ "\n Durée (months) : " +valDuration+ "\n Apport (€) : " +valDeposit);
             //JOptionPane.showMessageDialog(null,"You are going to calculate the interest rate");
         }
     }
