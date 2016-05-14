@@ -135,6 +135,7 @@ public class PanelGrowthRate extends javax.swing.JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        
         System.out.println("Rentre update Growth");
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

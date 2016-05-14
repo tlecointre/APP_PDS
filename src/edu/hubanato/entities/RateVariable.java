@@ -44,7 +44,7 @@ public class RateVariable extends Observable {
     public double calculateMonthly (double rate, double duree, double montant){
 
         double monthly=(montant*(rate/100)/12)/(1-(1/Math.pow((1+(rate/100)/12), 12*duree)));
-//        System.out.println("Mountant:" + montant + "€ | Duree: " + duree + " | Rate: " + rate + "Monthly : "+ monthly);
+//        System.out.println("Mountant:" + montant + "€ | Duree: " + duree + " | Rate: " + rate + " | Monthly : "+ monthly);
         
         return monthly;
     }
@@ -164,11 +164,15 @@ public class RateVariable extends Observable {
         notifyObservers();
         System.out.println("Prevent observers to update themselves");
     }
-//    
-//    public void displaySimulation(){
-//        System.out.println("Stable" + listStable.toString());
-//        System.out.println("Growth" + listGrowth.toString());
-//        System.out.println("Decreasing" + listDecreasing.toString());
+    
+//    public void notifyObserverObservable (){
+//         // Indicate that the object growthRate has changed
+//        setChanged();
+//        System.out.println("Indicate that the object growthRate has changed");
+//        
+//        // Prevent observers to update themselves
+//        notifyObservers();
+//        System.out.println("Prevent observers to update themselves");
 //    }
     
 }
