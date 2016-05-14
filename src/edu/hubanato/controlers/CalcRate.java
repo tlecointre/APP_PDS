@@ -53,6 +53,18 @@ public class CalcRate implements ActionListener{
         double tx = (1200 * depost)/(amt * dur);
         return tx;
     }
+    
+    public double SelectRateDirector(){
+        return 0;
+    };
+    
+    public double CalculateInterestRateMonth(){
+        return 0;
+    };
+    
+    public double CalculateInterestRateYear(){
+        return 0;
+    };    
 
     @Override
     public void actionPerformed(ActionEvent evt) {
