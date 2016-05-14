@@ -32,11 +32,6 @@ public class PanelStableRate extends javax.swing.JPanel implements Observer {
     
     public PanelStableRate() {
         this(new RateVariable());
-        initComponents();
-        
-        // Add this Object to observer
-        rateVariable.addObserver(this);
-        System.out.println("Add this Object StableRate to observer");
     }
 
     /**
