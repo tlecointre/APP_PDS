@@ -21,12 +21,70 @@ import java.util.logging.*;
  */
 public class Client extends Person {
 
-    private int id_adr;
-    private int id_person;
+    private int idAdress;
+    private int idClient;
     private int age;
     private int income;
     private String profession; 
 
+    /**
+     * Constructor This method is used to create a new client
+     *
+     * @param idClient
+     * @param civility
+     * @param name
+     * @param firstName
+     * @param birthDate
+     * @param birthPlace
+     * @param sex
+     * @param nationality
+     * @param number
+     * @param street
+     * @param add
+     * @param cp
+     * @param city
+     * @param country
+     * @param pNumber
+     * @param pHome
+     * @param pBusiness
+     * @param email
+     * @param job
+     * @param age
+     * @param profession
+     * @param income
+     */
+    public Client(int idClient, String civility, String name, String firstName, Date birthDate, String birthPlace,
+                    String sex, String nationality, int number, String street, String add, String cp,
+                    String city, String country, int pNumber, int pHome, int pBusiness, String email,
+                    String job, int age, int income, String profession) {
+
+        this.idClient = idClient;
+        this.civility = civility;
+        this.name = name;
+        this.firstName = firstName;
+        this.birthDate = birthDate;
+        this.birthPlace = birthPlace;
+        this.sex = sex;
+        this.nationality = nationality;
+
+        this.number = number;
+        this.Street = street;
+        this.Additional = add;
+        this.cp = cp;
+        this.city = city;
+        this.country = country;
+
+        this.phoneNumber = pNumber;
+        this.phoneHome = pHome;
+        this.phoneBusiness = pBusiness;
+        this.email = email;
+        this.job = job;
+        
+        this.age = age;
+        this.income = income;
+        this.profession = profession;
+    }
+    
     /**
      * Constructor This method is used to create a new client
      *
@@ -82,14 +140,17 @@ public class Client extends Person {
         this.income = income;
         this.profession = profession;
     }
-
+    
     public Client() {
 
     }
 
+    public int getIdClient() {
+        return idClient;
+    }
+    
     /**
-     *
-     *
+     * Create a client in database
      */
     @Override
     public void CreatePerson() throws SQLException {
@@ -112,7 +173,7 @@ public class Client extends Person {
         ordre = connexion.prepareStatement(sql);
         ResultSet rs = ordre.executeQuery();
         rs.next();
-        id_adr = rs.getInt("idMax");
+        idAdress = rs.getInt("idMax");
 
         ordre.close();
 
@@ -122,7 +183,7 @@ public class Client extends Person {
                 + " PROFESSION, AGE, ANNUAL_INCOME) VALUES (1,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ordre2 = connexion.prepareStatement(requeteClient);
 
-        ordre2.setInt(1, id_adr);
+        ordre2.setInt(1, idAdress);
         ordre2.setString(2, civility);
         ordre2.setString(3, firstName);
         ordre2.setString(4, name);
@@ -160,7 +221,7 @@ public class Client extends Person {
         ordre.setInt(1, id);
         ResultSet rs = ordre.executeQuery();
         if (rs.next()) {
-            return new Client(rs.getString("CIVILITY"), rs.getString("NAME"), rs.getString("FIRST_NAME"),
+            return new Client(rs.getInt("ID_PERS"), rs.getString("CIVILITY"), rs.getString("NAME"), rs.getString("FIRST_NAME"),
                     rs.getDate("BIRTH_DATE"), rs.getString("BIRTH_PLACE"), rs.getString("SEX"),
                     rs.getString("NATIONALITY"), rs.getInt("NBER"), rs.getString("STREET"),
                     rs.getString("ADDITIONAL"), rs.getString("ZIP_CODE"), rs.getString("CITY"),
@@ -192,7 +253,7 @@ public class Client extends Person {
         ResultSet rs = ordre.executeQuery();
         List<Client> clients = new ArrayList<Client>();
         while (rs.next()) {
-            clients.add(new Client(rs.getString("CIVILITY"), rs.getString("NAME"), rs.getString("FIRST_NAME"),
+            clients.add(new Client(rs.getInt("ID_PERS"), rs.getString("CIVILITY"), rs.getString("NAME"), rs.getString("FIRST_NAME"),
                     rs.getDate("BIRTH_DATE"), rs.getString("BIRTH_PLACE"), rs.getString("SEX"),
                     rs.getString("NATIONALITY"), rs.getInt("NBER"), rs.getString("STREET"),
                     rs.getString("ADDITIONAL"), rs.getString("ZIP_CODE"), rs.getString("CITY"),
@@ -205,9 +266,8 @@ public class Client extends Person {
     }
 
     /**
-     *
+     *Update a client in database
      */
-    @Override
     public void UpdatePerson() {
         try {
             Connection connexion = PdsDatabase.getConnection();
@@ -215,7 +275,7 @@ public class Client extends Person {
             PreparedStatement ordre = connexion.prepareStatement(sql);
             ordre.setString(1, name);
             ordre.setString(2, firstName);
-            ordre.setInt(3, id_person);
+            ordre.setInt(3, idClient);
             ordre.executeUpdate();
             ordre.close();
             connexion.close();
@@ -225,7 +285,7 @@ public class Client extends Person {
     }
 
     /**
-     *
+     * Delete a client in database
      * @param id
      */
     @Override
@@ -235,7 +295,7 @@ public class Client extends Person {
 
             String deleteQuery = "DELETE FROM PERSON WHERE id_pers = ?";
             PreparedStatement ordre = connexion.prepareStatement(deleteQuery);
-            ordre.setInt(1, id);
+            ordre.setInt(1, idClient);
             ordre.executeUpdate();
             ordre.close();
             connexion.close();
@@ -244,5 +304,5 @@ public class Client extends Person {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
 }
