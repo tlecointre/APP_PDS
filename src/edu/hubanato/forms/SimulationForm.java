@@ -6,6 +6,10 @@
 package edu.hubanato.forms;
 
 import edu.hubanato.entities.Client;
+import edu.hubanato.entities.Simulation;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -38,14 +42,14 @@ public class SimulationForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cmbLoanType = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtAmountLoan = new javax.swing.JTextField();
+        btnCalculate = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox();
+        txtDuration = new javax.swing.JTextField();
+        cmbTypeDuration = new javax.swing.JComboBox();
         txtClient = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,28 +64,33 @@ public class SimulationForm extends javax.swing.JFrame {
 
         jLabel4.setText("Type de prêt :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Prêt à la consommation", "Prêt automobile", "Prêt immobilier" }));
+        cmbLoanType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Prêt à la consommation", "Prêt automobile", "Prêt immobilier" }));
 
         jLabel5.setText("Montant du prêt :");
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(60, 20));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtAmountLoan.setPreferredSize(new java.awt.Dimension(60, 20));
+        txtAmountLoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtAmountLoanActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Valider");
+        btnCalculate.setText("Valider");
+        btnCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalculateActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("€");
 
-        jTextField2.setPreferredSize(new java.awt.Dimension(40, 20));
+        txtDuration.setPreferredSize(new java.awt.Dimension(40, 20));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "année(s)", "mois" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cmbTypeDuration.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "année(s)", "mois" }));
+        cmbTypeDuration.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cmbTypeDurationActionPerformed(evt);
             }
         });
 
@@ -102,24 +111,24 @@ public class SimulationForm extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtAmountLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cmbTypeDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtClient)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1)))))
+                                .addComponent(btnCalculate)))))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -134,33 +143,49 @@ public class SimulationForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cmbTypeDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtAmountLoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addGap(43, 43, 43)
-                .addComponent(jButton1)
+                .addComponent(btnCalculate)
                 .addGap(40, 40, 40))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtAmountLoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountLoanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtAmountLoanActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void cmbTypeDurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTypeDurationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cmbTypeDurationActionPerformed
+
+    private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
+        int duration = Integer.parseInt(txtDuration.getText());
+        if (cmbTypeDuration.getSelectedIndex() == 0) { // duration in years
+            duration = duration * 12; // convert years in months
+        }
+        Simulation s = new Simulation(this.client.getIdClient(), Integer.parseInt(txtAmountLoan.getText()),
+                                        duration, 4.5, cmbLoanType.getSelectedItem().toString());
+        try {
+            s.createSimulation();
+        } catch (SQLException ex) {
+            Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+        new LoanSummaryForm(s.getAmount(), duration, s.getRate(), s.getLoanType()).setVisible(true);
+    }//GEN-LAST:event_btnCalculateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,9 +223,9 @@ public class SimulationForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JButton btnCalculate;
+    private javax.swing.JComboBox cmbLoanType;
+    private javax.swing.JComboBox cmbTypeDuration;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -208,8 +233,8 @@ public class SimulationForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtAmountLoan;
     private javax.swing.JLabel txtClient;
+    private javax.swing.JTextField txtDuration;
     // End of variables declaration//GEN-END:variables
 }
