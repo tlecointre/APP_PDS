@@ -42,7 +42,7 @@ public class LoanSummaryForm extends javax.swing.JFrame {
         labelRate = new javax.swing.JLabel();
         labelType = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         labelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labelTitle.setText("Récapitulatif du prêt");
