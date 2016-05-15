@@ -129,7 +129,7 @@ public class FormControl implements ActionListener {
                             Integer.parseInt(age.getText()), Integer.parseInt(income.getText()),
                             profession.getSelectedItem().toString());
             try {
-                client.CreatePerson();
+                client.createPerson();
                 JOptionPane.showMessageDialog(null, "Client Added");
             } catch (SQLException ex) {
                 Logger.getLogger(FormControl.class.getName()).log(Level.SEVERE, null, ex);
