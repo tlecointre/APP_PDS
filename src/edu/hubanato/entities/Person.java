@@ -38,9 +38,9 @@ public abstract class Person {
     protected String job;
     
     //All methods
-    public abstract void CreatePerson() throws SQLException;
-    public abstract void UpdatePerson() throws SQLException;;
-    public abstract void DeletePerson(int id) throws SQLException;;
+    public abstract void createPerson() throws SQLException;
+    public abstract void updatePerson() throws SQLException;;
+    public abstract void deletePerson(int id) throws SQLException;;
 
     public String getName() {
         return name;
