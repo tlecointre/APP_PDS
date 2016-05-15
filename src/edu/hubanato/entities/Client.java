@@ -153,12 +153,12 @@ public class Client extends Person {
      * Create a client in database
      */
     @Override
-    public void CreatePerson() throws SQLException {
+    public void createPerson() throws SQLException {
 
-        Connection connexion = PdsDatabase.getConnection();
+        Connection connection = PdsDatabase.getConnection();
 
         String requeteAddress = "INSERT INTO ADDRESS(NBER,STREET,ADDITIONAL,ZIP_CODE,CITY,COUNTRY) VALUES (?,?,?,?,?,?)";
-        PreparedStatement ordre = connexion.prepareStatement(requeteAddress);
+        PreparedStatement ordre = connection.prepareStatement(requeteAddress);
 
         ordre.setInt(1, number);
         ordre.setString(2, Street);
@@ -170,7 +170,7 @@ public class Client extends Person {
         ordre.executeUpdate();
         System.out.println(requeteAddress);
         String sql = "SELECT MAX(id_adr) as idMax FROM ADDRESS";
-        ordre = connexion.prepareStatement(sql);
+        ordre = connection.prepareStatement(sql);
         ResultSet rs = ordre.executeQuery();
         rs.next();
         idAdress = rs.getInt("idMax");
@@ -181,7 +181,7 @@ public class Client extends Person {
         String requeteClient = "INSERT INTO PERSON(ID_FUNCTIONS,ID_ADR,CIVILITY,FIRST_NAME,NAME,SEX,"
                 + "BIRTH_DATE,BIRTH_PLACE,NATIONALITY,PHONE_HOME,PHONE_MOBIL,EMAIL,JOB,PHONE_BUSINESS,"
                 + " PROFESSION, AGE, ANNUAL_INCOME) VALUES (1,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        PreparedStatement ordre2 = connexion.prepareStatement(requeteClient);
+        PreparedStatement ordre2 = connection.prepareStatement(requeteClient);
 
         ordre2.setInt(1, idAdress);
         ordre2.setString(2, civility);
@@ -203,7 +203,7 @@ public class Client extends Person {
         ordre2.executeUpdate();
         ordre2.close();
 
-        connexion.close();
+        connection.close();
 
     }
 
@@ -215,9 +215,9 @@ public class Client extends Person {
      * @throws SQLException
      */
     public static Client getById(int id) throws SQLException {
-        Connection connexion = PdsDatabase.getConnection();
+        Connection connection = PdsDatabase.getConnection();
         String sql = "SELECT * FROM PERSON, ADDRESS WHERE ID_PERS = ? AND PERSON.ID_ADR = ADDRESS.ID_ADR";
-        PreparedStatement ordre = connexion.prepareStatement(sql);
+        PreparedStatement ordre = connection.prepareStatement(sql);
         ordre.setInt(1, id);
         ResultSet rs = ordre.executeQuery();
         if (rs.next()) {
@@ -242,11 +242,11 @@ public class Client extends Person {
      * @throws SQLException
      */
     public static List<Client> getByNamePC(String name, String firstName, String postalCode) throws SQLException {
-        Connection connexion = PdsDatabase.getConnection();
+        Connection connection = PdsDatabase.getConnection();
 
         String sql = "SELECT * FROM PERSON, ADDRESS WHERE NAME like ? AND FIRST_NAME like ? "
                 + "AND PERSON.ID_ADR = ADDRESS.ID_ADR AND ZIP_CODE like ?";
-        PreparedStatement ordre = connexion.prepareStatement(sql);
+        PreparedStatement ordre = connection.prepareStatement(sql);
         ordre.setString(1, name);
         ordre.setString(2, firstName);
         ordre.setString(3, postalCode);
@@ -268,20 +268,16 @@ public class Client extends Person {
     /**
      *Update a client in database
      */
-    public void UpdatePerson() {
-        try {
-            Connection connexion = PdsDatabase.getConnection();
-            String sql = "UPDATE PERSON SET name = ? , firstName = ? WHERE id_pers = ?";
-            PreparedStatement ordre = connexion.prepareStatement(sql);
-            ordre.setString(1, name);
-            ordre.setString(2, firstName);
-            ordre.setInt(3, idClient);
-            ordre.executeUpdate();
-            ordre.close();
-            connexion.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void updatePerson() throws SQLException {
+        Connection connection = PdsDatabase.getConnection();
+        String sql = "UPDATE PERSON SET name = ? , firstName = ? WHERE id_pers = ?";
+        PreparedStatement ordre = connection.prepareStatement(sql);
+        ordre.setString(1, name);
+        ordre.setString(2, firstName);
+        ordre.setInt(3, idClient);
+        ordre.executeUpdate();
+        ordre.close();
+        connection.close();
     }
 
     /**
@@ -289,20 +285,15 @@ public class Client extends Person {
      * @param id
      */
     @Override
-    public void DeletePerson(int id) {
-        try {
-            Connection connexion = PdsDatabase.getConnection();
+    public void deletePerson(int id) throws SQLException {
+        Connection connection = PdsDatabase.getConnection();
 
-            String deleteQuery = "DELETE FROM PERSON WHERE id_pers = ?";
-            PreparedStatement ordre = connexion.prepareStatement(deleteQuery);
-            ordre.setInt(1, idClient);
-            ordre.executeUpdate();
-            ordre.close();
-            connexion.close();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String deleteQuery = "DELETE FROM PERSON WHERE id_pers = ?";
+        PreparedStatement ordre = connection.prepareStatement(deleteQuery);
+        ordre.setInt(1, idClient);
+        ordre.executeUpdate();
+        ordre.close();
+        connection.close();
     }
     
 }
