@@ -176,7 +176,7 @@ public class SimulationForm extends javax.swing.JFrame {
         if (cmbTypeDuration.getSelectedIndex() == 0) { // duration in years
             duration = duration * 12; // convert years in months
         }
-        Simulation s = new Simulation(this.client.getIdClient(), Integer.parseInt(txtAmountLoan.getText()),
+        Simulation s = new Simulation(-1, this.client.getIdClient(), Integer.parseInt(txtAmountLoan.getText()),
                                         duration, 4.5, cmbLoanType.getSelectedItem().toString());
         try {
             s.createSimulation();
