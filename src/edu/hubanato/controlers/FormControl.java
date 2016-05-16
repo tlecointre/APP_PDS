@@ -6,13 +6,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import edu.hubanato.entities.Client;
-import edu.hubanato.forms.AuthenticationClientForm;
 import org.jdesktop.swingx.JXDatePicker;
 
 /**
- * Release R2
- *
- * @author hubanato
+ * @author Tom
  */
 public class FormControl implements ActionListener {
 
@@ -28,7 +25,7 @@ public class FormControl implements ActionListener {
     private JTextField pnumber, phome, pbusiness, email, job, age, income;
     
     //All the buttons
-    private JButton btnCreate, btnClear, btnCancel;
+    private JButton btnCreate, btnClear;
 
     /**
      * Constructor
@@ -56,14 +53,13 @@ public class FormControl implements ActionListener {
      * @param income
      * @param create
      * @param clear
-     * @param cancel
      */
     public FormControl(JComboBox civility, JTextField name, JTextField firstName, JXDatePicker date,
                         JTextField birthPlace, JComboBox sex, JComboBox nationality, JTextField number,
                         JTextField street, JTextField add, JTextField cp, JTextField city, JComboBox country,
                         JTextField pnumber, JTextField phome, JTextField pbusiness, JTextField email,
                         JTextField job, JTextField age, JComboBox profession, JTextField income,
-                        JButton create, JButton clear, JButton cancel) {
+                        JButton create, JButton clear) {
 
         this.civility = civility;
         this.name = name;
@@ -92,12 +88,10 @@ public class FormControl implements ActionListener {
 
         this.btnCreate = create;
         this.btnClear = clear;
-        this.btnCancel = cancel;
     }
 
     /**
-     * The action that will be performed when one click on a button (create,
-     * clear, cancel)
+     * The action that will be performed when one click on a button (create, clear)
      *
      * @param evt
      */
@@ -119,6 +113,11 @@ public class FormControl implements ActionListener {
              System.out.println("Phone Business : " + pbusiness.getText());
              System.out.println("Email : " + email.getText());
              System.out.println("Job : " + job.getText());*/
+            
+            // fields control :
+            
+            
+            // client creation
             this.client = new Client(civility.getSelectedItem().toString(), name.getText(), firstName.getText(),
                             convertUtilToSql(birthDate.getDate()), birthPlace.getText(),
                             sex.getSelectedItem().toString(), nationality.getSelectedItem().toString(),
@@ -130,20 +129,20 @@ public class FormControl implements ActionListener {
                             profession.getSelectedItem().toString());
             try {
                 client.createPerson();
-                JOptionPane.showMessageDialog(null, "Client Added");
+                JOptionPane.showMessageDialog(null, "Client ajouté");
             } catch (SQLException ex) {
                 Logger.getLogger(FormControl.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
         } else if (source == btnClear) {
             //System.out.println("Vous voulez effacer les données saisies");
-            civility.setSelectedItem("Mr");
+            civility.setSelectedItem("M.");
             name.setText("");
             firstName.setText("");
             birthDate.getDate();
             birthPlace.setText("");
             sex.setSelectedItem("M");
-            nationality.setSelectedItem("France");
+            nationality.setSelectedItem("Francaise");
             nb.setText("");
             street.setText("");
             add.setText("");
@@ -159,14 +158,16 @@ public class FormControl implements ActionListener {
             profession.setSelectedItem("Agriculteur exploitant");
             income.setText("");
 
-        } else if (source == btnCancel) {
-            new AuthenticationClientForm().setVisible(true);
         }
     }
 
     private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
-        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
-        return sDate;
+        if (uDate == null) {
+            return null;
+        } else {
+            java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+            return sDate;
+        }
     }
 
 }
