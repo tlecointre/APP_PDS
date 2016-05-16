@@ -331,7 +331,9 @@ public class SimulationManagementForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPostalCodeActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-
+        
+        cmbClients.removeAllItems();
+        
         String name = txtName.getText(), firstName = txtFirstName.getText(), postalCode = txtPostalCode.getText();
 
         if (name.isEmpty()) name = "%";
