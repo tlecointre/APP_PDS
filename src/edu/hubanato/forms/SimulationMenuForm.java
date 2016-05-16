@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.hubanato.forms;
 
 /**
@@ -27,14 +22,14 @@ public class SimulationMenuForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        labelSimulation = new javax.swing.JLabel();
         btnCreateSimulation = new javax.swing.JButton();
         btnSimulationManagement = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Simulation");
+        labelSimulation.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelSimulation.setText("Simulation");
 
         btnCreateSimulation.setText("Simulation d'un prêt à taux fixe");
         btnCreateSimulation.addActionListener(new java.awt.event.ActionListener() {
@@ -63,14 +58,14 @@ public class SimulationMenuForm extends javax.swing.JFrame {
                             .addComponent(btnCreateSimulation, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
-                        .addComponent(jLabel1)))
+                        .addComponent(labelSimulation)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelSimulation, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCreateSimulation)
                 .addGap(18, 18, 18)
@@ -80,12 +75,20 @@ public class SimulationMenuForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Start of AuthenticationClientForm
+     * @param evt 
+     */
     private void btnCreateSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateSimulationActionPerformed
         this.setVisible(false);
         new AuthenticationClientForm().setVisible(true);
     }//GEN-LAST:event_btnCreateSimulationActionPerformed
-
+    
+    /**
+     * Start of SimulationManagementForm
+     * @param evt 
+     */
     private void btnSimulationManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationManagementActionPerformed
         this.setVisible(false);
         new SimulationManagementForm().setVisible(true);
@@ -129,6 +132,6 @@ public class SimulationMenuForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateSimulation;
     private javax.swing.JButton btnSimulationManagement;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelSimulation;
     // End of variables declaration//GEN-END:variables
 }
