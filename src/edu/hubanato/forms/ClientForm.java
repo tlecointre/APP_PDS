@@ -1,6 +1,6 @@
 package edu.hubanato.forms;
 
-import edu.hubanato.controlers.FormControl;
+import edu.hubanato.controlers.ClientControl;
 
 /**
  * @author Tom
@@ -12,8 +12,8 @@ public class ClientForm extends javax.swing.JFrame {
      */
     public ClientForm() {
         initComponents();
-        btnCreate.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear));
-        btnClear.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear));
+        btnCreate.addActionListener(new ClientControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear));
+        btnClear.addActionListener(new ClientControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear));
     }
 
     /**

@@ -116,6 +116,8 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         tableSimulation = new javax.swing.JTable();
         btnReplaySimulation = new javax.swing.JButton();
         btnUpdateSimulation = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        labelNumberResults = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,57 +215,70 @@ public class SimulationManagementForm extends javax.swing.JFrame {
             }
         });
 
+        btnBack.setText("Retour");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        labelNumberResults.setName(""); // NOI18N
+        labelNumberResults.setPreferredSize(new java.awt.Dimension(100, 23));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(14, 14, 14)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnSearch)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(labelName)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(labelFirstName)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(labelPostalCode)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(22, 22, 22)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(labelClient)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(cmbClients, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                                    .addComponent(btnShowSimulation))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelInformationClient)
-                                        .addComponent(labelSimulations))
-                                    .addGap(0, 0, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(labelTitle)))
-                .addGap(30, 30, 30))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3)
+                        .addContainerGap()
+                        .addComponent(jScrollPane3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(btnReplaySimulation)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnUpdateSimulation)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBack))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(133, 133, 133)
+                                .addComponent(labelTitle))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(29, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelSimulations)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(labelClient)
+                                            .addGap(13, 13, 13)
+                                            .addComponent(cmbClients, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(btnShowSimulation))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(labelName)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(63, 63, 63)
+                                            .addComponent(labelFirstName)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(labelPostalCode)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtPostalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(31, 31, 31)
+                                            .addComponent(btnSearch)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(labelNumberResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(0, 5, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(btnReplaySimulation)
-                .addGap(49, 49, 49)
-                .addComponent(btnUpdateSimulation)
+                .addContainerGap()
+                .addComponent(labelInformationClient)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -282,7 +297,9 @@ public class SimulationManagementForm extends javax.swing.JFrame {
                     .addComponent(labelPostalCode)
                     .addComponent(txtPostalCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(btnSearch)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSearch)
+                    .addComponent(labelNumberResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelClient)
@@ -295,7 +312,8 @@ public class SimulationManagementForm extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReplaySimulation)
-                    .addComponent(btnUpdateSimulation))
+                    .addComponent(btnUpdateSimulation)
+                    .addComponent(btnBack))
                 .addGap(62, 62, 62))
         );
 
@@ -345,9 +363,11 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(AuthenticationClientForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        labelNumberResults.setText(clients.size() + " résultat(s)");
         for (int i = 0; i < clients.size(); i++) {
-            cmbClients.addItem(clients.get(i).getName() + ", " + clients.get(i).getFirstName() + ", " + clients.get(i).getCp());
+            cmbClients.addItem("Nom : " + clients.get(i).getName().toUpperCase() + " " + clients.get(i).getFirstName() +
+                                " / Code postal : " + clients.get(i).getCp());
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -370,6 +390,11 @@ public class SimulationManagementForm extends javax.swing.JFrame {
             new SimulationUpdateForm(s, selectedClient).setVisible(true);
         }
     }//GEN-LAST:event_btnUpdateSimulationActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.setVisible(false);
+        new SimulationMenuForm().setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -407,6 +432,7 @@ public class SimulationManagementForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnReplaySimulation;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnShowSimulation;
@@ -421,6 +447,7 @@ public class SimulationManagementForm extends javax.swing.JFrame {
     private javax.swing.JLabel labelFirstName;
     private javax.swing.JLabel labelInformationClient;
     private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelNumberResults;
     private javax.swing.JLabel labelPostalCode;
     private javax.swing.JLabel labelSimulations;
     private javax.swing.JLabel labelTitle;

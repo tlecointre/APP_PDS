@@ -48,6 +48,7 @@ public class SimulationForm extends javax.swing.JFrame {
         cmbTypeDuration = new javax.swing.JComboBox();
         labelClient = new javax.swing.JLabel();
         labelSelectedClient = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +86,13 @@ public class SimulationForm extends javax.swing.JFrame {
 
         labelSelectedClient.setPreferredSize(new java.awt.Dimension(100, 14));
 
+        btnBack.setText("Retour");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,19 +109,22 @@ public class SimulationForm extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(cmbTypeDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelLoanAmount)
-                                .addGap(35, 35, 35)
-                                .addComponent(txtAmountLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelEuro))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelLoanType)
                                     .addComponent(labelClient))
                                 .addGap(51, 51, 51)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelSelectedClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnBack)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelLoanAmount)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(txtAmountLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelEuro))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +163,9 @@ public class SimulationForm extends javax.swing.JFrame {
                         .addGap(138, 138, 138))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(btnCalculate)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCalculate)
+                            .addComponent(btnBack))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -165,7 +178,7 @@ public class SimulationForm extends javax.swing.JFrame {
             duration = duration * 12; // convert years in months
         }
         Simulation s = new Simulation(-1, this.client.getIdClient(), Integer.parseInt(txtAmountLoan.getText()),
-                                        duration, 4.5, cmbLoanType.getSelectedItem().toString());
+                                        duration, 4.5, 1.0, cmbLoanType.getSelectedItem().toString());
         try {
             s.createSimulation();
         } catch (SQLException ex) {
@@ -174,6 +187,11 @@ public class SimulationForm extends javax.swing.JFrame {
         this.setVisible(false);
         new LoanSummaryForm(s.getAmount(), duration, s.getRate(), s.getLoanType()).setVisible(true);
     }//GEN-LAST:event_btnCalculateActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.setVisible(false);
+        new AuthenticationClientForm().setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,6 +229,7 @@ public class SimulationForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCalculate;
     private javax.swing.JComboBox cmbLoanType;
     private javax.swing.JComboBox cmbTypeDuration;

@@ -219,9 +219,13 @@ public class AuthenticationClientForm extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnAuthenticateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuthenticateActionPerformed
-        this.setVisible(false);
-        Client client =  clients.get(cmbClients.getSelectedIndex());
-        new SimulationForm(client).setVisible(true);
+        if (cmbClients.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Veuillez selectionner un client.", "Erreur de selection", JOptionPane.ERROR_MESSAGE);
+        } else {
+            this.setVisible(false);
+            Client client =  clients.get(cmbClients.getSelectedIndex());
+            new SimulationForm(client).setVisible(true);
+        }
     }//GEN-LAST:event_btnAuthenticateActionPerformed
     
     /**
