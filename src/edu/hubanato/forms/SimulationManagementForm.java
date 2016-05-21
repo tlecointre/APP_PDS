@@ -163,29 +163,14 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         labelName.setText("Nom :");
 
         txtName.setPreferredSize(new java.awt.Dimension(100, 20));
-        txtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
-            }
-        });
 
         labelFirstName.setText("Prénom :");
 
         txtFirstName.setPreferredSize(new java.awt.Dimension(100, 20));
-        txtFirstName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFirstNameActionPerformed(evt);
-            }
-        });
 
         labelPostalCode.setText("Code postal :");
 
         txtPostalCode.setPreferredSize(new java.awt.Dimension(50, 20));
-        txtPostalCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPostalCodeActionPerformed(evt);
-            }
-        });
 
         btnSearch.setText("Rechercher");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -297,7 +282,7 @@ public class SimulationManagementForm extends javax.swing.JFrame {
                     .addComponent(labelPostalCode)
                     .addComponent(txtPostalCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSearch)
                     .addComponent(labelNumberResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -335,18 +320,6 @@ public class SimulationManagementForm extends javax.swing.JFrame {
             tableSimulation.setModel(tableModel);
         }
     }//GEN-LAST:event_btnShowSimulationActionPerformed
-
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-
-    private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFirstNameActionPerformed
-
-    private void txtPostalCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPostalCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPostalCodeActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         
@@ -388,6 +361,7 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         } else {
             Simulation s =  simulations.get(row);
             new SimulationUpdateForm(s, selectedClient).setVisible(true);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_btnUpdateSimulationActionPerformed
 

@@ -151,7 +151,7 @@
                   <Component id="txtPostalCode" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnSearch" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="labelNumberResults" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -219,9 +219,6 @@
           <Dimension value="[100, 20]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelFirstName">
       <Properties>
@@ -234,9 +231,6 @@
           <Dimension value="[100, 20]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFirstNameActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelPostalCode">
       <Properties>
@@ -249,9 +243,6 @@
           <Dimension value="[50, 20]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPostalCodeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSearch">
       <Properties>
