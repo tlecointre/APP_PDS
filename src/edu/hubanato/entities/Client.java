@@ -191,7 +191,7 @@ public class Client extends Person {
         ordre2.setDate(6, birthDate);
         ordre2.setString(7, birthPlace);
         ordre2.setString(8, nationality);
-        if (phoneHome == 0) { // this field is optional and equals 0 if empty
+        if (phoneHome != 0) { // this field is optional and equals 0 if empty
             ordre2.setInt(9, phoneHome);
         } else {
             ordre2.setNull(9, java.sql.Types.INTEGER);
@@ -199,7 +199,7 @@ public class Client extends Person {
         ordre2.setInt(10, phoneNumber);
         ordre2.setString(11, email);
         ordre2.setString(12, job);
-        if (phoneBusiness == 0) { // this field is optional and equals 0 if empty
+        if (phoneBusiness != 0) { // this field is optional and equals 0 if empty
             ordre2.setInt(13, phoneBusiness);
         } else {
             ordre2.setNull(13, java.sql.Types.INTEGER);
