@@ -182,7 +182,7 @@ public class Client extends Person {
                 + "BIRTH_DATE,BIRTH_PLACE,NATIONALITY,PHONE_HOME,PHONE_MOBIL,EMAIL,JOB,PHONE_BUSINESS,"
                 + " PROFESSION, AGE, ANNUAL_INCOME) VALUES (1,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ordre2 = connection.prepareStatement(requeteClient);
-
+        
         ordre2.setInt(1, idAdress);
         ordre2.setString(2, civility);
         ordre2.setString(3, firstName);
@@ -191,11 +191,19 @@ public class Client extends Person {
         ordre2.setDate(6, birthDate);
         ordre2.setString(7, birthPlace);
         ordre2.setString(8, nationality);
-        ordre2.setInt(9, phoneHome);
+        if (phoneHome == 0) { // this field is optional and equals 0 if empty
+            ordre2.setInt(9, phoneHome);
+        } else {
+            ordre2.setNull(9, java.sql.Types.INTEGER);
+        }
         ordre2.setInt(10, phoneNumber);
         ordre2.setString(11, email);
         ordre2.setString(12, job);
-        ordre2.setInt(13, phoneBusiness);
+        if (phoneBusiness == 0) { // this field is optional and equals 0 if empty
+            ordre2.setInt(13, phoneBusiness);
+        } else {
+            ordre2.setNull(13, java.sql.Types.INTEGER);
+        }
         ordre2.setString(14, profession);
         ordre2.setInt(15, age);
         ordre2.setInt(16, income);

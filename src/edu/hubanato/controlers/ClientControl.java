@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import edu.hubanato.entities.Client;
 import org.jdesktop.swingx.JXDatePicker;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Tom
@@ -26,6 +28,8 @@ public class ClientControl implements ActionListener {
     
     //All the buttons
     private JButton btnCreate, btnClear;
+    
+    
 
     /**
      * Constructor
@@ -100,38 +104,82 @@ public class ClientControl implements ActionListener {
         Object source = evt.getSource();
 
         if (source == btnCreate) {
+            
+            if (!fieldsEmpty()) {
+                    
+                if (!fieldsNotInteger()) {
+                    
+                    if (validateEmail()) {
+                    
+                        /*System.out.println("Informations sur le client :");
+                         System.out.println("Civilité : " + civility.getSelectedItem());
+                         System.out.println("Client : " + name.getText() + " " + firstName.getText());
+                         System.out.println("Birth Date / Birth Place : " + birthDate.getDate() + ", " + birthPlace.getText());
+                         System.out.println("Sex : " + sex.getSelectedItem());
+                         System.out.println("Nationality : " + nationality.getSelectedItem());
+                         System.out.println("Adresse : " + nb.getText() + " " + street.getText() + ", " + cp.getText() + ", " + city.getText() + ", " + country.getSelectedItem());
+                         System.out.println("Phone Number : " + pnumber.getText());
+                         System.out.println("Phone Home : " + phome.getText());
+                         System.out.println("Phone Business : " + pbusiness.getText());
+                         System.out.println("Email : " + email.getText());
+                         System.out.println("Job : " + job.getText());*/
 
-            /*System.out.println("Informations sur le client :");
-             System.out.println("Civilité : " + civility.getSelectedItem());
-             System.out.println("Client : " + name.getText() + " " + firstName.getText());
-             System.out.println("Birth Date / Birth Place : " + birthDate.getDate() + ", " + birthPlace.getText());
-             System.out.println("Sex : " + sex.getSelectedItem());
-             System.out.println("Nationality : " + nationality.getSelectedItem());
-             System.out.println("Adresse : " + nb.getText() + " " + street.getText() + ", " + cp.getText() + ", " + city.getText() + ", " + country.getSelectedItem());
-             System.out.println("Phone Number : " + pnumber.getText());
-             System.out.println("Phone Home : " + phome.getText());
-             System.out.println("Phone Business : " + pbusiness.getText());
-             System.out.println("Email : " + email.getText());
-             System.out.println("Job : " + job.getText());*/
-            
-            // fields control :
-            
-            
-            // client creation
-            this.client = new Client(civility.getSelectedItem().toString(), name.getText(), firstName.getText(),
-                            convertUtilToSql(birthDate.getDate()), birthPlace.getText(),
-                            sex.getSelectedItem().toString(), nationality.getSelectedItem().toString(),
-                            Integer.parseInt(nb.getText()), street.getText(), add.getText(),
-                            cp.getText(), city.getText(), country.getSelectedItem().toString(),
-                            Integer.parseInt(pnumber.getText()), Integer.parseInt(phome.getText()),
-                            Integer.parseInt(pbusiness.getText()), email.getText(), job.getText(),
-                            Integer.parseInt(age.getText()), Integer.parseInt(income.getText()),
-                            profession.getSelectedItem().toString());
-            try {
-                client.createPerson();
-                JOptionPane.showMessageDialog(null, "Client ajouté");
-            } catch (SQLException ex) {
-                Logger.getLogger(ClientControl.class.getName()).log(Level.SEVERE, null, ex);
+                        // optional fields control :
+                        String additional;
+                        if (add.getText().isEmpty()) {
+                            additional = "non renseigné";
+                        } else {
+                            additional = add.getText();
+                        }
+
+                        String employment;
+                        if (job.getText().isEmpty()) {
+                            employment = "non renseigné";
+                        } else {
+                            employment = job.getText();
+                        }
+
+                        int phoneBusiness;
+                        if (pbusiness.getText().isEmpty()) {
+                            phoneBusiness = 0;
+                        } else {
+                            phoneBusiness = Integer.parseInt(pbusiness.getText());
+                        }
+
+                        int phoneHome;
+                        if (phome.getText().isEmpty()) {
+                            phoneHome = 0;
+                        } else {
+                            phoneHome = Integer.parseInt(phome.getText());
+                        }
+
+                        // client creation
+                        this.client = new Client(civility.getSelectedItem().toString(), name.getText(), firstName.getText(),
+                                        convertUtilToSql(birthDate.getDate()), birthPlace.getText(),
+                                        sex.getSelectedItem().toString(), nationality.getSelectedItem().toString(),
+                                        Integer.parseInt(nb.getText()), street.getText(), additional,
+                                        cp.getText(), city.getText(), country.getSelectedItem().toString(),
+                                        Integer.parseInt(pnumber.getText()), phoneHome,
+                                        phoneBusiness, email.getText(), employment,
+                                        Integer.parseInt(age.getText()), Integer.parseInt(income.getText()),
+                                        profession.getSelectedItem().toString());
+                        try {
+                            client.createPerson();
+                            JOptionPane.showMessageDialog(null, "Client ajouté");
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ClientControl.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "L'adresse email n'est pas correcte.", 
+                            "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Veuillez saisir des chiffres et non des lettres dans les champs appropriés.", 
+                            "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs obligatoires.",
+                        "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
             }
             
         } else if (source == btnClear) {
@@ -160,14 +208,75 @@ public class ClientControl implements ActionListener {
 
         }
     }
-
-    private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+    
+    /**
+     * Returns true if one of the mandatory fields is empty and returns false if not
+     * 
+     * @return boolean
+     */
+    private boolean fieldsEmpty() {
+        if (name.getText().isEmpty() || firstName.getText().isEmpty() || convertUtilToSql(birthDate.getDate()) == null ||
+                birthPlace.getText().isEmpty() || nb.getText().isEmpty() || street.getText().isEmpty() ||
+                cp.getText().isEmpty() || city.getText().isEmpty() || pnumber.getText().isEmpty() ||
+                email.getText().isEmpty() || age.getText().isEmpty() || income.getText().isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /**
+     * Returns true if one of the mandatory integer database fields is not an integer 
+     * or if one of the not empty fiels is not an integer and returns false if it is
+     * 
+     * @return boolean 
+     */
+    private boolean fieldsNotInteger() {
+        if (!isInteger(nb.getText()) || !isInteger(pnumber.getText()) || !isInteger(age.getText()) ||
+                !isInteger(income.getText()) || (!isInteger(phome.getText()) && !phome.getText().isEmpty()) ||
+                (!isInteger(pbusiness.getText()) && !phome.getText().isEmpty())) {
+            return true;
+        } else  { 
+            return false;
+        }
+    }
+    
+    /**
+     * 
+     * returns a date with a correct java format. If the date is empty, returns null
+     * 
+     * @param uDate
+     * @return java.sql.Date sdate  
+     */
+    private java.sql.Date convertUtilToSql(java.util.Date uDate) {
         if (uDate == null) {
             return null;
         } else {
             java.sql.Date sDate = new java.sql.Date(uDate.getTime());
             return sDate;
         }
+    }
+    
+    /**
+     * returns true if s can be converted to integer
+     * 
+     * @param String s 
+     * @return boolean 
+     */
+    private boolean isInteger(String s) {
+            try {
+                Integer.parseInt(s);
+            } catch (NumberFormatException e){
+                return false;
+            }
+
+            return true;
+    }
+    
+    private boolean validateEmail() {
+        Pattern pattern = Pattern.compile("^.+@.+(\\.[A-Za-z]{2,})$");
+        Matcher matcher = pattern.matcher(email.getText());
+        return matcher.matches();
     }
 
 }
