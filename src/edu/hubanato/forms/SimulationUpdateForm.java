@@ -10,6 +10,7 @@ import edu.hubanato.entities.Simulation;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -169,18 +170,28 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAmountLoanActionPerformed
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
-        int duration = Integer.parseInt(txtDuration.getText());
-        if (cmbDurationType.getSelectedIndex() == 0) { // duration in years
-            duration = duration * 12; // convert years in months
+        if (!txtDuration.getText().isEmpty() || !txtAmountLoan.getText().isEmpty()) {
+            
+            try {
+                int duration = Integer.parseInt(txtDuration.getText());
+                if (cmbDurationType.getSelectedIndex() == 0) { // duration in years
+                    duration = duration * 12; // convert years in months
+                }
+                Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), Integer.parseInt(txtAmountLoan.getText()),
+                    duration, 4.5, 1.0, cmbLoanType.getSelectedItem().toString());
+                s.updateSimulation();
+                this.setVisible(false);
+            } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Veuillez saisir des chiffres et non des lettres dans les champs appropriés.", 
+                                "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException ex) {
+                Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs.",
+                        "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
         }
-        Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), Integer.parseInt(txtAmountLoan.getText()),
-            duration, 4.5, 1.0, cmbLoanType.getSelectedItem().toString());
-        try {
-            s.updateSimulation();
-        } catch (SQLException ex) {
-            Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.setVisible(false);
+        
     }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
