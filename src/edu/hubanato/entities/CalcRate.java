@@ -49,6 +49,7 @@ public class CalcRate {
      */
     public double CalculateInterestRateYear(double amt, double depost, int dur) {
         double tx = (1200 * depost) / (amt * dur);
+        tx = tx*100;
         return tx;
     }
 ;

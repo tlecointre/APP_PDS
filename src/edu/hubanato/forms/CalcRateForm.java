@@ -58,7 +58,7 @@ public class CalcRateForm extends javax.swing.JFrame {
 
         lblDuration.setText("Durée de remboursement :");
 
-        lblDeposit.setText("Apport personnel :");
+        lblDeposit.setText("Montant des mensualités :");
 
         lblRateAppliedMonth.setText("Taux d'intérêt appliqué (mensuel) :");
 
@@ -70,11 +70,11 @@ public class CalcRateForm extends javax.swing.JFrame {
 
         lblRateDirector.setText("Taux directeur :");
 
-        txtRateDirector.setEditable(false);
+        txtRateDirector.setEnabled(false);
 
         lblRateAppliedYear.setText("Taux d'intérêt appliqué (annuel) :");
 
-        txtRateYear.setEditable(false);
+        txtRateYear.setEnabled(false);
 
         lblLoanType.setText("Type de prêt :");
 

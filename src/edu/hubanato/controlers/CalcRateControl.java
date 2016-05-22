@@ -76,7 +76,7 @@ public class CalcRateControl implements ActionListener {
 
         if (source == calculate) {
 
-            double valRateD = Double.parseDouble(rateDirector.getText());
+            //double valRateD = Double.parseDouble(rateDirector.getText());
             double valAmount = Double.parseDouble(amount.getText());
             int valDuration = (Integer) duration.getValue();
             double valDeposit = Double.parseDouble(deposit.getText());
@@ -89,16 +89,28 @@ public class CalcRateControl implements ActionListener {
 
                 double resratem = intrate.CalculateInterestRateMonth(valAmount, valDeposit, valDuration);
                 double resratey = intrate.CalculateInterestRateYear(valAmount, valDeposit, valDuration);
-                rateMonth.setText(String.valueOf(resratem));
-                rateYear.setText(String.valueOf(resratey));
+                
+                if (resratey < 0 || resratey == 0){
+                    infoError.setText("Le taux appliqué est négatif. Veuillez revoir vos paramètres");
+                }
+                else if (resratey > 0){
+                    rateMonth.setText(String.valueOf(resratem));
+                    rateYear.setText(String.valueOf(resratey));
+                }
 
-                JOptionPane.showMessageDialog(null, "Taux (%) : " + valRateD + "\n Capital (€) : " + valAmount + "\n Durée (months) : " + valDuration + "\n Apport (€) : " + valDeposit);
+                //JOptionPane.showMessageDialog(null, "Taux (%) : " + valRateD + "\n Capital (€) : " + valAmount + "\n Durée (months) : " + valDuration + "\n Apport (€) : " + valDeposit);
 
             } catch (Exception e) {
             }
         }
         
         if (source == save){
+            this.intrate = new CalcRate();
+            
+            try {
+                intrate.SaveInterestRate();
+            } catch (Exception e) {
+            }
         }
     }
 }
