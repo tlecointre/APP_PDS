@@ -1,10 +1,8 @@
-
 package edu.hubanato.serialization;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.ParseException;
-import org.json.simple.JSONObject;
+import com.google.gson.Gson;
+import edu.hubanato.entities.Client;
+import edu.hubanato.entities.Simulation;
 
 /**
  *
@@ -12,5 +10,13 @@ import org.json.simple.JSONObject;
  */
 public class DecodeJSON {
     
-   
+    private static Gson gson = new Gson();
+
+    public static Client deserializeClient(String c) {
+        return gson.fromJson(c, Client.class);
+    }
+    
+    public static Simulation deserializeSimulation(String s) {
+        return gson.fromJson(s, Simulation.class);
+    }
 }

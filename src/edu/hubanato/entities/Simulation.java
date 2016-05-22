@@ -93,7 +93,7 @@ public class Simulation {
         ordre.setInt(3, idLoanType);
         ordre.setDouble(4, rate);
         ordre.setDouble(5, rateInsurance);
-        ordre.setInt(6,idSimulation);
+        ordre.setInt(6, idSimulation);
         ordre.executeUpdate();
         ordre.close();
         connection.close();

@@ -228,12 +228,15 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
                         amount > 75000)) {
                     
                     if (!(loanType.equals("Prêt immobilier") && amount < 75000)) {
-                        Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), Integer.parseInt(txtAmountLoan.getText()),
-                            duration, 4.5, 1.0, cmbLoanType.getSelectedItem().toString());
+                        System.out.println(duration);
+                        Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), 
+                                                amount, duration, Double.parseDouble(txtRate.getText()), 
+                                                Double.parseDouble(txtInsuranceRate.getText()), 
+                                                loanType);
                         s.updateSimulation();
                         JOptionPane.showMessageDialog(null, "Simulation modifiée");
                         this.setVisible(false);
-                
+                        new SimulationManagementForm().setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Le montant d'un crédit immobilier ne peut être inférieur à 75 000 euros.", 
                             "Incohérence", JOptionPane.ERROR_MESSAGE);

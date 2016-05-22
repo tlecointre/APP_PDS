@@ -249,8 +249,10 @@ public class SimulationForm extends javax.swing.JFrame {
                                                 Double.parseDouble(txtInsuranceRate.getText()), 
                                                 loanType);
                         s.createSimulation();
-                        new LoanSummaryForm(s.getAmount(), duration, s.getRate(), s.getLoanType()).setVisible(true);
                         JOptionPane.showMessageDialog(null, "Simulation ajoutée");
+                        this.setVisible(false);
+                        new AuthenticationClientForm().setVisible(true);
+                        new LoanSummaryForm(s.getAmount(), duration, s.getRate(), s.getLoanType()).setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Le montant d'un crédit immobilier ne peut être inférieur à 75 000 euros.", 
                             "Incohérence", JOptionPane.ERROR_MESSAGE);
