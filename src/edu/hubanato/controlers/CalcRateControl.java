@@ -20,6 +20,7 @@ import javax.swing.JTextField;
  * @author Nadia Randria
  */
 public class CalcRateControl implements ActionListener{
+    
     private CalcRate intrate;
     
     private JComboBox loanType;
