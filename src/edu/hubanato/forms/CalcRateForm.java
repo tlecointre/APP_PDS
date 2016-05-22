@@ -18,7 +18,7 @@ public class CalcRateForm extends javax.swing.JFrame {
      */
     public CalcRateForm() {
         initComponents();
-        btnCalculate.addActionListener(new CalcRate(cmbLoanType, txtRateDirector, txtAmount, spnDuration, txtDeposit, txtRateMonth, txtRateYear, btnCalculate, lblInfo));
+        btnCalculate.addActionListener(new CalcRate(cmbLoanType, txtRateDirector, txtAge, txtAmount, spnDuration, txtDeposit, txtRateMonth, txtRateYear, btnCalculate, lblInfo));
     }
 
     /**
@@ -33,7 +33,7 @@ public class CalcRateForm extends javax.swing.JFrame {
         lblAmount = new javax.swing.JLabel();
         lblDuration = new javax.swing.JLabel();
         lblDeposit = new javax.swing.JLabel();
-        lblRateApplied = new javax.swing.JLabel();
+        lblRateAppliedMonth = new javax.swing.JLabel();
         btnCalculate = new javax.swing.JButton();
         txtAmount = new javax.swing.JTextField();
         txtDeposit = new javax.swing.JTextField();
@@ -42,11 +42,13 @@ public class CalcRateForm extends javax.swing.JFrame {
         lblMonths = new javax.swing.JLabel();
         lblRateDirector = new javax.swing.JLabel();
         txtRateDirector = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        lblRateAppliedYear = new javax.swing.JLabel();
         txtRateYear = new javax.swing.JTextField();
         lblLoanType = new javax.swing.JLabel();
         cmbLoanType = new javax.swing.JComboBox();
         lblInfo = new javax.swing.JLabel();
+        lblAge = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Interest Rate");
@@ -57,7 +59,7 @@ public class CalcRateForm extends javax.swing.JFrame {
 
         lblDeposit.setText("Apport personnel :");
 
-        lblRateApplied.setText("Taux d'intérêt appliqué (mensuel) :");
+        lblRateAppliedMonth.setText("Taux d'intérêt appliqué (mensuel) :");
 
         btnCalculate.setText("Calculer");
 
@@ -67,13 +69,17 @@ public class CalcRateForm extends javax.swing.JFrame {
 
         lblRateDirector.setText("Taux directeur :");
 
-        jLabel2.setText("Taux d'intérêt appliqué (annuel) :");
+        txtRateDirector.setEditable(false);
+
+        lblRateAppliedYear.setText("Taux d'intérêt appliqué (annuel) :");
 
         txtRateYear.setEditable(false);
 
         lblLoanType.setText("Type de prêt :");
 
         cmbLoanType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Prêt à la consommation", "Prêt automobile", "Prêt immobilier" }));
+
+        lblAge.setText("Age :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,10 +93,11 @@ public class CalcRateForm extends javax.swing.JFrame {
                             .addComponent(lblDuration)
                             .addComponent(lblAmount)
                             .addComponent(lblDeposit)
-                            .addComponent(lblRateApplied)
+                            .addComponent(lblRateAppliedMonth)
                             .addComponent(lblRateDirector)
-                            .addComponent(jLabel2)
-                            .addComponent(lblLoanType))
+                            .addComponent(lblRateAppliedYear)
+                            .addComponent(lblLoanType)
+                            .addComponent(lblAge))
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDeposit)
@@ -102,7 +109,8 @@ public class CalcRateForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblMonths))
                             .addComponent(txtRateYear)
-                            .addComponent(cmbLoanType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cmbLoanType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtAge)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(230, 230, 230)
                         .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -114,15 +122,19 @@ public class CalcRateForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLoanType)
                     .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRateDirector)
                     .addComponent(txtRateDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAge)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAmount)
                     .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -137,15 +149,15 @@ public class CalcRateForm extends javax.swing.JFrame {
                     .addComponent(txtDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRateApplied)
+                    .addComponent(lblRateAppliedMonth)
                     .addComponent(txtRateMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblRateAppliedYear)
                     .addComponent(txtRateYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(btnCalculate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(lblInfo)
                 .addGap(41, 41, 41))
         );
@@ -192,16 +204,18 @@ public class CalcRateForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalculate;
     private javax.swing.JComboBox cmbLoanType;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblAmount;
     private javax.swing.JLabel lblDeposit;
     private javax.swing.JLabel lblDuration;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblLoanType;
     private javax.swing.JLabel lblMonths;
-    private javax.swing.JLabel lblRateApplied;
+    private javax.swing.JLabel lblRateAppliedMonth;
+    private javax.swing.JLabel lblRateAppliedYear;
     private javax.swing.JLabel lblRateDirector;
     private javax.swing.JSpinner spnDuration;
+    private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtDeposit;
     private javax.swing.JTextField txtRateDirector;

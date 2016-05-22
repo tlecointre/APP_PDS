@@ -21,7 +21,8 @@ import javax.swing.JTextField;
 public class CalcRate implements ActionListener{
     
     private JComboBox loanType;
-    private JTextField rateDirector;
+    private JTextField rateDirector;    
+    private JTextField age;
     private JTextField amount;
     private JSpinner duration;
     private JTextField deposit;
@@ -30,9 +31,10 @@ public class CalcRate implements ActionListener{
     private JButton calculate;
     private JLabel infoError;
 
-    public CalcRate(JComboBox loan, JTextField rated, JTextField amt, JSpinner dt, JTextField dep, JTextField intratem, JTextField intratey, JButton calc, JLabel error) {
+    public CalcRate(JComboBox loan, JTextField rated, JTextField agePers, JTextField amt, JSpinner dt, JTextField dep, JTextField intratem, JTextField intratey, JButton calc, JLabel error) {
         this.loanType = loan;
         this.rateDirector = rated;
+        this.age = agePers;
         this.amount = amt;
         this.duration = dt;
         this.deposit = dep;
@@ -64,7 +66,10 @@ public class CalcRate implements ActionListener{
     
     public double CalculateInterestRateYear(){
         return 0;
-    };    
+    };
+    
+    public void SaveInterestRate(){
+    }
 
     @Override
     public void actionPerformed(ActionEvent evt) {
