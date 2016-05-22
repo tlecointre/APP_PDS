@@ -18,7 +18,7 @@ public class CalcRateForm extends javax.swing.JFrame {
      */
     public CalcRateForm() {
         initComponents();
-        btnCalculate.addActionListener(new CalcRateControl(cmbLoanType, txtRateDirector, txtAge, txtAmount, spnDuration, txtDeposit, txtRateMonth, txtRateYear, btnCalculate, lblInfo));
+        btnCalculate.addActionListener(new CalcRateControl(cmbLoanType, txtRateDirector, txtAge, txtAmount, spnDuration, txtDeposit, txtRateMonth, txtRateYear, lblInfo, btnCalculate, btnSave));
     }
 
     /**
@@ -49,6 +49,7 @@ public class CalcRateForm extends javax.swing.JFrame {
         lblInfo = new javax.swing.JLabel();
         lblAge = new javax.swing.JLabel();
         txtAge = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Interest Rate");
@@ -81,6 +82,8 @@ public class CalcRateForm extends javax.swing.JFrame {
 
         lblAge.setText("Age :");
 
+        btnSave.setText("Sauvegarder");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,23 +100,26 @@ public class CalcRateForm extends javax.swing.JFrame {
                             .addComponent(lblRateDirector)
                             .addComponent(lblRateAppliedYear)
                             .addComponent(lblLoanType)
-                            .addComponent(lblAge))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDeposit)
-                            .addComponent(txtRateMonth)
-                            .addComponent(txtAmount)
-                            .addComponent(txtRateDirector)
+                            .addComponent(lblAge)
+                            .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(spnDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblMonths))
-                            .addComponent(txtRateYear)
-                            .addComponent(cmbLoanType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtAge)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtDeposit)
+                                    .addComponent(txtRateMonth)
+                                    .addComponent(txtAmount)
+                                    .addComponent(txtRateDirector)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(spnDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblMonths))
+                                    .addComponent(txtRateYear)
+                                    .addComponent(cmbLoanType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtAge)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(lblInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -155,9 +161,11 @@ public class CalcRateForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRateAppliedYear)
                     .addComponent(txtRateYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(btnCalculate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCalculate)
+                    .addComponent(btnSave))
+                .addGap(45, 45, 45)
                 .addComponent(lblInfo)
                 .addGap(41, 41, 41))
         );
@@ -203,6 +211,7 @@ public class CalcRateForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalculate;
+    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox cmbLoanType;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblAmount;

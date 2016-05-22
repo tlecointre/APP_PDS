@@ -10,32 +10,44 @@ package edu.hubanato.entities;
  * @author Nadia Randria
  */
 public class CalcRate {
-    
 
     /**
-     * This method permit to calculate the interest rate
+     *
+     * @return
+     */
+    public double SelectRateDirector() {
+        return 0;
+    }
+
+    ;
+    /**
+     * 
+     */
+    public void SaveInterestRate() {
+    }
+
+    /**
+     *
+     * @param amt
+     * @param depost
+     * @param dur
+     * @return
+     */
+    public double CalculateInterestRateMonth(double amt, double depost, int dur) {
+        return 0;
+    }
+
+    ;
+    /**
+     * 
      * @param amt
      * @param depost
      * @param dur
      * @return 
      */
-    public double CalculateInterestRate(double amt, double depost, int dur){
-        double tx = (1200 * depost)/(amt * dur);
+    public double CalculateInterestRateYear(double amt, double depost, int dur) {
+        double tx = (1200 * depost) / (amt * dur);
         return tx;
     }
-    
-    public double SelectRateDirector(){
-        return 0;
-    };
-    
-    public void SaveInterestRate(){
-    }
-    
-    public double CalculateInterestRateMonth(){
-        return 0;
-    };
-    
-    public double CalculateInterestRateYear(){
-        return 0;
-    };
+;
 }
