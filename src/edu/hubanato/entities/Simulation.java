@@ -12,15 +12,16 @@ import java.util.List;
 public class Simulation {
     
     private int idSimulation, idClient, amount, duration;
-    private double rate;
+    private double rate, rateInsurance;
     private String loanType;
     
-    public Simulation(int idSimulation, int idClient, int amount, int duration, double rate, String loanType) {
+    public Simulation(int idSimulation, int idClient, int amount, int duration, double rate, double rateInsurance, String loanType) {
         this.idSimulation = idSimulation;
         this.idClient = idClient;
         this.amount = amount;
         this.duration = duration;
         this.rate = rate;
+        this.rateInsurance = rateInsurance;
         this.loanType = loanType;
     }
 
@@ -39,7 +40,8 @@ public class Simulation {
         rs.next();
         idLoanType = rs.getInt("idLoanType");
 
-        String querySimulation = "INSERT INTO SIMULATION(ID_CUSTOMER,AMOUNT,DURATION,ID_TYPES,RATE_FINAL) VALUES (?,?,?,?,?)";
+        String querySimulation = "INSERT INTO SIMULATION(ID_CUSTOMER,AMOUNT,DURATION,ID_TYPES,RATE_FINAL,RATE_INSURANCE) "
+                                + "VALUES (?,?,?,?,?,?)";
         PreparedStatement ordre = connection.prepareStatement(querySimulation);
 
         ordre.setInt(1, idClient);
@@ -47,6 +49,7 @@ public class Simulation {
         ordre.setInt(3, duration);
         ordre.setInt(4, idLoanType);
         ordre.setDouble(5, rate);
+        ordre.setDouble(6, rateInsurance);
         
         ordre.executeUpdate();
         ordre.close();
@@ -63,7 +66,7 @@ public class Simulation {
         List<Simulation> simulations = new ArrayList<Simulation>();
         while (rs.next()) {
             simulations.add(new Simulation(rs.getInt("ID_SIMULATION"), rs.getInt("ID_CUSTOMER"), rs.getInt("AMOUNT"), rs.getInt("DURATION"),
-                    rs.getDouble("RATE_FINAL"), rs.getString("TITLE")));
+                    rs.getDouble("RATE_FINAL"), rs.getDouble("RATE_INSURANCE"), rs.getString("TITLE")));
         }
         return simulations;
     }
@@ -82,14 +85,15 @@ public class Simulation {
         rs.next();
         idLoanType = rs.getInt("idLoanType");
 
-        String queryUSimulation = "UPDATE SIMULATION SET AMOUNT = ? , DURATION = ?, ID_TYPES = ?, RATE_FINAL = ? "
-                    + "WHERE ID_SIMULATION = ?";
+        String queryUSimulation = "UPDATE SIMULATION SET AMOUNT = ? , DURATION = ?, ID_TYPES = ?, RATE_FINAL = ?, "
+                    + "RATE_INSURANCE = ? WHERE ID_SIMULATION = ?";
         PreparedStatement ordre = connection.prepareStatement(queryUSimulation);
         ordre.setInt(1, amount);
         ordre.setInt(2, duration);
         ordre.setInt(3, idLoanType);
         ordre.setDouble(4, rate);
-        ordre.setInt(5,idSimulation);
+        ordre.setDouble(5, rateInsurance);
+        ordre.setInt(6,idSimulation);
         ordre.executeUpdate();
         ordre.close();
         connection.close();

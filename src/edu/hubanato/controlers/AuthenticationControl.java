@@ -5,7 +5,6 @@
  */
 package edu.hubanato.controlers;
 
-import edu.hubanato.forms.GestionClientForm;
 import edu.hubanato.forms.AuthenticationAdvisorForm;
 import java.awt.event.*;
 import javax.swing.*;
@@ -42,8 +41,6 @@ public class AuthenticationControl implements ActionListener {
                 
                 authentication.setVisible(false);
                 
-                GestionClientForm gestionForm = new GestionClientForm();
-                gestionForm.setVisible(true);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Login / Password must be incorrect");

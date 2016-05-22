@@ -10,6 +10,7 @@ import edu.hubanato.entities.Simulation;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,30 +40,31 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        labelSubtitle = new javax.swing.JLabel();
+        labelLoanDuration = new javax.swing.JLabel();
+        labelLoanType = new javax.swing.JLabel();
         cmbLoanType = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
+        labelLoanAmount = new javax.swing.JLabel();
         txtAmountLoan = new javax.swing.JTextField();
         btnCalculate = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        labelEur = new javax.swing.JLabel();
         txtDuration = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        labelTitle = new javax.swing.JLabel();
         cmbDurationType = new javax.swing.JComboBox();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Les paramètres :");
+        labelSubtitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelSubtitle.setText("Paramètres de la simulation :");
 
-        jLabel3.setText("Durée du prêt (ans) :");
+        labelLoanDuration.setText("Durée du prêt (ans) :");
 
-        jLabel4.setText("Type de prêt :");
+        labelLoanType.setText("Type de prêt :");
 
         cmbLoanType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Prêt à la consommation", "Prêt automobile", "Prêt immobilier" }));
 
-        jLabel5.setText("Montant du prêt :");
+        labelLoanAmount.setText("Montant du prêt :");
 
         txtAmountLoan.setPreferredSize(new java.awt.Dimension(60, 20));
         txtAmountLoan.addActionListener(new java.awt.event.ActionListener() {
@@ -78,18 +80,20 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setText("€");
+        labelEur.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelEur.setText("€");
 
         txtDuration.setPreferredSize(new java.awt.Dimension(40, 20));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Modifier une simulation");
+        labelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelTitle.setText("Modifier une simulation");
 
         cmbDurationType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "année(s)", "mois" }));
-        cmbDurationType.addActionListener(new java.awt.event.ActionListener() {
+
+        btnBack.setText("Retour");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbDurationTypeActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -100,56 +104,61 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(68, 68, 68)
+                        .addComponent(labelTitle))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3))
-                        .addGap(55, 55, 55)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelLoanType)
+                                    .addComponent(labelLoanAmount)
+                                    .addComponent(labelLoanDuration)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(btnCalculate)))
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBack)
                             .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtAmountLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7))
+                                .addComponent(labelEur))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(cmbDurationType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(btnCalculate))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelSubtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelSubtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(labelLoanType)
                     .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLoanDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDuration, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cmbDurationType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(labelLoanAmount)
                     .addComponent(txtAmountLoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7))
+                    .addComponent(labelEur))
                 .addGap(43, 43, 43)
-                .addComponent(btnCalculate)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCalculate)
+                    .addComponent(btnBack))
                 .addGap(55, 55, 55))
         );
 
@@ -161,34 +170,46 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAmountLoanActionPerformed
 
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
-        int duration = Integer.parseInt(txtDuration.getText());
-        if (cmbDurationType.getSelectedIndex() == 0) { // duration in years
-            duration = duration * 12; // convert years in months
+        if (!txtDuration.getText().isEmpty() || !txtAmountLoan.getText().isEmpty()) {
+            
+            try {
+                int duration = Integer.parseInt(txtDuration.getText());
+                if (cmbDurationType.getSelectedIndex() == 0) { // duration in years
+                    duration = duration * 12; // convert years in months
+                }
+                Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), Integer.parseInt(txtAmountLoan.getText()),
+                    duration, 4.5, 1.0, cmbLoanType.getSelectedItem().toString());
+                s.updateSimulation();
+                this.setVisible(false);
+            } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Veuillez saisir des chiffres et non des lettres dans les champs appropriés.", 
+                                "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException ex) {
+                Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs.",
+                        "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
         }
-        Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), Integer.parseInt(txtAmountLoan.getText()),
-            duration, 4.5, cmbLoanType.getSelectedItem().toString());
-        try {
-            s.updateSimulation();
-        } catch (SQLException ex) {
-            Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.setVisible(false);
+        
     }//GEN-LAST:event_btnCalculateActionPerformed
 
-    private void cmbDurationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDurationTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbDurationTypeActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.setVisible(false);
+        new SimulationManagementForm().setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCalculate;
     private javax.swing.JComboBox cmbDurationType;
     private javax.swing.JComboBox cmbLoanType;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel labelEur;
+    private javax.swing.JLabel labelLoanAmount;
+    private javax.swing.JLabel labelLoanDuration;
+    private javax.swing.JLabel labelLoanType;
+    private javax.swing.JLabel labelSubtitle;
+    private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField txtAmountLoan;
     private javax.swing.JTextField txtDuration;
     // End of variables declaration//GEN-END:variables

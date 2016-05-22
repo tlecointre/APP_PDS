@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.hubanato.forms;
 
-import edu.hubanato.controlers.FormControl;
+import edu.hubanato.controlers.ClientControl;
 
 /**
- * Release R2
- *
- * @author hubanato
+ * @author Tom
  */
 public class ClientForm extends javax.swing.JFrame {
 
@@ -19,9 +12,8 @@ public class ClientForm extends javax.swing.JFrame {
      */
     public ClientForm() {
         initComponents();
-        btnCreate.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear, btnCancel));
-        btnClear.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear, btnCancel));
-        btnCancel.addActionListener(new FormControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear, btnCancel));
+        btnCreate.addActionListener(new ClientControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear));
+        btnClear.addActionListener(new ClientControl(cmbCivility, txtName, txtFirstName, jxDate, txtBirthPlace, cmbSex, cmbNationality, txtNb, txtStreet, txtAdd, txtCP, txtCity, cmbCountry, txtPNumber, txtPHome, txtPBusiness, txtEmail, txtJob, txtAge, cmbProfession, txtIncome, btnCreate, btnClear));
     }
 
     /**
@@ -33,19 +25,19 @@ public class ClientForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        labelName = new javax.swing.JLabel();
+        labelFirstName = new javax.swing.JLabel();
+        labelBirthDate = new javax.swing.JLabel();
+        labelCivility = new javax.swing.JLabel();
         cmbCivility = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        labelBirthPlace = new javax.swing.JLabel();
+        labelNationality = new javax.swing.JLabel();
+        labelStreetNumber = new javax.swing.JLabel();
+        labelStreet = new javax.swing.JLabel();
+        labelAdditional = new javax.swing.JLabel();
+        labelPostalCode = new javax.swing.JLabel();
+        labelCity = new javax.swing.JLabel();
+        labelCountry = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtFirstName = new javax.swing.JTextField();
         jxDate = new org.jdesktop.swingx.JXDatePicker();
@@ -56,314 +48,269 @@ public class ClientForm extends javax.swing.JFrame {
         txtCP = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        labelPersonalNumber = new javax.swing.JLabel();
+        labelHouseNumber = new javax.swing.JLabel();
+        labelProNumber = new javax.swing.JLabel();
+        labelEmail = new javax.swing.JLabel();
+        labelWork = new javax.swing.JLabel();
         txtPBusiness = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtJob = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        labelTitle = new javax.swing.JLabel();
+        labelMandatoryField = new javax.swing.JLabel();
         cmbNationality = new javax.swing.JComboBox();
         cmbCountry = new javax.swing.JComboBox();
         txtPNumber = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
+        labelSex = new javax.swing.JLabel();
         cmbSex = new javax.swing.JComboBox();
         txtCity = new javax.swing.JTextField();
         txtPHome = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
+        labelAge = new javax.swing.JLabel();
         txtAge = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
+        labelPCS = new javax.swing.JLabel();
         cmbProfession = new javax.swing.JComboBox();
-        jLabel23 = new javax.swing.JLabel();
+        labelIncome = new javax.swing.JLabel();
         txtIncome = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Form to create a client");
 
-        jLabel1.setText("Nom * :");
+        labelName.setText("Nom * :");
 
-        jLabel2.setText("Prénom * :");
+        labelFirstName.setText("Prénom * :");
 
-        jLabel3.setText("Date de naissance * :");
+        labelBirthDate.setText("Date de naissance * :");
 
-        jLabel4.setText("Civilité * :");
+        labelCivility.setText("Civilité * :");
 
         cmbCivility.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M.", "Mme" }));
 
-        jLabel5.setText("Lieu de naissance * :");
+        labelBirthPlace.setText("Lieu de naissance * :");
 
-        jLabel6.setText("Nationalité * :");
+        labelNationality.setText("Nationalité * :");
 
-        jLabel7.setText("N° * :");
+        labelStreetNumber.setText("N° * :");
 
-        jLabel8.setText("Rue * :");
+        labelStreet.setText("Rue * :");
 
-        jLabel9.setText("Complément :");
+        labelAdditional.setText("Complément :");
 
-        jLabel10.setText("Code postal * :");
+        labelPostalCode.setText("Code postal * :");
 
-        jLabel11.setText("Ville * :");
+        labelCity.setText("Ville * :");
 
-        jLabel12.setText("Pays * :");
+        labelCountry.setText("Pays * :");
 
-        btnCreate.setText("Créer");
+        btnCreate.setText("Créer le client");
 
-        btnClear.setText("Vider");
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
-            }
-        });
+        btnClear.setText("Vider les champs");
 
-        btnCancel.setText("Retour");
+        labelPersonalNumber.setText("Numéro personnel * :");
 
-        jLabel13.setText("Numéro personnel * :");
+        labelHouseNumber.setText("Numéro du domicile :");
 
-        jLabel14.setText("Numéro du domicile :");
+        labelProNumber.setText("Numéro professionnel :");
 
-        jLabel15.setText("Numéro professionnel :");
+        labelEmail.setText("Email *:");
 
-        jLabel16.setText("Email *:");
+        labelWork.setText("Travail :");
 
-        jLabel17.setText("Travail :");
+        labelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelTitle.setForeground(new java.awt.Color(0, 51, 102));
+        labelTitle.setText("Formulaire de création d'un client");
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel18.setText("Formulaire de création d'un client");
-
-        jLabel19.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel19.setText("* Ce champ est obligatoire");
+        labelMandatoryField.setForeground(new java.awt.Color(255, 0, 51));
+        labelMandatoryField.setText("* Ce champ est obligatoire");
 
         cmbNationality.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Francaise", "Americaine", "Anglaise", "Japonaise", "Espagnole", "Italienne", "Allemande", "Portugaise" }));
         cmbNationality.setToolTipText("");
 
         cmbCountry.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "France", "Italie", "Etats-Unis", "Royaume-Uni", "Espagne", "Grece", "Croatie", "Portugal" }));
 
-        jLabel20.setText("Sexe * :");
+        labelSex.setText("Sexe * :");
 
         cmbSex.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M", "F" }));
 
-        txtPHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPHomeActionPerformed(evt);
-            }
-        });
-
-        jLabel21.setText("Age * :");
+        labelAge.setText("Age * :");
 
         txtAge.setPreferredSize(new java.awt.Dimension(60, 20));
-        txtAge.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAgeActionPerformed(evt);
-            }
-        });
 
-        jLabel22.setText("Catégorie profesionnelle (PCS) * :");
+        labelPCS.setText("Catégorie profesionnelle (PCS) * :");
 
         cmbProfession.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Agriculteur exploitant", "Artisan, commerçant et chef d'entreprise", "Cadre et profession intellectuelles supérieures", "Profession intermédiaire", "Employé", "Ouvrier", "Retraité", "Autre" }));
 
-        jLabel23.setText("Revenu annuel (en € brut) * :");
+        labelIncome.setText("Revenu annuel (en € brut) * :");
 
         txtIncome.setPreferredSize(new java.awt.Dimension(60, 20));
-        txtIncome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIncomeActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCivility)
+                    .addComponent(labelName)
+                    .addComponent(labelFirstName)
+                    .addComponent(labelBirthDate)
+                    .addComponent(labelBirthPlace)
+                    .addComponent(labelStreetNumber)
+                    .addComponent(labelStreet)
+                    .addComponent(labelAdditional)
+                    .addComponent(labelPostalCode)
+                    .addComponent(labelCity)
+                    .addComponent(labelNationality)
+                    .addComponent(labelCountry)
+                    .addComponent(labelSex))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel20))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(207, 207, 207)
+                        .addComponent(labelPersonalNumber))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnCreate)
-                                .addGap(148, 148, 148)
-                                .addComponent(btnClear)
-                                .addGap(116, 116, 116)
-                                .addComponent(btnCancel))
-                            .addComponent(cmbSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelAge)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCity, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbCountry, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbNationality, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbCivility, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jxDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                            .addComponent(txtBirthPlace, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNb, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAdd, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCP, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtCity, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbCountry, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbNationality, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmbCivility, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFirstName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jxDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                    .addComponent(txtBirthPlace, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNb, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtStreet, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAdd, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCP, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(89, 89, 89)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel13)
-                                            .addComponent(jLabel14)
-                                            .addComponent(jLabel15)
-                                            .addComponent(jLabel16)
-                                            .addComponent(jLabel17))
-                                        .addGap(34, 34, 34)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtPBusiness, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                                            .addComponent(txtEmail)
-                                            .addComponent(txtJob)
-                                            .addComponent(txtPNumber)
-                                            .addComponent(txtPHome)))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(labelHouseNumber))
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel22)
-                                            .addComponent(jLabel21)
-                                            .addComponent(jLabel23))
-                                        .addGap(26, 26, 26)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cmbProfession, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel19))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(jLabel18)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(labelEmail)
+                                            .addComponent(labelProNumber)
+                                            .addComponent(labelWork)
+                                            .addComponent(labelPCS)
+                                            .addComponent(labelMandatoryField)
+                                            .addComponent(labelIncome))))
+                                .addGap(53, 53, 53)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtPBusiness)
+                                    .addComponent(txtEmail)
+                                    .addComponent(txtJob)
+                                    .addComponent(txtPNumber)
+                                    .addComponent(txtPHome)
+                                    .addComponent(cmbProfession, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIncome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCreate)
+                                .addGap(67, 67, 67)
+                                .addComponent(btnClear)
+                                .addGap(103, 103, 103)))))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTitle)
+                .addGap(214, 214, 214))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel18)
+                .addComponent(labelTitle)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(labelCivility)
                     .addComponent(cmbCivility, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
+                    .addComponent(labelPersonalNumber)
                     .addComponent(txtPNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(labelName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
+                    .addComponent(labelHouseNumber)
                     .addComponent(txtPHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(labelFirstName)
                     .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
+                    .addComponent(labelProNumber)
                     .addComponent(txtPBusiness, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(labelBirthDate)
                     .addComponent(jxDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16)
+                    .addComponent(labelEmail)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(labelBirthPlace)
                     .addComponent(txtBirthPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17)
+                    .addComponent(labelWork)
                     .addComponent(txtJob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(cmbSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(cmbNationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelSex)
+                            .addComponent(cmbSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelAge)
+                            .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(119, 119, 119))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelPCS)
+                            .addComponent(cmbProfession, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelNationality)
+                            .addComponent(cmbNationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelIncome)
+                            .addComponent(txtIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
+                            .addComponent(labelStreetNumber)
                             .addComponent(txtNb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel21)
-                            .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(cmbProfession, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel23)
-                            .addComponent(txtIncome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)))
+                            .addComponent(labelStreet)
+                            .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnClear)
+                            .addComponent(btnCreate))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                    .addComponent(labelAdditional)
                     .addComponent(txtAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelPostalCode)
+                    .addComponent(txtCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelMandatoryField))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
+                    .addComponent(labelCity)
                     .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
+                    .addComponent(labelCountry)
                     .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreate)
-                    .addComponent(btnClear)
-                    .addComponent(btnCancel))
-                .addGap(19, 19, 19)
-                .addComponent(jLabel19)
-                .addGap(29, 29, 29))
+                .addGap(26, 26, 26))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtPHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPHomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPHomeActionPerformed
-
-    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAgeActionPerformed
-
-    private void txtIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIncomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIncomeActionPerformed
-
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -404,7 +351,6 @@ public class ClientForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnCreate;
     private javax.swing.JComboBox cmbCivility;
@@ -412,30 +358,30 @@ public class ClientForm extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbNationality;
     private javax.swing.JComboBox cmbProfession;
     private javax.swing.JComboBox cmbSex;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private org.jdesktop.swingx.JXDatePicker jxDate;
+    private javax.swing.JLabel labelAdditional;
+    private javax.swing.JLabel labelAge;
+    private javax.swing.JLabel labelBirthDate;
+    private javax.swing.JLabel labelBirthPlace;
+    private javax.swing.JLabel labelCity;
+    private javax.swing.JLabel labelCivility;
+    private javax.swing.JLabel labelCountry;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelFirstName;
+    private javax.swing.JLabel labelHouseNumber;
+    private javax.swing.JLabel labelIncome;
+    private javax.swing.JLabel labelMandatoryField;
+    private javax.swing.JLabel labelName;
+    private javax.swing.JLabel labelNationality;
+    private javax.swing.JLabel labelPCS;
+    private javax.swing.JLabel labelPersonalNumber;
+    private javax.swing.JLabel labelPostalCode;
+    private javax.swing.JLabel labelProNumber;
+    private javax.swing.JLabel labelSex;
+    private javax.swing.JLabel labelStreet;
+    private javax.swing.JLabel labelStreetNumber;
+    private javax.swing.JLabel labelTitle;
+    private javax.swing.JLabel labelWork;
     private javax.swing.JTextField txtAdd;
     private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtBirthPlace;
