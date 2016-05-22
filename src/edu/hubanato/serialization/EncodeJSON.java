@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.text.ParseException;
 import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
+
+
 
 /**
  *
@@ -34,7 +37,7 @@ public class EncodeJSON {
         obj.put("idUser_Customer", idUser);
         obj.put("id_status", idStatus);
         
-System.out.println("title_Customer: " + title_Customer);
+        System.out.println("title_Customer: " + title_Customer);
         System.out.println("last_Name_Customer: " + last_Name_Customer);
         System.out.println("first_Name_Customer: " + first_Name_Customer);
         System.out.println("salary_Customer: " + salary_Customer);
