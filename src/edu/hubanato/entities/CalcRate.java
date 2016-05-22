@@ -34,7 +34,9 @@ public class CalcRate {
      * @return
      */
     public double CalculateInterestRateMonth(double amt, double depost, int dur) {
-        return 0;
+        double txm = CalculateInterestRateYear(amt, depost, dur);
+        double tx = txm / 12;
+        return tx;
     }
 
     ;
