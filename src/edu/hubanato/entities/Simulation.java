@@ -110,7 +110,11 @@ public class Simulation {
     public double getRate() {
         return rate;
     }
-
+    
+    public double getRateInsurance() {
+        return rateInsurance;
+    }
+    
     public String getLoanType() {
         return loanType;
     }
