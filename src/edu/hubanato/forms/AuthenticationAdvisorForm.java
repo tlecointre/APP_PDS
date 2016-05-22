@@ -6,7 +6,11 @@
 package edu.hubanato.forms;
 
 import edu.hubanato.controlers.AuthenticationControl;
-import edu.hubanato.client.Client;
+import edu.hubanato.client.TCPClient;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Release R2
@@ -101,7 +105,11 @@ public class AuthenticationAdvisorForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnectActionPerformed
-        Client client = new Client();
+        try {
+            TCPClient client = new TCPClient("localhost", 9999);
+        } catch (IOException ex) {
+            Logger.getLogger(AuthenticationAdvisorForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btnConnectActionPerformed
 
