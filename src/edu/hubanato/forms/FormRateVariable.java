@@ -7,6 +7,7 @@ package edu.hubanato.forms;
 
 import javax.swing.JFrame;
 import edu.hubanato.entities.RateVariable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,13 +15,9 @@ import edu.hubanato.entities.RateVariable;
  */
 public class FormRateVariable extends javax.swing.JFrame {
 
-    /** Déclaration des différents Panel utilisés pour la partie */
+    // Variable declaration
     RateVariable rateVariable;
-    PanelCharacteristics panelCharacteristics;
-    PanelGrowthRate panelGrowthRate;
-    PanelStableRate panelStableRate;
-    PanelDecayRate panelDecayRate;
-    
+    String title[] = {"Year", "Index", "NewRate", "Monthly", "Remaining"};
     
     /**
      * Creates new form RateVariable
@@ -31,12 +28,15 @@ public class FormRateVariable extends javax.swing.JFrame {
         
         initComponents();
         
-         // Fermer lors du clic sur la croix
+        setTitle("Simulation de prêt à taux variable");
+        
+        // Close when clicking on the cross
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Ajuster la taille au contenu
+        
+        // Adjust Size to content
         pack();
-        setTitle("Rate variabale");
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,17 +47,320 @@ public class FormRateVariable extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelCharacteristics2 = new edu.hubanato.forms.PanelCharacteristics();
-        panelStableRate2 = new edu.hubanato.forms.PanelStableRate();
-        panelGrowthRate1 = new edu.hubanato.forms.PanelGrowthRate();
-        LabelTitle = new javax.swing.JLabel();
-        panelDecayRate1 = new edu.hubanato.forms.PanelDecayRate();
+        PanelGrowthRate = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableGrowthRate = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabelTitle = new javax.swing.JLabel();
+        PanelGCharacteristics = new javax.swing.JPanel();
+        jLabelAmount = new javax.swing.JLabel();
+        jLabelRate = new javax.swing.JLabel();
+        jLabelCape = new javax.swing.JLabel();
+        jLabelDuring = new javax.swing.JLabel();
+        btnStart = new javax.swing.JButton();
+        formattedTextAmount = new javax.swing.JFormattedTextField();
+        formattedTextDuree = new javax.swing.JFormattedTextField();
+        formattedTextCape = new javax.swing.JFormattedTextField();
+        formattedTextRate = new javax.swing.JFormattedTextField();
+        jLabelError = new javax.swing.JLabel();
+        jPanelDecay = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableDecay = new javax.swing.JTable();
+        jLabelTableDecay = new javax.swing.JLabel();
+        jPanelGrowth = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableGrowth = new javax.swing.JTable();
+        jLabelTableGrowth = new javax.swing.JLabel();
+        jPanelStable = new javax.swing.JPanel();
+        jLabelTableStable = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableStable = new javax.swing.JTable();
+
+        TableGrowthRate.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Year", "Index", "NewRate", "Monthly", "Remaining"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(TableGrowthRate);
+
+        jLabel1.setText("Simulation growth rate :");
+
+        javax.swing.GroupLayout PanelGrowthRateLayout = new javax.swing.GroupLayout(PanelGrowthRate);
+        PanelGrowthRate.setLayout(PanelGrowthRateLayout);
+        PanelGrowthRateLayout.setHorizontalGroup(
+            PanelGrowthRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelGrowthRateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelGrowthRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelGrowthRateLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PanelGrowthRateLayout.setVerticalGroup(
+            PanelGrowthRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelGrowthRateLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        LabelTitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        LabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LabelTitle.setText("Simulation rate variable");
+        jLabelTitle.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTitle.setText("Simulation rate variable");
+
+        jLabelAmount.setText("Montant (en €)*:");
+
+        jLabelRate.setText("Taux *:");
+
+        jLabelCape.setText("Capé *:");
+
+        jLabelDuring.setText("Durée (en années)*:");
+
+        btnStart.setText("Lancer la simulation");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
+
+        formattedTextAmount.setToolTipText("");
+        formattedTextAmount.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        formattedTextAmount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formattedTextAmountKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formattedTextAmountKeyTyped(evt);
+            }
+        });
+
+        formattedTextDuree.setToolTipText("");
+        formattedTextDuree.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formattedTextDureeKeyTyped(evt);
+            }
+        });
+
+        formattedTextCape.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                formattedTextCapeKeyTyped(evt);
+            }
+        });
+
+        formattedTextRate.setEditable(false);
+        formattedTextRate.setText("4.00");
+        formattedTextRate.setEnabled(false);
+        formattedTextRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formattedTextRateActionPerformed(evt);
+            }
+        });
+
+        jLabelError.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabelError.setForeground(new java.awt.Color(255, 51, 51));
+
+        javax.swing.GroupLayout PanelGCharacteristicsLayout = new javax.swing.GroupLayout(PanelGCharacteristics);
+        PanelGCharacteristics.setLayout(PanelGCharacteristicsLayout);
+        PanelGCharacteristicsLayout.setHorizontalGroup(
+            PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
+                        .addGroup(PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnStart)
+                            .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
+                                .addComponent(jLabelAmount)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(formattedTextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabelDuring)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(formattedTextDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelCape)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(formattedTextCape, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabelRate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(formattedTextRate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
+                    .addComponent(jLabelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PanelGCharacteristicsLayout.setVerticalGroup(
+            PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelAmount)
+                    .addComponent(jLabelDuring)
+                    .addComponent(jLabelCape)
+                    .addComponent(jLabelRate)
+                    .addComponent(formattedTextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(formattedTextDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(formattedTextCape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(formattedTextRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnStart)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelError)
+                .addContainerGap())
+        );
+
+        jTableDecay.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Year", "Index", "NewRate", "Monthly", "Remaining"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTableDecay);
+
+        jLabelTableDecay.setText("Decay :");
+
+        javax.swing.GroupLayout jPanelDecayLayout = new javax.swing.GroupLayout(jPanelDecay);
+        jPanelDecay.setLayout(jPanelDecayLayout);
+        jPanelDecayLayout.setHorizontalGroup(
+            jPanelDecayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDecayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDecayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanelDecayLayout.createSequentialGroup()
+                        .addComponent(jLabelTableDecay)
+                        .addGap(4, 4, 4)))
+                .addContainerGap())
+        );
+        jPanelDecayLayout.setVerticalGroup(
+            jPanelDecayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDecayLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTableDecay)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTableGrowth.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Year", "Index", "NewRate", "Monthly", "Remaining"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(jTableGrowth);
+
+        jLabelTableGrowth.setText("Growth :");
+
+        javax.swing.GroupLayout jPanelGrowthLayout = new javax.swing.GroupLayout(jPanelGrowth);
+        jPanelGrowth.setLayout(jPanelGrowthLayout);
+        jPanelGrowthLayout.setHorizontalGroup(
+            jPanelGrowthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelGrowthLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelGrowthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4)
+                    .addGroup(jPanelGrowthLayout.createSequentialGroup()
+                        .addComponent(jLabelTableGrowth)
+                        .addGap(4, 4, 4)))
+                .addContainerGap())
+        );
+        jPanelGrowthLayout.setVerticalGroup(
+            jPanelGrowthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelGrowthLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTableGrowth)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+        );
+
+        jLabelTableStable.setText("Stable :");
+
+        jTableStable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Year", "Index", "NewRate", "Monthly", "Remaining"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTableStable);
+
+        javax.swing.GroupLayout jPanelStableLayout = new javax.swing.GroupLayout(jPanelStable);
+        jPanelStable.setLayout(jPanelStableLayout);
+        jPanelStableLayout.setHorizontalGroup(
+            jPanelStableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelStableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelStableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTableStable)
+                    .addComponent(jScrollPane3))
+                .addContainerGap())
+        );
+        jPanelStableLayout.setVerticalGroup(
+            jPanelStableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelStableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTableStable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,37 +369,103 @@ public class FormRateVariable extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelGrowth, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(panelGrowthRate1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(14, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(LabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(panelCharacteristics2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(panelStableRate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(panelDecayRate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(jPanelDecay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelStable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanelGCharacteristics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LabelTitle)
+                .addComponent(jLabelTitle)
+                .addGap(14, 14, 14)
+                .addComponent(PanelGCharacteristics, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelCharacteristics2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelGrowth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelGrowthRate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelStable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelStableRate2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelDecayRate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156))
+                .addComponent(jPanelDecay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(231, 231, 231))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        
+        if ( emptyFields()) {
+            rateVariable.resetLists();
+
+            rateVariable.stableRate(Double.parseDouble(this.formattedTextRate.getText()), Double.parseDouble(this.formattedTextDuree.getText()), Double.parseDouble(this.formattedTextAmount.getText()), Double.parseDouble(this.formattedTextCape.getText()));
+            rateVariable.growthRate(Double.parseDouble(this.formattedTextRate.getText()), Double.parseDouble(this.formattedTextDuree.getText()), Double.parseDouble(this.formattedTextAmount.getText()), Double.parseDouble(this.formattedTextCape.getText()));
+            rateVariable.decayRate(Double.parseDouble(this.formattedTextRate.getText()), Double.parseDouble(this.formattedTextDuree.getText()), Double.parseDouble(this.formattedTextAmount.getText()), Double.parseDouble(this.formattedTextCape.getText()));
+
+            fillTable("growth");
+            fillTable("stable");
+            fillTable("decay");
+        }
+ 
+    }//GEN-LAST:event_btnStartActionPerformed
+
+    private void formattedTextAmountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formattedTextAmountKeyPressed
+
+    }//GEN-LAST:event_formattedTextAmountKeyPressed
+
+    private void formattedTextAmountKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formattedTextAmountKeyTyped
+        capeKeyTypeNumericCharacters(evt);
+    }//GEN-LAST:event_formattedTextAmountKeyTyped
+
+    private void formattedTextDureeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formattedTextDureeKeyTyped
+        capeKeyTypeNumericCharacters(evt);
+    }//GEN-LAST:event_formattedTextDureeKeyTyped
+
+    private void formattedTextCapeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formattedTextCapeKeyTyped
+        capeKeyTypeNumericCharacters(evt);
+    }//GEN-LAST:event_formattedTextCapeKeyTyped
+
+    private void formattedTextRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextRateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextRateActionPerformed
+
+    /** 
+     * Character input control, accepts only numeric characters
+     * @param evt
+     *            The element actuated.
+     */
+    public void capeKeyTypeNumericCharacters(java.awt.event.KeyEvent evt){
+        char c = evt.getKeyChar();
+        //the character is digital
+        if (c >= '0' && c <= '9') {
+            // System.out.println(evt);
+        } else {
+            //deleting the character
+            evt.consume();
+        }
+    }
+    
+    /**
+     * Test if a required field is empty.
+     * If a field is empty then display a fake error messages and return false.
+     * If all fields are filled then no display and return true. 
+     * @return boolean
+     *            Return false if a field is empty, otherwise return true.    
+     */
+    public boolean emptyFields(){
+        if(formattedTextAmount.getText().isEmpty() || formattedTextCape.getText().isEmpty() || formattedTextDuree.getText().isEmpty()){
+            jLabelError.setText("Vous devez remplir tous les champs marqués d'une étoiles");
+            return false;
+        }
+        else {
+             jLabelError.setText("");
+             return true;
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -124,6 +493,8 @@ public class FormRateVariable extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -134,10 +505,75 @@ public class FormRateVariable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LabelTitle;
-    private edu.hubanato.forms.PanelCharacteristics panelCharacteristics2;
-    private edu.hubanato.forms.PanelDecayRate panelDecayRate1;
-    private edu.hubanato.forms.PanelGrowthRate panelGrowthRate1;
-    private edu.hubanato.forms.PanelStableRate panelStableRate2;
+    private javax.swing.JPanel PanelGCharacteristics;
+    private javax.swing.JPanel PanelGrowthRate;
+    private javax.swing.JTable TableGrowthRate;
+    private javax.swing.JButton btnStart;
+    private javax.swing.JFormattedTextField formattedTextAmount;
+    private javax.swing.JFormattedTextField formattedTextCape;
+    private javax.swing.JFormattedTextField formattedTextDuree;
+    private javax.swing.JFormattedTextField formattedTextRate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelAmount;
+    private javax.swing.JLabel jLabelCape;
+    private javax.swing.JLabel jLabelDuring;
+    private javax.swing.JLabel jLabelError;
+    private javax.swing.JLabel jLabelRate;
+    private javax.swing.JLabel jLabelTableDecay;
+    private javax.swing.JLabel jLabelTableGrowth;
+    private javax.swing.JLabel jLabelTableStable;
+    private javax.swing.JLabel jLabelTitle;
+    private javax.swing.JPanel jPanelDecay;
+    private javax.swing.JPanel jPanelGrowth;
+    private javax.swing.JPanel jPanelStable;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTableDecay;
+    private javax.swing.JTable jTableGrowth;
+    private javax.swing.JTable jTableStable;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Depending on the type of rate, can fill the chart table JTable.. 
+     * @param typeRate
+     *            String containing the type of rate.    
+     */
+    public void fillTable(String typeRate){
+        
+        DefaultTableModel model = new DefaultTableModel(title, 0){
+            @Override
+            public boolean isCellEditable(int rowIndex, int mColIndex){
+                    return false;
+            }
+        };
+        
+        switch (typeRate) {
+        case "decay":
+            for (Double[] table : rateVariable.getListDouble("decay"))
+                model.addRow(table);
+
+            jTableDecay.setModel(model);
+            break;
+            
+        case "growth":
+            for (Double[] table : rateVariable.getListDouble("growth"))
+                model.addRow(table);
+
+            jTableGrowth.setModel(model);
+            break;
+            
+        case "stable":
+            for (Double[] table : rateVariable.getListDouble("stable"))
+                model.addRow(table);
+
+            jTableStable.setModel(model);
+            break;
+            
+        default:
+            System.out.println("Error, impossible to fill the tables");
+        }
+    }
+
 }
