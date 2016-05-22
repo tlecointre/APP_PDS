@@ -5,7 +5,7 @@
  */
 package edu.hubanato.forms;
 
-import edu.hubanato.controlers.CalcRate;
+import edu.hubanato.controlers.CalcRateControl;
 
 /**
  *
@@ -18,7 +18,7 @@ public class CalcRateForm extends javax.swing.JFrame {
      */
     public CalcRateForm() {
         initComponents();
-        btnCalculate.addActionListener(new CalcRate(cmbLoanType, txtRateDirector, txtAge, txtAmount, spnDuration, txtDeposit, txtRateMonth, txtRateYear, btnCalculate, lblInfo));
+        btnCalculate.addActionListener(new CalcRateControl(cmbLoanType, txtRateDirector, txtAge, txtAmount, spnDuration, txtDeposit, txtRateMonth, txtRateYear, btnCalculate, lblInfo));
     }
 
     /**

@@ -5,6 +5,7 @@
  */
 package edu.hubanato.controlers;
 
+import edu.hubanato.entities.CalcRate;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -18,7 +19,8 @@ import javax.swing.JTextField;
  * This class is used to calcultate the interest rate
  * @author Nadia Randria
  */
-public class CalcRate implements ActionListener{
+public class CalcRateControl implements ActionListener{
+    private CalcRate intrate;
     
     private JComboBox loanType;
     private JTextField rateDirector;    
@@ -31,7 +33,7 @@ public class CalcRate implements ActionListener{
     private JButton calculate;
     private JLabel infoError;
 
-    public CalcRate(JComboBox loan, JTextField rated, JTextField agePers, JTextField amt, JSpinner dt, JTextField dep, JTextField intratem, JTextField intratey, JButton calc, JLabel error) {
+    public CalcRateControl(JComboBox loan, JTextField rated, JTextField agePers, JTextField amt, JSpinner dt, JTextField dep, JTextField intratem, JTextField intratey, JButton calc, JLabel error) {
         this.loanType = loan;
         this.rateDirector = rated;
         this.age = agePers;
@@ -42,33 +44,6 @@ public class CalcRate implements ActionListener{
         this.rateYear = intratey;
         this.calculate = calc;
         this.infoError = error;
-    }
-
-    /**
-     * This method permit to calculate the interest rate
-     * @param amt
-     * @param depost
-     * @param dur
-     * @return 
-     */
-    public double CalculateInterestRate(double amt, double depost, int dur){
-        double tx = (1200 * depost)/(amt * dur);
-        return tx;
-    }
-    
-    public double SelectRateDirector(){
-        return 0;
-    };
-    
-    public double CalculateInterestRateMonth(){
-        return 0;
-    };
-    
-    public double CalculateInterestRateYear(){
-        return 0;
-    };
-    
-    public void SaveInterestRate(){
     }
 
     @Override
@@ -86,12 +61,21 @@ public class CalcRate implements ActionListener{
             int valDuration = (Integer)duration.getValue();
             double valDeposit = Double.parseDouble(deposit.getText());
             
-            double resrate = CalculateInterestRate(valAmount, valDeposit, valDuration);
+            this.intrate = new CalcRate();
             
-            rateMonth.setText(String.valueOf(resrate));
-             
-            JOptionPane.showMessageDialog(null,"Taux (%) : " +valRateD+ "\n Capital (€) : " +valAmount+ "\n Durée (months) : " +valDuration+ "\n Apport (€) : " +valDeposit);
-            //JOptionPane.showMessageDialog(null,"You are going to calculate the interest rate");
+            try {
+                double r = intrate.SelectRateDirector();
+                rateDirector.setText(String.valueOf(r));
+                
+                double resratem = intrate.CalculateInterestRate(valAmount, valDeposit, valDuration);
+                double resratey = intrate.CalculateInterestRateYear();
+                rateMonth.setText(String.valueOf(resratem));
+                rateYear.setText(String.valueOf(resratey));
+
+                JOptionPane.showMessageDialog(null,"Taux (%) : " +valRateD+ "\n Capital (€) : " +valAmount+ "\n Durée (months) : " +valDuration+ "\n Apport (€) : " +valDeposit);
+                //JOptionPane.showMessageDialog(null,"You are going to calculate the interest rate");
+            } catch (Exception e) {
+            }
         }
     }
 }
