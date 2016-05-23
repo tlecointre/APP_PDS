@@ -25,50 +25,46 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="lblDuration" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAmount" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDeposit" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblRateAppliedMonth" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblRateDirector" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblRateAppliedYear" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLoanType" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCalculate" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
+                  <Component id="lblAge" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSalary" min="-2" max="-2" attributes="0"/>
+              </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblDuration" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAmount" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDeposit" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRateAppliedMonth" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRateDirector" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRateAppliedYear" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblLoanType" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAge" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCalculate" alignment="1" min="-2" pref="139" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtDeposit" max="32767" attributes="0"/>
-                                  <Component id="txtRateMonth" max="32767" attributes="0"/>
-                                  <Component id="txtAmount" max="32767" attributes="0"/>
-                                  <Component id="txtRateDirector" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="spnDuration" min="-2" pref="69" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblMonths" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtRateYear" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cmbLoanType" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtAge" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                              <Component id="btnSave" min="-2" pref="139" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="btnSave" min="-2" pref="139" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                      <Component id="lblInfo" min="-2" pref="501" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtDeposit" max="32767" attributes="0"/>
+                          <Component id="txtRateMonth" max="32767" attributes="0"/>
+                          <Component id="txtAmount" max="32767" attributes="0"/>
+                          <Component id="txtRateDirector" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtRateYear" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cmbLoanType" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="spnDuration" min="-2" pref="69" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblMonths" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="cmbAge" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtSalary" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="390" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="56" max="32767" attributes="0"/>
+              <EmptySpace pref="67" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,49 +77,57 @@
                   <Component id="cmbLoanType" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblRateDirector" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtRateDirector" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblRateDirector" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtRateDirector" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblAge" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbAge" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblSalary" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSalary" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblAmount" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtAmount" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDuration" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnDuration" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMonths" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDeposit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDeposit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblRateAppliedMonth" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtRateMonth" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblAge" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAge" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblAmount" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAmount" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDuration" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="spnDuration" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblMonths" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDeposit" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDeposit" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblRateAppliedMonth" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtRateMonth" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblRateAppliedYear" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtRateYear" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCalculate" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Component id="lblInfo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -206,19 +210,50 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblInfo">
+    <Component class="javax.swing.JButton" name="btnSave">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sauvegarder"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblAge">
       <Properties>
         <Property name="text" type="java.lang.String" value="Age :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAge">
-    </Component>
-    <Component class="javax.swing.JButton" name="btnSave">
+    <Component class="javax.swing.JComboBox" name="cmbAge">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sauvegarder"/>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="5">
+            <StringItem index="0" value="18 - 25"/>
+            <StringItem index="1" value="26 - 33"/>
+            <StringItem index="2" value="34 - 41"/>
+            <StringItem index="3" value="42 - 49"/>
+            <StringItem index="4" value="&gt; 50"/>
+          </StringArray>
+        </Property>
       </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="txtaMessage">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="lblSalary">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salaire :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtSalary">
     </Component>
   </SubComponents>
 </Form>

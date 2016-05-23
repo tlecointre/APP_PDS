@@ -10,12 +10,18 @@ package edu.hubanato.entities;
  * @author Nadia Randria
  */
 public class CalcRate {
-
+    
+    private int duration;
+    private int deposit;
+    private String loanType;
+    
     /**
      *
+     * @param loanType
+     * @param duration
      * @return
      */
-    public double SelectRateDirector() {
+    public double SelectRateDirector(String loanType, int duration) {
         return 0;
     }
 
