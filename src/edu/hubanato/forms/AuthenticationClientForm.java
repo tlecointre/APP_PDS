@@ -1,6 +1,8 @@
 package edu.hubanato.forms;
 
+import edu.hubanato.client.TCPClient;
 import edu.hubanato.entities.Client;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.logging.Level;
@@ -194,8 +196,12 @@ public class AuthenticationClientForm extends javax.swing.JFrame {
         if (postalCode.isEmpty()) postalCode = "%";
         
         try {
-            clients = Client.getByNamePC(name, firstName, postalCode);
-        } catch (SQLException ex) {
+            TCPClient tcpClient = new TCPClient("localhost",9999);
+            List<String> liste = new ArrayList<String>();
+            liste.add(name); liste.add(firstName); liste.add(postalCode);
+            tcpClient.sendQuery("gc", edu.hubanato.serialization.EncodeJSON.serializeListString(liste));
+            clients = edu.hubanato.serialization.DecodeJSON.deserializeClients(tcpClient.receiveQuery());
+        } catch (IOException ex) {
             Logger.getLogger(AuthenticationClientForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         

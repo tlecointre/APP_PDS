@@ -24,14 +24,16 @@ public class TCPClient {
         }
     }
     
-    public void go() {
+    public String receiveQuery() {
         try {
-            DataInputStream dis = new DataInputStream(sck.getInputStream());
-            String msg = dis.readUTF();
-            Logger.global.info("reçu : " +msg) ;
+            BufferedReader inFromServer = new BufferedReader(new InputStreamReader(sck.getInputStream()));
+
+            return inFromServer.readLine();
+            
         } catch(IOException exc) {
             Logger.global.log(Level.SEVERE,"serveur",exc) ;
         }
+        return null;
     }
 
 }

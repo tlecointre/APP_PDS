@@ -4,7 +4,6 @@ import edu.hubanato.entities.Client;
 import edu.hubanato.entities.Simulation;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -33,8 +32,8 @@ public class ConnectionTCP extends TCPServerThread {
                 
                 try {
                     BufferedReader inFromClient = new BufferedReader(new InputStreamReader(sck.getInputStream()));
-                    //DataOutputStream outToClient = new DataOutputStream(sck.getOutputStream());
-                    
+                    PrintWriter p = new PrintWriter(new BufferedWriter(new OutputStreamWriter(sck.getOutputStream())),true);
+
                     clientSentence = inFromClient.readLine();
                     
                     System.out.println("Received: " + clientSentence);
@@ -54,20 +53,20 @@ public class ConnectionTCP extends TCPServerThread {
                             s.updateSimulation();
                             break;
                         case "gs" : // get simulation by id client
-                            // RECUP idClient
-                            // simulations = Simulation.getbyClient(idClient);
-                            // String s = edu.hubanato.serialization.DecodeJSON.serializeClients(jsonObject);
-                            // envoyer s au client
+                            int idClient = edu.hubanato.serialization.DecodeJSON.deserializeInteger(jsonObject);
+                            simulations = Simulation.getByClient(idClient);
+                            String simulationsJson = edu.hubanato.serialization.EncodeJSON.serializeSimulations(simulations);
+                            p.println(simulationsJson);
                             break;
                         case "cc" : // create client
                             c = edu.hubanato.serialization.DecodeJSON.deserializeClient(jsonObject);
                             c.createPerson();
                             break;
                         case "gc" : // get client by name and first name and postal code
-                            // RECUP name et first name et postal code
-                            // clients = Client.getByNamePC(name, firstname, postalcode);
-                            // String s = edu.hubanato.serialization.DecodeJSON.serializeClients(jsonObject);
-                            //  envoyer s au client
+                            List<String> client = edu.hubanato.serialization.DecodeJSON.deserializeListString(jsonObject);
+                            clients = Client.getByNamePC(client.get(0), client.get(1), client.get(2));
+                            String clientsJson = edu.hubanato.serialization.EncodeJSON.serializeClients(clients);
+                            p.println(clientsJson);
                             break;
                         default :
                             System.out.println("no query");
@@ -77,6 +76,8 @@ public class ConnectionTCP extends TCPServerThread {
                 } catch (IOException exc) {
                     Logger.global.log(Level.SEVERE,"thread serv",exc) ;
                 } catch (SQLException ex) {
+                    Logger.getLogger(ConnectionTCP.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ConnectionTCP.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

@@ -1,11 +1,13 @@
 package edu.hubanato.controlers;
 
+import edu.hubanato.client.TCPClient;
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import edu.hubanato.entities.Client;
+import java.io.IOException;
 import org.jdesktop.swingx.JXDatePicker;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -111,19 +113,6 @@ public class ClientControl implements ActionListener {
                     
                     if (validateEmail()) {
                     
-                        /*System.out.println("Informations sur le client :");
-                         System.out.println("Civilité : " + civility.getSelectedItem());
-                         System.out.println("Client : " + name.getText() + " " + firstName.getText());
-                         System.out.println("Birth Date / Birth Place : " + birthDate.getDate() + ", " + birthPlace.getText());
-                         System.out.println("Sex : " + sex.getSelectedItem());
-                         System.out.println("Nationality : " + nationality.getSelectedItem());
-                         System.out.println("Adresse : " + nb.getText() + " " + street.getText() + ", " + cp.getText() + ", " + city.getText() + ", " + country.getSelectedItem());
-                         System.out.println("Phone Number : " + pnumber.getText());
-                         System.out.println("Phone Home : " + phome.getText());
-                         System.out.println("Phone Business : " + pbusiness.getText());
-                         System.out.println("Email : " + email.getText());
-                         System.out.println("Job : " + job.getText());*/
-
                         // optional fields control :
                         String additional;
                         if (add.getText().isEmpty()) {
@@ -164,9 +153,10 @@ public class ClientControl implements ActionListener {
                                         Integer.parseInt(age.getText()), Integer.parseInt(income.getText()),
                                         profession.getSelectedItem().toString());
                         try {
-                            client.createPerson();
+                            TCPClient tcpClient = new TCPClient("localhost",9999);
+                            tcpClient.sendQuery("cc", edu.hubanato.serialization.EncodeJSON.serializeClient(this.client));
                             JOptionPane.showMessageDialog(null, "Client ajouté");
-                        } catch (SQLException ex) {
+                        } catch (IOException ex) {
                             Logger.getLogger(ClientControl.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else {
