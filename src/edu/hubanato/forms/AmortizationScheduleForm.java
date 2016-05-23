@@ -1,13 +1,16 @@
 package edu.hubanato.forms;
 
 import edu.hubanato.controlers.AmortizationCalc;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -22,12 +25,12 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class AmortizationScheduleForm extends javax.swing.JFrame{
 
     private AmortizationCalc am;
-    private DefaultCategoryDataset datasetLineChart1, datasetBarChart1; 
+    private DefaultCategoryDataset datasetLineChartAmount, datasetBarChartGlobal; 
     
     public AmortizationScheduleForm() {
         initComponents();
-        datasetLineChart1 = new DefaultCategoryDataset();
-        datasetBarChart1 = new DefaultCategoryDataset();
+        datasetLineChartAmount = new DefaultCategoryDataset();
+        datasetBarChartGlobal = new DefaultCategoryDataset();
         //am = new AmortizationCalc(this);
     }
 
@@ -171,8 +174,86 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
     }//GEN-LAST:event_printButtonActionPerformed
 
     private void buttonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGraphActionPerformed
+        JFrame graphFrame = new JFrame();
+        graphFrame.setTitle("Graph");
+        graphFrame.setSize(400, 100);
+        graphFrame.setLocationRelativeTo(null);               
+ 
+        //Instanciation d'un objet JPanel
+        JPanel pan = new JPanel();   
+        pan.setLayout(new GridBagLayout());
+        
+        //L'objet servant à positionner les composants
+        GridBagConstraints gbc = new GridBagConstraints();
+		
+        //On positionne la case de départ du composant
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        //La taille en hauteur et en largeur
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        
+        //Premier graph: Reste à payer (Montant) -> LineChart
+        JFreeChart lineChartAmount = ChartFactory.createLineChart(
+         "Reste  à payer(Montant)",
+         "Année","Montant",
+         dataImportLineChart(),
+         PlotOrientation.VERTICAL,
+         true,true,false);
+
+        ChartPanel pan1 = new ChartPanel(lineChartAmount, false);
+        //pan1.setBounds(0, 0, 300, 300);
+
+        pan1.addMouseMotionListener(new MouseAdapter() {
+            public void mouseMoved(MouseEvent me) {
+            pan1.getEntityForPoint(me.getX(), me.getY());
+          }
+        });
+        //Fin premier graph
+        
+        //Deuxième graph -> Total payé(intérêt + montant + assurance)
+        JFreeChart barChartGlobal = ChartFactory.createBarChart(
+         "Payé (Total)",           
+         "Année",            
+         "Montant",            
+         dataImportBarChartGlobal(),          
+         PlotOrientation.VERTICAL,           
+         true, true, false);
+        
+        ChartPanel pan2 = new ChartPanel(barChartGlobal, false);
+        //pan2.setBounds(400, 350, 350, 350);
+        
+        pan2.addMouseMotionListener(new MouseAdapter() {
+            public void mouseMoved(MouseEvent me) {
+            pan2.getEntityForPoint(me.getX(), me.getY());
+          }
+        });
+        //FIn deuxième graph
+        
+        pan1.setPreferredSize(new Dimension(300,300));
+        pan2.setPreferredSize(new Dimension(300,300));
+        
+        pan.add(pan1,gbc);
+  
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridx = 1;
+        pan.add(pan2,gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        pan.add(pan1,gbc);
+        
+        //On prévient notre JFrame que notre JPanel sera son content pane
+        graphFrame.setContentPane(pan);
+        graphFrame.pack();
+        graphFrame.setVisible(true);
+
+
+
         //Premier graph: Reste à payer -> LineChart
-        JFreeChart lineChart = ChartFactory.createLineChart(
+        /*JFreeChart lineChart = ChartFactory.createLineChart(
          "Reste  à payer",
          "Mois","Montant",
          dataImportLineChart(),
@@ -186,11 +267,11 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
             public void mouseMoved(MouseEvent me) {
             pan1.getEntityForPoint(me.getX(), me.getY());
           }
-        });
+        });*/
         //Fin Premier graph
         
         //Deuxième graph: Reste à payer -> BarChart
-        JFreeChart barChart = ChartFactory.createBarChart(
+        /*JFreeChart barChart = ChartFactory.createBarChart(
          "Reste à payer",           
          "Category",            
          "Score",            
@@ -205,33 +286,33 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
             public void mouseMoved(MouseEvent me) {
             pan2.getEntityForPoint(me.getX(), me.getY());
           }
-        });
+        });*/
         //Fin Deuxième graph
        
         
-        this.add(pan1);
-        this.add(pan2);
+        //this.add(pan1);
+        //this.add(pan2);
         
         this.setVisible(true);
-        this.setSize(1000,800);
+        this.setSize(900,800);
     }//GEN-LAST:event_buttonGraphActionPerformed
     
     private DefaultCategoryDataset dataImportLineChart( )
     {
-      return datasetLineChart1;
+      return datasetLineChartAmount;
     }
     
-    private DefaultCategoryDataset dataImportBarChart( )
+    private DefaultCategoryDataset dataImportBarChartGlobal( )
     {
-      return datasetBarChart1;
+      return datasetBarChartGlobal;
     }
     
-    public void insertDataToLineChart1(double amount, int month){
-        datasetLineChart1.addValue(amount , "Montant" , String.valueOf(month) );
+    public void insertDataToLineChartAmount(double amount, int month){
+        datasetLineChartAmount.addValue(amount , "Montant" , String.valueOf(month/12) );
     }
     
-    public void insertDataToBarChart1(double amount, String label ,int month){
-        datasetBarChart1.addValue(amount , label , String.valueOf(month) );
+    public void insertDataToBarChartGlobal(double amount, String label ,int month){
+        datasetBarChartGlobal.addValue(amount , label , String.valueOf(month/12) );
     }
     
     public JTable getTable(){
