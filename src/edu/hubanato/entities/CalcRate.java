@@ -5,12 +5,19 @@
  */
 package edu.hubanato.entities;
 
+import edu.hubanato.models.PdsDatabase;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Nadia Randria
  */
 public class CalcRate {
     
+    private int rateDirector;
     private int duration;
     private int deposit;
     private String loanType;
@@ -20,9 +27,22 @@ public class CalcRate {
      * @param loanType
      * @param duration
      * @return
+     * @throws java.sql.SQLException
      */
-    public double SelectRateDirector(String loanType, int duration) {
-        return 0;
+    public double SelectRateDirector(String loanType, int duration) throws SQLException {
+        Connection connection = PdsDatabase.getConnection();
+        
+        String sql = "SELECT rate as rateDirector FROM RATE r, TYPES t WHERE r.id_types = t.id_types"
+                + " AND t.title = ?";
+        
+        try (PreparedStatement ordre = connection.prepareStatement(sql)) {
+            ordre.setString(1, loanType);
+            ResultSet rs = ordre.executeQuery();
+            rs.next();
+            rateDirector = rs.getInt("rateDirector");
+        }
+        
+        return rateDirector;
     }
 
     ;
