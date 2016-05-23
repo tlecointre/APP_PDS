@@ -56,11 +56,12 @@ public class Simulation {
         ordre.executeUpdate();
         ordre.close();
 
-        connection.close();
+        InterfacePoolServer.returnConnection(connection);
     }
     
-    public static List<Simulation> getByClient(int idClient) throws SQLException {
-        Connection connection = PdsDatabase.getConnection();
+    public static List<Simulation> getByClient(int idClient) throws SQLException, ClassNotFoundException {
+        Connection connection = InterfacePoolServer.getConnection();
+        
         String sql = "SELECT * FROM SIMULATION s, TYPES t WHERE ID_CUSTOMER = ? AND s.ID_TYPES = t.ID_TYPES";
         PreparedStatement ordre = connection.prepareStatement(sql);
         ordre.setInt(1, idClient);
@@ -70,14 +71,17 @@ public class Simulation {
             simulations.add(new Simulation(rs.getInt("ID_SIMULATION"), rs.getInt("ID_CUSTOMER"), rs.getInt("AMOUNT"), rs.getInt("DURATION"),
                     rs.getDouble("RATE_FINAL"), rs.getDouble("RATE_INSURANCE"), rs.getString("TITLE")));
         }
+        ordre.close();
+        InterfacePoolServer.returnConnection(connection);
         return simulations;
+        
     }
     
     /**
      * Update a simulation in database
      */
-    public void updateSimulation() throws SQLException {
-        Connection connection = PdsDatabase.getConnection();
+    public void updateSimulation() throws SQLException, ClassNotFoundException {
+        Connection connection = InterfacePoolServer.getConnection();
 
         int idLoanType;
         String sql = "SELECT ID_TYPES AS idLoanType FROM TYPES WHERE TITLE = ?";
@@ -98,7 +102,7 @@ public class Simulation {
         ordre.setInt(6, idSimulation);
         ordre.executeUpdate();
         ordre.close();
-        connection.close();
+        InterfacePoolServer.returnConnection(connection);
     }
     
     public int getAmount() {

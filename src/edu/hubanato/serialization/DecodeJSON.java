@@ -34,4 +34,14 @@ public class DecodeJSON {
                     }.getType();
         return gson.fromJson(s, listType);
     }
+    
+    public static List<String> deserializeListString(String s) {
+        Type listType = new TypeToken<List<String>>() {
+                    }.getType();
+        return gson.fromJson(s, listType);
+    }
+    
+    public static int deserializeInteger(String s) {
+        return gson.fromJson(s, Integer.class);
+    }
 }

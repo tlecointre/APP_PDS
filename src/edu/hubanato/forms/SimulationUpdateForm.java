@@ -1,7 +1,9 @@
 package edu.hubanato.forms;
 
+import edu.hubanato.client.TCPClient;
 import edu.hubanato.entities.Client;
 import edu.hubanato.entities.Simulation;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -233,7 +235,10 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
                                                 amount, duration, Double.parseDouble(txtRate.getText()), 
                                                 Double.parseDouble(txtInsuranceRate.getText()), 
                                                 loanType);
-                        s.updateSimulation();
+                        
+                        TCPClient tcpClient = new TCPClient("localhost",9999);
+                        tcpClient.sendQuery("us", edu.hubanato.serialization.EncodeJSON.serializeSimulation(s));
+                        
                         JOptionPane.showMessageDialog(null, "Simulation modifiée");
                         this.setVisible(false);
                         new SimulationManagementForm().setVisible(true);
@@ -250,8 +255,8 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
             } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Veuillez saisir des chiffres et non des lettres dans les champs appropriés.", 
                                 "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
-            } catch (SQLException ex) {
-                Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(SimulationUpdateForm.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Veuillez remplir tous les champs.",

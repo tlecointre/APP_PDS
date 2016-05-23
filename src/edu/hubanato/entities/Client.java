@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import edu.hubanato.models.PdsDatabase;
+import edu.hubanato.server.InterfacePoolServer;
 import java.util.logging.*;
 
 /**
@@ -153,9 +154,9 @@ public class Client extends Person {
      * Create a client in database
      */
     @Override
-    public void createPerson() throws SQLException {
+    public void createPerson() throws SQLException, ClassNotFoundException {
 
-        Connection connection = PdsDatabase.getConnection();
+        Connection connection = InterfacePoolServer.getConnection();
 
         String requeteAddress = "INSERT INTO ADDRESS(NBER,STREET,ADDITIONAL,ZIP_CODE,CITY,COUNTRY) VALUES (?,?,?,?,?,?)";
         PreparedStatement ordre = connection.prepareStatement(requeteAddress);
@@ -210,8 +211,7 @@ public class Client extends Person {
 
         ordre2.executeUpdate();
         ordre2.close();
-
-        connection.close();
+        InterfacePoolServer.returnConnection(connection);
 
     }
 
@@ -222,13 +222,15 @@ public class Client extends Person {
      * @return client found
      * @throws SQLException
      */
-    public static Client getById(int id) throws SQLException {
-        Connection connection = PdsDatabase.getConnection();
+    public static Client getById(int id) throws SQLException, ClassNotFoundException {
+        Connection connection = InterfacePoolServer.getConnection();
         String sql = "SELECT * FROM PERSON, ADDRESS WHERE ID_PERS = ? AND PERSON.ID_ADR = ADDRESS.ID_ADR";
         PreparedStatement ordre = connection.prepareStatement(sql);
         ordre.setInt(1, id);
         ResultSet rs = ordre.executeQuery();
         if (rs.next()) {
+            ordre.close();
+            InterfacePoolServer.returnConnection(connection);
             return new Client(rs.getInt("ID_PERS"), rs.getString("CIVILITY"), rs.getString("NAME"), rs.getString("FIRST_NAME"),
                     rs.getDate("BIRTH_DATE"), rs.getString("BIRTH_PLACE"), rs.getString("SEX"),
                     rs.getString("NATIONALITY"), rs.getInt("NBER"), rs.getString("STREET"),
@@ -237,6 +239,8 @@ public class Client extends Person {
                     rs.getInt("PHONE_BUSINESS"), rs.getString("EMAIL"), rs.getString("JOB"),
                     rs.getInt("AGE"), rs.getInt("ANNUAL_INCOME"), rs.getString("PROFESSION"));
         } else {
+            ordre.close();
+            InterfacePoolServer.returnConnection(connection);
             return null;
         }
     }
@@ -249,8 +253,8 @@ public class Client extends Person {
      * @return client found
      * @throws SQLException
      */
-    public static List<Client> getByNamePC(String name, String firstName, String postalCode) throws SQLException {
-        Connection connection = PdsDatabase.getConnection();
+    public static List<Client> getByNamePC(String name, String firstName, String postalCode) throws SQLException, ClassNotFoundException {
+        Connection connection = InterfacePoolServer.getConnection();
 
         String sql = "SELECT * FROM PERSON, ADDRESS WHERE NAME like ? AND FIRST_NAME like ? "
                 + "AND PERSON.ID_ADR = ADDRESS.ID_ADR AND ZIP_CODE like ?";
@@ -270,14 +274,16 @@ public class Client extends Person {
                     rs.getInt("AGE"), rs.getInt("ANNUAL_INCOME"), rs.getString("PROFESSION")));
 
         }
+        ordre.close();
+        InterfacePoolServer.returnConnection(connection);
         return clients;
     }
 
     /**
-     *Update a client in database
+     * Update a client in database
      */
-    public void updatePerson() throws SQLException {
-        Connection connection = PdsDatabase.getConnection();
+    public void updatePerson() throws SQLException, ClassNotFoundException {
+        Connection connection = InterfacePoolServer.getConnection();
         String sql = "UPDATE PERSON SET name = ? , firstName = ? WHERE id_pers = ?";
         PreparedStatement ordre = connection.prepareStatement(sql);
         ordre.setString(1, name);
@@ -285,7 +291,7 @@ public class Client extends Person {
         ordre.setInt(3, idClient);
         ordre.executeUpdate();
         ordre.close();
-        connection.close();
+        InterfacePoolServer.returnConnection(connection);
     }
 
     /**
@@ -293,15 +299,15 @@ public class Client extends Person {
      * @param id
      */
     @Override
-    public void deletePerson(int id) throws SQLException {
-        Connection connection = PdsDatabase.getConnection();
+    public void deletePerson(int id) throws SQLException, ClassNotFoundException {
+        Connection connection = InterfacePoolServer.getConnection();
 
         String deleteQuery = "DELETE FROM PERSON WHERE id_pers = ?";
         PreparedStatement ordre = connection.prepareStatement(deleteQuery);
         ordre.setInt(1, idClient);
         ordre.executeUpdate();
         ordre.close();
-        connection.close();
+        InterfacePoolServer.returnConnection(connection);
     }
     
 }

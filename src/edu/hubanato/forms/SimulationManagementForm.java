@@ -1,7 +1,9 @@
 package edu.hubanato.forms;
 
+import edu.hubanato.client.TCPClient;
 import edu.hubanato.entities.Client;
 import edu.hubanato.entities.Simulation;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.logging.Level;
@@ -312,8 +314,10 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         } else {
             selectedClient =  clients.get(index);
             try {
-                simulations = Simulation.getByClient(selectedClient.getIdClient());
-            } catch (SQLException ex) {
+                TCPClient tcpClient = new TCPClient("localhost",9999);
+                tcpClient.sendQuery("gs", edu.hubanato.serialization.EncodeJSON.serializeInteger(selectedClient.getIdClient()));
+                simulations = edu.hubanato.serialization.DecodeJSON.deserializeSimulations(tcpClient.receiveQuery());
+            } catch (IOException ex) {
                 Logger.getLogger(SimulationManagementForm.class.getName()).log(Level.SEVERE, null, ex);
             }
             tableModel = new SimulationsTableModel(simulations);
@@ -332,9 +336,13 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         if (postalCode.isEmpty()) postalCode = "%";
 
         try {
-            clients = Client.getByNamePC(name, firstName, postalCode);
-        } catch (SQLException ex) {
-            Logger.getLogger(AuthenticationClientForm.class.getName()).log(Level.SEVERE, null, ex);
+            TCPClient tcpClient = new TCPClient("localhost",9999);
+            List<String> liste = new ArrayList<String>();
+            liste.add(name); liste.add(firstName); liste.add(postalCode);
+            tcpClient.sendQuery("gc", edu.hubanato.serialization.EncodeJSON.serializeListString(liste));
+            clients = edu.hubanato.serialization.DecodeJSON.deserializeClients(tcpClient.receiveQuery());
+        } catch (IOException ex) {
+            Logger.getLogger(SimulationManagementForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         labelNumberResults.setText(clients.size() + " résultat(s)");
