@@ -35,12 +35,12 @@ public class CalcRate {
         String sql = "SELECT rate as rateDirector FROM RATE r, TYPES t WHERE r.id_types = t.id_types"
                 + " AND t.title = ?";
         
-        try (PreparedStatement ordre = connection.prepareStatement(sql)) {
-            ordre.setString(1, loanType);
-            ResultSet rs = ordre.executeQuery();
-            rs.next();
-            rateDirector = rs.getInt("rateDirector");
-        }
+        PreparedStatement ordre = connection.prepareStatement(sql);
+        ordre.setString(1, loanType);
+        ResultSet rs = ordre.executeQuery();
+        rs.next();
+        rateDirector = rs.getInt("rateDirector");
+        
         
         return rateDirector;
     }
