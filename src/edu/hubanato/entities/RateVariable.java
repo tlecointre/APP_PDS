@@ -34,7 +34,7 @@ public class RateVariable {
         listGrowth = new ArrayList<>();
         listDecreasing = new ArrayList<>();
         
-        // Choosing the minimum and maximum rates
+        // Choosing the minimum and maximum rates by default and configurable in the menu
         rateMin=2;
         rateMax=6;
     }
