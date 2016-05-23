@@ -65,6 +65,9 @@ public class AmortizationCalc {
         amountAlreadyPaid += principalPaid;
         interestAlreadyPaid += interestPaid; //Interêt payé
         insuranceAlreadyPaid += insurance; //Assurance payé
+        t1.insertDataToPieChartGlobal("Montant", amountAlreadyPaid);
+        t1.insertDataToPieChartGlobal("Intérêt", interestAlreadyPaid);
+        t1.insertDataToPieChartGlobal("Assurance", insuranceAlreadyPaid);
         t1.insertDataToLineChartAmount(newAmount, i);
         t1.insertDataToBarChartGlobal(amountAlreadyPaid, "Montant", i);
         t1.insertDataToBarChartGlobal(insuranceAlreadyPaid, "Assurance", i);
