@@ -1,23 +1,30 @@
 package edu.hubanato.server;
 
 import edu.hubanato.models.PdsDatabase;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConnectionPool<Connection> {
     
     private List<Connection> connections;
     
-    public ConnectionPool() throws SQLException {
+    public ConnectionPool() {
         connections = new ArrayList<Connection>();
         while(!connectionPoolIsFull()) {
-            connections.add((Connection) PdsDatabase.getConnection());
+            try {
+                connections.add((Connection) PdsDatabase.getConnection());
+            } catch (SQLException ex) {
+                Logger.getLogger(ConnectionPool.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
      private synchronized boolean connectionPoolIsFull() {
-        final int maxPoolSize = 10;
+        int maxPoolSize = 10;
         return connections.size() >= maxPoolSize;
     }
 
