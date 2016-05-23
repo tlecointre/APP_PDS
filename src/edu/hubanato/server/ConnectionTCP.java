@@ -78,6 +78,8 @@ public class ConnectionTCP extends TCPServerThread {
                     Logger.global.log(Level.SEVERE,"thread serv",exc) ;
                 } catch (SQLException ex) {
                     Logger.getLogger(ConnectionTCP.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ConnectionTCP.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         };
