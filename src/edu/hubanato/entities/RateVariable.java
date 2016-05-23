@@ -22,6 +22,9 @@ public class RateVariable {
     private List<Year> listGrowth;
     private List<Year> listStable;
     private List<Year> listDecreasing;
+    private double rateMin;
+    private double rateMax;
+    private double rate;
 
     /**
      * Creates new object RateVariable
@@ -30,6 +33,10 @@ public class RateVariable {
         listStable = new ArrayList<>();
         listGrowth = new ArrayList<>();
         listDecreasing = new ArrayList<>();
+        
+        // Choosing the minimum and maximum rates
+        rateMin=2;
+        rateMax=6;
     }
 
     public List<Year> getListGrowth() {
@@ -56,6 +63,30 @@ public class RateVariable {
         this.listDecreasing = listDecreasing;
     }
     
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+    
+    public double getRateMin() {
+        return rateMin;
+    }
+
+    public void setRateMin(double rateMin) {
+        this.rateMin = rateMin;
+    }
+
+    public double getRateMax() {
+        return rateMax;
+    }
+
+    public void setRateMax(double rateMax) {
+        this.rateMax = rateMax;
+    }
+    
     /** 
      * Reset all lists
      */
@@ -68,11 +99,11 @@ public class RateVariable {
     
     /**
      * Depending on the type of rate, can convert objects Year from the list concerned Double tables. 
-     * Then add this table into an ArrayList <Double []>. 
-     * And returns that ArrayList <Double []>.
+     * Then add this table into an ArrayList Double. 
+     * And returns that ArrayList Double.
      * @param typeRate
      *            String containing the type of rate.
-     * @return ArrayList<Double[]>
+     * @return ArrayList Double
      *            Return the list of decreasing rate.     
      */
     public ArrayList<Double[]> getListDouble(String typeRate){
@@ -83,30 +114,30 @@ public class RateVariable {
         switch (typeRate) {
         case "decay":
             year = null;
-            System.out.println("enter case decay");
+            System.out.println("Displays simulation of decay rates");
             for(int j =0; j < listDecreasing.size(); j++){
                 year = listDecreasing.get(j);
-                System.out.println(year.getYear() + " | " + year.getIndex() + " | " + year.getNewRate() + " | " + year.getMonthly() + " | " + year.getRemaining());
+//                System.out.println(year.getYear() + " | " + year.getIndex() + " | " + year.getNewRate() + " | " + year.getMonthly() + " | " + year.getRemaining());
                 tableDouble.add(new Double[] {year.getYear(), year.getIndex(), year.getNewRate(), year.getMonthly(), year.getRemaining()});
             }
             break;
             
         case "growth":
             year = null;
-            System.out.println("enter case growth");
+            System.out.println("Displays simulation of growth rates");
             for(int j =0; j < listGrowth.size(); j++){
                 year = listGrowth.get(j);
-                System.out.println(year.getYear() + " | " + year.getIndex() + " | " + year.getNewRate() + " | " + year.getMonthly() + " | " + year.getRemaining());
+//                System.out.println(year.getYear() + " | " + year.getIndex() + " | " + year.getNewRate() + " | " + year.getMonthly() + " | " + year.getRemaining());
                 tableDouble.add(new Double[] {year.getYear(), year.getIndex(), year.getNewRate(), year.getMonthly(), year.getRemaining()});
             }
             break;
             
         case "stable":
             year = null;
-            System.out.println("enter case stable");
+            System.out.println("Displays simulation of satble rates");
             for(int j =0; j < listStable.size(); j++){
                 year = listStable.get(j);
-                System.out.println(year.getYear() + " | " + year.getIndex() + " | " + year.getNewRate() + " | " + year.getMonthly() + " | " + year.getRemaining());
+//                System.out.println(year.getYear() + " | " + year.getIndex() + " | " + year.getNewRate() + " | " + year.getMonthly() + " | " + year.getRemaining());
                 tableDouble.add(new Double[] {year.getYear(), year.getIndex(), year.getNewRate(), year.getMonthly(), year.getRemaining()});
             }
             break;
@@ -137,7 +168,7 @@ public class RateVariable {
         double monthly=(montant*(rate/100)/12)/(1-(1/Math.pow((1+(rate/100)/12), 12*duree)));
 //        System.out.println("Mountant:" + montant + "€ | Duree: " + duree + " | Rate: " + rate + " | Monthly : "+ monthly);
         
-        return monthly;
+        return roundingDecimals(monthly);
     }
     
     /** 
@@ -155,7 +186,7 @@ public class RateVariable {
         double remaining= ((12*duree)*monthly)-(12*monthly) ;
 //        System.out.println("Remaining time: " + remainingTime + " year for :"+ remaining + "€");
 
-        return remaining ;
+        return roundingDecimals(remaining) ;
     }
     
 
@@ -171,18 +202,21 @@ public class RateVariable {
     *            Index to respect.
     */
     public void growthRate(double rate, double duree, double montant, double cape) {
-        
-        double monthly;
-        System.out.println("------GrowthRate------");
+        System.out.println("---Calculate the simulation of growth rate---");
 
-        for (int i=1; i<duree; i++){
-            if (i==1){
-                monthly=calculateMonthly(rate+(i*(cape/duree)), duree, montant);
-                listGrowth.add(new Year(i, cape, rate+(i*(cape/duree)), monthly, calculateRemaining(duree, monthly)));
+        double monthly;
+        double rateChecked;
+        
+        for (int i=0; i<duree; i++){
+            
+            rateChecked=checkRateMax(rate, duree, i, cape);
+            if (i==0){
+                monthly=calculateMonthly(rateChecked, duree, montant);
+                listGrowth.add(new Year(i+1, cape, rateChecked, monthly, calculateRemaining(duree, monthly)));
             }
             else{
-                monthly=calculateMonthly(rate+(i*(cape/duree)), duree, montant);
-                listGrowth.add(new Year(i, cape, rate+(i*(cape/duree)), monthly, calculateRemaining(duree-i, monthly)));
+                monthly=calculateMonthly(rateChecked, duree, montant);
+                listGrowth.add(new Year(i+1, cape, rateChecked, monthly, calculateRemaining(duree-i, monthly)));
             }
         }    
         
@@ -200,24 +234,24 @@ public class RateVariable {
     *            Index to respect.
     */
     public void stableRate(double rate, double duree, double montant, double cape) {
-       
-        double monthly;
-        System.out.println("------StableRate------");
+        System.out.println("---Calculate the simulation of stable rate---");
 
-        for (int i=1; i<duree; i++){            
+        double monthly;
+        
+        for (int i=0; i<duree; i++){ 
             if (i%2==0){
                 if (i==1){
                     monthly=calculateMonthly(rate+(cape/duree), duree, montant);
-                    listStable.add(new Year(i, cape, rate+(cape/duree), monthly, calculateRemaining(duree, monthly)));
+                    listStable.add(new Year(i+1, cape, rate+(cape/duree), monthly, calculateRemaining(duree, monthly)));
                 }
                 else{
                     monthly=calculateMonthly(rate+(cape/duree), duree, montant);
-                    listStable.add(new Year(i, cape, rate+(cape/duree), monthly, calculateRemaining(duree-i, monthly)));
+                    listStable.add(new Year(i+1, cape, rate+(cape/duree), monthly, calculateRemaining(duree-i, monthly)));
                 }
             }
             else {
                 monthly=calculateMonthly(rate-(cape/duree), duree, montant);
-                listStable.add(new Year(i, cape, rate-(cape/duree), monthly, calculateRemaining(duree-i, monthly)));
+                listStable.add(new Year(i+1, cape, rate-(cape/duree), monthly, calculateRemaining(duree-i, monthly)));
             }
         }
 
@@ -236,18 +270,81 @@ public class RateVariable {
     */
     public void decayRate(double rate, double duree, double montant, double cape) {
        
-        double monthly;
-        System.out.println("------DecayRate------");
+        System.out.println("---Calculate the simulation of decay rate---");
 
-        for (int i=1; i<duree; i++){
-            if (i==1){
-                monthly=calculateMonthly(rate-(i*(cape/duree)), duree, montant);
-                listDecreasing.add(new Year(i, cape, rate-(i*(cape/duree)), monthly, calculateRemaining(duree, monthly)));
+        double monthly;
+        double rateChecked;
+        
+        for (int i=0; i<duree; i++){
+            
+            rateChecked=checkRateMin(rate, duree, i, cape);
+            if (i==0){
+                monthly=calculateMonthly(rateChecked, duree, montant);
+                listDecreasing.add(new Year(i+1, cape, rateChecked, monthly, calculateRemaining(duree, monthly)));
             }
             else{
-                monthly=calculateMonthly(rate-(i*(cape/duree)), duree, montant);
-                listDecreasing.add(new Year(i, cape, rate-(i*(cape/duree)), monthly, calculateRemaining(duree-i, monthly)));
+                monthly=calculateMonthly(rateChecked, duree, montant);
+                listDecreasing.add(new Year(i+1, cape, rateChecked, monthly, calculateRemaining(duree-i, monthly)));
             }
         }
     }
+    
+    /** 
+    * Calculate the new rate and test if it is lower than the minimum rate set according to the chosen capped.
+    * If the new rate lower then return the minimum rate allowed, if the calculated rate.
+    * @param rate
+    *            The value of the download rate.
+    * @param duree
+    *            Time desired loan.
+    * @param year
+    *            The value of the current calculated year.
+    * @param cape
+    *            Index to respect.
+    * @return double
+    *            Return the value of the rate.
+    */
+    public double checkRateMin(double rate, double duree, double year, double cape){
+        if( (rate-(year*(cape/duree))) < rateMin){
+            return rateMin;
+        }
+        else {
+            return roundingDecimals(rate-(year*(cape/duree)));   
+        }     
+    }
+    
+    /** 
+    * Calculate the new rate and test if it exceeds the maximum rate set according to the chosen capped.
+    * If the new rate supperior then return the maximum rate allowed, if the calculated rate.
+    * @param rate
+    *            The value of the download rate.
+    * @param duree
+    *            Time desired loan.
+    * @param year
+    *            The value of the current calculated year.
+    * @param cape
+    *            Index to respect.
+    * @return double
+    *            Return the value of the rate.
+    */
+    public double checkRateMax(double rate, double duree, double year, double cape){
+        if( (rate+(year*(cape/duree))) > rateMax){
+            return rateMax;
+        }
+        else {
+            return roundingDecimals(rate+(year*(cape/duree)));   
+        }     
+    }
+    
+    /** 
+    * Used to round all numbers with 2 digits after the comma
+    * @param number
+    *            The number to be rounded to two decimal comma.
+    * @return double
+    *            Return the number rounded to two decimal places.
+    */    
+    private double roundingDecimals(double number){
+        double pow = Math.pow(10, 2);
+        return (Math.floor(number * pow)) / pow;
+    }
+
 }

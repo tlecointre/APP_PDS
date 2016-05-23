@@ -5,8 +5,10 @@
  */
 package edu.hubanato.forms;
 
+import com.sun.prism.paint.Color;
 import javax.swing.JFrame;
 import edu.hubanato.entities.RateVariable;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -47,86 +49,34 @@ public class FormRateVariable extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelGrowthRate = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TableGrowthRate = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         jLabelTitle = new javax.swing.JLabel();
         PanelGCharacteristics = new javax.swing.JPanel();
         jLabelAmount = new javax.swing.JLabel();
         jLabelRate = new javax.swing.JLabel();
         jLabelCape = new javax.swing.JLabel();
         jLabelDuring = new javax.swing.JLabel();
+        jLabelError = new javax.swing.JLabel();
         btnStart = new javax.swing.JButton();
         formattedTextAmount = new javax.swing.JFormattedTextField();
         formattedTextDuree = new javax.swing.JFormattedTextField();
         formattedTextCape = new javax.swing.JFormattedTextField();
         formattedTextRate = new javax.swing.JFormattedTextField();
-        jLabelError = new javax.swing.JLabel();
+        jButtonInitialize = new javax.swing.JButton();
         jPanelDecay = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPaneDecay = new javax.swing.JScrollPane();
         jTableDecay = new javax.swing.JTable();
         jLabelTableDecay = new javax.swing.JLabel();
         jPanelGrowth = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        jScrollPaneGrowth = new javax.swing.JScrollPane();
         jTableGrowth = new javax.swing.JTable();
         jLabelTableGrowth = new javax.swing.JLabel();
         jPanelStable = new javax.swing.JPanel();
         jLabelTableStable = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPaneStable = new javax.swing.JScrollPane();
         jTableStable = new javax.swing.JTable();
-
-        TableGrowthRate.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Year", "Index", "NewRate", "Monthly", "Remaining"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(TableGrowthRate);
-
-        jLabel1.setText("Simulation growth rate :");
-
-        javax.swing.GroupLayout PanelGrowthRateLayout = new javax.swing.GroupLayout(PanelGrowthRate);
-        PanelGrowthRate.setLayout(PanelGrowthRateLayout);
-        PanelGrowthRateLayout.setHorizontalGroup(
-            PanelGrowthRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelGrowthRateLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(PanelGrowthRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelGrowthRateLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        PanelGrowthRateLayout.setVerticalGroup(
-            PanelGrowthRateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelGrowthRateLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuSettings = new javax.swing.JMenu();
+        jMenuItemSettings = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,6 +91,9 @@ public class FormRateVariable extends javax.swing.JFrame {
         jLabelCape.setText("Capé *:");
 
         jLabelDuring.setText("Durée (en années)*:");
+
+        jLabelError.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabelError.setText("* champs obligatoires.");
 
         btnStart.setText("Lancer la simulation");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
@@ -173,17 +126,18 @@ public class FormRateVariable extends javax.swing.JFrame {
             }
         });
 
-        formattedTextRate.setEditable(false);
-        formattedTextRate.setText("4.00");
-        formattedTextRate.setEnabled(false);
         formattedTextRate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 formattedTextRateActionPerformed(evt);
             }
         });
 
-        jLabelError.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        jLabelError.setForeground(new java.awt.Color(255, 51, 51));
+        jButtonInitialize.setText("Initialiser");
+        jButtonInitialize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInitializeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelGCharacteristicsLayout = new javax.swing.GroupLayout(PanelGCharacteristics);
         PanelGCharacteristics.setLayout(PanelGCharacteristicsLayout);
@@ -193,18 +147,14 @@ public class FormRateVariable extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
-                        .addGroup(PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnStart)
-                            .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
-                                .addComponent(jLabelAmount)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(formattedTextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabelDuring)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(formattedTextDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelAmount)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(formattedTextAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabelDuring)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(formattedTextDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addComponent(jLabelCape)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(formattedTextCape, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,6 +165,12 @@ public class FormRateVariable extends javax.swing.JFrame {
                         .addGap(14, 14, 14))
                     .addComponent(jLabelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(PanelGCharacteristicsLayout.createSequentialGroup()
+                .addGap(188, 188, 188)
+                .addComponent(btnStart)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonInitialize, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelGCharacteristicsLayout.setVerticalGroup(
             PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,10 +185,12 @@ public class FormRateVariable extends javax.swing.JFrame {
                     .addComponent(formattedTextDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(formattedTextCape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(formattedTextRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnStart)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelGCharacteristicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnStart)
+                    .addComponent(jButtonInitialize))
                 .addContainerGap())
         );
 
@@ -252,7 +210,7 @@ public class FormRateVariable extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTableDecay);
+        jScrollPaneDecay.setViewportView(jTableDecay);
 
         jLabelTableDecay.setText("Decay :");
 
@@ -263,7 +221,7 @@ public class FormRateVariable extends javax.swing.JFrame {
             .addGroup(jPanelDecayLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelDecayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPaneDecay)
                     .addGroup(jPanelDecayLayout.createSequentialGroup()
                         .addComponent(jLabelTableDecay)
                         .addGap(4, 4, 4)))
@@ -275,7 +233,7 @@ public class FormRateVariable extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelTableDecay)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneDecay, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -295,7 +253,7 @@ public class FormRateVariable extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane4.setViewportView(jTableGrowth);
+        jScrollPaneGrowth.setViewportView(jTableGrowth);
 
         jLabelTableGrowth.setText("Growth :");
 
@@ -306,10 +264,8 @@ public class FormRateVariable extends javax.swing.JFrame {
             .addGroup(jPanelGrowthLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelGrowthLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
-                    .addGroup(jPanelGrowthLayout.createSequentialGroup()
-                        .addComponent(jLabelTableGrowth)
-                        .addGap(4, 4, 4)))
+                    .addComponent(jScrollPaneGrowth, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
+                    .addComponent(jLabelTableGrowth))
                 .addContainerGap())
         );
         jPanelGrowthLayout.setVerticalGroup(
@@ -318,7 +274,7 @@ public class FormRateVariable extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelTableGrowth)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+                .addComponent(jScrollPaneGrowth, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
         );
 
         jLabelTableStable.setText("Stable :");
@@ -339,7 +295,7 @@ public class FormRateVariable extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTableStable);
+        jScrollPaneStable.setViewportView(jTableStable);
 
         javax.swing.GroupLayout jPanelStableLayout = new javax.swing.GroupLayout(jPanelStable);
         jPanelStable.setLayout(jPanelStableLayout);
@@ -349,7 +305,7 @@ public class FormRateVariable extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelStableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelTableStable)
-                    .addComponent(jScrollPane3))
+                    .addComponent(jScrollPaneStable))
                 .addContainerGap())
         );
         jPanelStableLayout.setVerticalGroup(
@@ -358,9 +314,28 @@ public class FormRateVariable extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelTableStable)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addComponent(jScrollPaneStable, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jMenuSettings.setText("Paramètres");
+        jMenuSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSettingsActionPerformed(evt);
+            }
+        });
+
+        jMenuItemSettings.setText("Gestion des taux");
+        jMenuItemSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSettingsActionPerformed(evt);
+            }
+        });
+        jMenuSettings.add(jMenuItemSettings);
+
+        jMenuBar1.add(jMenuSettings);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -390,7 +365,7 @@ public class FormRateVariable extends javax.swing.JFrame {
                 .addComponent(jPanelStable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelDecay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(231, 231, 231))
+                .addContainerGap())
         );
 
         pack();
@@ -432,6 +407,25 @@ public class FormRateVariable extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formattedTextRateActionPerformed
 
+    private void jMenuSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSettingsActionPerformed
+       
+    }//GEN-LAST:event_jMenuSettingsActionPerformed
+
+    private void jMenuItemSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSettingsActionPerformed
+        FormRateVariableSettings formRateVariableSettings = new FormRateVariableSettings(rateVariable);
+        formRateVariableSettings.setVisible(true);
+    }//GEN-LAST:event_jMenuItemSettingsActionPerformed
+
+    private void jButtonInitializeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInitializeActionPerformed
+        formattedTextAmount.setText("");
+        formattedTextCape.setText("");
+        formattedTextDuree.setText("");
+        
+        emptyTable(jTableDecay);
+        emptyTable(jTableGrowth);
+        emptyTable(jTableStable);
+    }//GEN-LAST:event_jButtonInitializeActionPerformed
+
     /** 
      * Character input control, accepts only numeric characters
      * @param evt
@@ -456,14 +450,32 @@ public class FormRateVariable extends javax.swing.JFrame {
      *            Return false if a field is empty, otherwise return true.    
      */
     public boolean emptyFields(){
-        if(formattedTextAmount.getText().isEmpty() || formattedTextCape.getText().isEmpty() || formattedTextDuree.getText().isEmpty()){
-            jLabelError.setText("Vous devez remplir tous les champs marqués d'une étoiles");
+        if(formattedTextAmount.getText().isEmpty() || formattedTextCape.getText().isEmpty() || formattedTextDuree.getText().isEmpty() || formattedTextRate.getText().isEmpty()){
+            jLabelError.setForeground(java.awt.Color.red);
+            jLabelError.setText("Vous devez remplir tous les champs marqués d'une étoiles.");
             return false;
         }
         else {
-             jLabelError.setText("");
+            jLabelError.setForeground(java.awt.Color.black);
+             jLabelError.setText("* champs obligatoires.");
              return true;
         }
+    }
+    
+    /** 
+     * Empty jTable passed as parameter
+     * @param jTable
+     *            The jTable to empty.
+     */
+    public void emptyTable(JTable jTable){
+        DefaultTableModel model = new DefaultTableModel(title, 0){
+            @Override
+            public boolean isCellEditable(int rowIndex, int mColIndex){
+                    return false;
+            }
+        };
+        model.getDataVector().removeAllElements();
+        jTable.setModel(model);
     }
     
     /**
@@ -506,14 +518,12 @@ public class FormRateVariable extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelGCharacteristics;
-    private javax.swing.JPanel PanelGrowthRate;
-    private javax.swing.JTable TableGrowthRate;
     private javax.swing.JButton btnStart;
     private javax.swing.JFormattedTextField formattedTextAmount;
     private javax.swing.JFormattedTextField formattedTextCape;
     private javax.swing.JFormattedTextField formattedTextDuree;
     private javax.swing.JFormattedTextField formattedTextRate;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButtonInitialize;
     private javax.swing.JLabel jLabelAmount;
     private javax.swing.JLabel jLabelCape;
     private javax.swing.JLabel jLabelDuring;
@@ -523,13 +533,15 @@ public class FormRateVariable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTableGrowth;
     private javax.swing.JLabel jLabelTableStable;
     private javax.swing.JLabel jLabelTitle;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemSettings;
+    private javax.swing.JMenu jMenuSettings;
     private javax.swing.JPanel jPanelDecay;
     private javax.swing.JPanel jPanelGrowth;
     private javax.swing.JPanel jPanelStable;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPaneDecay;
+    private javax.swing.JScrollPane jScrollPaneGrowth;
+    private javax.swing.JScrollPane jScrollPaneStable;
     private javax.swing.JTable jTableDecay;
     private javax.swing.JTable jTableGrowth;
     private javax.swing.JTable jTableStable;
@@ -575,5 +587,4 @@ public class FormRateVariable extends javax.swing.JFrame {
             System.out.println("Error, impossible to fill the tables");
         }
     }
-
 }
