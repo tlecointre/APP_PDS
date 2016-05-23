@@ -1,9 +1,12 @@
 package edu.hubanato.controlers;
 
 import edu.hubanato.forms.AmortizationScheduleForm;
-import edu.hubanato.forms.GraphForm;
+import edu.hubanato.forms.AppelGraphTabForm;
+
 import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
+
+//test
 
 public class AmortizationCalc {
 
@@ -12,13 +15,7 @@ public class AmortizationCalc {
     AmortizationScheduleForm t1;
     
     //public AmortizationCalc(AmortizationScheduleForm t1) {
-    public AmortizationCalc(double amount, double rate, double insuranceRate, int nbYear, GraphForm g) {
-        /*double amount, rate, insuranceRate;
-        int nbYear;
-        amount = 10000; //à modifier avec la BDD
-        rate = 10; //à modifier avec la BDD
-        nbYear = 2; //à modifier avec la BDD
-        insuranceRate = 1;*/
+    public AmortizationCalc(double amount, double rate, double insuranceRate, int nbYear, AppelGraphTabForm g) {
         t1 = new AmortizationScheduleForm();
         t1.setVisible(true);
         //calAmort(amount, rate, insuranceRate,nbYear,t1);
@@ -27,7 +24,7 @@ public class AmortizationCalc {
     }
 
     //public void calAmort(double amount, double interestRate, double insuranceRate,int nbYear, AmortizationScheduleForm t1) {
-    public void calAmort(double amount, double interestRate, double insuranceRate,int nbYear, GraphForm g) { 
+    public void calAmort(double amount, double interestRate, double insuranceRate,int nbYear, AppelGraphTabForm g) { 
         double newAmount;
         double monthlyInterest = (interestRate / 12) / 100;
         int nbMonth = nbYear * 12;
