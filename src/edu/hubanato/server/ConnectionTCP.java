@@ -1,5 +1,6 @@
 package edu.hubanato.server;
 
+import edu.hubanato.entities.Client;
 import edu.hubanato.entities.Simulation;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,6 +11,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,11 +41,33 @@ public class ConnectionTCP extends TCPServerThread {
                     
                     String sqlQuery = clientSentence.substring(0,2);
                     String jsonObject = clientSentence.substring(2);
+                    Simulation s; Client c;
+                    List<Simulation> simulations; List<Client> clients;
                     
                     switch (sqlQuery) {
-                        case "cs" :
-                            Simulation s = edu.hubanato.serialization.DecodeJSON.deserializeSimulation(jsonObject);
+                        case "cs" : // create simulation
+                            s = edu.hubanato.serialization.DecodeJSON.deserializeSimulation(jsonObject);
                             s.createSimulation();
+                            break;
+                        case "us" : // update simulation
+                            s = edu.hubanato.serialization.DecodeJSON.deserializeSimulation(jsonObject);
+                            s.updateSimulation();
+                            break;
+                        case "gs" : // get simulation by id client
+                            // RECUP idClient
+                            // simulations = Simulation.getbyClient(idClient);
+                            // String s = edu.hubanato.serialization.DecodeJSON.serializeClients(jsonObject);
+                            // envoyer s au client
+                            break;
+                        case "cc" : // create client
+                            c = edu.hubanato.serialization.DecodeJSON.deserializeClient(jsonObject);
+                            c.createPerson();
+                            break;
+                        case "gc" : // get client by name and first name and postal code
+                            // RECUP name et first name et postal code
+                            // clients = Client.getByNamePC(name, firstname, postalcode);
+                            // String s = edu.hubanato.serialization.DecodeJSON.serializeClients(jsonObject);
+                            //  envoyer s au client
                             break;
                         default :
                             System.out.println("no query");

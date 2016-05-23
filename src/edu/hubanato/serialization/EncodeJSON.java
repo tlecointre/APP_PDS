@@ -8,13 +8,8 @@ import org.json.simple.JSONObject;
 import com.google.gson.Gson;
 import edu.hubanato.entities.Client;
 import edu.hubanato.entities.Simulation;
+import java.util.List;
 
-
-
-/**
- *
- * @author Baptiste
- */
 public class EncodeJSON {
     
     private static Gson gson = new Gson();
@@ -23,9 +18,18 @@ public class EncodeJSON {
         return gson.toJson(c);
     }
     
+    public static String serializeClients(List<Client> c) {
+        return gson.toJson(c);
+    }
+    
     public static String serializeSimulation(Simulation s) {
         return gson.toJson(s);
     }
+    
+    public static String serializeSimulations(List<Simulation> s) {
+        return gson.toJson(s);
+    }
+    
     /*
      public static JSONObject encodeClient(String title_Customer, String last_Name_Customer, String first_Name_Customer, Float salary_Customer, String street_customer,  
             String postalcode_customer, String city_customer, String phone_Customer, String email_Customer, String birthday_Customer, Boolean owner, String nationality_customer, 

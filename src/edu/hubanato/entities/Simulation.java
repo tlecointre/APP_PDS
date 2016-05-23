@@ -1,6 +1,8 @@
 package edu.hubanato.entities;
 
 import edu.hubanato.models.PdsDatabase;
+import edu.hubanato.server.ConnectionPool;
+import edu.hubanato.server.InterfacePoolServer;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +31,8 @@ public class Simulation {
         return idSimulation;
     }
     
-    public void createSimulation() throws SQLException {
-        Connection connection = PdsDatabase.getConnection();
+    public void createSimulation() throws SQLException, ClassNotFoundException {
+        Connection connection = InterfacePoolServer.getConnection();
         
         int idLoanType;
         String sql = "SELECT ID_TYPES AS idLoanType FROM TYPES WHERE TITLE = ?";
@@ -72,7 +74,7 @@ public class Simulation {
     }
     
     /**
-     *Update a simulation in database
+     * Update a simulation in database
      */
     public void updateSimulation() throws SQLException {
         Connection connection = PdsDatabase.getConnection();

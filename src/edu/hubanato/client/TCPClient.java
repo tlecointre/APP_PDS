@@ -14,10 +14,11 @@ public class TCPClient {
     
     public void sendQuery(String query_name, String jsonObject) {
         try {
-            OutputStream os = sck.getOutputStream();
-            DataOutputStream dos = new DataOutputStream(os);
+            PrintWriter p = new PrintWriter(new BufferedWriter(new OutputStreamWriter(sck.getOutputStream())),true);
+
+            p.println(query_name + jsonObject);
             System.out.println(query_name + jsonObject);
-            dos.writeUTF(query_name + jsonObject);
+            
         } catch(IOException exc) {
             Logger.global.log(Level.SEVERE,"serveur",exc) ;
         }
