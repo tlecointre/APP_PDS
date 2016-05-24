@@ -66,7 +66,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
         labelTotalInterest = new javax.swing.JLabel();
         labelTotalInsurance = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(563, 450));
 
         amortizationTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -276,9 +276,9 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
         });
         //Fin troisième graphe
 
-        pan1.setPreferredSize(new Dimension(500, 250));
-        pan2.setPreferredSize(new Dimension(500, 250));
-        pan3.setPreferredSize(new Dimension(500, 250));
+        pan1.setPreferredSize(new Dimension(500, 200));
+        pan2.setPreferredSize(new Dimension(500, 200));
+        pan3.setPreferredSize(new Dimension(500, 200));
 
         gbc.gridx = 0;
         gbc.gridy = 0;
