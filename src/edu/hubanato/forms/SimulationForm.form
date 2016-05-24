@@ -100,9 +100,9 @@
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Component id="labelParameters" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labelClient" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="labelSelectedClient" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelClient" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">

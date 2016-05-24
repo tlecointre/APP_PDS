@@ -1,6 +1,7 @@
 package edu.hubanato.forms;
 
 import edu.hubanato.client.TCPClient;
+import edu.hubanato.controlers.AmortizationCalc;
 import edu.hubanato.entities.Client;
 import edu.hubanato.entities.Simulation;
 import java.io.IOException;
@@ -358,7 +359,7 @@ public class SimulationManagementForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Veuillez selectionner une simulation.", "Erreur de selection",JOptionPane.ERROR_MESSAGE);
         } else {
             Simulation s =  simulations.get(row);
-            new LoanSummaryForm(s.getAmount(), s.getDuration(), s.getRate(), s.getLoanType()).setVisible(true);
+            new AmortizationCalc(s.getAmount(), s.getRate(), s.getRateInsurance(), s.getDuration()/12);
         }
     }//GEN-LAST:event_btnReplaySimulationActionPerformed
 
