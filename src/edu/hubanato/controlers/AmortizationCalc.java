@@ -12,17 +12,17 @@ public class AmortizationCalc {
     private DecimalFormat df = new DecimalFormat("########.00");
     AmortizationScheduleForm t1;
 
-    public AmortizationCalc(double amount, double rate, double insuranceRate, int nbYear) {
+    public AmortizationCalc(double amount, double rate, double insuranceRate, int nbMonth) {
         t1 = new AmortizationScheduleForm();
         t1.setVisible(true);
-        calAmort(amount, rate, insuranceRate, nbYear);
+        calAmort(amount, rate, insuranceRate, nbMonth);
 
     }
 
-    public void calAmort(double amount, double interestRate, double insuranceRate, int nbYear) {
+    public void calAmort(double amount, double interestRate, double insuranceRate, int nbMonth) {
         double newAmount;
         double monthlyInterest = (interestRate / 12) / 100;
-        int nbMonth = nbYear * 12;
+        //int nbMonth = nbYear;
         double monthlyPayment, interestPaid, principalPaid;
         double insurance = amount * (insuranceRate / 100) / 12;
         double amountAlreadyPaid = 0, insuranceAlreadyPaid = 0, interestAlreadyPaid = 0;
