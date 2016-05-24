@@ -155,7 +155,13 @@ public class ClientControl implements ActionListener {
                         try {
                             TCPClient tcpClient = new TCPClient("localhost",9999);
                             tcpClient.sendQuery("cc", edu.hubanato.serialization.EncodeJSON.serializeClient(this.client));
-                            JOptionPane.showMessageDialog(null, "Client ajouté");
+                            String response = tcpClient.receiveQuery();
+                            if (response.equals("ok")) {
+                                JOptionPane.showMessageDialog(null, "Client ajouté");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "La connexion au serveur a échoué.", 
+                                "Erreur serveur", JOptionPane.ERROR_MESSAGE);
+                            }
                         } catch (IOException ex) {
                             Logger.getLogger(ClientControl.class.getName()).log(Level.SEVERE, null, ex);
                         }

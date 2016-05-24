@@ -240,10 +240,15 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
 
                             TCPClient tcpClient = new TCPClient("localhost",9999);
                             tcpClient.sendQuery("us", edu.hubanato.serialization.EncodeJSON.serializeSimulation(s));
-
-                            JOptionPane.showMessageDialog(null, "Simulation modifiée");
-                            this.setVisible(false);
-                            new SimulationManagementForm().setVisible(true);
+                            String response = tcpClient.receiveQuery();
+                            if (response.equals("ok")) {
+                                JOptionPane.showMessageDialog(null, "Simulation modifiée");
+                                this.setVisible(false);
+                                new SimulationManagementForm().setVisible(true);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "La connexion au serveur a échoué.", 
+                                "Erreur serveur", JOptionPane.ERROR_MESSAGE);
+                            }
                         } else {
                             JOptionPane.showMessageDialog(null, "La durée d'un crédit immobilier ne peut pas être inférieure à 7 ans.", 
                                 "Incohérence", JOptionPane.ERROR_MESSAGE);

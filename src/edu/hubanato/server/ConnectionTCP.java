@@ -47,10 +47,12 @@ public class ConnectionTCP extends TCPServerThread {
                         case "cs" : // create simulation
                             s = edu.hubanato.serialization.DecodeJSON.deserializeSimulation(jsonObject);
                             s.createSimulation();
+                            p.println("ok");
                             break;
                         case "us" : // update simulation
                             s = edu.hubanato.serialization.DecodeJSON.deserializeSimulation(jsonObject);
                             s.updateSimulation();
+                            p.println("ok");
                             break;
                         case "gs" : // get simulation by id client
                             int idClient = edu.hubanato.serialization.DecodeJSON.deserializeInteger(jsonObject);
@@ -61,6 +63,7 @@ public class ConnectionTCP extends TCPServerThread {
                         case "cc" : // create client
                             c = edu.hubanato.serialization.DecodeJSON.deserializeClient(jsonObject);
                             c.createPerson();
+                            p.println("ok");
                             break;
                         case "gc" : // get client by name and first name and postal code
                             List<String> client = edu.hubanato.serialization.DecodeJSON.deserializeListString(jsonObject);
