@@ -230,18 +230,24 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
                         amount > 75000)) {
                     
                     if (!(loanType.equals("Prêt immobilier") && amount < 75000)) {
-                        System.out.println(duration);
-                        Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), 
-                                                amount, duration, Double.parseDouble(txtRate.getText()), 
-                                                Double.parseDouble(txtInsuranceRate.getText()), 
-                                                loanType);
                         
-                        TCPClient tcpClient = new TCPClient("localhost",9999);
-                        tcpClient.sendQuery("us", edu.hubanato.serialization.EncodeJSON.serializeSimulation(s));
-                        
-                        JOptionPane.showMessageDialog(null, "Simulation modifiée");
-                        this.setVisible(false);
-                        new SimulationManagementForm().setVisible(true);
+                        if (!(loanType.equals("Prêt immobilier") && duration < 84)) {
+                            System.out.println(duration);
+                            Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), 
+                                                    amount, duration, Double.parseDouble(txtRate.getText()), 
+                                                    Double.parseDouble(txtInsuranceRate.getText()), 
+                                                    loanType);
+
+                            TCPClient tcpClient = new TCPClient("localhost",9999);
+                            tcpClient.sendQuery("us", edu.hubanato.serialization.EncodeJSON.serializeSimulation(s));
+
+                            JOptionPane.showMessageDialog(null, "Simulation modifiée");
+                            this.setVisible(false);
+                            new SimulationManagementForm().setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La durée d'un crédit immobilier ne peut pas être inférieure à 7 ans.", 
+                                "Incohérence", JOptionPane.ERROR_MESSAGE);
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Le montant d'un crédit immobilier ne peut être inférieur à 75 000 euros.", 
                             "Incohérence", JOptionPane.ERROR_MESSAGE);

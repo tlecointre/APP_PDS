@@ -1,6 +1,7 @@
 package edu.hubanato.forms;
 
 import edu.hubanato.client.TCPClient;
+import edu.hubanato.controlers.AmortizationCalc;
 import edu.hubanato.entities.Client;
 import edu.hubanato.entities.Simulation;
 import java.io.IOException;
@@ -191,9 +192,9 @@ public class SimulationForm extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(labelParameters, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelClient)
-                    .addComponent(labelSelectedClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelSelectedClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelClient))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelLoanType)
@@ -247,19 +248,26 @@ public class SimulationForm extends javax.swing.JFrame {
                         amount > 75000)) {
                     
                     if (!(loanType.equals("Prêt immobilier") && amount < 75000)) {
-                        Simulation s = new Simulation(-1, this.client.getIdClient(), 
-                                                amount, duration, Double.parseDouble(txtRate.getText()), 
-                                                Double.parseDouble(txtInsuranceRate.getText()), 
-                                                loanType);
                         
-                        
-                        TCPClient tcpClient = new TCPClient("localhost",9999);
-                        tcpClient.sendQuery("cs", edu.hubanato.serialization.EncodeJSON.serializeSimulation(s));
-                        
-                        JOptionPane.showMessageDialog(null, "Simulation ajoutée");
-                        this.setVisible(false);
-                        new AuthenticationClientForm().setVisible(true);
-                        new LoanSummaryForm(s.getAmount(), duration, s.getRate(), s.getLoanType()).setVisible(true);
+                        if (!(loanType.equals("Prêt immobilier") && duration < 84)) {
+                            Simulation s = new Simulation(-1, this.client.getIdClient(), 
+                                                    amount, duration, Double.parseDouble(txtRate.getText()), 
+                                                    Double.parseDouble(txtInsuranceRate.getText()), 
+                                                    loanType);
+
+
+                            TCPClient tcpClient = new TCPClient("localhost",9999);
+                            tcpClient.sendQuery("cs", edu.hubanato.serialization.EncodeJSON.serializeSimulation(s));
+
+                            new AmortizationCalc(s.getAmount(), s.getRate(), 
+                                    Double.parseDouble(txtInsuranceRate.getText()), duration/12);
+                            JOptionPane.showMessageDialog(null, "Simulation ajoutée");
+
+                            new AuthenticationClientForm().setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La durée d'un crédit immobilier ne peut pas être inférieure à 7 ans.", 
+                                "Incohérence", JOptionPane.ERROR_MESSAGE);
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Le montant d'un crédit immobilier ne peut être inférieur à 75 000 euros.", 
                             "Incohérence", JOptionPane.ERROR_MESSAGE);
@@ -308,40 +316,6 @@ public class SimulationForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbLoanTypeItemStateChanged
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SimulationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SimulationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SimulationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SimulationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SimulationForm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
