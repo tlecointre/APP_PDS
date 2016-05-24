@@ -34,9 +34,9 @@
                   <Component id="labelDuration" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="labelRate" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="labelInsurance" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelTotalWithoutInsurance" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelTotalInterest" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelTotalInsurance" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -62,11 +62,11 @@
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="jScrollPane3" min="-2" pref="212" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="labelTotalWithoutInsurance" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <Component id="labelTotalInterest" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <Component id="labelTotalInsurance" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="printButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -138,17 +138,17 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGraphActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="labelTotalWithoutInsurance">
       <Properties>
         <Property name="text" type="java.lang.String" value="Total mensualit&#xe9;s hors assurance:  "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="labelTotalInterest">
       <Properties>
         <Property name="text" type="java.lang.String" value="Total int&#xe9;r&#xea;ts: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="labelTotalInsurance">
       <Properties>
         <Property name="text" type="java.lang.String" value="Total assurance: "/>
       </Properties>
