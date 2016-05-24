@@ -5,7 +5,6 @@
  */
 package edu.hubanato.forms;
 
-import com.sun.prism.paint.Color;
 import javax.swing.JFrame;
 import edu.hubanato.entities.RateVariable;
 import javax.swing.JTable;
