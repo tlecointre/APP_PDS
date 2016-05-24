@@ -6,8 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.PrintJob;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -16,7 +14,6 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.util.Properties;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,12 +31,12 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author Tony
  */
-public class AmortizationScheduleForm extends javax.swing.JFrame{
+public class AmortizationScheduleForm extends javax.swing.JFrame {
 
     private AmortizationCalc am;
-    private DefaultCategoryDataset datasetLineChartAmount, datasetBarChartGlobal; 
-    private DefaultPieDataset datasetPieChartGlobal = new DefaultPieDataset( );
-    
+    private DefaultCategoryDataset datasetLineChartAmount, datasetBarChartGlobal;
+    private DefaultPieDataset datasetPieChartGlobal = new DefaultPieDataset();
+
     public AmortizationScheduleForm() {
         initComponents();
         datasetLineChartAmount = new DefaultCategoryDataset();
@@ -65,11 +62,11 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
         labelRate = new javax.swing.JLabel();
         labelInsurance = new javax.swing.JLabel();
         buttonGraph = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelTotalWithoutInsurance = new javax.swing.JLabel();
+        labelTotalInterest = new javax.swing.JLabel();
+        labelTotalInsurance = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(563, 450));
 
         amortizationTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -119,11 +116,11 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
             }
         });
 
-        jLabel1.setText("Total mensualités hors assurance:  ");
+        labelTotalWithoutInsurance.setText("Total mensualités hors assurance:  ");
 
-        jLabel2.setText("Total intérêts: ");
+        labelTotalInterest.setText("Total intérêts: ");
 
-        jLabel3.setText("Total assurance: ");
+        labelTotalInsurance.setText("Total assurance: ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,9 +134,9 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
                     .addComponent(labelDuration)
                     .addComponent(labelRate)
                     .addComponent(labelInsurance)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(labelTotalWithoutInsurance)
+                    .addComponent(labelTotalInterest)
+                    .addComponent(labelTotalInsurance))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(printButton)
@@ -161,11 +158,11 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(labelTotalWithoutInsurance)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(labelTotalInterest)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(labelTotalInsurance)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(printButton)
@@ -186,22 +183,22 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
             if (complete) {
                 /* show a success message */
                 JOptionPane.showMessageDialog(this,
-                                              "Impression envoyé",
-                                              "Information",
-                                              JOptionPane.INFORMATION_MESSAGE);
+                        "Impression envoyé",
+                        "Information",
+                        JOptionPane.INFORMATION_MESSAGE);
             } else {
                 /* show a message indicating that printing was cancelled */
                 JOptionPane.showMessageDialog(this,
-                                              "Impression annulée",
-                                              "Information",
-                                              JOptionPane.INFORMATION_MESSAGE);
+                        "Impression annulée",
+                        "Information",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (PrinterException pe) {
             /* Printing failed, report to the user */
             JOptionPane.showMessageDialog(this,
-                                          "Impression échouée: " + pe.getMessage(),
-                                          "Information",
-                                          JOptionPane.ERROR_MESSAGE);
+                    "Impression échouée: " + pe.getMessage(),
+                    "Information",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_printButtonActionPerformed
 
@@ -209,238 +206,206 @@ public class AmortizationScheduleForm extends javax.swing.JFrame{
         JFrame graphFrame = new JFrame();
         graphFrame.setTitle("Graph");
         graphFrame.setSize(400, 300);
-        graphFrame.setLocationRelativeTo(null);               
- 
+        graphFrame.setLocationRelativeTo(null);
+
         //Instanciation d'un objet JPanel
-        JPanel pan = new JPanel();   
+        JPanel pan = new JPanel();
         pan.setLayout(new GridBagLayout());
-        
+
         //L'objet servant à positionner les composants
         GridBagConstraints gbc = new GridBagConstraints();
-		
+
         //On positionne la case de départ du composant
         gbc.gridx = 0;
         gbc.gridy = 0;
         //La taille en hauteur et en largeur
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
-        
+
         //Premier graph: Reste à payer (Montant) -> LineChart
         JFreeChart lineChartAmount = ChartFactory.createLineChart(
-         "Reste  à payer(Montant)",
-         "Année","Montant",
-         dataImportLineChart(),
-         PlotOrientation.VERTICAL,
-         true,true,false);
+                "Reste  à payer(Montant)",
+                "Année", "Montant",
+                dataImportLineChart(),
+                PlotOrientation.VERTICAL,
+                true, true, false);
 
         ChartPanel pan1 = new ChartPanel(lineChartAmount, false);
         //pan1.setBounds(0, 0, 300, 300);
 
         pan1.addMouseMotionListener(new MouseAdapter() {
             public void mouseMoved(MouseEvent me) {
-            pan1.getEntityForPoint(me.getX(), me.getY());
-          }
+                pan1.getEntityForPoint(me.getX(), me.getY());
+            }
         });
         //Fin premier graph
-        
+
         //Deuxième graph -> Total payé(intérêt + montant + assurance)
         JFreeChart barChartGlobal = ChartFactory.createBarChart(
-         "Payé (Total)",           
-         "Année",            
-         "Montant",            
-         dataImportBarChartGlobal(),          
-         PlotOrientation.VERTICAL,           
-         true, true, false);
-        
+                "Payé (Total)",
+                "Année",
+                "Montant",
+                dataImportBarChartGlobal(),
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
         ChartPanel pan2 = new ChartPanel(barChartGlobal, false);
         //pan2.setBounds(400, 350, 350, 350);
-        
+
         pan2.addMouseMotionListener(new MouseAdapter() {
             public void mouseMoved(MouseEvent me) {
-            pan2.getEntityForPoint(me.getX(), me.getY());
-          }
+                pan2.getEntityForPoint(me.getX(), me.getY());
+            }
         });
         //FIn deuxième graph
-        
+
         //Troisième graphe -> Camembert
-        JFreeChart pieChartGlobal = ChartFactory.createPieChart(      
-         "Répartition",
-         datasetPieChartGlobal,
-         true,
-         true, 
-         false);
+        JFreeChart pieChartGlobal = ChartFactory.createPieChart(
+                "Répartition",
+                datasetPieChartGlobal,
+                true,
+                true,
+                false);
 
         ChartPanel pan3 = new ChartPanel(pieChartGlobal, false);
-        
+
         pan3.addMouseMotionListener(new MouseAdapter() {
             public void mouseMoved(MouseEvent me) {
-            pan3.getEntityForPoint(me.getX(), me.getY());
-          }
+                pan3.getEntityForPoint(me.getX(), me.getY());
+            }
         });
         //Fin troisième graphe
-        
-        pan1.setPreferredSize(new Dimension(300,250));
-        pan2.setPreferredSize(new Dimension(300,250));
-        pan3.setPreferredSize(new Dimension(300,250));
-        
+
+        pan1.setPreferredSize(new Dimension(500, 200));
+        pan2.setPreferredSize(new Dimension(500, 200));
+        pan3.setPreferredSize(new Dimension(500, 200));
+
         gbc.gridx = 0;
         gbc.gridy = 0;
-        pan.add(pan1,gbc);
-        
+        pan.add(pan1, gbc);
+
         gbc.gridx = 0;
         gbc.gridy = 1;
-        pan.add(pan2,gbc);
-        
+        pan.add(pan2, gbc);
+
         gbc.gridx = 0;
         gbc.gridy = 2;
-        pan.add(pan3,gbc);
-        
+        pan.add(pan3, gbc);
+
         JButton buttonPrint = new JButton("Imprimer");
-        
+
         gbc.gridx = 2;
         gbc.gridy = 1;
-        pan.add(buttonPrint,gbc);
+        pan.add(buttonPrint, gbc);
         //On prévient notre JFrame que notre JPanel sera son content pane
         graphFrame.setContentPane(pan);
         graphFrame.pack();
         graphFrame.setVisible(true);
 
-        buttonPrint.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
+        buttonPrint.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                buttonPrint.setVisible(false);
                 PrinterJob pj = PrinterJob.getPrinterJob();
                 pj.setJobName(" Print Component ");
 
-                pj.setPrintable (new Printable() {    
-                    public int print(Graphics pg, PageFormat pf, int pageNum){
-                    if (pageNum > 0){
-                        return Printable.NO_SUCH_PAGE;
+                pj.setPrintable(new Printable() {
+                    public int print(Graphics pg, PageFormat pf, int pageNum) {
+                        if (pageNum > 0) {
+                            return Printable.NO_SUCH_PAGE;
+                        }
+
+                        Graphics2D g2 = (Graphics2D) pg;
+                        g2.translate(pf.getImageableX(), pf.getImageableY());
+                        pan.paint(g2);
+                        return Printable.PAGE_EXISTS;
+                    }
+                });
+                if (pj.printDialog() == false) {
+                    buttonPrint.setVisible(true);
+                    return;
                 }
 
-      Graphics2D g2 = (Graphics2D) pg;
-      g2.translate(pf.getImageableX(), pf.getImageableY());
-      pan.paint(g2);
-      return Printable.PAGE_EXISTS;
-    }
-  });
-  if (pj.printDialog() == false)
-  return;
-
-  try {
-        pj.print();
-  } catch (PrinterException ex) {
-        // handle exception
-  }
+                try {
+                    pj.print();
+                } catch (PrinterException ex) {
+                    buttonPrint.setVisible(true);
+                }
+                buttonPrint.setVisible(true);
             }
+
         });
 
-
-        //Premier graph: Reste à payer -> LineChart
-        /*JFreeChart lineChart = ChartFactory.createLineChart(
-         "Reste  à payer",
-         "Mois","Montant",
-         dataImportLineChart(),
-         PlotOrientation.VERTICAL,
-         true,true,false);
-
-        ChartPanel pan1 = new ChartPanel(lineChart, false);
-        pan1.setBounds(0, 350, 350, 350);
-
-        pan1.addMouseMotionListener(new MouseAdapter() {
-            public void mouseMoved(MouseEvent me) {
-            pan1.getEntityForPoint(me.getX(), me.getY());
-          }
-        });*/
-        //Fin Premier graph
-        
-        //Deuxième graph: Reste à payer -> BarChart
-        /*JFreeChart barChart = ChartFactory.createBarChart(
-         "Reste à payer",           
-         "Category",            
-         "Score",            
-         dataImportBarChart(),          
-         PlotOrientation.VERTICAL,           
-         true, true, false);
-        
-        ChartPanel pan2 = new ChartPanel(barChart, false);
-        pan2.setBounds(400, 350, 350, 350);
-        
-        pan2.addMouseMotionListener(new MouseAdapter() {
-            public void mouseMoved(MouseEvent me) {
-            pan2.getEntityForPoint(me.getX(), me.getY());
-          }
-        });*/
-        //Fin Deuxième graph
-       
-        
-        //this.add(pan1);
-        //this.add(pan2);
-        
         this.setVisible(true);
-        //this.setSize(900,800);
     }//GEN-LAST:event_buttonGraphActionPerformed
-    
-    private DefaultCategoryDataset dataImportLineChart( )
-    {
-      return datasetLineChartAmount;
+
+    private DefaultCategoryDataset dataImportLineChart() {
+        return datasetLineChartAmount;
     }
-    
-    private DefaultCategoryDataset dataImportBarChartGlobal( )
-    {
-      return datasetBarChartGlobal;
+
+    private DefaultCategoryDataset dataImportBarChartGlobal() {
+        return datasetBarChartGlobal;
     }
-    
-    private DefaultPieDataset dataImportPieChartGlobal( )
-    {
-      return datasetPieChartGlobal;
+
+    private DefaultPieDataset dataImportPieChartGlobal() {
+        return datasetPieChartGlobal;
     }
-    
-    public void insertDataToLineChartAmount(double amount, int month){
-        datasetLineChartAmount.addValue(amount , "Montant" , String.valueOf(month/12) );
+
+    public void insertDataToLineChartAmount(double amount, int month) {
+        datasetLineChartAmount.addValue(amount, "Montant", String.valueOf(month / 12));
     }
-    
-    public void insertDataToBarChartGlobal(double amount, String label ,int month){
-        datasetBarChartGlobal.addValue(amount , label , String.valueOf(month/12) );
+
+    public void insertDataToBarChartGlobal(double amount, String label, int month) {
+        datasetBarChartGlobal.addValue(amount, label, String.valueOf(month / 12));
     }
-    
-    public void insertDataToPieChartGlobal(String label, double value){
+
+    public void insertDataToPieChartGlobal(String label, double value) {
         datasetPieChartGlobal.setValue(label, value);
     }
-    
-    public JTable getTable(){
+
+    public JTable getTable() {
         return amortizationTable;
     }
-    
-    public JLabel getLabelAMount(){
+
+    public JLabel getLabelAMount() {
         return labelAmount;
     }
-    
-    public JLabel getLabelDuration(){
+
+    public JLabel getLabelDuration() {
         return labelDuration;
     }
-    
-    public JLabel getLabelInsurance(){
+
+    public JLabel getLabelInsurance() {
         return labelInsurance;
     }
-    
-    public JLabel getLabelRate(){
+
+    public JLabel getLabelRate() {
         return labelRate;
+    }
+
+    public JLabel getLabelTotalInsurance() {
+        return labelTotalInsurance;
+    }
+
+    public JLabel getLabelTotalInterest() {
+        return labelTotalInterest;
+    }
+
+    public JLabel getLabelTotalWithoutInterest() {
+        return labelTotalWithoutInsurance;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable amortizationTable;
     private javax.swing.JButton buttonGraph;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelAmount;
     private javax.swing.JLabel labelDuration;
     private javax.swing.JLabel labelInsurance;
     private javax.swing.JLabel labelRate;
+    private javax.swing.JLabel labelTotalInsurance;
+    private javax.swing.JLabel labelTotalInterest;
+    private javax.swing.JLabel labelTotalWithoutInsurance;
     private javax.swing.JButton printButton;
     // End of variables declaration//GEN-END:variables
-
 
 }
