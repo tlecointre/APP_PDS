@@ -12,14 +12,14 @@ public class AmortizationCalc {
     private DecimalFormat df = new DecimalFormat("########.00");
     AmortizationScheduleForm t1;
 
-    public AmortizationCalc(double amount, double rate, double insuranceRate, int nbYear, AppelGraphTabForm g) {
+    public AmortizationCalc(double amount, double rate, double insuranceRate, int nbYear) {
         t1 = new AmortizationScheduleForm();
         t1.setVisible(true);
-        calAmort(amount, rate, insuranceRate, nbYear, g);
+        calAmort(amount, rate, insuranceRate, nbYear);
 
     }
 
-    public void calAmort(double amount, double interestRate, double insuranceRate, int nbYear, AppelGraphTabForm g) {
+    public void calAmort(double amount, double interestRate, double insuranceRate, int nbYear) {
         double newAmount;
         double monthlyInterest = (interestRate / 12) / 100;
         int nbMonth = nbYear * 12;

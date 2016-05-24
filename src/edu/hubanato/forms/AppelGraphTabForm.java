@@ -107,8 +107,7 @@ public class AppelGraphTabForm extends javax.swing.JFrame{
                 Double.parseDouble(this.textFieldAmount.getText()),
                 Double.parseDouble(this.textFieldRate.getText()),
                 Double.parseDouble(this.textFieldInsuranceRate.getText()),
-                Integer.parseInt(this.textFieldDuration.getText()),
-                this
+                Integer.parseInt(this.textFieldDuration.getText())
         );
         //AmortizationScheduleForm t1 = new AmortizationScheduleForm();
         //t1.setVisible(true);
