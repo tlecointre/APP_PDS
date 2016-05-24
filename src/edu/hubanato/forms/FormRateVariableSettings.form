@@ -35,7 +35,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Component id="jButtonValidate" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="22" max="32767" attributes="0"/>
+                              <EmptySpace pref="57" max="32767" attributes="0"/>
                               <Component id="jButtonInitialize" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -50,7 +50,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="101" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jLabelError" max="32767" attributes="0"/>
               </Group>
@@ -98,7 +98,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelRateMin">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Taux minimum autoris&#xe9; :"/>
+        <Property name="text" type="java.lang.String" value="Taux minimum autoris&#xe9; (en %) :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jFormattedTextRateMin">
@@ -116,7 +116,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelRateMax">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Taux maximum autoris&#xe9; :"/>
+        <Property name="text" type="java.lang.String" value="Taux maximum autoris&#xe9; (en %) :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jFormattedTextRateMax">

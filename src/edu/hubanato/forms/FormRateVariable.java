@@ -18,7 +18,7 @@ public class FormRateVariable extends javax.swing.JFrame {
 
     // Variable declaration
     RateVariable rateVariable;
-    String title[] = {"Year", "Index", "NewRate", "Monthly", "Remaining"};
+    String title[] = {"Année", "Capé", "Nouveau taux", "Mensualité", "Restant"};
     
     /**
      * Creates new form RateVariable
@@ -85,7 +85,7 @@ public class FormRateVariable extends javax.swing.JFrame {
 
         jLabelAmount.setText("Montant (en €)*:");
 
-        jLabelRate.setText("Taux *:");
+        jLabelRate.setText("Taux (en %) *:");
 
         jLabelCape.setText("Capé *:");
 
@@ -153,11 +153,11 @@ public class FormRateVariable extends javax.swing.JFrame {
                         .addComponent(jLabelDuring)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(formattedTextDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabelCape)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(formattedTextCape, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
+                        .addGap(41, 41, 41)
                         .addComponent(jLabelRate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(formattedTextRate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,7 +198,7 @@ public class FormRateVariable extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Year", "Index", "NewRate", "Monthly", "Remaining"
+                "Année", "Capé", "Nouveau taux", "Mensualité", "Restant"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -211,7 +211,7 @@ public class FormRateVariable extends javax.swing.JFrame {
         });
         jScrollPaneDecay.setViewportView(jTableDecay);
 
-        jLabelTableDecay.setText("Decay :");
+        jLabelTableDecay.setText("Simulation de prêt avec un taux décroissant :");
 
         javax.swing.GroupLayout jPanelDecayLayout = new javax.swing.GroupLayout(jPanelDecay);
         jPanelDecay.setLayout(jPanelDecayLayout);
@@ -241,7 +241,7 @@ public class FormRateVariable extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Year", "Index", "NewRate", "Monthly", "Remaining"
+                "Année", "Capé", "Nouveau taux", "Mensualité", "Restant"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -254,7 +254,7 @@ public class FormRateVariable extends javax.swing.JFrame {
         });
         jScrollPaneGrowth.setViewportView(jTableGrowth);
 
-        jLabelTableGrowth.setText("Growth :");
+        jLabelTableGrowth.setText("Simulation de prêt avec un taux croissant :");
 
         javax.swing.GroupLayout jPanelGrowthLayout = new javax.swing.GroupLayout(jPanelGrowth);
         jPanelGrowth.setLayout(jPanelGrowthLayout);
@@ -276,14 +276,14 @@ public class FormRateVariable extends javax.swing.JFrame {
                 .addComponent(jScrollPaneGrowth, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
         );
 
-        jLabelTableStable.setText("Stable :");
+        jLabelTableStable.setText("Simulation de prêt avec un taux stable :");
 
         jTableStable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Year", "Index", "NewRate", "Monthly", "Remaining"
+                "Année", "Capé", "Nouveau taux", "Mensualité", "Restant"
             }
         ) {
             boolean[] canEdit = new boolean [] {

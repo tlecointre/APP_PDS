@@ -60,7 +60,7 @@ public class FormRateVariableSettings extends javax.swing.JFrame {
         jLabelTitle.setText("Paramètres");
         jLabelTitle.setToolTipText("");
 
-        jLabelRateMin.setText("Taux minimum autorisé :");
+        jLabelRateMin.setText("Taux minimum autorisé (en %) :");
 
         jFormattedTextRateMin.setText(String.valueOf(rateVariable.getRateMin()));
         jFormattedTextRateMin.setToolTipText("");
@@ -78,7 +78,7 @@ public class FormRateVariableSettings extends javax.swing.JFrame {
             }
         });
 
-        jLabelRateMax.setText("Taux maximum autorisé :");
+        jLabelRateMax.setText("Taux maximum autorisé (en %) :");
 
         jFormattedTextRateMax.setText(String.valueOf(rateVariable.getRateMax()));
         jFormattedTextRateMax.setToolTipText("");
@@ -125,7 +125,7 @@ public class FormRateVariableSettings extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jButtonValidate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                                 .addComponent(jButtonInitialize))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -135,7 +135,7 @@ public class FormRateVariableSettings extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jFormattedTextRateMin, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                                     .addComponent(jFormattedTextRateMax, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
-                        .addGap(0, 101, Short.MAX_VALUE))
+                        .addGap(0, 66, Short.MAX_VALUE))
                     .addComponent(jLabelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
