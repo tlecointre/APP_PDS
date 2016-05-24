@@ -232,7 +232,7 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
                     if (!(loanType.equals("Prêt immobilier") && amount < 75000)) {
                         
                         if (!(loanType.equals("Prêt immobilier") && duration < 84)) {
-                            System.out.println(duration);
+                            
                             Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), 
                                                     amount, duration, Double.parseDouble(txtRate.getText()), 
                                                     Double.parseDouble(txtInsuranceRate.getText()), 

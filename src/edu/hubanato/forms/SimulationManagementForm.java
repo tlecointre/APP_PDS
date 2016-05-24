@@ -359,7 +359,7 @@ public class SimulationManagementForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Veuillez selectionner une simulation.", "Erreur de selection",JOptionPane.ERROR_MESSAGE);
         } else {
             Simulation s =  simulations.get(row);
-            new AmortizationCalc(s.getAmount(), s.getRate(), s.getRateInsurance(), s.getDuration()/12);
+            new AmortizationCalc(s.getAmount(), s.getRate(), s.getRateInsurance(), s.getDuration());
         }
     }//GEN-LAST:event_btnReplaySimulationActionPerformed
 
@@ -379,40 +379,6 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         new SimulationMenuForm().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SimulationManagementForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SimulationManagementForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SimulationManagementForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SimulationManagementForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SimulationManagementForm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
