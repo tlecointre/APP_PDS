@@ -5,20 +5,20 @@
  */
 package edu.hubanato.forms;
 
-import edu.hubanato.controlers.CalcRateControl;
+import edu.hubanato.controlers.CalculateInterestRateControl;
 
 /**
  *
  * @author Nadia Randria
  */
-public class CalcRateForm extends javax.swing.JFrame {
+public class CalculateInterestRateForm extends javax.swing.JFrame {
 
     /**
      * Creates new form CalcInteretForm
      */
-    public CalcRateForm() {
+    public CalculateInterestRateForm() {
         initComponents();
-        btnCalculate.addActionListener(new CalcRateControl(cmbLoanType, txtRateDirector, cmbAge, txtSalary, txtAmount, spnDuration, txtDeposit, txtRateMonth, txtRateYear, txtaMessage, btnCalculate, btnSave));
+        btnCalculate.addActionListener(new CalculateInterestRateControl(cmbLoanType, txtRateDirector, cmbProfil, cmbAge, cmbDuration, txtRateYear, txtaMessage, btnCalculate, btnSave));
     }
 
     /**
@@ -30,15 +30,8 @@ public class CalcRateForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblAmount = new javax.swing.JLabel();
         lblDuration = new javax.swing.JLabel();
-        lblDeposit = new javax.swing.JLabel();
-        lblRateAppliedMonth = new javax.swing.JLabel();
         btnCalculate = new javax.swing.JButton();
-        txtAmount = new javax.swing.JTextField();
-        txtDeposit = new javax.swing.JTextField();
-        txtRateMonth = new javax.swing.JTextField();
-        spnDuration = new javax.swing.JSpinner();
         lblMonths = new javax.swing.JLabel();
         lblRateDirector = new javax.swing.JLabel();
         txtRateDirector = new javax.swing.JTextField();
@@ -51,33 +44,24 @@ public class CalcRateForm extends javax.swing.JFrame {
         cmbAge = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaMessage = new javax.swing.JTextArea();
-        lblSalary = new javax.swing.JLabel();
-        txtSalary = new javax.swing.JTextField();
+        cmbDuration = new javax.swing.JComboBox();
+        lblProfil = new javax.swing.JLabel();
+        cmbProfil = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Interest Rate");
 
-        lblAmount.setText("Montant de l'emprunt :");
-
         lblDuration.setText("Durée de remboursement :");
-
-        lblDeposit.setText("Montant des mensualités :");
-
-        lblRateAppliedMonth.setText("Taux d'intérêt appliqué (mensuel) :");
 
         btnCalculate.setText("Calculer");
 
-        txtRateMonth.setEnabled(false);
-
-        lblMonths.setText("months");
+        lblMonths.setText("années");
 
         lblRateDirector.setText("Taux directeur :");
 
         txtRateDirector.setEnabled(false);
 
         lblRateAppliedYear.setText("Taux d'intérêt appliqué (annuel) :");
-
-        txtRateYear.setEnabled(false);
 
         lblLoanType.setText("Type de prêt :");
 
@@ -93,47 +77,50 @@ public class CalcRateForm extends javax.swing.JFrame {
         txtaMessage.setRows(5);
         jScrollPane1.setViewportView(txtaMessage);
 
-        lblSalary.setText("Salaire :");
+        cmbDuration.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
+
+        lblProfil.setText("Profil :");
+
+        cmbProfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Très bon", "Bon", "Moyen" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDuration)
-                    .addComponent(lblAmount)
-                    .addComponent(lblDeposit)
-                    .addComponent(lblRateAppliedMonth)
-                    .addComponent(lblRateDirector)
-                    .addComponent(lblRateAppliedYear)
-                    .addComponent(lblLoanType)
-                    .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAge)
-                    .addComponent(lblSalary))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDeposit)
-                            .addComponent(txtRateMonth)
-                            .addComponent(txtAmount)
-                            .addComponent(txtRateDirector)
-                            .addComponent(txtRateYear)
-                            .addComponent(cmbLoanType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblRateDirector, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblLoanType, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblProfil, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblAge, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDuration, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblRateAppliedYear, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtRateDirector, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtRateYear, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cmbLoanType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmbAge, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmbProfil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(spnDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblMonths))
-                            .addComponent(cmbAge, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtSalary))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cmbDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblMonths)))))
+                .addContainerGap(441, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,39 +129,29 @@ public class CalcRateForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLoanType)
                     .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblRateDirector)
                             .addComponent(txtRateDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAge)
-                            .addComponent(cmbAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSalary)
-                            .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAmount)
-                            .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblProfil)
+                            .addComponent(cmbProfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAge))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDuration)
-                            .addComponent(spnDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMonths))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDeposit)
-                            .addComponent(txtDeposit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblRateAppliedMonth)
-                            .addComponent(txtRateMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMonths)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRateAppliedYear)
                     .addComponent(txtRateYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,21 +182,23 @@ public class CalcRateForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CalcRateForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CalculateInterestRateForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CalcRateForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CalculateInterestRateForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CalcRateForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CalculateInterestRateForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CalcRateForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CalculateInterestRateForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CalcRateForm().setVisible(true);
+                new CalculateInterestRateForm().setVisible(true);
             }
         });
     }
@@ -228,25 +207,19 @@ public class CalcRateForm extends javax.swing.JFrame {
     private javax.swing.JButton btnCalculate;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox cmbAge;
+    private javax.swing.JComboBox cmbDuration;
     private javax.swing.JComboBox cmbLoanType;
+    private javax.swing.JComboBox cmbProfil;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAge;
-    private javax.swing.JLabel lblAmount;
-    private javax.swing.JLabel lblDeposit;
     private javax.swing.JLabel lblDuration;
     private javax.swing.JLabel lblLoanType;
     private javax.swing.JLabel lblMonths;
-    private javax.swing.JLabel lblRateAppliedMonth;
+    private javax.swing.JLabel lblProfil;
     private javax.swing.JLabel lblRateAppliedYear;
     private javax.swing.JLabel lblRateDirector;
-    private javax.swing.JLabel lblSalary;
-    private javax.swing.JSpinner spnDuration;
-    private javax.swing.JTextField txtAmount;
-    private javax.swing.JTextField txtDeposit;
     private javax.swing.JTextField txtRateDirector;
-    private javax.swing.JTextField txtRateMonth;
     private javax.swing.JTextField txtRateYear;
-    private javax.swing.JTextField txtSalary;
     private javax.swing.JTextArea txtaMessage;
     // End of variables declaration//GEN-END:variables
 }
