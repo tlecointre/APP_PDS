@@ -5,13 +5,12 @@
  */
 package edu.hubanato.entities;
 
-import java.util.Observable;
 
 /**
  *
  * @author Baptiste
  */
-public class Year extends Observable{
+public class Year {
         
     private double year;
     private double index;
