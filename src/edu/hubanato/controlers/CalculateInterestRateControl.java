@@ -6,56 +6,56 @@
 package edu.hubanato.controlers;
 
 import edu.hubanato.entities.InterestRate;
+import edu.hubanato.entities.RateDirector;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * This class is used to calcultate the interest rate
+ * This class is used to define the interest rate
  *
  * @author Nadia Randria
  */
 public class CalculateInterestRateControl implements ActionListener {
 
     private InterestRate intrate;
+    private RateDirector ratedir;
 
     private JComboBox loanType;
-    private JTextField rateDirector;
-    private JComboBox profil;
     private JComboBox age;
-    private JComboBox duration;
-    private JTextField rateYear;
-    private JTextArea message;
+    private JComboBox professionalSituation;
+    private JComboBox loanTerm;
+    private JComboBox personalContribution;
+    private JComboBox debtRatio;
 
-    private JButton calculate;
-    private JButton save;
+    private JTextField rateDirector;
+    private JTextField interestRate;
 
-    /**
-     *
-     * @param loan
-     * @param rated
-     * @param prof
-     * @param agePers
-     * @param dt
-     * @param intratey
-     * @param msg
-     * @param calc
-     * @param saveRate
-     */
-    public CalculateInterestRateControl(JComboBox loan, JTextField rated, JComboBox prof, JComboBox agePers, JComboBox dt, JTextField intratey, JTextArea msg, JButton calc, JButton saveRate) {
-        this.loanType = loan;
+    private JTextArea resultEvaluation;
+
+    private JButton evaluate;
+    private JButton saveInterestRate;
+
+    public CalculateInterestRateControl(JComboBox loanType, JComboBox age, JComboBox proSituation,
+            JComboBox loanTerm, JComboBox persoContribution, JComboBox debtRatio, JTextArea evaluation,
+            JTextField rated, JTextField inrate, JButton evaluate, JButton saveInterestRate) {
+        this.loanType = loanType;
+        this.age = age;
+        this.professionalSituation = proSituation;
+        this.loanTerm = loanTerm;
+        this.personalContribution = persoContribution;
+        this.debtRatio = debtRatio;
+        this.resultEvaluation = evaluation;
         this.rateDirector = rated;
-        this.profil = prof;
-        this.age = agePers;
-        this.duration = dt;
-        this.rateYear = intratey;
-        this.message = msg;
-
-        this.calculate = calc;
-        this.save = saveRate;
+        this.interestRate = inrate;
+        this.evaluate = evaluate;
+        this.saveInterestRate = saveInterestRate;
     }
 
     /**
@@ -66,39 +66,22 @@ public class CalculateInterestRateControl implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         Object source = evt.getSource();
 
-        if (source == calculate) {
+        if (source == evaluate) {
+
             String type = loanType.getSelectedItem().toString();
-            int valDuration = Integer.parseInt(duration.getSelectedItem().toString());
+            String profession = professionalSituation.getSelectedItem().toString();
+            int term = Integer.parseInt(loanTerm.getSelectedItem().toString());
+            int contribution = Integer.parseInt(personalContribution.getSelectedItem().toString());
+            int ratio = Integer.parseInt(debtRatio.getSelectedItem().toString());
 
-            this.intrate = new InterestRate();
-
-            try {
-                float r = intrate.SelectRateDirector(type, valDuration);
-                rateDirector.setText(String.valueOf(r));
-
-                float resratey = intrate.CalculateInterestRateYear();
-
-                if (resratey < 0 || resratey == 0) {
-                    message.setText("Le taux appliqué est négatif ou nul. Veuillez revoir vos paramètres");
-                } else if (resratey > 0) {
-                    rateYear.setText(String.valueOf(resratey));
-                }
-
-                //JOptionPane.showMessageDialog(null, "Capital (€) : " + valAmount + "\n Durée (months) : " + valDuration + "\n Apport (€) : " + valDeposit);
-            } catch (Exception e) {
-            }
+            resultEvaluation.setText("Type de prêt : " + type + "\n Situation Pro : " + profession + "\n Durée : "
+                    + term + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio);
 
         }
 
-        if (source == save) {
-            this.intrate = new InterestRate();
+        if (source == saveInterestRate) {
 
-            try {
-                intrate.SaveInterestRate();
-            } catch (Exception e) {
-            }
         }
     }
-    
-    
+
 }

@@ -18,7 +18,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
      */
     public CalculateInterestRateForm() {
         initComponents();
-        btnCalculate.addActionListener(new CalculateInterestRateControl(cmbLoanType, txtRateDirector, cmbProfil, cmbAge, cmbDuration, txtRateYear, txtaMessage, btnCalculate, btnSave));
+        btnEvaluate.addActionListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbAge, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
     }
 
     /**
@@ -30,58 +30,130 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblDuration = new javax.swing.JLabel();
-        btnCalculate = new javax.swing.JButton();
-        lblMonths = new javax.swing.JLabel();
-        lblRateDirector = new javax.swing.JLabel();
-        txtRateDirector = new javax.swing.JTextField();
-        lblRateAppliedYear = new javax.swing.JLabel();
-        txtRateYear = new javax.swing.JTextField();
         lblLoanType = new javax.swing.JLabel();
         cmbLoanType = new javax.swing.JComboBox();
-        btnSave = new javax.swing.JButton();
         lblAge = new javax.swing.JLabel();
         cmbAge = new javax.swing.JComboBox();
+        lblProSituation = new javax.swing.JLabel();
+        cmbProSituation = new javax.swing.JComboBox();
+        lblLoanTerm = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        lblPersoContribution = new javax.swing.JLabel();
+        cmbPersoContribution = new javax.swing.JComboBox();
+        lblDebtRatio = new javax.swing.JLabel();
+        cmbDebtRatio = new javax.swing.JComboBox();
+        lblYear = new javax.swing.JLabel();
+        lblPercent1 = new javax.swing.JLabel();
+        lblPercent2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblRateDirector = new javax.swing.JLabel();
+        txtRateDirector = new javax.swing.JTextField();
+        lblInterestRate = new javax.swing.JLabel();
+        txtInterestRate = new javax.swing.JTextField();
+        lblPercent3 = new javax.swing.JLabel();
+        lblPercent4 = new javax.swing.JLabel();
+        btnEvaluate = new javax.swing.JButton();
+        btnSaveInterestRate = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtaMessage = new javax.swing.JTextArea();
-        cmbDuration = new javax.swing.JComboBox();
-        lblProfil = new javax.swing.JLabel();
-        cmbProfil = new javax.swing.JComboBox();
+        txtaEvaluation = new javax.swing.JTextArea();
+        lblTitle = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Interest Rate");
-
-        lblDuration.setText("Durée de remboursement :");
-
-        btnCalculate.setText("Calculer");
-
-        lblMonths.setText("années");
-
-        lblRateDirector.setText("Taux directeur :");
-
-        txtRateDirector.setEnabled(false);
-
-        lblRateAppliedYear.setText("Taux d'intérêt appliqué (annuel) :");
 
         lblLoanType.setText("Type de prêt :");
 
         cmbLoanType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Prêt à la consommation", "Prêt automobile", "Prêt immobilier" }));
 
-        btnSave.setText("Sauvegarder");
-
         lblAge.setText("Age :");
 
-        cmbAge.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18 - 25", "26 - 33", "34 - 41", "42 - 49", "> 50" }));
+        cmbAge.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18", "19", "20" }));
 
-        txtaMessage.setColumns(20);
-        txtaMessage.setRows(5);
-        jScrollPane1.setViewportView(txtaMessage);
+        lblProSituation.setText("Situation professionnelle :");
 
-        cmbDuration.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3" }));
+        cmbProSituation.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CDD", "CDI" }));
 
-        lblProfil.setText("Profil :");
+        lblLoanTerm.setText("Durée du prêt :");
 
-        cmbProfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Très bon", "Bon", "Moyen" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25" }));
+
+        lblPersoContribution.setText("Apport personnel :");
+
+        cmbPersoContribution.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15", "20", "30" }));
+
+        lblDebtRatio.setText("Taux d'endettemment :");
+
+        cmbDebtRatio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25", "30", "33" }));
+
+        lblYear.setText("année(s)");
+
+        lblPercent1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblPercent1.setText("%");
+
+        lblPercent2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblPercent2.setText("%");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Les taux :"));
+
+        lblRateDirector.setText("Taux directeur :");
+
+        txtRateDirector.setEnabled(false);
+
+        lblInterestRate.setText("Taux d'intérêt :");
+
+        txtInterestRate.setEnabled(false);
+
+        lblPercent3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblPercent3.setText("%");
+
+        lblPercent4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        lblPercent4.setText("%");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRateDirector)
+                    .addComponent(lblInterestRate))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtRateDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtInterestRate, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPercent3)
+                    .addComponent(lblPercent4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRateDirector)
+                    .addComponent(txtRateDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPercent3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblInterestRate)
+                    .addComponent(txtInterestRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPercent4))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        btnEvaluate.setText("Evaluer");
+
+        btnSaveInterestRate.setText("Sauvegarder le taux");
+
+        txtaEvaluation.setColumns(20);
+        txtaEvaluation.setRows(5);
+        jScrollPane1.setViewportView(txtaEvaluation);
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblTitle.setText("Définition des taux d'intérêts");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,75 +162,86 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(btnCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRateDirector, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblLoanType, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblProfil, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblAge, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblDuration, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblRateAppliedYear, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtRateDirector, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtRateYear, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cmbLoanType, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cmbAge, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cmbProfil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblMonths)))))
-                .addContainerGap(441, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblDebtRatio)
+                                    .addComponent(lblPersoContribution)
+                                    .addComponent(lblLoanTerm)
+                                    .addComponent(lblProSituation)
+                                    .addComponent(lblAge)
+                                    .addComponent(lblLoanType))
+                                .addGap(46, 46, 46)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbLoanType, 0, 210, Short.MAX_VALUE)
+                                    .addComponent(cmbAge, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmbProSituation, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(cmbDebtRatio, javax.swing.GroupLayout.Alignment.LEADING, 0, 103, Short.MAX_VALUE)
+                                            .addComponent(cmbPersoContribution, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblYear)
+                                            .addComponent(lblPercent1)
+                                            .addComponent(lblPercent2)))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(btnEvaluate, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnSaveInterestRate)))
+                .addGap(64, 64, 64)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 402, Short.MAX_VALUE)
+                .addComponent(lblTitle)
+                .addGap(396, 396, 396))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblLoanType)
-                    .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lblTitle)
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblRateDirector)
-                            .addComponent(txtRateDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(lblLoanType)
+                            .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblProfil)
-                            .addComponent(cmbProfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblAge)
+                            .addComponent(cmbAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblProSituation)
+                            .addComponent(cmbProSituation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblLoanTerm)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblYear))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPersoContribution)
+                            .addComponent(cmbPersoContribution, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPercent1))
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAge))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDuration)
-                            .addComponent(cmbDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblMonths)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                            .addComponent(lblDebtRatio)
+                            .addComponent(cmbDebtRatio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPercent2))
+                        .addGap(43, 43, 43)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRateAppliedYear)
-                    .addComponent(txtRateYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCalculate)
-                    .addComponent(btnSave))
+                    .addComponent(btnEvaluate)
+                    .addComponent(btnSaveInterestRate))
                 .addContainerGap())
         );
 
@@ -204,22 +287,32 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCalculate;
-    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnEvaluate;
+    private javax.swing.JButton btnSaveInterestRate;
     private javax.swing.JComboBox cmbAge;
-    private javax.swing.JComboBox cmbDuration;
+    private javax.swing.JComboBox cmbDebtRatio;
     private javax.swing.JComboBox cmbLoanType;
-    private javax.swing.JComboBox cmbProfil;
+    private javax.swing.JComboBox cmbPersoContribution;
+    private javax.swing.JComboBox cmbProSituation;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAge;
-    private javax.swing.JLabel lblDuration;
+    private javax.swing.JLabel lblDebtRatio;
+    private javax.swing.JLabel lblInterestRate;
+    private javax.swing.JLabel lblLoanTerm;
     private javax.swing.JLabel lblLoanType;
-    private javax.swing.JLabel lblMonths;
-    private javax.swing.JLabel lblProfil;
-    private javax.swing.JLabel lblRateAppliedYear;
+    private javax.swing.JLabel lblPercent1;
+    private javax.swing.JLabel lblPercent2;
+    private javax.swing.JLabel lblPercent3;
+    private javax.swing.JLabel lblPercent4;
+    private javax.swing.JLabel lblPersoContribution;
+    private javax.swing.JLabel lblProSituation;
     private javax.swing.JLabel lblRateDirector;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblYear;
+    private javax.swing.JTextField txtInterestRate;
     private javax.swing.JTextField txtRateDirector;
-    private javax.swing.JTextField txtRateYear;
-    private javax.swing.JTextArea txtaMessage;
+    private javax.swing.JTextArea txtaEvaluation;
     // End of variables declaration//GEN-END:variables
 }
