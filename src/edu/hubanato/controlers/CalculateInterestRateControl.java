@@ -76,6 +76,15 @@ public class CalculateInterestRateControl implements ActionListener {
 
             resultEvaluation.setText("Type de prêt : " + type + "\n Situation Pro : " + profession + "\n Durée : "
                     + term + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio);
+            
+            this.ratedir = new RateDirector();
+            
+            try {
+                double rate = ratedir.SelectRateDirector(type, term);
+                rateDirector.setText(String.valueOf(rate));
+            } catch (SQLException ex) {
+                Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
 

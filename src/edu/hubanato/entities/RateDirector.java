@@ -17,15 +17,36 @@ import java.sql.SQLException;
  */
 public class RateDirector {
 
+    private int idRate, idTypeLoan;
+    private float rateDir;
+    private int amountMin, amountMax, durationMin, durationMax;
+    private String titleLoan;
+
+    public RateDirector(int idRate, int idTypeLoan, float rateDir, int amountMin, int amountMax, int durationMin, int durationMax, String titleLoan) {
+        this.idRate = idRate;
+        this.idTypeLoan = idTypeLoan;
+        this.rateDir = rateDir;
+        this.amountMin = amountMin;
+        this.amountMax = amountMax;
+        this.durationMin = durationMin;
+        this.durationMax = durationMax;
+        this.titleLoan = titleLoan;
+    }
+
+    public RateDirector() {
+    }
+
     public double SelectRateDirector(String type, int term) throws SQLException {
         Connection connection = PdsDatabase.getConnection();
 
-        String sql = "SELECT rate FROM RATE r, TYPES t WHERE r.id_types = t.id_types"
-                + " AND t.title = ? AND r.duration_max = ?";
+        String sql = "SELECT rate_dir as rate FROM RATE r, TYPES t "
+                + "WHERE r.id_types = t.id_types "
+                + "AND t.title = ? AND r.duration_max = ?";
 
         PreparedStatement ordre = connection.prepareStatement(sql);
-        ordre.setString(1, type);
-        ordre.setInt(2, term);
+
+        ordre.setString(1, titleLoan);
+        ordre.setInt(2, durationMax);
 
         ResultSet rs = ordre.executeQuery();
 
