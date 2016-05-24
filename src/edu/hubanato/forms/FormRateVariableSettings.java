@@ -18,6 +18,8 @@ public class FormRateVariableSettings extends javax.swing.JFrame {
     
     /**
      * Creates new form FormRateVariableSettings
+     * @param rateVariable
+     *            Passage of the current object RateVariable.
      */
     public FormRateVariableSettings(RateVariable rateVariable) {
         this.rateVariable = rateVariable;
