@@ -86,17 +86,17 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                     int durationMin, durationMax;
                     durationMin = durationMax = Integer.parseInt(loanTerm.getSelectedItem().toString());
 
-                    int contribution = Integer.parseInt(personalContribution.getSelectedItem().toString());
+                    String contribution = personalContribution.getSelectedItem().toString();
 
-                    int ratio = Integer.parseInt(debtRatio.getSelectedItem().toString());
+                    String ratio = debtRatio.getSelectedItem().toString();
 
                     this.ratedir = new RateParentCompany(durationMin, durationMax, type);
                     this.risk = new RiskInterestRate(type, ageMin, ageMax, profession, durationMin, durationMax, contribution, ratio);
                     try {
-                        float rate = ratedir.SelectRateDirector();
+                        float rate = ratedir.selectRateDirector();
                         rateDirector.setText(String.valueOf(rate));
 
-                        String viewRisk = risk.viewRisk();
+                        String viewRisk = risk.viewRisk(type);
 
                         resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
                                 + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n Risques : " + viewRisk);
@@ -117,17 +117,17 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                     int durationMin = Integer.parseInt(duration.substring(0, 2));
                     int durationMax = Integer.parseInt(duration.substring(5, 7));
 
-                    int contribution = Integer.parseInt(personalContribution.getSelectedItem().toString());
+                    String contribution = personalContribution.getSelectedItem().toString();
 
-                    int ratio = Integer.parseInt(debtRatio.getSelectedItem().toString());
+                    String ratio = debtRatio.getSelectedItem().toString();
 
                     this.ratedir = new RateParentCompany(durationMin, durationMax, type);
                     this.risk = new RiskInterestRate(type, ageMin, ageMax, profession, durationMin, durationMax, contribution, ratio);
                     try {
-                        float rate = ratedir.SelectRateDirector();
+                        float rate = ratedir.selectRateDirector();
                         rateDirector.setText(String.valueOf(rate));
 
-                        String viewRisk = risk.viewRisk();
+                        String viewRisk = risk.viewRisk(type);
 
                         resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
                                 + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n Risques : " + viewRisk);

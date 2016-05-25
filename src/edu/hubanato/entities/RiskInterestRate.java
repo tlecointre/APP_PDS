@@ -10,13 +10,14 @@ package edu.hubanato.entities;
  * @author Nadia Randria
  */
 public class RiskInterestRate {
-
+    
+    private float interestRate;
     private String typeLoan;
     private int ageMin, ageMax;
-    private String proSituation;
-    private int termLoanMin, termLoanMax, persoContribution, debtRatio;
+    private String proSituation, persoContribution, debtRatio;
+    private int termLoanMin, termLoanMax;
 
-    public RiskInterestRate(String typeLoan, int ageMin, int ageMax, String proSituation, int termLoanMin, int termLoanMax, int persoContribution, int debtRatio) {
+    public RiskInterestRate(String typeLoan, int ageMin, int ageMax, String proSituation, int termLoanMin, int termLoanMax, String persoContribution, String debtRatio) {
         this.typeLoan = typeLoan;
         this.ageMin = ageMin;
         this.ageMax = ageMax;
@@ -27,26 +28,22 @@ public class RiskInterestRate {
         this.debtRatio = debtRatio;
     }
 
-    public String viewRisk() {
+    public String viewRisk(String typeLoan) {
 
-        String str;
+        String str = "";
 
-        switch (typeLoan) {
-            case "Prêt à la consommation":
-                str = "Je suis entrain de déterminer un taux d'intérêt pour un prêt conso";
-                break;
-            case "Prêt automobile":
-                str = "Je suis entrain de déterminer un taux d'intérêt pour un prêt auto";
-                break;
-
-            case "Prêt immobilier":
-                str = "Je suis entrain de déterminer un taux d'intérêt pour un prêt immo";
-                break;
-            default:
-                str = "Rien à signaler";
-                break;
-
+        if(typeLoan == "Prêt à la consommation"){
+            
+            str = "Prêt à la consommation";
         }
+        else if(typeLoan == "Prêt automobile"){
+            str = "Prêt automobile";
+        }
+        else if(typeLoan == "Prêt immobilier"){
+            str = "Prêt immobilier";
+            
+        }
+        
         return str;
     }
 

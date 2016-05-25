@@ -41,7 +41,7 @@ public class InterestRate {
         PreparedStatement ordre = connection.prepareStatement(queryIdTypeLoan);
 
         ordre.setString(1, titleLoan);
-        System.out.println(titleLoan);
+        
         ResultSet rs = ordre.executeQuery();
 
         System.out.println(queryIdTypeLoan);
@@ -66,6 +66,7 @@ public class InterestRate {
         ordre2.executeUpdate();
 
         System.out.println(queryInsertRate);
+        
         ordre2.close();
     }
 
