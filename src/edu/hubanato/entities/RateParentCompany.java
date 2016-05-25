@@ -29,7 +29,7 @@ public class RateParentCompany {
         this.titleLoan = titleLoan;
     }
 
-    public float SelectRateDirector() throws SQLException {
+    public float selectRateDirector() throws SQLException {
         Connection connection = PdsDatabase.getConnection();
 
         String sql = "SELECT rate_dir FROM RATE r, TYPES t "
