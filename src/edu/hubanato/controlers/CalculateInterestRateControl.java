@@ -90,7 +90,13 @@ public class CalculateInterestRateControl implements ActionListener {
         }
         
         if (source == saveInterestRate) {
+            String type = loanType.getSelectedItem().toString();
+            int agePers = Integer.parseInt(age.getSelectedItem().toString());
+            int term = Integer.parseInt(loanTerm.getSelectedItem().toString());
+            float inRate = Float.parseFloat(interestRate.getText());
             
+            resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + agePers + "\n Durée : "
+                    + term + "\n Type de prêt : " + type );
         }
     }
     

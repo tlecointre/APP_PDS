@@ -17,9 +17,9 @@ import java.sql.SQLException;
  */
 public class RateDirector {
 
-    private int idRate, idTypeLoan;
+    
     private float rateDir;
-    private int amountMin, amountMax, durationMin, durationMax;
+    private int durationMax;
     private String titleLoan;
 
     public RateDirector(int durationMax, String titleLoan) {
