@@ -6,7 +6,8 @@
 package edu.hubanato.controlers;
 
 import edu.hubanato.entities.InterestRate;
-import edu.hubanato.entities.RateDirector;
+import edu.hubanato.entities.RateParentCompany;
+import edu.hubanato.entities.RiskInterestRate;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -25,7 +26,8 @@ import javax.swing.JTextField;
 public class CalculateInterestRateControl implements ActionListener {
     
     private InterestRate intrate;
-    private RateDirector ratedir;
+    private RateParentCompany ratedir;
+    private RiskInterestRate risk;
     
     private JComboBox loanType;
     private JComboBox age;
@@ -79,14 +81,20 @@ public class CalculateInterestRateControl implements ActionListener {
             int contribution = Integer.parseInt(personalContribution.getSelectedItem().toString());
             int ratio = Integer.parseInt(debtRatio.getSelectedItem().toString());
             
-            resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Situation Pro : " + profession + "\n Durée : "
-                    + term + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio);
             
-            this.ratedir = new RateDirector(term, type);
+            
+            this.ratedir = new RateParentCompany(term, type);
+            this.risk = new RiskInterestRate(type, ageMin, ageMax, profession, term, contribution, ratio);
             
             try {
                 float rate = ratedir.SelectRateDirector(type, term);
                 rateDirector.setText(String.valueOf(rate));
+                
+                String viewRisk = risk.ViewRisk();
+                
+                resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Situation Pro : " + profession + "\n Durée : "
+                    + term + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n Risques : " + viewRisk);
+                
             } catch (SQLException ex) {
                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
             }

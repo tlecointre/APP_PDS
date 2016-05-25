@@ -162,7 +162,7 @@
           <StringArray count="3">
             <StringItem index="0" value="18 - 25"/>
             <StringItem index="1" value="26 - 45"/>
-            <StringItem index="2" value="46"/>
+            <StringItem index="2" value="46 &gt;"/>
           </StringArray>
         </Property>
       </Properties>
@@ -328,7 +328,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblRateDirector">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Taux directeur :"/>
+            <Property name="text" type="java.lang.String" value="Taux de la maison m&#xe8;re :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtRateDirector">
@@ -338,7 +338,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblInterestRate">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Taux d&apos;int&#xe9;r&#xea;t :"/>
+            <Property name="text" type="java.lang.String" value="Taux directeur :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtInterestRate">

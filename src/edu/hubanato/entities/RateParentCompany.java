@@ -15,14 +15,14 @@ import java.sql.SQLException;
  *
  * @author Nadia Randria
  */
-public class RateDirector {
+public class RateParentCompany {
 
     
     private float rateDir;
     private int durationMax;
     private String titleLoan;
 
-    public RateDirector(int durationMax, String titleLoan) {
+    public RateParentCompany(int durationMax, String titleLoan) {
         this.durationMax = durationMax;
         this.titleLoan = titleLoan;
     }
