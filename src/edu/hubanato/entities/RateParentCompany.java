@@ -19,25 +19,27 @@ public class RateParentCompany {
 
     
     private float rateDir;
-    private int durationMax;
+    private int durationMin, durationMax;
     private String titleLoan;
 
-    public RateParentCompany(int durationMax, String titleLoan) {
+    public RateParentCompany(int durationMin, int durationMax, String titleLoan) {
+        this.durationMin = durationMin;
         this.durationMax = durationMax;
         this.titleLoan = titleLoan;
     }
 
-    public float SelectRateDirector(String type, int term) throws SQLException {
+    public float SelectRateDirector() throws SQLException {
         Connection connection = PdsDatabase.getConnection();
 
         String sql = "SELECT rate_dir FROM RATE r, TYPES t "
                 + "WHERE r.id_types = t.id_types "
-                + "AND t.title = ? AND r.duration_max = ?";
+                + "AND t.title = ? AND r.duration_min = ? AND r.duration_max = ?";
 
         PreparedStatement ordre = connection.prepareStatement(sql);
 
         ordre.setString(1, titleLoan);
-        ordre.setInt(2, durationMax);
+        ordre.setInt(2, durationMin);
+        ordre.setInt(3, durationMax);
 
         ResultSet rs = ordre.executeQuery();
 

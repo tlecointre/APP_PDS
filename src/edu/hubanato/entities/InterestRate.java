@@ -20,14 +20,15 @@ public class InterestRate {
     private int idTypeLoan;
     private float interestRate;
     private int ageMin, ageMax;
-    private int durationMax;
+    private int durationMin, durationMax;
     private String titleLoan;
 
-    public InterestRate(float interestRate, int ageMin, int ageMax, int durationMax, String title) {
+    public InterestRate(float interestRate, int ageMin, int ageMax, int durationMin, int durationMax, String title) {
 
         this.interestRate = interestRate;
         this.ageMin = ageMin;
         this.ageMax = ageMax;
+        this.durationMin = durationMin;
         this.durationMax = durationMax;
         this.titleLoan = title;
     }
@@ -51,15 +52,16 @@ public class InterestRate {
 
         ordre.close();
 
-        String queryInsertRate = "INSERT INTO INTEREST_RATE(INTRATE,AGE_MIN,AGE_MAX,DURATION_MAX,ID_TYPES) "
-                + "VALUES (?,?,?,?,?)";
+        String queryInsertRate = "INSERT INTO INTEREST_RATE(INTRATE,AGE_MIN,AGE_MAX,DURATION_MIN,DURATION_MAX,ID_TYPES) "
+                + "VALUES (?,?,?,?,?,?)";
         PreparedStatement ordre2 = connection.prepareStatement(queryInsertRate);
 
         ordre2.setFloat(1, interestRate);
         ordre2.setInt(2, ageMin);
         ordre2.setInt(3, ageMax);
-        ordre2.setInt(4, durationMax);
-        ordre2.setInt(5, idTypeLoan);
+        ordre2.setInt(4, durationMin);
+        ordre2.setInt(5, durationMax);
+        ordre2.setInt(6, idTypeLoan);
 
         ordre2.executeUpdate();
 

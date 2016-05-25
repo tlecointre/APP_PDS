@@ -18,6 +18,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
      */
     public CalculateInterestRateForm() {
         initComponents();
+        cmbLoanType.addItemListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbLoanTerm, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
         btnEvaluate.addActionListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbLoanTerm, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
         btnSaveInterestRate.addActionListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbLoanTerm, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
     }
@@ -76,7 +77,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
 
         lblLoanTerm.setText("Durée du prêt :");
 
-        cmbLoanTerm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25" }));
+        cmbLoanTerm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6" }));
 
         lblPersoContribution.setText("Apport personnel :");
 
