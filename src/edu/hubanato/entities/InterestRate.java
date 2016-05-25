@@ -11,14 +11,24 @@ package edu.hubanato.entities;
  */
 public class InterestRate {
 
-    public InterestRate() {
+    private int idIntrate, idTypeLoan;
+    private int interestRate;
+    private int ageMin, ageMax;
+    private int durationMin, durationMax;
+    private String proSituation;
+    private int debtRatio;
+
+    public InterestRate(int idTypeLoan, int interestRate, int ageMin, int ageMax, int durationMax, String proSituation, int debtRatio) {
+        this.idTypeLoan = idTypeLoan;
+        this.interestRate = interestRate;
+        this.ageMin = ageMin;
+        this.ageMax = ageMax;
+        this.durationMax = durationMax;
+        this.proSituation = proSituation;
+        this.debtRatio = debtRatio;
     }
 
     public void SaveInterestRate() {
-    }
-
-    public float CalculateInterestRateYear() {
-        return 0;
     }
 
 }

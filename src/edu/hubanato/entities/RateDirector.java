@@ -22,24 +22,15 @@ public class RateDirector {
     private int amountMin, amountMax, durationMin, durationMax;
     private String titleLoan;
 
-    public RateDirector(int idRate, int idTypeLoan, float rateDir, int amountMin, int amountMax, int durationMin, int durationMax, String titleLoan) {
-        this.idRate = idRate;
-        this.idTypeLoan = idTypeLoan;
-        this.rateDir = rateDir;
-        this.amountMin = amountMin;
-        this.amountMax = amountMax;
-        this.durationMin = durationMin;
+    public RateDirector(int durationMax, String titleLoan) {
         this.durationMax = durationMax;
         this.titleLoan = titleLoan;
     }
 
-    public RateDirector() {
-    }
-
-    public double SelectRateDirector(String type, int term) throws SQLException {
+    public float SelectRateDirector(String type, int term) throws SQLException {
         Connection connection = PdsDatabase.getConnection();
 
-        String sql = "SELECT rate_dir as rate FROM RATE r, TYPES t "
+        String sql = "SELECT rate_dir FROM RATE r, TYPES t "
                 + "WHERE r.id_types = t.id_types "
                 + "AND t.title = ? AND r.duration_max = ?";
 
@@ -53,10 +44,10 @@ public class RateDirector {
         System.out.println(sql);
 
         rs.next();
+        rateDir = rs.getFloat("rate_dir");
 
-        double rateDirector = rs.getDouble("rate");
         ordre.close();
 
-        return rateDirector;
+        return rateDir;
     }
 }
