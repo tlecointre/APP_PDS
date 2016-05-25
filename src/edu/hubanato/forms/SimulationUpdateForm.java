@@ -2,8 +2,10 @@ package edu.hubanato.forms;
 
 import edu.hubanato.client.TCPClient;
 import edu.hubanato.entities.Client;
+import edu.hubanato.entities.RateParentCompany;
 import edu.hubanato.entities.Simulation;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -62,6 +64,9 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
         txtRate = new javax.swing.JTextField();
         labelInsuranceRate = new javax.swing.JLabel();
         txtInsuranceRate = new javax.swing.JTextField();
+        btnSeeRate = new javax.swing.JButton();
+        labelParentRate = new javax.swing.JLabel();
+        labelDirectorRate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Modifier une simulation");
@@ -74,20 +79,10 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
         labelLoanType.setText("Type de prêt :");
 
         cmbLoanType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Prêt à la consommation", "Prêt automobile", "Prêt immobilier" }));
-        cmbLoanType.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbLoanTypeItemStateChanged(evt);
-            }
-        });
 
         labelLoanAmount.setText("Montant du prêt :");
 
         txtAmountLoan.setPreferredSize(new java.awt.Dimension(60, 20));
-        txtAmountLoan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtAmountLoanKeyTyped(evt);
-            }
-        });
 
         btnCalculate.setText("Modifier");
         btnCalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -100,11 +95,6 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
         labelEur.setText("€");
 
         txtDuration.setPreferredSize(new java.awt.Dimension(40, 20));
-        txtDuration.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDurationKeyTyped(evt);
-            }
-        });
 
         labelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(0, 51, 102));
@@ -120,7 +110,7 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
             }
         });
 
-        labelRate.setText("Taux d'intérêt :");
+        labelRate.setText("Taux d'intérêt définitif :");
 
         labelRateParent.setText("Taux d'intérêt maison mère :");
 
@@ -132,54 +122,70 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
 
         txtInsuranceRate.setPreferredSize(new java.awt.Dimension(60, 20));
 
+        btnSeeRate.setText("Voir les taux préconisés :");
+        btnSeeRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeeRateActionPerformed(evt);
+            }
+        });
+
+        labelParentRate.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        labelDirectorRate.setPreferredSize(new java.awt.Dimension(60, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelRateParent)
-                            .addComponent(labelRateDirector)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelInsuranceRate)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtInsuranceRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelLoanAmount)
-                                    .addComponent(labelRate)
                                     .addComponent(labelLoanDuration)
                                     .addComponent(labelLoanType))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGap(99, 99, 99)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(99, 99, 99)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(24, 24, 24)
-                                                .addComponent(cmbDurationType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtAmountLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(labelEur))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(140, 140, 140))))
+                                        .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(24, 24, 24)
+                                        .addComponent(cmbDurationType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtAmountLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(labelEur))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(btnCalculate)
-                                .addGap(45, 45, 45)
-                                .addComponent(btnBack))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelRate)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(btnCalculate)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnBack)
+                                    .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelInsuranceRate)
+                                    .addComponent(labelRateParent)
+                                    .addComponent(labelRateDirector))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtInsuranceRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelParentRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelDirectorRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(labelSubtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelSubtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnSeeRate)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,22 +209,29 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
                     .addComponent(txtAmountLoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelEur))
                 .addGap(18, 18, 18)
-                .addComponent(labelRateParent)
-                .addGap(18, 18, 18)
-                .addComponent(labelRateDirector)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelRate)
-                    .addComponent(txtRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelInsuranceRate)
                     .addComponent(txtInsuranceRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(btnSeeRate)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelRateParent)
+                            .addComponent(labelParentRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(labelRateDirector))
+                    .addComponent(labelDirectorRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelRate)
+                    .addComponent(txtRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCalculate)
                     .addComponent(btnBack))
-                .addContainerGap())
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -304,41 +317,39 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
         new SimulationManagementForm().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
     
-    /**
-     * 
-     * 
-     * @param evt 
-     */
-    private void cmbLoanTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbLoanTypeItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
-            if (!txtDuration.getText().isEmpty() && !txtAmountLoan.getText().isEmpty()) {
-                //update the rates
-            }   
+    private void btnSeeRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeRateActionPerformed
+        if (!txtDuration.getText().isEmpty()) {
+            System.out.println("yo");
+            int duration = Integer.parseInt(txtDuration.getText());
+            if (cmbDurationType.getSelectedIndex() == 1) { // duration in months
+                duration = duration / 12; // convert months in years (without rounding)
+            }
+            try {
+                labelParentRate.setText(RateParentCompany.getRate(duration, cmbLoanType.getSelectedItem().toString()) + "");
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Veuillez saisir des chiffres et non des lettres dans les champs appropriés.",
+                    "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException ex) {
+                Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    }//GEN-LAST:event_cmbLoanTypeItemStateChanged
-
-    private void txtDurationKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDurationKeyTyped
-        if (!txtDuration.getText().isEmpty() && !txtAmountLoan.getText().isEmpty()) {
-            //update the rates
-        }
-    }//GEN-LAST:event_txtDurationKeyTyped
-
-    private void txtAmountLoanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountLoanKeyTyped
-        if (!txtDuration.getText().isEmpty() && !txtAmountLoan.getText().isEmpty()) {
-            //update the rates
-        }
-    }//GEN-LAST:event_txtAmountLoanKeyTyped
+    }//GEN-LAST:event_btnSeeRateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCalculate;
+    private javax.swing.JButton btnSeeRate;
     private javax.swing.JComboBox cmbDurationType;
     private javax.swing.JComboBox cmbLoanType;
+    private javax.swing.JLabel labelDirectorRate;
     private javax.swing.JLabel labelEur;
     private javax.swing.JLabel labelInsuranceRate;
     private javax.swing.JLabel labelLoanAmount;
     private javax.swing.JLabel labelLoanDuration;
     private javax.swing.JLabel labelLoanType;
+    private javax.swing.JLabel labelParentRate;
     private javax.swing.JLabel labelRate;
     private javax.swing.JLabel labelRateDirector;
     private javax.swing.JLabel labelRateParent;
