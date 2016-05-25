@@ -4,7 +4,6 @@ import edu.hubanato.client.TCPClient;
 import edu.hubanato.entities.Client;
 import edu.hubanato.entities.Simulation;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -59,6 +58,7 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
         txtInsuranceRate = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Modifier une simulation");
 
         labelSubtitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelSubtitle.setText("Paramètres de la simulation :");
@@ -101,6 +101,8 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
         });
 
         labelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelTitle.setForeground(new java.awt.Color(0, 51, 102));
+        labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitle.setText("Modifier une simulation");
 
         cmbDurationType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "année(s)", "mois" }));
@@ -145,18 +147,23 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
                                     .addComponent(labelRate)
                                     .addComponent(labelLoanDuration)
                                     .addComponent(labelLoanType))
-                                .addGap(99, 99, 99)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(24, 24, 24)
-                                        .addComponent(cmbDurationType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtAmountLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(labelEur))
-                                    .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(99, 99, 99)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cmbLoanType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(24, 24, 24)
+                                                .addComponent(cmbDurationType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(txtAmountLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(labelEur))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtRate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(140, 140, 140))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(43, 43, 43)
                                 .addComponent(btnCalculate)
@@ -164,11 +171,9 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
                                 .addComponent(btnBack))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(labelSubtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(labelTitle)))
+                        .addComponent(labelSubtitle, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +217,14 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Event on Calculate button.
+     * This button allows to recovery the loan parameters, to control them, and to update the loan.
+     * It lauches the amortization table and graph
+     * 
+     * @param evt 
+     */
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
         if (!(txtDuration.getText().isEmpty() || txtAmountLoan.getText().isEmpty() ||
                 txtRate.getText().isEmpty() || txtInsuranceRate.getText().isEmpty())) {
@@ -243,7 +255,6 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
                             String response = tcpClient.receiveQuery();
                             if (response.equals("ok")) {
                                 JOptionPane.showMessageDialog(null, "Simulation modifiée");
-                                this.setVisible(false);
                                 new SimulationManagementForm().setVisible(true);
                             } else {
                                 JOptionPane.showMessageDialog(null, "La connexion au serveur a échoué.", 
@@ -275,12 +286,23 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnCalculateActionPerformed
-
+    
+    /**
+     * Button on Back event
+     * 
+     * Go to previous page which is SimulationManagementForm
+     * @param evt 
+     */
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
         new SimulationManagementForm().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
-
+    
+    /**
+     * 
+     * 
+     * @param evt 
+     */
     private void cmbLoanTypeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbLoanTypeItemStateChanged
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
             if (!txtDuration.getText().isEmpty() && !txtAmountLoan.getText().isEmpty()) {
