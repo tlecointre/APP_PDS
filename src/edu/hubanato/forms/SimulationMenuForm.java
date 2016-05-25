@@ -25,10 +25,15 @@ public class SimulationMenuForm extends javax.swing.JFrame {
         labelSimulation = new javax.swing.JLabel();
         btnCreateSimulation = new javax.swing.JButton();
         btnSimulationManagement = new javax.swing.JButton();
+        btnVariableLoanSimulation = new javax.swing.JButton();
+        btnDetermineInterestRate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Simulation");
 
         labelSimulation.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelSimulation.setForeground(new java.awt.Color(0, 51, 102));
+        labelSimulation.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSimulation.setText("Simulation");
 
         btnCreateSimulation.setText("Simulation d'un prêt à taux fixe");
@@ -45,21 +50,33 @@ public class SimulationMenuForm extends javax.swing.JFrame {
             }
         });
 
+        btnVariableLoanSimulation.setText("Simulation de prêts à taux variable");
+        btnVariableLoanSimulation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVariableLoanSimulationActionPerformed(evt);
+            }
+        });
+
+        btnDetermineInterestRate.setText("Déterminer les taux d'intérêt");
+        btnDetermineInterestRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetermineInterestRateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelSimulation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnSimulationManagement, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCreateSimulation, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(labelSimulation)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnVariableLoanSimulation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDetermineInterestRate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSimulationManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCreateSimulation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,10 +87,15 @@ public class SimulationMenuForm extends javax.swing.JFrame {
                 .addComponent(btnCreateSimulation)
                 .addGap(18, 18, 18)
                 .addComponent(btnSimulationManagement)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnVariableLoanSimulation)
+                .addGap(18, 18, 18)
+                .addComponent(btnDetermineInterestRate)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
     /**
@@ -81,7 +103,6 @@ public class SimulationMenuForm extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnCreateSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateSimulationActionPerformed
-        this.setVisible(false);
         new AuthenticationClientForm().setVisible(true);
     }//GEN-LAST:event_btnCreateSimulationActionPerformed
     
@@ -90,9 +111,16 @@ public class SimulationMenuForm extends javax.swing.JFrame {
      * @param evt 
      */
     private void btnSimulationManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationManagementActionPerformed
-        this.setVisible(false);
         new SimulationManagementForm().setVisible(true);
     }//GEN-LAST:event_btnSimulationManagementActionPerformed
+
+    private void btnVariableLoanSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVariableLoanSimulationActionPerformed
+        new FormRateVariable().setVisible(true);
+    }//GEN-LAST:event_btnVariableLoanSimulationActionPerformed
+
+    private void btnDetermineInterestRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetermineInterestRateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDetermineInterestRateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,7 +159,9 @@ public class SimulationMenuForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateSimulation;
+    private javax.swing.JButton btnDetermineInterestRate;
     private javax.swing.JButton btnSimulationManagement;
+    private javax.swing.JButton btnVariableLoanSimulation;
     private javax.swing.JLabel labelSimulation;
     // End of variables declaration//GEN-END:variables
 }

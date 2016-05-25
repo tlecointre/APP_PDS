@@ -19,6 +19,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
     public CalculateInterestRateForm() {
         initComponents();
         btnEvaluate.addActionListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbLoanTerm, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
+        btnSaveInterestRate.addActionListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbLoanTerm, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
     }
 
     /**
@@ -67,7 +68,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
 
         lblAge.setText("Age :");
 
-        cmbAge.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18 - 25", "26 - 45", "46" }));
+        cmbAge.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18 - 25", "26 - 45", "46 >" }));
 
         lblProSituation.setText("Situation professionnelle :");
 
@@ -95,13 +96,11 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Les taux :"));
 
-        lblRateDirector.setText("Taux directeur :");
+        lblRateDirector.setText("Taux de la maison mère :");
 
         txtRateDirector.setEnabled(false);
 
-        lblInterestRate.setText("Taux d'intérêt :");
-
-        txtInterestRate.setEnabled(false);
+        lblInterestRate.setText("Taux directeur :");
 
         lblPercent3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblPercent3.setText("%");

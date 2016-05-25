@@ -32,7 +32,7 @@ public class FormRateVariable extends javax.swing.JFrame {
         setTitle("Simulation de prêt à taux variable");
         
         // Close when clicking on the cross
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         // Adjust Size to content
         pack();

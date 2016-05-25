@@ -119,7 +119,6 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         tableSimulation = new javax.swing.JTable();
         btnReplaySimulation = new javax.swing.JButton();
         btnUpdateSimulation = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
         labelNumberResults = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -148,7 +147,8 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Gestion d'une simulation");
 
         labelClient.setText("Client :");
 
@@ -161,6 +161,7 @@ public class SimulationManagementForm extends javax.swing.JFrame {
 
         labelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(0, 51, 102));
+        labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitle.setText("Gestion d'une simulation");
 
         labelName.setText("Nom :");
@@ -203,13 +204,6 @@ public class SimulationManagementForm extends javax.swing.JFrame {
             }
         });
 
-        btnBack.setText("Retour");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
         labelNumberResults.setName(""); // NOI18N
         labelNumberResults.setPreferredSize(new java.awt.Dimension(100, 23));
 
@@ -217,6 +211,10 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelInformationClient)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -227,13 +225,9 @@ public class SimulationManagementForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
                                 .addComponent(btnReplaySimulation)
-                                .addGap(18, 18, 18)
+                                .addGap(29, 29, 29)
                                 .addComponent(btnUpdateSimulation)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBack))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addComponent(labelTitle))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(29, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,10 +258,7 @@ public class SimulationManagementForm extends javax.swing.JFrame {
                                             .addComponent(labelNumberResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(0, 5, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelInformationClient)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,8 +291,7 @@ public class SimulationManagementForm extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnReplaySimulation)
-                    .addComponent(btnUpdateSimulation)
-                    .addComponent(btnBack))
+                    .addComponent(btnUpdateSimulation))
                 .addGap(62, 62, 62))
         );
 
@@ -374,14 +364,8 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUpdateSimulationActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        this.setVisible(false);
-        new SimulationMenuForm().setVisible(true);
-    }//GEN-LAST:event_btnBackActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnReplaySimulation;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnShowSimulation;

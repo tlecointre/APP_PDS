@@ -73,7 +73,7 @@ public class ClientForm extends javax.swing.JFrame {
         txtIncome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Form to create a client");
+        setTitle("Créer un client");
 
         labelName.setText("Nom * :");
 
@@ -117,6 +117,7 @@ public class ClientForm extends javax.swing.JFrame {
 
         labelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(0, 51, 102));
+        labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTitle.setText("Formulaire de création d'un client");
 
         labelMandatoryField.setForeground(new java.awt.Color(255, 0, 51));
@@ -219,10 +220,7 @@ public class ClientForm extends javax.swing.JFrame {
                                 .addComponent(btnClear)
                                 .addGap(103, 103, 103)))))
                 .addContainerGap(48, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelTitle)
-                .addGap(214, 214, 214))
+            .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

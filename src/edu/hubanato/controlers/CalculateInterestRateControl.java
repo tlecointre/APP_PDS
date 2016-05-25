@@ -6,7 +6,8 @@
 package edu.hubanato.controlers;
 
 import edu.hubanato.entities.InterestRate;
-import edu.hubanato.entities.RateDirector;
+import edu.hubanato.entities.RateParentCompany;
+import edu.hubanato.entities.RiskInterestRate;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -25,7 +26,8 @@ import javax.swing.JTextField;
 public class CalculateInterestRateControl implements ActionListener {
     
     private InterestRate intrate;
-    private RateDirector ratedir;
+    private RateParentCompany ratedir;
+    private RiskInterestRate risk;
     
     private JComboBox loanType;
     private JComboBox age;
@@ -69,20 +71,30 @@ public class CalculateInterestRateControl implements ActionListener {
         if (source == evaluate) {
             
             String type = loanType.getSelectedItem().toString();
-            int agePers = Integer.parseInt(age.getSelectedItem().toString());
+            
+            String str = age.getSelectedItem().toString();
+            int ageMin = Integer.parseInt(str.substring(0, 2));
+            int ageMax = Integer.parseInt(str.substring(5, 7));
+            
             String profession = professionalSituation.getSelectedItem().toString();
             int term = Integer.parseInt(loanTerm.getSelectedItem().toString());
             int contribution = Integer.parseInt(personalContribution.getSelectedItem().toString());
             int ratio = Integer.parseInt(debtRatio.getSelectedItem().toString());
             
-            resultEvaluation.setText("Type de prêt : " + type + "\n Age : " + agePers + "\n Situation Pro : " + profession + "\n Durée : "
-                    + term + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio);
             
-            this.ratedir = new RateDirector(term, type);
+            
+            this.ratedir = new RateParentCompany(term, type);
+            this.risk = new RiskInterestRate(type, ageMin, ageMax, profession, term, contribution, ratio);
             
             try {
                 float rate = ratedir.SelectRateDirector(type, term);
                 rateDirector.setText(String.valueOf(rate));
+                
+                String viewRisk = risk.ViewRisk();
+                
+                resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Situation Pro : " + profession + "\n Durée : "
+                    + term + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n Risques : " + viewRisk);
+                
             } catch (SQLException ex) {
                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -91,12 +103,25 @@ public class CalculateInterestRateControl implements ActionListener {
         
         if (source == saveInterestRate) {
             String type = loanType.getSelectedItem().toString();
-            int agePers = Integer.parseInt(age.getSelectedItem().toString());
+            //int agePers = Integer.parseInt(age.getSelectedItem().toString());
+            
+            String str = age.getSelectedItem().toString();
+            int ageMin = Integer.parseInt(str.substring(0, 2));
+            int ageMax = Integer.parseInt(str.substring(5, 7));
+            
             int term = Integer.parseInt(loanTerm.getSelectedItem().toString());
             float inRate = Float.parseFloat(interestRate.getText());
             
-            resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + agePers + "\n Durée : "
+            resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée : "
                     + term + "\n Type de prêt : " + type );
+            
+            this.intrate = new InterestRate(inRate, ageMin, ageMax, term, type);
+            
+            try {
+                intrate.SaveInterestRate();
+            } catch (SQLException ex) {
+                Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
