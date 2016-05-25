@@ -3,6 +3,8 @@ package edu.hubanato.serialization;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import edu.hubanato.entities.Client;
+import edu.hubanato.entities.InterestRate;
+import edu.hubanato.entities.RateParentCompany;
 import edu.hubanato.entities.Simulation;
 import java.util.List;
 import java.lang.reflect.Type;
@@ -14,6 +16,14 @@ public class DecodeJSON {
 
     public static Client deserializeClient(String c) {
         return gson.fromJson(c, Client.class);
+    }
+    
+    public static RateParentCompany deserializeRateParentCompany(String c) {
+        return gson.fromJson(c, RateParentCompany.class);
+    }
+    
+    public static InterestRate deserializeInterestRate(String c) {
+        return gson.fromJson(c, InterestRate.class);
     }
     
     public static List<Client> deserializeClients(String c) {

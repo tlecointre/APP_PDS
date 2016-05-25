@@ -7,6 +7,8 @@ import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
 import edu.hubanato.entities.Client;
+import edu.hubanato.entities.InterestRate;
+import edu.hubanato.entities.RateParentCompany;
 import edu.hubanato.entities.Simulation;
 import java.util.List;
 
@@ -16,6 +18,14 @@ public class EncodeJSON {
     
     public static String serializeClient(Client c) {
         return gson.toJson(c);
+    }
+    
+    public static String serializeRateParentCompany(RateParentCompany r) {
+        return gson.toJson(r);
+    }
+    
+    public static String serializeInterestRate(InterestRate r) {
+        return gson.toJson(r);
     }
     
     public static String serializeClients(List<Client> c) {
