@@ -17,11 +17,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * This class is used to define the interest rate
+ * This class is used to define the interest rate by the director
  *
  * @author Nadia Randria
  */
@@ -46,6 +47,20 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
     private JButton evaluate;
     private JButton saveInterestRate;
 
+    /**
+     *
+     * @param loanType
+     * @param age
+     * @param proSituation
+     * @param loanTerm
+     * @param persoContribution
+     * @param debtRatio
+     * @param evaluation
+     * @param rated
+     * @param inrate
+     * @param evaluate
+     * @param saveInterestRate
+     */
     public CalculateInterestRateControl(JComboBox loanType, JComboBox age, JComboBox proSituation,
             JComboBox loanTerm, JComboBox persoContribution, JComboBox debtRatio, JTextArea evaluation,
             JTextField rated, JTextField inrate, JButton evaluate, JButton saveInterestRate) {
@@ -63,6 +78,9 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
     }
 
     /**
+     * This method is called when we clicked one of the button of the form
+     * CalculateInterestRateForm.java The treatment depends on which button is
+     * clicked
      *
      * @param evt
      */
@@ -70,6 +88,10 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
     public void actionPerformed(ActionEvent evt) {
         Object source = evt.getSource();
 
+        /**
+         * This treatment allows the director to know the risk that the agency
+         * takes when they lend money to a customer
+         */
         if (source == evaluate) {
 
             String type = loanType.getSelectedItem().toString();
@@ -105,7 +127,7 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                         String viewRisk = risk.viewRisk(type);
 
                         resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                                + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n Risques : " + viewRisk);
+                                + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n\n\n\n Risques : " + viewRisk);
 
                     } catch (SQLException ex) {
                         Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
@@ -144,7 +166,7 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                                 String viewRisk = risk.viewRisk(type);
 
                                 resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                                        + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n Risques : " + viewRisk);
+                                        + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n\n\n\n Risques : " + viewRisk);
 
                             } catch (SQLException ex) {
                                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
@@ -168,13 +190,13 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                                 float rate = ratedir.selectRateDirector();
                                 rateDirector.setText(String.valueOf(rate));
 
-                                float in = intrate.queryInterestRate();                                
+                                float in = intrate.queryInterestRate();
                                 interestRate.setText(String.valueOf(in));
 
                                 String viewRisk = risk.viewRisk(type);
 
                                 resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                                        + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n Risques : " + viewRisk);
+                                        + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n\n\n\n Risques : " + viewRisk);
 
                             } catch (SQLException ex) {
                                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
@@ -188,42 +210,24 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
         }
 
+        /**
+         * This treatment allows the director to define the interest rate that
+         * the agency will propose to its customer
+         */
         if (source == saveInterestRate) {
-            String type = loanType.getSelectedItem().toString();
+            if (!interestRate.getText().isEmpty()) {
+                try {
+                    String type = loanType.getSelectedItem().toString();
 
-            switch (type) {
-                case "Prêt à la consommation":
-                case "Prêt automobile": {
-                    String agePers = age.getSelectedItem().toString();
-                    int ageMin = Integer.parseInt(agePers.substring(0, 2));
-                    int ageMax = Integer.parseInt(agePers.substring(5, 7));
+                    switch (type) {
+                        case "Prêt à la consommation":
+                        case "Prêt automobile": {
+                            String agePers = age.getSelectedItem().toString();
+                            int ageMin = Integer.parseInt(agePers.substring(0, 2));
+                            int ageMax = Integer.parseInt(agePers.substring(5, 7));
 
-                    int durationMin, durationMax;
-                    durationMin = durationMax = Integer.parseInt(loanTerm.getSelectedItem().toString());
-
-                    float inRate = Float.parseFloat(interestRate.getText());
-
-                    resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                            + durationMin + "\n Durée Max : " + durationMax + "\n Type de prêt : " + type);
-
-                    this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
-                    try {
-                        intrate.saveInterestRate();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    break;
-                }
-                case "Prêt immobilier": {
-                    String agePers = age.getSelectedItem().toString();
-                    int ageMin = Integer.parseInt(agePers.substring(0, 2));
-                    int ageMax = Integer.parseInt(agePers.substring(5, 7));
-
-                    String duration = loanTerm.getSelectedItem().toString();
-                    switch (duration) {
-                        case "7 - 10": {
-                            int durationMin = Integer.parseInt(duration.substring(0, 1));
-                            int durationMax = Integer.parseInt(duration.substring(4, 6));
+                            int durationMin, durationMax;
+                            durationMin = durationMax = Integer.parseInt(loanTerm.getSelectedItem().toString());
 
                             float inRate = Float.parseFloat(interestRate.getText());
 
@@ -238,30 +242,68 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                             }
                             break;
                         }
-                        default: {
-                            int durationMin = Integer.parseInt(duration.substring(0, 2));
-                            int durationMax = Integer.parseInt(duration.substring(5, 7));
+                        case "Prêt immobilier": {
+                            String agePers = age.getSelectedItem().toString();
+                            int ageMin = Integer.parseInt(agePers.substring(0, 2));
+                            int ageMax = Integer.parseInt(agePers.substring(5, 7));
 
-                            float inRate = Float.parseFloat(interestRate.getText());
+                            String duration = loanTerm.getSelectedItem().toString();
+                            switch (duration) {
+                                case "7 - 10": {
+                                    int durationMin = Integer.parseInt(duration.substring(0, 1));
+                                    int durationMax = Integer.parseInt(duration.substring(4, 6));
 
-                            resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                                    + durationMin + "\n Durée Max : " + durationMax + "\n Type de prêt : " + type);
+                                    float inRate = Float.parseFloat(interestRate.getText());
 
-                            this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
-                            try {
-                                intrate.saveInterestRate();
-                            } catch (SQLException ex) {
-                                Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                                    resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
+                                            + durationMin + "\n Durée Max : " + durationMax + "\n Type de prêt : " + type);
+
+                                    this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
+                                    try {
+                                        intrate.saveInterestRate();
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    break;
+                                }
+                                default: {
+                                    int durationMin = Integer.parseInt(duration.substring(0, 2));
+                                    int durationMax = Integer.parseInt(duration.substring(5, 7));
+
+                                    float inRate = Float.parseFloat(interestRate.getText());
+
+                                    resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
+                                            + durationMin + "\n Durée Max : " + durationMax + "\n Type de prêt : " + type);
+
+                                    this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
+                                    try {
+                                        intrate.saveInterestRate();
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    break;
+                                }
                             }
-                            break;
                         }
                     }
+
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Veuillez saisir des chiffres et non des lettres dans les champs appropriés.",
+                            "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Veuillez remplir le taux appliqué par l'agence",
+                        "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
             }
 
         }
     }
 
+    /**
+     * This method sets the list of loan periods depending on the type of loan
+     *
+     * @param e
+     */
     @Override
     public void itemStateChanged(ItemEvent e) {
 

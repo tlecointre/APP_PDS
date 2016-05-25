@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ * This class is used for all the queries we need to use to define the interest rate
  * @author Nadia Randria
  */
 public class InterestRate {
@@ -24,6 +24,14 @@ public class InterestRate {
     private int durationMin, durationMax;
     private String titleLoan;
     
+    /**
+     * This constructor permit to create an interest rate
+     * @param ageMin
+     * @param ageMax
+     * @param durationMin
+     * @param durationMax
+     * @param titleLoan 
+     */
     public InterestRate(int ageMin, int ageMax, int durationMin, int durationMax, String titleLoan) {
         this.ageMin = ageMin;
         this.ageMax = ageMax;
@@ -32,6 +40,16 @@ public class InterestRate {
         this.titleLoan = titleLoan;
     }
     
+    /**
+     * This constructor permit to create an interest rate
+     * 
+     * @param interestRate
+     * @param ageMin
+     * @param ageMax
+     * @param durationMin
+     * @param durationMax
+     * @param title 
+     */
     public InterestRate(float interestRate, int ageMin, int ageMax, int durationMin, int durationMax, String title) {
         
         this.interestRate = interestRate;
@@ -42,6 +60,15 @@ public class InterestRate {
         this.titleLoan = title;
     }
     
+    /**
+     * We use this method to recover the interest rate if it already exists by using the parameters :
+     * ageMin, ageMax, durationMin, durationMax, titleLoan
+     * 
+     * else we define it by 0.0
+     * 
+     * @return interestRate
+     * @throws SQLException 
+     */
     public float queryInterestRate() throws SQLException {
         Connection connection = PdsDatabase.getConnection();
         
@@ -85,6 +112,13 @@ public class InterestRate {
         return interestRate;
     }
     
+    /**
+     * We use this method to insert the interest rate if it not exists
+     * 
+     * else to update it if it already exists
+     * 
+     * @throws SQLException 
+     */
     public void saveInterestRate() throws SQLException {
         
         Connection connection = PdsDatabase.getConnection();
@@ -150,6 +184,18 @@ public class InterestRate {
         }
     }
     
+    /**
+     * This method is used to recover the interest rate
+     * It is used by the form SimulateurForm.java
+     * 
+     * @param duration
+     * @param age
+     * @param loanType
+     * 
+     * @return rate
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public static float getRate(int duration, int age, String loanType) throws SQLException, ClassNotFoundException {
         Connection connection = InterfacePoolServer.getConnection();
         

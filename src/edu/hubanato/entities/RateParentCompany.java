@@ -13,7 +13,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ * This class is used for all the queries we need to use to recover 
+ * the rate of the parent company
+ * 
  * @author Nadia Randria
  */
 public class RateParentCompany {
@@ -22,13 +24,26 @@ public class RateParentCompany {
     private float rateDir;
     private int durationMin, durationMax;
     private String titleLoan;
-
+    
+    /**
+     * This constructor permit to create a rate parent company
+     * 
+     * @param durationMin
+     * @param durationMax
+     * @param titleLoan 
+     */
     public RateParentCompany(int durationMin, int durationMax, String titleLoan) {
         this.durationMin = durationMin;
         this.durationMax = durationMax;
         this.titleLoan = titleLoan;
     }
-
+    
+    /**
+     * This constructor permit to recover the rate of the parent company
+     * 
+     * @return ratedir
+     * @throws SQLException 
+     */
     public float selectRateDirector() throws SQLException {
         Connection connection = PdsDatabase.getConnection();
 
@@ -54,6 +69,17 @@ public class RateParentCompany {
         return rateDir;
     }
     
+    /**
+     * This constructor permit to recover the rate of the parent company
+     * It is used by the form SimulationForm.java
+     * 
+     * @param duration
+     * @param loanType
+     * 
+     * @return rate
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public static float getRate(int duration, String loanType) throws SQLException, ClassNotFoundException {
         Connection connection = InterfacePoolServer.getConnection();
         
