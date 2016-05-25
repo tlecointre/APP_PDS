@@ -27,7 +27,7 @@ public class RiskInterestRate {
         this.debtRatio = debtRatio;
     }
 
-    public String ViewRisk() {
+    public String viewRisk() {
 
         String str;
 

@@ -33,7 +33,7 @@ public class InterestRate {
         this.titleLoan = title;
     }
 
-    public void SaveInterestRate() throws SQLException {
+    public void saveInterestRate() throws SQLException {
 
         Connection connection = PdsDatabase.getConnection();
 
