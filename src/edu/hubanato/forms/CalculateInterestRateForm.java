@@ -19,6 +19,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
     public CalculateInterestRateForm() {
         initComponents();
         btnEvaluate.addActionListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbLoanTerm, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
+        btnSaveInterestRate.addActionListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbLoanTerm, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
     }
 
     /**
@@ -100,8 +101,6 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
         txtRateDirector.setEnabled(false);
 
         lblInterestRate.setText("Taux d'intérêt :");
-
-        txtInterestRate.setEnabled(false);
 
         lblPercent3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblPercent3.setText("%");

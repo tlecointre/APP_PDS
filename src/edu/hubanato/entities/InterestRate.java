@@ -18,12 +18,12 @@ import java.sql.SQLException;
 public class InterestRate {
 
     private int idTypeLoan;
-    private int interestRate;
+    private float interestRate;
     private int ageMin, ageMax;
     private int durationMax;
     private String titleLoan;
 
-    public InterestRate(int interestRate, int ageMin, int ageMax, int durationMax, String title) {
+    public InterestRate(float interestRate, int ageMin, int ageMax, int durationMax, String title) {
 
         this.interestRate = interestRate;
         this.ageMin = ageMin;
@@ -36,17 +36,18 @@ public class InterestRate {
 
         Connection connection = PdsDatabase.getConnection();
 
-        String queryIdTypeLoan = "SELECT id_types FROM TYPES WHERE title = ?";
+        String queryIdTypeLoan = "SELECT id_types as idTypeLoan FROM TYPES WHERE title = ?";
         PreparedStatement ordre = connection.prepareStatement(queryIdTypeLoan);
 
         ordre.setString(1, titleLoan);
-
+        System.out.println(titleLoan);
         ResultSet rs = ordre.executeQuery();
 
         System.out.println(queryIdTypeLoan);
+
         rs.next();
 
-        idTypeLoan = rs.getInt("id_types");
+        idTypeLoan = rs.getInt("idTypeLoan");
 
         ordre.close();
 
@@ -62,6 +63,7 @@ public class InterestRate {
 
         ordre2.executeUpdate();
 
+        System.out.println(queryInsertRate);
         ordre2.close();
     }
 
