@@ -162,7 +162,7 @@
           <StringArray count="3">
             <StringItem index="0" value="18 - 25"/>
             <StringItem index="1" value="26 - 45"/>
-            <StringItem index="2" value="46  - 50"/>
+            <StringItem index="2" value="46 - 50"/>
           </StringArray>
         </Property>
       </Properties>

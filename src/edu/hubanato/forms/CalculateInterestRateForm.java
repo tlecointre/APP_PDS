@@ -69,7 +69,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
 
         lblAge.setText("Age :");
 
-        cmbAge.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18 - 25", "26 - 45", "46  - 50" }));
+        cmbAge.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18 - 25", "26 - 45", "46 - 50" }));
 
         lblProSituation.setText("Situation professionnelle :");
 

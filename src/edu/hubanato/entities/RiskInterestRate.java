@@ -10,7 +10,7 @@ package edu.hubanato.entities;
  * @author Nadia Randria
  */
 public class RiskInterestRate {
-    
+
     private float interestRate;
     private String typeLoan;
     private int ageMin, ageMax;
@@ -32,18 +32,29 @@ public class RiskInterestRate {
 
         String str = "";
 
-        if(typeLoan == "Prêt à la consommation"){
-            
-            str = "Prêt à la consommation";
+        switch (typeLoan) {
+            case "Prêt à la consommation":
+                str = "Prêt à la consommation";
+                break;
+            case "Prêt automobile":
+                str = "Prêt automobile";
+                break;
+            case "Prêt immobilier":
+                if ("CDD".equals(proSituation) && "< 15".equals(persoContribution) && "> 33".equals(debtRatio) && (termLoanMin > 20 || termLoanMax > 20)) {
+                    str = "Profil médiocre";
+                }
+                else if ("CDI".equals(proSituation) && "15 - 20".equals(persoContribution) && "30 - 33".equals(debtRatio) && (termLoanMax == 15 || (termLoanMin > 15 && termLoanMax == 20))) {
+                    str = "Profil moyen";
+                }
+                else if ("CDI".equals(proSituation) && "20 - 30".equals(persoContribution) && "25 - 30".equals(debtRatio) && (termLoanMin >=10 && termLoanMax == 15)) {
+                    str = "Profil bon";            
+                }
+                else if ("CDI".equals(proSituation) && "> 30".equals(persoContribution) && "< 25".equals(debtRatio) && (termLoanMin == 7 && termLoanMax <= 10)) {
+                    str = "Profil excellent";            
+                }
+                break;
         }
-        else if(typeLoan == "Prêt automobile"){
-            str = "Prêt automobile";
-        }
-        else if(typeLoan == "Prêt immobilier"){
-            str = "Prêt immobilier";
-            
-        }
-        
+
         return str;
     }
 
