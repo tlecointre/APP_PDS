@@ -6,6 +6,7 @@
 package edu.hubanato.entities;
 
 import edu.hubanato.models.PdsDatabase;
+import edu.hubanato.server.InterfacePoolServer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,5 +52,27 @@ public class RateParentCompany {
         ordre.close();
 
         return rateDir;
+    }
+    
+    public static float getRate(int duration, String loanType) throws SQLException, ClassNotFoundException {
+        Connection connection = InterfacePoolServer.getConnection();
+        
+        String sql = "SELECT rate_dir FROM RATE r, TYPES t"
+                + "WHERE r.id_types = t.id_types "
+                + "AND t.title = ? AND ? BETWEEN r.duration_min AND r.duration_max";
+        
+        PreparedStatement ordre = connection.prepareStatement(sql);
+
+        ordre.setString(1, loanType);
+        ordre.setInt(2, duration);
+        
+        ResultSet rs = ordre.executeQuery();
+        
+        rs.next();
+        float rate = rs.getFloat("rate_dir");
+        
+        ordre.close();
+        InterfacePoolServer.returnConnection(connection);
+        return rate;
     }
 }
