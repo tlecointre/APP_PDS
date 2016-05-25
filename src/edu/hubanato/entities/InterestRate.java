@@ -6,6 +6,7 @@
 package edu.hubanato.entities;
 
 import edu.hubanato.models.PdsDatabase;
+import edu.hubanato.server.InterfacePoolServer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,6 +69,35 @@ public class InterestRate {
         System.out.println(queryInsertRate);
         
         ordre2.close();
+    }
+    
+    public static float getRate(int duration, int age, String loanType) throws SQLException, ClassNotFoundException {
+        Connection connection = InterfacePoolServer.getConnection();
+        
+        String sql = "SELECT intrate FROM INTEREST_RATE r, TYPES t "
+                + "WHERE r.id_types = t.id_types "
+                + "AND t.title = ? AND ? BETWEEN r.duration_min AND r.duration_max "
+                + "AND ? BETWEEN r.age_min AND r.age_max";
+        
+        PreparedStatement ordre = connection.prepareStatement(sql);
+
+        ordre.setString(1, loanType);
+        ordre.setInt(2, duration);
+        ordre.setInt(3, age);
+        
+        ResultSet rs = ordre.executeQuery();
+        
+        float rate;
+        if (rs.next()) {
+            rate = rs.getFloat("intrate");
+        } else {
+            rate = -1;
+        }
+        System.out.println(rate);
+        
+        ordre.close();
+        InterfacePoolServer.returnConnection(connection);
+        return rate;
     }
 
 }

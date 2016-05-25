@@ -90,6 +90,9 @@ public class Client extends Person {
         return idClient;
     }
     
+    public int getAge() {
+        return age;
+    }
     /**
      * Create a client and its adress in database
      * 

@@ -56,7 +56,7 @@ public class RateParentCompany {
     
     public static float getRate(int duration, String loanType) throws SQLException, ClassNotFoundException {
         Connection connection = InterfacePoolServer.getConnection();
-        System.out.println("yo");
+        
         String sql = "SELECT rate_dir FROM RATE r, TYPES t "
                 + "WHERE r.id_types = t.id_types "
                 + "AND t.title = ? AND ? BETWEEN r.duration_min AND r.duration_max";
@@ -67,9 +67,12 @@ public class RateParentCompany {
         ordre.setInt(2, duration);
         
         ResultSet rs = ordre.executeQuery();
-        
-        rs.next();
-        float rate = rs.getFloat("rate_dir");
+        float rate;
+        if (rs.next()) {
+            rate = rs.getFloat("rate_dir");
+        } else {
+            rate = -1;
+        }
         System.out.println(rate);
         ordre.close();
         InterfacePoolServer.returnConnection(connection);

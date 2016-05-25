@@ -2,6 +2,7 @@ package edu.hubanato.forms;
 
 import edu.hubanato.client.TCPClient;
 import edu.hubanato.entities.Client;
+import edu.hubanato.entities.InterestRate;
 import edu.hubanato.entities.RateParentCompany;
 import edu.hubanato.entities.Simulation;
 import java.io.IOException;
@@ -319,13 +320,21 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
     
     private void btnSeeRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeRateActionPerformed
         if (!txtDuration.getText().isEmpty()) {
-            System.out.println("yo");
             int duration = Integer.parseInt(txtDuration.getText());
             if (cmbDurationType.getSelectedIndex() == 1) { // duration in months
                 duration = duration / 12; // convert months in years (without rounding)
             }
             try {
-                labelParentRate.setText(RateParentCompany.getRate(duration, cmbLoanType.getSelectedItem().toString()) + "");
+                float parentRate = RateParentCompany.getRate(duration, cmbLoanType.getSelectedItem().toString());
+                float directorRate = InterestRate.getRate(duration, this.client.getAge(), cmbLoanType.getSelectedItem().toString());
+                if (parentRate == -1 || directorRate == -1) {
+                    JOptionPane.showMessageDialog(null, "Le montant et/ou la durée du prêt ne peuvent être appliqués pour un " +
+                            cmbLoanType.getSelectedItem().toString() + ".", 
+                            "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    labelDirectorRate.setText(directorRate + "");
+                    labelParentRate.setText(parentRate + "");
+                }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Veuillez saisir des chiffres et non des lettres dans les champs appropriés.",
                     "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
@@ -334,6 +343,9 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Veuillez selectionner la durée et le type de prêt pour visionner les taux.",
+                    "Avertissement", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnSeeRateActionPerformed
 
