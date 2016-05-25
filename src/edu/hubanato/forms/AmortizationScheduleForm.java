@@ -67,7 +67,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
         labelTotalInsurance = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(563, 450));
+        setPreferredSize(new java.awt.Dimension(580, 480));
 
         amortizationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

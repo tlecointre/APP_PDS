@@ -23,25 +23,25 @@ import javax.swing.JTextField;
  * @author Nadia Randria
  */
 public class CalculateInterestRateControl implements ActionListener {
-
+    
     private InterestRate intrate;
     private RateDirector ratedir;
-
+    
     private JComboBox loanType;
     private JComboBox age;
     private JComboBox professionalSituation;
     private JComboBox loanTerm;
     private JComboBox personalContribution;
     private JComboBox debtRatio;
-
+    
     private JTextField rateDirector;
     private JTextField interestRate;
-
+    
     private JTextArea resultEvaluation;
-
+    
     private JButton evaluate;
     private JButton saveInterestRate;
-
+    
     public CalculateInterestRateControl(JComboBox loanType, JComboBox age, JComboBox proSituation,
             JComboBox loanTerm, JComboBox persoContribution, JComboBox debtRatio, JTextArea evaluation,
             JTextField rated, JTextField inrate, JButton evaluate, JButton saveInterestRate) {
@@ -65,32 +65,56 @@ public class CalculateInterestRateControl implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evt) {
         Object source = evt.getSource();
-
+        
         if (source == evaluate) {
-
+            
             String type = loanType.getSelectedItem().toString();
+            
+            String str = age.getSelectedItem().toString();
+            int ageMin = Integer.parseInt(str.substring(0, 2));
+            int ageMax = Integer.parseInt(str.substring(5, 7));
+            
             String profession = professionalSituation.getSelectedItem().toString();
             int term = Integer.parseInt(loanTerm.getSelectedItem().toString());
             int contribution = Integer.parseInt(personalContribution.getSelectedItem().toString());
             int ratio = Integer.parseInt(debtRatio.getSelectedItem().toString());
-
-            resultEvaluation.setText("Type de prêt : " + type + "\n Situation Pro : " + profession + "\n Durée : "
+            
+            resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Situation Pro : " + profession + "\n Durée : "
                     + term + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio);
             
-            this.ratedir = new RateDirector();
+            this.ratedir = new RateDirector(term, type);
             
             try {
-                double rate = ratedir.SelectRateDirector(type, term);
+                float rate = ratedir.SelectRateDirector(type, term);
                 rateDirector.setText(String.valueOf(rate));
             } catch (SQLException ex) {
                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
         }
-
+        
         if (source == saveInterestRate) {
-
+            String type = loanType.getSelectedItem().toString();
+            //int agePers = Integer.parseInt(age.getSelectedItem().toString());
+            
+            String str = age.getSelectedItem().toString();
+            int ageMin = Integer.parseInt(str.substring(0, 2));
+            int ageMax = Integer.parseInt(str.substring(5, 7));
+            
+            int term = Integer.parseInt(loanTerm.getSelectedItem().toString());
+            float inRate = Float.parseFloat(interestRate.getText());
+            
+            resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée : "
+                    + term + "\n Type de prêt : " + type );
+            
+            this.intrate = new InterestRate(inRate, ageMin, ageMax, term, type);
+            
+            try {
+                intrate.SaveInterestRate();
+            } catch (SQLException ex) {
+                Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
-
+    
 }

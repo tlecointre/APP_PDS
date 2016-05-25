@@ -18,7 +18,8 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
      */
     public CalculateInterestRateForm() {
         initComponents();
-        btnEvaluate.addActionListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbAge, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
+        btnEvaluate.addActionListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbLoanTerm, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
+        btnSaveInterestRate.addActionListener(new CalculateInterestRateControl(cmbLoanType, cmbAge, cmbProSituation, cmbLoanTerm, cmbPersoContribution, cmbDebtRatio, txtaEvaluation, txtRateDirector, txtInterestRate, btnEvaluate, btnSaveInterestRate));
     }
 
     /**
@@ -37,7 +38,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
         lblProSituation = new javax.swing.JLabel();
         cmbProSituation = new javax.swing.JComboBox();
         lblLoanTerm = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        cmbLoanTerm = new javax.swing.JComboBox();
         lblPersoContribution = new javax.swing.JLabel();
         cmbPersoContribution = new javax.swing.JComboBox();
         lblDebtRatio = new javax.swing.JLabel();
@@ -67,7 +68,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
 
         lblAge.setText("Age :");
 
-        cmbAge.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18", "19", "20" }));
+        cmbAge.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18 - 25", "26 - 45", "46" }));
 
         lblProSituation.setText("Situation professionnelle :");
 
@@ -75,7 +76,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
 
         lblLoanTerm.setText("Durée du prêt :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25" }));
+        cmbLoanTerm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25" }));
 
         lblPersoContribution.setText("Apport personnel :");
 
@@ -100,8 +101,6 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
         txtRateDirector.setEnabled(false);
 
         lblInterestRate.setText("Taux d'intérêt :");
-
-        txtInterestRate.setEnabled(false);
 
         lblPercent3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblPercent3.setText("%");
@@ -182,7 +181,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(cmbDebtRatio, javax.swing.GroupLayout.Alignment.LEADING, 0, 103, Short.MAX_VALUE)
                                             .addComponent(cmbPersoContribution, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(cmbLoanTerm, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblYear)
@@ -223,7 +222,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblLoanTerm)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbLoanTerm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblYear))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -291,10 +290,10 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
     private javax.swing.JButton btnSaveInterestRate;
     private javax.swing.JComboBox cmbAge;
     private javax.swing.JComboBox cmbDebtRatio;
+    private javax.swing.JComboBox cmbLoanTerm;
     private javax.swing.JComboBox cmbLoanType;
     private javax.swing.JComboBox cmbPersoContribution;
     private javax.swing.JComboBox cmbProSituation;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAge;
