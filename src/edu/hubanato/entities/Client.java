@@ -16,9 +16,9 @@ import edu.hubanato.server.InterfacePoolServer;
 import java.util.logging.*;
 
 /**
- * Release R2
+ * Release R3
  *
- * @author hubanato
+ * @author Tom
  */
 public class Client extends Person {
 
@@ -29,7 +29,7 @@ public class Client extends Person {
     private String profession; 
 
     /**
-     * Constructor This method is used to create a new client
+     * Constructor 
      *
      * @param idClient
      * @param civility
@@ -86,72 +86,15 @@ public class Client extends Person {
         this.profession = profession;
     }
     
-    /**
-     * Constructor This method is used to create a new client
-     *
-     * @param civility
-     * @param name
-     * @param firstName
-     * @param birthDate
-     * @param birthPlace
-     * @param sex
-     * @param nationality
-     * @param number
-     * @param street
-     * @param add
-     * @param cp
-     * @param city
-     * @param country
-     * @param pNumber
-     * @param pHome
-     * @param pBusiness
-     * @param email
-     * @param job
-     * @param age
-     * @param profession
-     * @param income
-     */
-    public Client(String civility, String name, String firstName, Date birthDate, String birthPlace,
-                    String sex, String nationality, int number, String street, String add, String cp,
-                    String city, String country, int pNumber, int pHome, int pBusiness, String email,
-                    String job, int age, int income, String profession) {
-
-        this.civility = civility;
-        this.name = name;
-        this.firstName = firstName;
-        this.birthDate = birthDate;
-        this.birthPlace = birthPlace;
-        this.sex = sex;
-        this.nationality = nationality;
-
-        this.number = number;
-        this.Street = street;
-        this.Additional = add;
-        this.cp = cp;
-        this.city = city;
-        this.country = country;
-
-        this.phoneNumber = pNumber;
-        this.phoneHome = pHome;
-        this.phoneBusiness = pBusiness;
-        this.email = email;
-        this.job = job;
-        
-        this.age = age;
-        this.income = income;
-        this.profession = profession;
-    }
-    
-    public Client() {
-
-    }
-
     public int getIdClient() {
         return idClient;
     }
     
     /**
-     * Create a client in database
+     * Create a client and its adress in database
+     * 
+     * @throws SQLException
+     * @throws ClassNotFoundException 
      */
     @Override
     public void createPerson() throws SQLException, ClassNotFoundException {
@@ -221,6 +164,7 @@ public class Client extends Person {
      * @param id : ID client
      * @return client found
      * @throws SQLException
+     * @throws ClassNotFoundException
      */
     public static Client getById(int id) throws SQLException, ClassNotFoundException {
         Connection connection = InterfacePoolServer.getConnection();
@@ -252,6 +196,7 @@ public class Client extends Person {
      * @param firstName : client first name
      * @return client found
      * @throws SQLException
+     * @throws ClassNotFoundException
      */
     public static List<Client> getByNamePC(String name, String firstName, String postalCode) throws SQLException, ClassNotFoundException {
         Connection connection = InterfacePoolServer.getConnection();
@@ -281,6 +226,9 @@ public class Client extends Person {
 
     /**
      * Update a client in database
+     * 
+     * @throws SQLException
+     * @throws ClassNotFoundException 
      */
     public void updatePerson() throws SQLException, ClassNotFoundException {
         Connection connection = InterfacePoolServer.getConnection();
@@ -295,8 +243,11 @@ public class Client extends Person {
     }
 
     /**
-     * Delete a client in database
+     * Delete a client
+     * 
      * @param id
+     * @throws SQLException
+     * @throws ClassNotFoundException 
      */
     @Override
     public void deletePerson(int id) throws SQLException, ClassNotFoundException {

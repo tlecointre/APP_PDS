@@ -7,10 +7,7 @@ import edu.hubanato.entities.Simulation;
 import java.util.List;
 import java.lang.reflect.Type;
 
-/**
- *
- * @author Baptiste
- */
+
 public class DecodeJSON {
     
     private static Gson gson = new Gson();

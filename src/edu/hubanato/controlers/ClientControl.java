@@ -34,7 +34,7 @@ public class ClientControl implements ActionListener {
     
 
     /**
-     * Constructor
+     * Default constructor.
      *
      * @param civility
      * @param name
@@ -113,57 +113,62 @@ public class ClientControl implements ActionListener {
                     
                     if (validateEmail()) {
                     
-                        // optional fields control :
-                        String additional;
-                        if (add.getText().isEmpty()) {
-                            additional = "non renseigné";
-                        } else {
-                            additional = add.getText();
-                        }
-
-                        String employment;
-                        if (job.getText().isEmpty()) {
-                            employment = "non renseigné";
-                        } else {
-                            employment = job.getText();
-                        }
-
-                        int phoneBusiness;
-                        if (pbusiness.getText().isEmpty()) {
-                            phoneBusiness = 0;
-                        } else {
-                            phoneBusiness = Integer.parseInt(pbusiness.getText());
-                        }
-
-                        int phoneHome;
-                        if (phome.getText().isEmpty()) {
-                            phoneHome = 0;
-                        } else {
-                            phoneHome = Integer.parseInt(phome.getText());
-                        }
-
-                        // client creation
-                        this.client = new Client(civility.getSelectedItem().toString(), name.getText(), firstName.getText(),
-                                        convertUtilToSql(birthDate.getDate()), birthPlace.getText(),
-                                        sex.getSelectedItem().toString(), nationality.getSelectedItem().toString(),
-                                        Integer.parseInt(nb.getText()), street.getText(), additional,
-                                        cp.getText(), city.getText(), country.getSelectedItem().toString(),
-                                        Integer.parseInt(pnumber.getText()), phoneHome,
-                                        phoneBusiness, email.getText(), employment,
-                                        Integer.parseInt(age.getText()), Integer.parseInt(income.getText()),
-                                        profession.getSelectedItem().toString());
-                        try {
-                            TCPClient tcpClient = new TCPClient("localhost",9999);
-                            tcpClient.sendQuery("cc", edu.hubanato.serialization.EncodeJSON.serializeClient(this.client));
-                            String response = tcpClient.receiveQuery();
-                            if (response.equals("ok")) {
-                                JOptionPane.showMessageDialog(null, "Client ajouté");
+                        if (Integer.parseInt(age.getText()) > 17) { 
+                            // optional fields control :
+                            String additional;
+                            if (add.getText().isEmpty()) {
+                                additional = "non renseigné";
                             } else {
-                                JOptionPane.showMessageDialog(null, "La connexion au serveur a échoué.", 
-                                "Erreur serveur", JOptionPane.ERROR_MESSAGE);
+                                additional = add.getText();
                             }
-                        } catch (IOException ex) {
-                            Logger.getLogger(ClientControl.class.getName()).log(Level.SEVERE, null, ex);
+
+                            String employment;
+                            if (job.getText().isEmpty()) {
+                                employment = "non renseigné";
+                            } else {
+                                employment = job.getText();
+                            }
+
+                            int phoneBusiness;
+                            if (pbusiness.getText().isEmpty()) {
+                                phoneBusiness = 0;
+                            } else {
+                                phoneBusiness = Integer.parseInt(pbusiness.getText());
+                            }
+
+                            int phoneHome;
+                            if (phome.getText().isEmpty()) {
+                                phoneHome = 0;
+                            } else {
+                                phoneHome = Integer.parseInt(phome.getText());
+                            }
+
+                            // client creation
+                            this.client = new Client(-1, civility.getSelectedItem().toString(), name.getText(), firstName.getText(),
+                                            convertUtilToSql(birthDate.getDate()), birthPlace.getText(),
+                                            sex.getSelectedItem().toString(), nationality.getSelectedItem().toString(),
+                                            Integer.parseInt(nb.getText()), street.getText(), additional,
+                                            cp.getText(), city.getText(), country.getSelectedItem().toString(),
+                                            Integer.parseInt(pnumber.getText()), phoneHome,
+                                            phoneBusiness, email.getText(), employment,
+                                            Integer.parseInt(age.getText()), Integer.parseInt(income.getText()),
+                                            profession.getSelectedItem().toString());
+                            try {
+                                TCPClient tcpClient = new TCPClient("localhost",9999);
+                                tcpClient.sendQuery("cc", edu.hubanato.serialization.EncodeJSON.serializeClient(this.client));
+                                String response = tcpClient.receiveQuery();
+                                if (response.equals("ok")) {
+                                    JOptionPane.showMessageDialog(null, "Client ajouté");
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "La connexion au serveur a échoué.", 
+                                    "Erreur serveur", JOptionPane.ERROR_MESSAGE);
+                                }
+                            } catch (IOException ex) {
+                                Logger.getLogger(ClientControl.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "L'utilisateur ne peut pas avoir moins de 18 ans.", 
+                            "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "L'adresse email n'est pas correcte.", 
@@ -269,6 +274,11 @@ public class ClientControl implements ActionListener {
             return true;
     }
     
+    /**
+     * returns true if the email format is correct
+     * 
+     * @return boolean 
+     */
     private boolean validateEmail() {
         Pattern pattern = Pattern.compile("^.+@.+(\\.[A-Za-z]{2,})$");
         Matcher matcher = pattern.matcher(email.getText());

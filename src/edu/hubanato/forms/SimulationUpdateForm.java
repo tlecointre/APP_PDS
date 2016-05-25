@@ -17,6 +17,12 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
     private Simulation simulation;
     private Client client;
     
+    /**
+     * Default constructor.
+     * 
+     * @param simulation
+     * @param client 
+     */
     public SimulationUpdateForm(Simulation simulation, Client client) {
         initComponents();
         this.simulation = simulation;
