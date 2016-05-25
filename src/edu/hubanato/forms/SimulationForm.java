@@ -61,7 +61,7 @@ public class SimulationForm extends javax.swing.JFrame {
         labelInsuranceRate = new javax.swing.JLabel();
         txtInsuranceRate = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Simulation d'un prêt à taux fixe");
 
         labelTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
