@@ -28,7 +28,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 /**
- *
+ * This class is used to create the Amortization Schedule form
  * @author Tony
  */
 public class AmortizationScheduleForm extends javax.swing.JFrame {
@@ -37,12 +37,14 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
     private DefaultCategoryDataset datasetLineChartAmount, datasetBarChartGlobal;
     private DefaultPieDataset datasetPieChartGlobal = new DefaultPieDataset();
 
+    /**
+     * The constructor initializes the different datasets.
+     */
     public AmortizationScheduleForm() {
         initComponents();
         datasetLineChartAmount = new DefaultCategoryDataset();
         datasetBarChartGlobal = new DefaultCategoryDataset();
         datasetPieChartGlobal = new DefaultPieDataset();
-        //am = new AmortizationCalc(this);
     }
 
     /**
@@ -173,6 +175,10 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This method is activated by clicking on the "Print" button.
+     * It allows the customer to print the amortization schedule. 
+     */
     private void printButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printButtonActionPerformed
 
         try {
@@ -202,27 +208,30 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_printButtonActionPerformed
 
+    /**
+     * This method is activated by clicking on the "Graph" button.
+     * It displays the different graphs and includes a print button.
+     */
     private void buttonGraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGraphActionPerformed
         JFrame graphFrame = new JFrame();
         graphFrame.setTitle("Graph");
         graphFrame.setSize(400, 300);
         graphFrame.setLocationRelativeTo(null);
 
-        //Instanciation d'un objet JPanel
+        //Creates JPanel
         JPanel pan = new JPanel();
         pan.setLayout(new GridBagLayout());
 
-        //L'objet servant à positionner les composants
+        //Creates GridBagCinstraints to place elements on the screen
         GridBagConstraints gbc = new GridBagConstraints();
 
-        //On positionne la case de départ du composant
+        //Set up the starting position
         gbc.gridx = 0;
         gbc.gridy = 0;
-        //La taille en hauteur et en largeur
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
 
-        //Premier graph: Reste à payer (Montant) -> LineChart
+        //Start of First graph: LineChart
         JFreeChart lineChartAmount = ChartFactory.createLineChart(
                 "Reste  à payer(Montant)",
                 "Année", "Montant",
@@ -238,9 +247,9 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
                 pan1.getEntityForPoint(me.getX(), me.getY());
             }
         });
-        //Fin premier graph
+        //End of First Graph
 
-        //Deuxième graph -> Total payé(intérêt + montant + assurance)
+        //Start of Second Graph: BarChart
         JFreeChart barChartGlobal = ChartFactory.createBarChart(
                 "Payé (Total)",
                 "Année",
@@ -257,12 +266,12 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
                 pan2.getEntityForPoint(me.getX(), me.getY());
             }
         });
-        //FIn deuxième graph
+        //End of Second Graph
 
-        //Troisième graphe -> Camembert
+        //Third Graph: PieChart
         JFreeChart pieChartGlobal = ChartFactory.createPieChart(
                 "Répartition",
-                datasetPieChartGlobal,
+                dataImportPieChartGlobal(),
                 true,
                 true,
                 false);
@@ -274,7 +283,7 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
                 pan3.getEntityForPoint(me.getX(), me.getY());
             }
         });
-        //Fin troisième graphe
+        //End of Third Graph
 
         pan1.setPreferredSize(new Dimension(500, 200));
         pan2.setPreferredSize(new Dimension(500, 200));
@@ -297,11 +306,12 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
         gbc.gridx = 2;
         gbc.gridy = 1;
         pan.add(buttonPrint, gbc);
-        //On prévient notre JFrame que notre JPanel sera son content pane
+
         graphFrame.setContentPane(pan);
         graphFrame.pack();
         graphFrame.setVisible(true);
 
+        //Adding a button to print the graphs
         buttonPrint.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 buttonPrint.setVisible(false);
@@ -338,58 +348,114 @@ public class AmortizationScheduleForm extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_buttonGraphActionPerformed
 
+    /**
+        * @return the dataset of the LineChart.
+    */
     private DefaultCategoryDataset dataImportLineChart() {
         return datasetLineChartAmount;
     }
 
+    /**
+        * @return the dataset of the BarChart.
+    */
     private DefaultCategoryDataset dataImportBarChartGlobal() {
         return datasetBarChartGlobal;
     }
 
+    /**
+        * @return the dataset of the PieChart.
+    */
     private DefaultPieDataset dataImportPieChartGlobal() {
         return datasetPieChartGlobal;
     }
 
+    /**
+     * This method insert the parameters into the dataset used by the LineChart.
+     * @param amount
+        * Amount already paid of the loan for a month.
+     * @param month
+        * Month concerned.
+    */
     public void insertDataToLineChartAmount(double amount, int month) {
         datasetLineChartAmount.addValue(amount, "Montant", String.valueOf(month / 12));
     }
 
+    /**
+     * This method insert the parameters into the dataset used by the BarChart.
+     * @param amount
+        * Amount that the client will have paid for the month.
+     * @param label 
+        * Name of the type: Insurance/Interest/Amount.
+     * @param month
+        * Month concerned.
+    */
     public void insertDataToBarChartGlobal(double amount, String label, int month) {
         datasetBarChartGlobal.addValue(amount, label, String.valueOf(month / 12));
     }
 
-    public void insertDataToPieChartGlobal(String label, double value) {
-        datasetPieChartGlobal.setValue(label, value);
+    /**
+     * This method insert the parameters into the dataset used by the PieChart.
+     * @param label
+        * Name of the type: Insurance/Interest/Amount.
+     * @param amount 
+        * Amount that the client has to pay for the label.
+    */
+    public void insertDataToPieChartGlobal(String label, double amount) {
+        datasetPieChartGlobal.setValue(label, amount);
     }
 
+    /**
+     * @return  The amortization schedule which is a JTable.
+    */
     public JTable getTable() {
         return amortizationTable;
     }
 
+    /**
+     * @return The label used to display the amount of loan.
+    */
     public JLabel getLabelAMount() {
         return labelAmount;
     }
 
+    /**
+     * @return The label used to display the duration of loan.
+    */
     public JLabel getLabelDuration() {
         return labelDuration;
     }
 
+    /**
+     * @return The label used to display the insurance rate of loan.
+    */
     public JLabel getLabelInsurance() {
         return labelInsurance;
     }
 
+    /**
+     * @return The label used to display the rate of loan.
+    */
     public JLabel getLabelRate() {
         return labelRate;
     }
 
+    /**
+     * @return The label used to display the amount of insurance paid for the loan.
+    */
     public JLabel getLabelTotalInsurance() {
         return labelTotalInsurance;
     }
 
+    /**
+     * @return The label used to display the amount of interest paid for the loan.
+    */
     public JLabel getLabelTotalInterest() {
         return labelTotalInterest;
     }
 
+    /**
+     * @return The label used to display the amount paid for the loan excluding insurance.
+    */
     public JLabel getLabelTotalWithoutInterest() {
         return labelTotalWithoutInsurance;
     }
