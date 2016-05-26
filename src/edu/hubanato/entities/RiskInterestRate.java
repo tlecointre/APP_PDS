@@ -20,11 +20,11 @@ public class RiskInterestRate {
     /**
      * This method permit to retrieve the parameters which define the risks
      * 
-     * @param typeLoan
-     * @param ageMin
-     * @param ageMax
-     * @param proSituation
-     * @param termLoanMin
+     * @param typeLoan Type of the loan
+     * @param ageMin Age minimum
+     * @param ageMax Age maximum
+     * @param proSituation Professional situation
+     * @param termLoanMin  
      * @param termLoanMax
      * @param persoContribution
      * @param debtRatio 
