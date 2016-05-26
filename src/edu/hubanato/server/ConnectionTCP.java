@@ -44,6 +44,7 @@ public class ConnectionTCP extends TCPServerThread {
                     String jsonObject = clientSentence.substring(2);
                     Simulation s; Client c; InterestRate rd; RateParentCompany pr;
                     List<Simulation> simulations; List<Client> clients;
+                    InterestRate t; RateParentCompany r;
                     
                     switch (sqlQuery) {
                         case "cs" : // create simulation
@@ -73,6 +74,11 @@ public class ConnectionTCP extends TCPServerThread {
                             String clientsJson = edu.hubanato.serialization.EncodeJSON.serializeClients(clients);
                             p.println(clientsJson);
                             break;
+                        case "ct" : // save the interest rate
+                            t = edu.hubanato.serialization.DecodeJSON.deserializeInterestRate(jsonObject);
+                            t.saveInterestRate();
+                            p.println("ok");
+                            break;   
                         case "dr" : // get directory rate
                             break;
                         case "pr" : // get parent company rate    
