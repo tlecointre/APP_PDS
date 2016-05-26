@@ -42,10 +42,13 @@ public class RateParentCompany {
      * This constructor permit to recover the rate of the parent company
      * 
      * @return ratedir
+     * 
      * @throws SQLException 
+     * @throws java.lang.ClassNotFoundException 
      */
-    public float selectRateDirector() throws SQLException {
-        Connection connection = PdsDatabase.getConnection();
+    public float selectRateDirector() throws SQLException, ClassNotFoundException {
+        //Connection connection = PdsDatabase.getConnection();
+        Connection connection = InterfacePoolServer.getConnection();
 
         String sql = "SELECT rate_dir FROM RATE r, TYPES t "
                 + "WHERE r.id_types = t.id_types "
@@ -66,6 +69,7 @@ public class RateParentCompany {
 
         ordre.close();
 
+        InterfacePoolServer.returnConnection(connection);
         return rateDir;
     }
     
@@ -77,6 +81,7 @@ public class RateParentCompany {
      * @param loanType
      * 
      * @return rate
+     * 
      * @throws SQLException
      * @throws ClassNotFoundException 
      */

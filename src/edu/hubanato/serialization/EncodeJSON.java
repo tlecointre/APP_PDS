@@ -1,10 +1,5 @@
 package edu.hubanato.serialization;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.ParseException;
-import org.json.simple.JSONObject;
-
 import com.google.gson.Gson;
 import edu.hubanato.entities.Client;
 import edu.hubanato.entities.InterestRate;
@@ -24,8 +19,8 @@ public class EncodeJSON {
         return gson.toJson(r);
     }
     
-    public static String serializeInterestRate(InterestRate r) {
-        return gson.toJson(r);
+    public static String serializeInterestRate(InterestRate t) {
+        return gson.toJson(t);
     }
     
     public static String serializeClients(List<Client> c) {
@@ -47,4 +42,5 @@ public class EncodeJSON {
     public static String serializeInteger(int s) {
         return gson.toJson(s);
     }
+    
 }

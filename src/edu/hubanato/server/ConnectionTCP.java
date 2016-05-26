@@ -1,6 +1,8 @@
 package edu.hubanato.server;
 
 import edu.hubanato.entities.Client;
+import edu.hubanato.entities.InterestRate;
+import edu.hubanato.entities.RateParentCompany;
 import edu.hubanato.entities.Simulation;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -42,6 +44,7 @@ public class ConnectionTCP extends TCPServerThread {
                     String jsonObject = clientSentence.substring(2);
                     Simulation s; Client c;
                     List<Simulation> simulations; List<Client> clients;
+                    InterestRate t; RateParentCompany r;
                     
                     switch (sqlQuery) {
                         case "cs" : // create simulation
@@ -71,6 +74,11 @@ public class ConnectionTCP extends TCPServerThread {
                             String clientsJson = edu.hubanato.serialization.EncodeJSON.serializeClients(clients);
                             p.println(clientsJson);
                             break;
+                        case "ct" : // save the interest rate
+                            t = edu.hubanato.serialization.DecodeJSON.deserializeInterestRate(jsonObject);
+                            t.saveInterestRate();
+                            p.println("ok");
+                            break;   
                         default :
                             System.out.println("no query");
                     }

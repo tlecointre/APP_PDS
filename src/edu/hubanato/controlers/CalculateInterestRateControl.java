@@ -5,6 +5,7 @@
  */
 package edu.hubanato.controlers;
 
+import edu.hubanato.client.TCPClient;
 import edu.hubanato.entities.InterestRate;
 import edu.hubanato.entities.RateParentCompany;
 import edu.hubanato.entities.RiskInterestRate;
@@ -12,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -131,7 +133,9 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                     } catch (SQLException ex) {
                         Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
                     break;
                 }
                 case "Prêt immobilier": {
@@ -170,7 +174,9 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                             } catch (SQLException ex) {
                                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                             break;
                         }
                         default: {
@@ -200,7 +206,9 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                             } catch (SQLException ex) {
                                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            } catch (ClassNotFoundException ex) {
+                            Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                             break;
                         }
                     }
@@ -234,11 +242,21 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                             resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
                                     + durationMin + "\n Durée Max : " + durationMax + "\n Type de prêt : " + type);
 
-                            this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
+                            /*this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
                             try {
-                                intrate.saveInterestRate();
-                            } catch (SQLException ex) {
-                                Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                             intrate.saveInterestRate();
+                             } catch (SQLException ex) {
+                             Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                             }*/
+                            InterestRate t = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
+                            TCPClient tcpClient = new TCPClient("localhost", 9999);
+                            tcpClient.sendQuery("ct", edu.hubanato.serialization.EncodeJSON.serializeInterestRate(t));
+                            String response = tcpClient.receiveQuery();
+                            if (response.equals("ok")) {
+                                JOptionPane.showMessageDialog(null, "La taux de l'agence a été sauvegardée");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "La connexion au serveur a échoué.",
+                                        "Erreur serveur", JOptionPane.ERROR_MESSAGE);
                             }
                             break;
                         }
@@ -258,11 +276,21 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                                     resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
                                             + durationMin + "\n Durée Max : " + durationMax + "\n Type de prêt : " + type);
 
-                                    this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
-                                    try {
-                                        intrate.saveInterestRate();
-                                    } catch (SQLException ex) {
-                                        Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                                    /*this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
+                                     try {
+                                     intrate.saveInterestRate();
+                                     } catch (SQLException ex) {
+                                     Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                                     }*/
+                                    InterestRate t = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
+                                    TCPClient tcpClient = new TCPClient("localhost", 9999);
+                                    tcpClient.sendQuery("ct", edu.hubanato.serialization.EncodeJSON.serializeInterestRate(t));
+                                    String response = tcpClient.receiveQuery();
+                                    if (response.equals("ok")) {
+                                        JOptionPane.showMessageDialog(null, "La taux de l'agence a été sauvegardée");
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "La connexion au serveur a échoué.",
+                                                "Erreur serveur", JOptionPane.ERROR_MESSAGE);
                                     }
                                     break;
                                 }
@@ -275,11 +303,21 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                                     resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
                                             + durationMin + "\n Durée Max : " + durationMax + "\n Type de prêt : " + type);
 
-                                    this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
-                                    try {
-                                        intrate.saveInterestRate();
-                                    } catch (SQLException ex) {
-                                        Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                                    /*this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
+                                     try {
+                                     intrate.saveInterestRate();
+                                     } catch (SQLException ex) {
+                                     Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                                     }*/
+                                    InterestRate t = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
+                                    TCPClient tcpClient = new TCPClient("localhost", 9999);
+                                    tcpClient.sendQuery("ct", edu.hubanato.serialization.EncodeJSON.serializeInterestRate(t));
+                                    String response = tcpClient.receiveQuery();
+                                    if (response.equals("ok")) {
+                                        JOptionPane.showMessageDialog(null, "La taux de l'agence a été sauvegardée");
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "La connexion au serveur a échoué.",
+                                                "Erreur serveur", JOptionPane.ERROR_MESSAGE);
                                     }
                                     break;
                                 }
@@ -290,6 +328,8 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Veuillez saisir des chiffres et non des lettres dans les champs appropriés.",
                             "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+                } catch (IOException ex) {
+                    Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Veuillez remplir le taux appliqué par l'agence",

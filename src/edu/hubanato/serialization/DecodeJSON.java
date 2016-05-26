@@ -18,12 +18,12 @@ public class DecodeJSON {
         return gson.fromJson(c, Client.class);
     }
     
-    public static RateParentCompany deserializeRateParentCompany(String c) {
-        return gson.fromJson(c, RateParentCompany.class);
+    public static RateParentCompany deserializeRateParentCompany(String r) {
+        return gson.fromJson(r, RateParentCompany.class);
     }
     
-    public static InterestRate deserializeInterestRate(String c) {
-        return gson.fromJson(c, InterestRate.class);
+    public static InterestRate deserializeInterestRate(String t) {
+        return gson.fromJson(t, InterestRate.class);
     }
     
     public static List<Client> deserializeClients(String c) {
