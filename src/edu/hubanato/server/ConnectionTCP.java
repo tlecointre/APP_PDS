@@ -42,7 +42,7 @@ public class ConnectionTCP extends TCPServerThread {
                     
                     String sqlQuery = clientSentence.substring(0,2);
                     String jsonObject = clientSentence.substring(2);
-                    Simulation s; Client c; InterestRate rd; RateParentCompany pr;
+                    Simulation s; Client c;
                     List<Simulation> simulations; List<Client> clients;
                     InterestRate t; RateParentCompany r;
                     
@@ -80,9 +80,18 @@ public class ConnectionTCP extends TCPServerThread {
                             p.println("ok");
                             break;   
                         case "dr" : // get directory rate
+                            List<String> info = edu.hubanato.serialization.DecodeJSON.deserializeListString(jsonObject);
+                            float i = InterestRate.getRate(Integer.parseInt(info.get(0)), Integer.parseInt(info.get(1)), info.get(2));
+                            System.out.println("ConnectionTCP - case pr : " + i);
+                            String rateJson = edu.hubanato.serialization.EncodeJSON.serializeFloat(i);
+                            p.println(rateJson);
                             break;
                         case "pr" : // get parent company rate    
-                            
+                            List<String> infoRate = edu.hubanato.serialization.DecodeJSON.deserializeListString(jsonObject);
+                            float pcr = RateParentCompany.getRate(Integer.parseInt(infoRate.get(0)), infoRate.get(1));
+                            System.out.println("ConnectionTCP - case pr : " + pcr);
+                            String rate = edu.hubanato.serialization.EncodeJSON.serializeFloat(pcr);
+                            p.println(rate);
                             break;
                         default :
                             System.out.println("no query");

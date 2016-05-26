@@ -113,13 +113,21 @@ public class SimulationMenuForm extends javax.swing.JFrame {
     private void btnSimulationManagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimulationManagementActionPerformed
         new SimulationManagementForm().setVisible(true);
     }//GEN-LAST:event_btnSimulationManagementActionPerformed
-
+    
+    /**
+     * Start of FormRateVariable
+     * @param evt 
+     */
     private void btnVariableLoanSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVariableLoanSimulationActionPerformed
         new FormRateVariable().setVisible(true);
     }//GEN-LAST:event_btnVariableLoanSimulationActionPerformed
-
+    
+    /**
+     * Start of CalculateInterestRateForm
+     * @param evt 
+     */
     private void btnDetermineInterestRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetermineInterestRateActionPerformed
-        // TODO add your handling code here:
+        new CalculateInterestRateForm().setVisible(true);
     }//GEN-LAST:event_btnDetermineInterestRateActionPerformed
 
     /**

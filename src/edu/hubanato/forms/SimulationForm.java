@@ -9,6 +9,8 @@ import edu.hubanato.entities.Simulation;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -312,15 +314,27 @@ public class SimulationForm extends javax.swing.JFrame {
 
     private void btnSeeRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeRateActionPerformed
         if (!txtDuration.getText().isEmpty()) {
-            int duration = Integer.parseInt(txtDuration.getText());
+            try {
+                int duration = Integer.parseInt(txtDuration.getText());
                 if (cmbTypeDuration.getSelectedIndex() == 1) { // duration in months
                     duration = duration / 12; // convert months in years (without rounding)
                 }
-            try {
-                float parentRate = RateParentCompany.getRate(duration, cmbLoanType.getSelectedItem().toString());
-                float directorRate = InterestRate.getRate(duration, this.client.getAge(), cmbLoanType.getSelectedItem().toString());
+                TCPClient tcpClient = new TCPClient("localhost",9999);
+                List<String> infoParentRate = new ArrayList<String>();
+                infoParentRate.add(duration + ""); infoParentRate.add(cmbLoanType.getSelectedItem().toString());
+                tcpClient.sendQuery("pr", edu.hubanato.serialization.EncodeJSON.serializeListString(infoParentRate));
+                float parentRate = edu.hubanato.serialization.DecodeJSON.deserializeFloat(tcpClient.receiveQuery());
+                
+                TCPClient tcpClient2 = new TCPClient("localhost",9999);
+                List<String> infoDirectorRate = new ArrayList<String>();
+                infoDirectorRate.add(duration + ""); infoDirectorRate.add(this.client.getAge() + "");
+                infoDirectorRate.add(cmbLoanType.getSelectedItem().toString());
+                tcpClient2.sendQuery("dr", edu.hubanato.serialization.EncodeJSON.serializeListString(infoDirectorRate));
+                float directorRate = edu.hubanato.serialization.DecodeJSON.deserializeFloat(tcpClient2.receiveQuery());
+                
                 if (parentRate == -1 || directorRate == -1) {
-                    JOptionPane.showMessageDialog(null, "Le montant et/ou la durée du prêt ne peuvent être appliqués pour un " +
+                    JOptionPane.showMessageDialog(null, "la durée de prêt et/ou l'âge du client "
+                            + "ne peuvent être appliqués pour un " +
                             cmbLoanType.getSelectedItem().toString() + ".", 
                             "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
                 } else {
@@ -328,11 +342,11 @@ public class SimulationForm extends javax.swing.JFrame {
                     labelParentRate.setText(parentRate + "");
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Veuillez saisir des chiffres et non des lettres dans les champs appropriés.", 
+                JOptionPane.showMessageDialog(null, "la durée de prêt et/ou l'âge du client "
+                            + "ne peuvent être appliqués pour un " +
+                            cmbLoanType.getSelectedItem().toString() + ".", 
                             "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
-            } catch (SQLException ex) {
-                Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(SimulationForm.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {

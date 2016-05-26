@@ -44,6 +44,7 @@ public class EncodeJSON {
     }
     
     public static String serializeFloat(float s) {
+        System.out.println("EncodeJSON - method serializeFloat" + s);
         return gson.toJson(s);
     }
 }

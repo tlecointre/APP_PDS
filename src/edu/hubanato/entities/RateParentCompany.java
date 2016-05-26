@@ -104,7 +104,7 @@ public class RateParentCompany {
         } else {
             rate = -1;
         }
-        System.out.println(rate);
+        System.out.println("RateParentCompany - method getRate() :" + rate);
         ordre.close();
         InterfacePoolServer.returnConnection(connection);
         return rate;

@@ -4,6 +4,10 @@ import java.net.* ;
 import java.io.* ;
 import java.util.logging.* ;
 
+/**
+ * 
+ * @author Tom
+ */
 public class TCPClient {
     
     private Socket sck;
@@ -17,7 +21,7 @@ public class TCPClient {
             PrintWriter p = new PrintWriter(new BufferedWriter(new OutputStreamWriter(sck.getOutputStream())),true);
 
             p.println(query_name + jsonObject);
-            System.out.println(query_name + jsonObject);
+            System.out.println("TCPClient - sendQuery : " + query_name + jsonObject);
             
         } catch(IOException exc) {
             Logger.global.log(Level.SEVERE,"serveur",exc) ;
@@ -28,8 +32,9 @@ public class TCPClient {
         try {
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(sck.getInputStream()));
 
-            return inFromServer.readLine();
-            
+            String s = inFromServer.readLine();
+            System.out.println("TCPClient - receiveQuery : " + s);
+            return s;
         } catch(IOException exc) {
             Logger.global.log(Level.SEVERE,"serveur",exc) ;
         }
