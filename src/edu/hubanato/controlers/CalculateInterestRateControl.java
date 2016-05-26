@@ -24,7 +24,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * This class is used to define the interest rate by the director
+ * This class is used to control all the manipulations we do to define the interest rate
  *
  * @author Nadia Randria
  */
@@ -51,17 +51,17 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
     /**
      *
-     * @param loanType
-     * @param age
-     * @param proSituation
-     * @param loanTerm
-     * @param persoContribution
-     * @param debtRatio
-     * @param evaluation
-     * @param rated
-     * @param inrate
-     * @param evaluate
-     * @param saveInterestRate
+     * @param loanType Tpe of the loan
+     * @param age Age
+     * @param proSituation Professional situation
+     * @param loanTerm Duration of the loan
+     * @param persoContribution Personal contribution
+     * @param debtRatio Debt rate
+     * @param evaluation Display of the risks
+     * @param rated Rate of the parent comapny
+     * @param inrate Interst rate
+     * @param evaluate Button used to evaluate the risks
+     * @param saveInterestRate Button used to save the interest rate
      */
     public CalculateInterestRateControl(JComboBox loanType, JComboBox age, JComboBox proSituation,
             JComboBox loanTerm, JComboBox persoContribution, JComboBox debtRatio, JTextArea evaluation,
@@ -80,9 +80,10 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
     }
 
     /**
-     * This method is called when we clicked one of the button of the form
-     * CalculateInterestRateForm.java The treatment depends on which button is
-     * clicked
+     * This method is called when we clicked on one of the button of the form
+     * CalculateInterestRateForm.java 
+     * 
+     * The treatment depends on which button is clicked
      *
      * @param evt
      */
@@ -128,8 +129,8 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                         String viewRisk = risk.viewRisk(type);
 
-                        resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + "ans \n - Durée Minimum de  : "
-                                + durationMin + "ans \n - Durée maximum de : " + durationMax + "ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\n\n\n Les risques : \n" + viewRisk);
+                        resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + " ans \n - Durée Minimum de  : "
+                                + durationMin + " ans \n - Durée maximum de : " + durationMax + " ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\nLes risques : \n" + viewRisk);
 
                     } catch (SQLException ex) {
                         Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
@@ -169,8 +170,8 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                                 String viewRisk = risk.viewRisk(type);
 
-                                resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + "ans \n - Durée Minimum de  : "
-                                        + durationMin + "ans \n - Durée maximum de : " + durationMax + "ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\n\n\n Les risques : \n" + viewRisk);
+                                resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + " ans \n - Durée Minimum de  : "
+                                        + durationMin + " ans \n - Durée maximum de : " + durationMax + " ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\nLes risques : \n" + viewRisk);
 
                             } catch (SQLException ex) {
                                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
@@ -201,8 +202,8 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                                 String viewRisk = risk.viewRisk(type);
 
-                                resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + "ans \n - Durée Minimum de  : "
-                                        + durationMin + "ans \n - Durée maximum de : " + durationMax + "ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\n\n\n Les risques : \n" + viewRisk);
+                                resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + " ans \n - Durée Minimum de  : "
+                                        + durationMin + " ans \n - Durée maximum de : " + durationMax + " ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\nLes risques : \n" + viewRisk);
 
                             } catch (SQLException ex) {
                                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
@@ -220,7 +221,7 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
         /**
          * This treatment allows the director to define the interest rate that
-         * the agency will propose to its customer
+         * the agency will propose to its customers
          */
         if (source == saveInterestRate) {
             if (!interestRate.getText().isEmpty()) {

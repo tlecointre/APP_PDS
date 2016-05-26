@@ -5,7 +5,6 @@
  */
 package edu.hubanato.entities;
 
-import edu.hubanato.models.PdsDatabase;
 import edu.hubanato.server.InterfacePoolServer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +13,7 @@ import java.sql.SQLException;
 
 /**
  * This class is used for all the queries we need to use to define the interest rate
+ * 
  * @author Nadia Randria
  */
 public class InterestRate {
@@ -25,12 +25,13 @@ public class InterestRate {
     private String titleLoan;
     
     /**
-     * This constructor permit to create an interest rate
-     * @param ageMin
-     * @param ageMax
-     * @param durationMin
-     * @param durationMax
-     * @param titleLoan 
+     * This constructor permit to declare and initialize the data
+     * 
+     * @param ageMin Age minimum
+     * @param ageMax Age maximum
+     * @param durationMin Minimal duration of the loan
+     * @param durationMax Maximal duration of the loan
+     * @param titleLoan Name of the loan
      */
     public InterestRate(int ageMin, int ageMax, int durationMin, int durationMax, String titleLoan) {
         this.ageMin = ageMin;
@@ -41,14 +42,15 @@ public class InterestRate {
     }
     
     /**
-     * This constructor permit to create an interest rate
+     * This constructor permit to declare and initialize the data
+     * when the interest rate is already defined
      * 
-     * @param interestRate
-     * @param ageMin
-     * @param ageMax
-     * @param durationMin
-     * @param durationMax
-     * @param title 
+     * @param interestRate Interest rate of the agency
+     * @param ageMin Age minimum
+     * @param ageMax Age maximum
+     * @param durationMin Minimal duration of the loan
+     * @param durationMax Maximal duration of the loan
+     * @param title Name of the loan 
      */
     public InterestRate(float interestRate, int ageMin, int ageMax, int durationMin, int durationMax, String title) {
         
@@ -61,12 +63,12 @@ public class InterestRate {
     }
     
     /**
-     * We use this method to recover the interest rate if it already exists by using the parameters :
+     * This method is used to recover the interest rate if it already exists by using the parameters :
      * ageMin, ageMax, durationMin, durationMax, titleLoan
      * 
      * else we define it by 0.0
      * 
-     * @return interestRate
+     * @return interestRate Interest rate of the company
      * 
      * @throws SQLException 
      * @throws java.lang.ClassNotFoundException 
@@ -191,11 +193,11 @@ public class InterestRate {
      * This method is used to recover the interest rate
      * It is used by the form SimulateurForm.java
      * 
-     * @param duration
-     * @param age
-     * @param loanType
+     * @param duration Duration of the loan
+     * @param age Age
+     * @param loanType Type of the loan
      * 
-     * @return rate
+     * @return rate Interest Rate
      * 
      * @throws SQLException
      * @throws ClassNotFoundException 

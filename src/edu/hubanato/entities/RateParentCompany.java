@@ -25,11 +25,11 @@ public class RateParentCompany {
     private String titleLoan;
     
     /**
-     * This constructor permit to create a rate parent company
+     * This constructor permit to declare and initialize the data
      * 
-     * @param durationMin
-     * @param durationMax
-     * @param titleLoan 
+     * @param durationMin Minimal duration of the loan
+     * @param durationMax Maximal duration of the loan
+     * @param titleLoan Name of the loan
      */
     public RateParentCompany(int durationMin, int durationMax, String titleLoan) {
         this.durationMin = durationMin;
@@ -38,15 +38,15 @@ public class RateParentCompany {
     }
     
     /**
-     * This constructor permit to recover the rate of the parent company
+     * This method allows to recover the rate of the parent company
      * 
-     * @return ratedir
+     * @return ratedir Rate of the parent company
      * 
      * @throws SQLException 
      * @throws java.lang.ClassNotFoundException 
      */
     public float selectRateDirector() throws SQLException, ClassNotFoundException {
-        //Connection connection = PdsDatabase.getConnection();
+        
         Connection connection = InterfacePoolServer.getConnection();
 
         String sql = "SELECT rate_dir FROM RATE r, TYPES t "
@@ -76,10 +76,10 @@ public class RateParentCompany {
      * This constructor permit to recover the rate of the parent company
      * It is used by the form SimulationForm.java
      * 
-     * @param duration
-     * @param loanType
+     * @param duration Duration of the loan
+     * @param loanType Name of the loan
      * 
-     * @return rate
+     * @return rate Rate of the parent company
      * 
      * @throws SQLException
      * @throws ClassNotFoundException 

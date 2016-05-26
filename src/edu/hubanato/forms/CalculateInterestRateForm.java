@@ -199,7 +199,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(btnSaveInterestRate)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
                 .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addGap(386, 386, 386)
