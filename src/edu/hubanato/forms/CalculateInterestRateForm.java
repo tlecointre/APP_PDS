@@ -97,12 +97,11 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
 
         lblRateDirector.setText("Taux de la maison mère :");
 
-        txtRateDirector.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtRateDirector.setEnabled(false);
 
         lblInterestRate.setText("Taux directeur :");
 
-        txtInterestRate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtInterestRate.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
 
         lblPercent3.setText("%");
 
