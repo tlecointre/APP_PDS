@@ -128,14 +128,14 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                         String viewRisk = risk.viewRisk(type);
 
-                        resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                                + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n\n\n\n Risques : " + viewRisk);
+                        resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + "ans \n - Durée Minimum de  : "
+                                + durationMin + "ans \n - Durée maximum de : " + durationMax + "ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\n\n\n Les risques : \n" + viewRisk);
 
                     } catch (SQLException ex) {
                         Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                        Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     break;
                 }
                 case "Prêt immobilier": {
@@ -169,14 +169,14 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                                 String viewRisk = risk.viewRisk(type);
 
-                                resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                                        + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n\n\n\n Risques : " + viewRisk);
+                                resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + "ans \n - Durée Minimum de  : "
+                                        + durationMin + "ans \n - Durée maximum de : " + durationMax + "ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\n\n\n Les risques : \n" + viewRisk);
 
                             } catch (SQLException ex) {
                                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                                Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             break;
                         }
                         default: {
@@ -201,14 +201,14 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                                 String viewRisk = risk.viewRisk(type);
 
-                                resultEvaluation.setText("Type de prêt : " + type + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                                        + durationMin + "\n Durée Max : " + durationMax + "\n Apport : " + contribution + "\n Taux d'endettement : " + ratio + "\n\n\n\n Risques : " + viewRisk);
+                                resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + "ans \n - Durée Minimum de  : "
+                                        + durationMin + "ans \n - Durée maximum de : " + durationMax + "ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\n\n\n Les risques : \n" + viewRisk);
 
                             } catch (SQLException ex) {
                                 Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
                             } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                                Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
+                            }
                             break;
                         }
                     }
@@ -237,17 +237,11 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                             int durationMin, durationMax;
                             durationMin = durationMax = Integer.parseInt(loanTerm.getSelectedItem().toString());
 
+                            float ratedir = Float.parseFloat(rateDirector.getText());
                             float inRate = Float.parseFloat(interestRate.getText());
 
-                            resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                                    + durationMin + "\n Durée Max : " + durationMax + "\n Type de prêt : " + type);
+                            resultEvaluation.setText("Type de prêt : " + type + "\nTaux de la maison mère : " + ratedir + "% \nTaux d'intérêt : " + inRate);
 
-                            /*this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
-                            try {
-                             intrate.saveInterestRate();
-                             } catch (SQLException ex) {
-                             Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                             }*/
                             InterestRate t = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
                             TCPClient tcpClient = new TCPClient("localhost", 9999);
                             tcpClient.sendQuery("ct", edu.hubanato.serialization.EncodeJSON.serializeInterestRate(t));
@@ -271,17 +265,11 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                                     int durationMin = Integer.parseInt(duration.substring(0, 1));
                                     int durationMax = Integer.parseInt(duration.substring(4, 6));
 
+                                    float ratedir = Float.parseFloat(rateDirector.getText());
                                     float inRate = Float.parseFloat(interestRate.getText());
 
-                                    resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                                            + durationMin + "\n Durée Max : " + durationMax + "\n Type de prêt : " + type);
+                                    resultEvaluation.setText("Type de prêt : " + type + "\n Taux de la maison mère : " + ratedir + "% \n Taux d'intérêt : " + inRate);
 
-                                    /*this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
-                                     try {
-                                     intrate.saveInterestRate();
-                                     } catch (SQLException ex) {
-                                     Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                                     }*/
                                     InterestRate t = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
                                     TCPClient tcpClient = new TCPClient("localhost", 9999);
                                     tcpClient.sendQuery("ct", edu.hubanato.serialization.EncodeJSON.serializeInterestRate(t));
@@ -298,17 +286,11 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
                                     int durationMin = Integer.parseInt(duration.substring(0, 2));
                                     int durationMax = Integer.parseInt(duration.substring(5, 7));
 
+                                    float ratedir = Float.parseFloat(rateDirector.getText());
                                     float inRate = Float.parseFloat(interestRate.getText());
 
-                                    resultEvaluation.setText("Taux d'intérêt : " + inRate + "\n Age Min: " + ageMin + "\n Age Max : " + ageMax + "\n Durée Min : "
-                                            + durationMin + "\n Durée Max : " + durationMax + "\n Type de prêt : " + type);
+                                    resultEvaluation.setText("Type de prêt : " + type + "\n Taux de la maison mère : " + ratedir + "% \n Taux d'intérêt : " + inRate);
 
-                                    /*this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
-                                     try {
-                                     intrate.saveInterestRate();
-                                     } catch (SQLException ex) {
-                                     Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                                     }*/
                                     InterestRate t = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
                                     TCPClient tcpClient = new TCPClient("localhost", 9999);
                                     tcpClient.sendQuery("ct", edu.hubanato.serialization.EncodeJSON.serializeInterestRate(t));

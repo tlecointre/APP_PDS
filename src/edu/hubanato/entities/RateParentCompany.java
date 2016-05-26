@@ -5,7 +5,6 @@
  */
 package edu.hubanato.entities;
 
-import edu.hubanato.models.PdsDatabase;
 import edu.hubanato.server.InterfacePoolServer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

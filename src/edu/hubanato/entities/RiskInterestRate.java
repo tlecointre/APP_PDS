@@ -6,17 +6,29 @@
 package edu.hubanato.entities;
 
 /**
- *
+ * This class is used to define all possibilities of scenario
+ * 
  * @author Nadia Randria
  */
 public class RiskInterestRate {
 
-    private float interestRate;
     private String typeLoan;
     private int ageMin, ageMax;
     private String proSituation, persoContribution, debtRatio;
     private int termLoanMin, termLoanMax;
-
+    
+    /**
+     * This method permit to retrieve the parameters which define the risks
+     * 
+     * @param typeLoan Type of the loan
+     * @param ageMin Age minimum
+     * @param ageMax Age maximum
+     * @param proSituation Professional situation
+     * @param termLoanMin  
+     * @param termLoanMax
+     * @param persoContribution
+     * @param debtRatio 
+     */
     public RiskInterestRate(String typeLoan, int ageMin, int ageMax, String proSituation, int termLoanMin, int termLoanMax, String persoContribution, String debtRatio) {
         this.typeLoan = typeLoan;
         this.ageMin = ageMin;
@@ -27,54 +39,58 @@ public class RiskInterestRate {
         this.persoContribution = persoContribution;
         this.debtRatio = debtRatio;
     }
-
+    
+    /**
+     * This method is used to show the risks according the different parameters
+     * 
+     * @param typeLoan
+     * 
+     * @return str
+     * str = list of the risks
+     */
     public String viewRisk(String typeLoan) {
 
         String str = "";
-        
-        if (typeLoan.equals("Prêt immobilier")){
-            if(proSituation.equals("CDD") && persoContribution.equals("< 15") && debtRatio.equals("> 33")){
-                str = "Profil médiocre"; 
-            }
-            else if(proSituation.equals("CDI") && persoContribution.equals("15 - 20") && debtRatio.equals("30 - 33")){
-                str = "Profil moyen"; 
-            }
-            else if(proSituation.equals("CDI") && persoContribution.equals("20 - 30") && debtRatio.equals("25 - 30")){
-                str = "Bon profil"; 
-            }
-            else if(proSituation.equals("CDI") && persoContribution.equals("> 30") && debtRatio.equals("< 25")){
-                str = "Excellent profil"; 
-            }
-            else{
-                str = "profil non définie";
-            }
-        }
-        else if (typeLoan.equals("Prêt à la consommation")){
-        }
-        else if(typeLoan.equals("Prêt automobile")){
-        }
 
-        /*switch (typeLoan) {
-            case "Prêt à la consommation":
-                str = "Prêt à la consommation";
-                break;
-            case "Prêt automobile":
-                str = "Prêt automobile";
-                break;
-            case "Prêt immobilier":
-                if ("CDD".equals(proSituation) && "< 15".equals(persoContribution) && "> 33".equals(debtRatio)) {
-                    str = "Profil médiocre";
-                } else if ("CDI".equals(proSituation) && "15 - 20".equals(persoContribution) && "30 - 33".equals(debtRatio)) {
-                    str = "Profil moyen";
-                } else if ("CDI".equals(proSituation) && "20 - 30".equals(persoContribution) && "25 - 30".equals(debtRatio)) {
-                    str = "Profil bon";
-                } else if ("CDI".equals(proSituation) && "> 30".equals(persoContribution) && "< 25".equals(debtRatio)) {
-                    str = "Profil excellent";
-                } else {
-                    str = "ERREUR";
+        if (typeLoan.equals("Prêt immobilier")) {
+            if ((proSituation.equals("CDD") || proSituation.equals("CDI")) && persoContribution.equals("< 15") && debtRatio.equals("> 33")) {
+
+                if ((ageMin == 18 && ageMax == 25) && (termLoanMin == 7 && termLoanMax == 10)) {
+                    str = "(Liste des risques ici)";
+                } else if ((ageMin == 18 && ageMax == 25) && (termLoanMin == 16 && termLoanMax == 20)) {
+                    str = "(Liste des risques ici)";
                 }
-                break;                
-        }*/
+
+            } else if (proSituation.equals("CDI") && persoContribution.equals("15 - 20") && debtRatio.equals("30 - 33")) {
+               
+                if ((ageMin == 26 && ageMax == 45) && (termLoanMin == 16 && termLoanMax == 20)) {
+                    str = "(Liste des risques ici)";
+                } else if ((ageMin == 26 && ageMax == 45) && (termLoanMin == 21 && termLoanMax == 25)) {
+                    str = "(Liste des risques ici)";
+                }
+                
+            } else if (proSituation.equals("CDI") && persoContribution.equals("20 - 30") && debtRatio.equals("25 - 30")) {
+                
+                if ((ageMin == 26 && ageMax == 45) && (termLoanMin == 16 && termLoanMax == 20)) {
+                    str = "(Liste des risques ici)";
+                } else if ((ageMin == 46 && ageMax == 50) && (termLoanMin == 21 && termLoanMax == 25)) {
+                    str = "(Liste des risques ici)";
+                }
+                
+            } else if (proSituation.equals("CDI") && persoContribution.equals("30 >") && debtRatio.equals("< 25")) {
+                
+                if ((ageMin == 46 && ageMax == 50) && (termLoanMin == 21 && termLoanMax == 25)) {
+                    str = "(Liste des risques ici)";
+                }
+                
+            } else {
+                str = "Profil non définie";
+            }
+        } else if (typeLoan.equals("Prêt à la consommation")) {
+            str = "Les risques sont encore à définir";
+        } else if (typeLoan.equals("Prêt automobile")) {
+            str = "Les risques sont encore à définir";
+        }
 
         return str;
     }
