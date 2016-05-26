@@ -6,7 +6,8 @@
 package edu.hubanato.entities;
 
 /**
- *
+ * This class is used to define all possibilities of scenario
+ * 
  * @author Nadia Randria
  */
 public class RiskInterestRate {
@@ -15,7 +16,19 @@ public class RiskInterestRate {
     private int ageMin, ageMax;
     private String proSituation, persoContribution, debtRatio;
     private int termLoanMin, termLoanMax;
-
+    
+    /**
+     * This method permit to retrieve the parameters which define the risks
+     * 
+     * @param typeLoan
+     * @param ageMin
+     * @param ageMax
+     * @param proSituation
+     * @param termLoanMin
+     * @param termLoanMax
+     * @param persoContribution
+     * @param debtRatio 
+     */
     public RiskInterestRate(String typeLoan, int ageMin, int ageMax, String proSituation, int termLoanMin, int termLoanMax, String persoContribution, String debtRatio) {
         this.typeLoan = typeLoan;
         this.ageMin = ageMin;
@@ -26,7 +39,15 @@ public class RiskInterestRate {
         this.persoContribution = persoContribution;
         this.debtRatio = debtRatio;
     }
-
+    
+    /**
+     * This method is used to show the risks according the different parameters
+     * 
+     * @param typeLoan
+     * 
+     * @return str
+     * str = list of the risks
+     */
     public String viewRisk(String typeLoan) {
 
         String str = "";

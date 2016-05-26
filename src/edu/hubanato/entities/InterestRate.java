@@ -72,7 +72,7 @@ public class InterestRate {
      * @throws java.lang.ClassNotFoundException 
      */
     public float queryInterestRate() throws SQLException, ClassNotFoundException {
-        //Connection connection = PdsDatabase.getConnection();
+        
         Connection connection = InterfacePoolServer.getConnection();
         
         String queryIdTypeLoan = "SELECT id_types as idTypeLoan FROM TYPES WHERE title = ?";
@@ -84,8 +84,7 @@ public class InterestRate {
         System.out.println(queryIdTypeLoan);
         rs.next();
         idTypeLoan = rs.getInt("idTypeLoan");        
-        //select.close();
-        
+                
         String queryRate = "SELECT intrate as rate FROM INTEREST_RATE WHERE AGE_MIN = ? AND AGE_MAX = ? "
                 + "AND DURATION_MIN = ? AND DURATION_MAX = ? AND ID_TYPES = ?";
         PreparedStatement query = connection.prepareStatement(queryRate);
@@ -126,7 +125,6 @@ public class InterestRate {
      */
     public void saveInterestRate() throws SQLException, ClassNotFoundException {
         
-        //Connection connection = PdsDatabase.getConnection();
         Connection connection = InterfacePoolServer.getConnection();
         
         String queryIdTypeLoan = "SELECT id_types as idTypeLoan FROM TYPES WHERE title = ?";
@@ -138,8 +136,7 @@ public class InterestRate {
         System.out.println(queryIdTypeLoan);
         rs.next();
         idTypeLoan = rs.getInt("idTypeLoan");
-        //select.close();
-        
+                
         String sqlCheck = "SELECT count(intrate) as count FROM INTEREST_RATE WHERE AGE_MIN = ? AND AGE_MAX = ?"
                 + "AND DURATION_MIN = ? AND DURATION_MAX = ?";
         PreparedStatement check = connection.prepareStatement(sqlCheck);
@@ -153,7 +150,6 @@ public class InterestRate {
         System.out.println(sqlCheck);
         result.next();
         int count = result.getInt("count");
-        //check.close();
         
         if (count == 1) {
             

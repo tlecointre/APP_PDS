@@ -242,12 +242,6 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                             resultEvaluation.setText("Type de prêt : " + type + "\nTaux de la maison mère : " + ratedir + "% \nTaux d'intérêt : " + inRate);
 
-                            /*this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
-                             try {
-                             intrate.saveInterestRate();
-                             } catch (SQLException ex) {
-                             Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                             }*/
                             InterestRate t = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
                             TCPClient tcpClient = new TCPClient("localhost", 9999);
                             tcpClient.sendQuery("ct", edu.hubanato.serialization.EncodeJSON.serializeInterestRate(t));
@@ -276,12 +270,6 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                                     resultEvaluation.setText("Type de prêt : " + type + "\n Taux de la maison mère : " + ratedir + "% \n Taux d'intérêt : " + inRate);
 
-                                    /*this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
-                                     try {
-                                     intrate.saveInterestRate();
-                                     } catch (SQLException ex) {
-                                     Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                                     }*/
                                     InterestRate t = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
                                     TCPClient tcpClient = new TCPClient("localhost", 9999);
                                     tcpClient.sendQuery("ct", edu.hubanato.serialization.EncodeJSON.serializeInterestRate(t));
@@ -303,12 +291,6 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                                     resultEvaluation.setText("Type de prêt : " + type + "\n Taux de la maison mère : " + ratedir + "% \n Taux d'intérêt : " + inRate);
 
-                                    /*this.intrate = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
-                                     try {
-                                     intrate.saveInterestRate();
-                                     } catch (SQLException ex) {
-                                     Logger.getLogger(CalculateInterestRateControl.class.getName()).log(Level.SEVERE, null, ex);
-                                     }*/
                                     InterestRate t = new InterestRate(inRate, ageMin, ageMax, durationMin, durationMax, type);
                                     TCPClient tcpClient = new TCPClient("localhost", 9999);
                                     tcpClient.sendQuery("ct", edu.hubanato.serialization.EncodeJSON.serializeInterestRate(t));
