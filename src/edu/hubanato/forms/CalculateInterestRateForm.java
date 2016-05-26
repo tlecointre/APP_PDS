@@ -87,16 +87,13 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
 
         cmbDebtRatio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "< 25", "25 - 30", "30 - 33", "> 33" }));
 
-        lblYear.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblYear.setText("année(s)");
 
-        lblPercent1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblPercent1.setText("%");
 
-        lblPercent2.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblPercent2.setText("%");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Les taux :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Les taux :", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16))); // NOI18N
 
         lblRateDirector.setText("Taux de la maison mère :");
 
@@ -107,10 +104,8 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
 
         txtInterestRate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        lblPercent3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblPercent3.setText("%");
 
-        lblPercent4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblPercent4.setText("%");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -148,10 +143,8 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        btnEvaluate.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnEvaluate.setText("Evaluer");
 
-        btnSaveInterestRate.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         btnSaveInterestRate.setText("Sauvegarder le taux");
 
         txtaEvaluation.setColumns(20);
@@ -206,7 +199,7 @@ public class CalculateInterestRateForm extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(btnSaveInterestRate)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE)
                 .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addGap(386, 386, 386)
