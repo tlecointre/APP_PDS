@@ -9,6 +9,7 @@ public class ClientForm extends javax.swing.JFrame {
 
     /**
      * Creates new form AuthenticationForm
+     * Start of ClientControl with client parameters
      */
     public ClientForm() {
         initComponents();

@@ -12,6 +12,10 @@ public class ConnectionPool<Connection> {
     
     private List<Connection> connections;
     
+    /**
+     * Defaut constructor
+     * Adds connections
+     */
     public ConnectionPool() {
         connections = new ArrayList<Connection>();
         while(!connectionPoolIsFull()) {
@@ -23,12 +27,21 @@ public class ConnectionPool<Connection> {
         }
     }
     
-     private synchronized boolean connectionPoolIsFull() {
+    /**
+     * Returns true if the pool is full and false if empty
+     * 
+     * @return boolean
+     */
+    private synchronized boolean connectionPoolIsFull() {
         int maxPoolSize = 10;
         return connections.size() >= maxPoolSize;
     }
 
-
+    /**
+     * Returns a connection
+     * 
+     * @return Connection 
+     */
     public synchronized Connection getConnectionFromPool() {
         if(connections.size() > 0) {
             Connection connection = connections.get(0);
@@ -37,7 +50,12 @@ public class ConnectionPool<Connection> {
         }
         return null;
     }
-
+    
+    /**
+     * Recoveries a connection
+     * 
+     * @param connection 
+     */
     public synchronized void returnConnectionToPool(Connection connection) {
         connections.add(connection);
     }

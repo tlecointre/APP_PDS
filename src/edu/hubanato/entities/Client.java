@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.hubanato.entities;
 
 import java.sql.Connection;
@@ -11,21 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import edu.hubanato.models.PdsDatabase;
 import edu.hubanato.server.InterfacePoolServer;
-import java.util.logging.*;
+
 
 /**
- * Release R3
  *
  * @author Tom
  */
 public class Client extends Person {
 
-    private int idAdress;
-    private int idClient;
-    private int age;
-    private int income;
+    private int idAdress, idClient, age, income;
     private String profession; 
 
     /**
@@ -69,8 +59,8 @@ public class Client extends Person {
         this.nationality = nationality;
 
         this.number = number;
-        this.Street = street;
-        this.Additional = add;
+        this.street = street;
+        this.additional = add;
         this.cp = cp;
         this.city = city;
         this.country = country;
@@ -86,15 +76,24 @@ public class Client extends Person {
         this.profession = profession;
     }
     
+    /**
+     * 
+     * @return int idClient 
+     */
     public int getIdClient() {
         return idClient;
     }
     
+    /**
+     * 
+     * @return int age
+     */
     public int getAge() {
         return age;
     }
+    
     /**
-     * Create a client and its adress in database
+     * Create this client and its adress in database
      * 
      * @throws SQLException
      * @throws ClassNotFoundException 
@@ -108,8 +107,8 @@ public class Client extends Person {
         PreparedStatement ordre = connection.prepareStatement(requeteAddress);
 
         ordre.setInt(1, number);
-        ordre.setString(2, Street);
-        ordre.setString(3, Additional);
+        ordre.setString(2, street);
+        ordre.setString(3, additional);
         ordre.setString(4, cp);
         ordre.setString(5, city);
         ordre.setString(6, country);
@@ -162,7 +161,8 @@ public class Client extends Person {
     }
 
     /**
-     * Returns a client
+     * Returns a client by researching an id in database
+     * Returns null if no client has been found
      *
      * @param id : ID client
      * @return client found
@@ -193,11 +193,13 @@ public class Client extends Person {
     }
 
     /**
-     * Returns a client
+     * Returns a list of clients
+     * Returns a list empty if no client has been found
      *
      * @param name : client name
      * @param firstName : client first name
-     * @return client found
+     * @param postalCode
+     * @return clients found
      * @throws SQLException
      * @throws ClassNotFoundException
      */
@@ -228,11 +230,12 @@ public class Client extends Person {
     }
 
     /**
-     * Update a client in database
+     * Updates this client in database
      * 
      * @throws SQLException
      * @throws ClassNotFoundException 
      */
+    @Override
     public void updatePerson() throws SQLException, ClassNotFoundException {
         Connection connection = InterfacePoolServer.getConnection();
         String sql = "UPDATE PERSON SET name = ? , firstName = ? WHERE id_pers = ?";
@@ -246,7 +249,7 @@ public class Client extends Person {
     }
 
     /**
-     * Delete a client
+     * Delete this client in database
      * 
      * @param id
      * @throws SQLException

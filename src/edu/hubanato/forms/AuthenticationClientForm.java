@@ -168,7 +168,7 @@ public class AuthenticationClientForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     /**
-     * Start the clients research in database
+     * Starts the clients research in database and fills the clients comboBox
      * @param evt 
      */
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed

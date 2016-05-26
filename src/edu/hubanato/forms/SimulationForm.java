@@ -3,11 +3,8 @@ package edu.hubanato.forms;
 import edu.hubanato.client.TCPClient;
 import edu.hubanato.controlers.AmortizationCalc;
 import edu.hubanato.entities.Client;
-import edu.hubanato.entities.InterestRate;
-import edu.hubanato.entities.RateParentCompany;
 import edu.hubanato.entities.Simulation;
 import java.io.IOException;
-import java.net.InetAddress;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +24,10 @@ public class SimulationForm extends javax.swing.JFrame {
     
     private Client client;
     
+    /**
+     * Default constructor
+     * @param client 
+     */
     public SimulationForm(Client client) {
         initComponents();
         labelSelectedClient.setText(client.getFirstName().substring(0,1).toUpperCase() + 
@@ -34,11 +35,6 @@ public class SimulationForm extends javax.swing.JFrame {
                                     client.getName().toUpperCase());
         this.client = client;
     }
-    
-    public SimulationForm() {
-        initComponents();
-    }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -242,7 +238,12 @@ public class SimulationForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Calculates a simulation
+     * Start of AmortizationCalc
+     * @param evt 
+     */
     private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
         if (!(txtDuration.getText().isEmpty() || txtAmountLoan.getText().isEmpty() ||
                 txtRate.getText().isEmpty() || txtInsuranceRate.getText().isEmpty())) {
@@ -307,11 +308,21 @@ public class SimulationForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCalculateActionPerformed
 
+    /**
+     * Returns to the previous page (AuthenticationClientForm)
+     * Hide this window
+     * 
+     * @param evt 
+     */
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
         new AuthenticationClientForm().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
-
+    
+    /**
+     * Displays the rates calculated by the director and the parent company
+     * @param evt
+     */
     private void btnSeeRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeRateActionPerformed
         if (!txtDuration.getText().isEmpty()) {
             try {

@@ -2,8 +2,6 @@ package edu.hubanato.forms;
 
 import edu.hubanato.client.TCPClient;
 import edu.hubanato.entities.Client;
-import edu.hubanato.entities.InterestRate;
-import edu.hubanato.entities.RateParentCompany;
 import edu.hubanato.entities.Simulation;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,7 +21,7 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
     private Client client;
     
     /**
-     * Default constructor.
+     * Default constructor
      * 
      * @param simulation
      * @param client 
@@ -241,7 +239,7 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     /**
-     * Event on Calculate button.
+     * Calculate button
      * This button allows to recovery the loan parameters, to control them, and to update the loan.
      * It lauches the amortization table and graph
      * 
@@ -311,8 +309,7 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCalculateActionPerformed
     
     /**
-     * Button on Back event
-     * 
+     * Back button
      * Go to previous page which is SimulationManagementForm
      * @param evt 
      */
@@ -321,6 +318,12 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
         new SimulationManagementForm().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
     
+    /**
+     * See button
+     * Displays the rates calculated by the director and the parent company
+     * 
+     * @param evt 
+     */
     private void btnSeeRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeRateActionPerformed
         if (!txtDuration.getText().isEmpty()) {
             try {

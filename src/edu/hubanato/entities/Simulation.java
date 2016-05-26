@@ -17,6 +17,17 @@ public class Simulation {
     private double rate, rateInsurance;
     private String loanType;
     
+    /**
+     * Default constructor
+     * 
+     * @param idSimulation
+     * @param idClient
+     * @param amount
+     * @param duration
+     * @param rate
+     * @param rateInsurance
+     * @param loanType 
+     */
     public Simulation(int idSimulation, int idClient, int amount, int duration, double rate, double rateInsurance, String loanType) {
         this.idSimulation = idSimulation;
         this.idClient = idClient;
@@ -26,11 +37,21 @@ public class Simulation {
         this.rateInsurance = rateInsurance;
         this.loanType = loanType;
     }
-
+    
+    /**
+     * 
+     * @return int idSimulation 
+     */
     public int getIdSimulation() {
         return idSimulation;
     }
     
+    /**
+     * Creates this simulation in database
+     * 
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public void createSimulation() throws SQLException, ClassNotFoundException {
         Connection connection = InterfacePoolServer.getConnection();
         
@@ -59,6 +80,15 @@ public class Simulation {
         InterfacePoolServer.returnConnection(connection);
     }
     
+    /**
+     * Returns a list of simulations by researching an id in database
+     * Returns an empty list if no simulation has been found
+     * 
+     * @param idClient
+     * @return List<Simulation>
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public static List<Simulation> getByClient(int idClient) throws SQLException, ClassNotFoundException {
         Connection connection = InterfacePoolServer.getConnection();
         
@@ -78,7 +108,10 @@ public class Simulation {
     }
     
     /**
-     * Update a simulation in database
+     * Updates this simulation in database
+     * 
+     * @throws SQLException
+     * @throws ClassNotFoundException 
      */
     public void updateSimulation() throws SQLException, ClassNotFoundException {
         Connection connection = InterfacePoolServer.getConnection();
@@ -105,22 +138,42 @@ public class Simulation {
         InterfacePoolServer.returnConnection(connection);
     }
     
+    /**
+     * 
+     * @return int amount 
+     */
     public int getAmount() {
         return amount;
     }
-
+    
+    /**
+     * 
+     * @return int duration
+     */
     public int getDuration() {
         return duration;
     }
-
+    
+    /**
+     * 
+     * @return double rate
+     */
     public double getRate() {
         return rate;
     }
     
+    /**
+     * 
+     * @return double rateInsurance 
+     */
     public double getRateInsurance() {
         return rateInsurance;
     }
     
+    /**
+     * 
+     * @return String loanType
+     */
     public String getLoanType() {
         return loanType;
     }

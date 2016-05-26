@@ -22,10 +22,21 @@ import java.util.logging.Logger;
  */
 public class ConnectionTCP extends TCPServerThread {
     
+    /**
+     * Default constructor
+     * @param port
+     * @throws IOException 
+     */
     public ConnectionTCP(int port) throws IOException {
         super(port);
     }
     
+    /**
+     * Following the query received by the client, communicate with the database
+     * 
+     * @param sck
+     * @return Runnable
+     */
     public Runnable launchSession(final Socket sck) {
         
         return new Runnable () {
@@ -40,7 +51,7 @@ public class ConnectionTCP extends TCPServerThread {
                     
                     System.out.println("Received: " + clientSentence);
                     
-                    String sqlQuery = clientSentence.substring(0,2);
+                    String sqlQuery = clientSentence.substring(0,2); // prefix to identify the query
                     String jsonObject = clientSentence.substring(2);
                     Simulation s; Client c;
                     List<Simulation> simulations; List<Client> clients;

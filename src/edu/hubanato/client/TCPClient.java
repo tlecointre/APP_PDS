@@ -12,10 +12,23 @@ public class TCPClient {
     
     private Socket sck;
     
+    /**
+     * Constructor
+     * 
+     * @param host
+     * @param port
+     * @throws IOException 
+     */
     public TCPClient(String host, int port) throws IOException {
        sck = new Socket(host, port);
     }
     
+    /**
+     * Send a query to server
+     * 
+     * @param query_name
+     * @param jsonObject 
+     */
     public void sendQuery(String query_name, String jsonObject) {
         try {
             PrintWriter p = new PrintWriter(new BufferedWriter(new OutputStreamWriter(sck.getOutputStream())),true);
@@ -28,6 +41,10 @@ public class TCPClient {
         }
     }
     
+    /**
+     * Receives a query from server
+     * @return String
+     */
     public String receiveQuery() {
         try {
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(sck.getInputStream()));

@@ -7,11 +7,20 @@ import java.util.logging.*;
 public abstract class TCPServerThread {
     
     private ServerSocket srv;
-
+    
+    /**
+     * Constructor
+     * @param port
+     * @throws IOException 
+     */
     public TCPServerThread(int port) throws IOException {
         this.srv = new ServerSocket(port);
     }
     
+    /**
+     * launches a multi-threading process
+     * @throws IOException 
+     */
     public void go() throws IOException {
 
         ThreadGroup thg = new ThreadGroup("server"){

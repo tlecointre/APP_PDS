@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.hubanato.entities;
 
 import java.sql.Date;
 import java.sql.SQLException;
 
 /**
- * Release R2
- * @author hubanato
+ * 
+ * @author Tom
  */
 public abstract class Person {
     
@@ -23,10 +18,10 @@ public abstract class Person {
     protected String sex;
     protected String nationality;
     
-    /*protected Address address;*/
+    // Adress
     protected int number;
-    protected String Street;
-    protected String Additional;
+    protected String street;
+    protected String additional;
     protected String cp;
     protected String city;
     protected String country;
@@ -41,15 +36,27 @@ public abstract class Person {
     public abstract void createPerson() throws SQLException, ClassNotFoundException;
     public abstract void updatePerson() throws SQLException, ClassNotFoundException;
     public abstract void deletePerson(int id) throws SQLException, ClassNotFoundException;
-
+    
+    /**
+     * 
+     * @return String name
+     */
     public String getName() {
         return name;
     }
-
+    
+    /**
+     * 
+     * @return String firstName 
+     */
     public String getFirstName() {
         return firstName;
     }
 
+    /**
+     * 
+     * @return String cp 
+     */
     public String getCp() {
         return cp;
     }

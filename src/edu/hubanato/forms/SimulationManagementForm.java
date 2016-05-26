@@ -22,18 +22,30 @@ public class SimulationManagementForm extends javax.swing.JFrame {
     private List<Simulation> simulations = new ArrayList<Simulation>();
     private SimulationsTableModel tableModel;
     private Client selectedClient;
- 
+    
+    /**
+     * This intern class defines the model of the simulations JTable
+     */
     private class SimulationsTableModel extends AbstractTableModel {
 
         private final String[] titles = {"Type de prêt", "Durée (en mois)", "Montant", "Taux d'intérêt" };
         private final List<Simulation> simulations;
         
+        /**
+         * Adds a simulation
+         * @param Simulation s 
+         */
         public void addSimulation(Simulation s) {
             int index = simulations.size();
             simulations.add(s);
             fireTableRowsInserted(index, index);
         }
-
+        
+        /**
+         * Get a simulation by row
+         * @param row
+         * @return Simulation
+         */
         public Simulation getSimulationAt(int row) {
             if (row >= simulations.size()) {
                 return null;
@@ -41,14 +53,22 @@ public class SimulationManagementForm extends javax.swing.JFrame {
                 return simulations.get(row);
             }
         }
-
-        public void deleteBookAt(int row){
+        
+        /**
+         * Delete a simulation by row
+         * @param row 
+         */
+        public void deleteSimulationAt(int row){
             if (row < simulations.size()){
                 simulations.remove(row);
                 fireTableRowsDeleted(row, row);
             }
         }
-
+        
+        /**
+         * Constructor
+         * @param List<Simulation> s 
+         */
         public SimulationsTableModel(List<Simulation> s) {
             simulations = s;
         }
@@ -85,6 +105,9 @@ public class SimulationManagementForm extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Constructor of SimulationManagementFom
+     */
     public SimulationManagementForm() {
         initComponents();
     }
@@ -297,7 +320,11 @@ public class SimulationManagementForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Shows simulations by selecting a client
+     * @param evt 
+     */
     private void btnShowSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowSimulationActionPerformed
         int index = cmbClients.getSelectedIndex();
         if (index == -1 ) {
@@ -315,7 +342,11 @@ public class SimulationManagementForm extends javax.swing.JFrame {
             tableSimulation.setModel(tableModel);
         }
     }//GEN-LAST:event_btnShowSimulationActionPerformed
-
+    
+    /**
+     * Searchs clients by name, first name and postal code
+     * @param evt 
+     */
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         
         cmbClients.removeAllItems();
@@ -342,7 +373,11 @@ public class SimulationManagementForm extends javax.swing.JFrame {
                                 " / Code postal : " + clients.get(i).getCp());
         }
     }//GEN-LAST:event_btnSearchActionPerformed
-
+    
+    /**
+     * Replays the simulation selected
+     * @param evt 
+     */
     private void btnReplaySimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReplaySimulationActionPerformed
         int row = tableSimulation.getSelectedRow();
         if (row == -1) {
@@ -352,7 +387,11 @@ public class SimulationManagementForm extends javax.swing.JFrame {
             new AmortizationCalc(s.getAmount(), s.getRate(), s.getRateInsurance(), s.getDuration());
         }
     }//GEN-LAST:event_btnReplaySimulationActionPerformed
-
+    
+    /**
+     * Updates the simulation selected
+     * @param evt 
+     */
     private void btnUpdateSimulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSimulationActionPerformed
         int row = tableSimulation.getSelectedRow();
         if (row == -1) {
