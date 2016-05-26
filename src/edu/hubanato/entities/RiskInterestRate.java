@@ -91,7 +91,7 @@ public class RiskInterestRate {
                 }
 
             } else {
-                str = "Résultat non définie";
+                str = "Résultat non défini";
             }
         } else if (typeLoan.equals("Prêt à la consommation")) {
             str = "Les risques sont encore à définir";
