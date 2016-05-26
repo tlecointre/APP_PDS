@@ -47,4 +47,8 @@ public class EncodeJSON {
     public static String serializeInteger(int s) {
         return gson.toJson(s);
     }
+    
+    public static String serializeFloat(float s) {
+        return gson.toJson(s);
+    }
 }

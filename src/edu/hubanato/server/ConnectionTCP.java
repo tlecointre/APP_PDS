@@ -1,6 +1,8 @@
 package edu.hubanato.server;
 
 import edu.hubanato.entities.Client;
+import edu.hubanato.entities.InterestRate;
+import edu.hubanato.entities.RateParentCompany;
 import edu.hubanato.entities.Simulation;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -40,7 +42,7 @@ public class ConnectionTCP extends TCPServerThread {
                     
                     String sqlQuery = clientSentence.substring(0,2);
                     String jsonObject = clientSentence.substring(2);
-                    Simulation s; Client c;
+                    Simulation s; Client c; InterestRate rd; RateParentCompany pr;
                     List<Simulation> simulations; List<Client> clients;
                     
                     switch (sqlQuery) {
@@ -70,6 +72,11 @@ public class ConnectionTCP extends TCPServerThread {
                             clients = Client.getByNamePC(client.get(0), client.get(1), client.get(2));
                             String clientsJson = edu.hubanato.serialization.EncodeJSON.serializeClients(clients);
                             p.println(clientsJson);
+                            break;
+                        case "dr" : // get directory rate
+                            break;
+                        case "pr" : // get parent company rate    
+                            
                             break;
                         default :
                             System.out.println("no query");

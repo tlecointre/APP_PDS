@@ -51,4 +51,8 @@ public class DecodeJSON {
     public static int deserializeInteger(String s) {
         return gson.fromJson(s, Integer.class);
     }
+    
+    public static float deserializeFloat(String s) {
+        return gson.fromJson(s, Float.class);
+    }
 }
