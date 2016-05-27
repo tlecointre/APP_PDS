@@ -55,11 +55,11 @@ public class RiskInterestRate {
             if ((proSituation.equals("CDD") || proSituation.equals("CDI")) && persoContribution.equals("< 15") && debtRatio.equals("> 33")) {
 
                 if ((ageMin == 18 && ageMax == 25) && (termLoanMin == 7 && termLoanMax == 10)) {
-                    str = "(Liste des risques ici)";
+                    str = " -  Manque d'apport personnel ou de revenus fixes\n (Surtout dans le cas d'un CDD)";
                 } else if ((ageMin == 18 && ageMax == 25) && (termLoanMin == 16 && termLoanMax == 20)) {
-                    str = "(Liste des risques ici)";
+                    str = " - Manque d'apport personnel ou de revenus fixes\n - de ne pas honorer ses mensualités\n - de demander une prolongation de la durée de remboursement\n (Surtout dans le cas d'un CDD)";
                 } else {
-                    str = "Les risques sont encore à définir";
+                    str = " (Les risques sont encore à définir)";
                 }
 
             } else if (proSituation.equals("CDI") && persoContribution.equals("15 - 20") && debtRatio.equals("30 - 33")) {
@@ -69,7 +69,7 @@ public class RiskInterestRate {
                 } else if ((ageMin == 26 && ageMax == 45) && (termLoanMin == 21 && termLoanMax == 25)) {
                     str = "(Liste des risques ici)";
                 } else {
-                    str = "Les risques sont encore à définir";
+                    str = " (Les risques sont encore à définir)";
                 }
 
             } else if (proSituation.equals("CDI") && persoContribution.equals("20 - 30") && debtRatio.equals("25 - 30")) {
@@ -79,7 +79,7 @@ public class RiskInterestRate {
                 } else if ((ageMin == 46 && ageMax == 50) && (termLoanMin == 21 && termLoanMax == 25)) {
                     str = "(Liste des risques ici)";
                 } else {
-                    str = "Les risques sont encore à définir";
+                    str = " (Les risques sont encore à définir)";
                 }
 
             } else if (proSituation.equals("CDI") && persoContribution.equals("30 >") && debtRatio.equals("< 25")) {
@@ -87,16 +87,16 @@ public class RiskInterestRate {
                 if ((ageMin == 46 && ageMax == 50) && (termLoanMin == 21 && termLoanMax == 25)) {
                     str = "(Liste des risques ici)";
                 } else {
-                    str = "Les risques sont encore à définir";
+                    str = " (Les risques sont encore à définir)";
                 }
 
             } else {
-                str = "Résultat non défini";
+                str = " (Résultat non défini)";
             }
         } else if (typeLoan.equals("Prêt à la consommation")) {
-            str = "Les risques sont encore à définir";
+            str = " (Les risques sont encore à définir)";
         } else if (typeLoan.equals("Prêt automobile")) {
-            str = "Les risques sont encore à définir";
+            str = " (Les risques sont encore à définir)";
         }
 
         return str;

@@ -129,7 +129,7 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                         String viewRisk = risk.viewRisk(type);
 
-                        resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + " ans \n - Durée Minimum de  : "
+                        resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + " et " + ageMax + " ans \n - Durée Minimum de  : "
                                 + durationMin + " ans \n - Durée maximum de : " + durationMax + " ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\nLes risques : \n" + viewRisk);
 
                     } catch (SQLException ex) {
@@ -170,7 +170,7 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                                 String viewRisk = risk.viewRisk(type);
 
-                                resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + " ans \n - Durée Minimum de  : "
+                                resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + " et " + ageMax + " ans \n - Durée Minimum de  : "
                                         + durationMin + " ans \n - Durée maximum de : " + durationMax + " ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\nLes risques : \n" + viewRisk);
 
                             } catch (SQLException ex) {
@@ -202,7 +202,7 @@ public class CalculateInterestRateControl implements ActionListener, ItemListene
 
                                 String viewRisk = risk.viewRisk(type);
 
-                                resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + "\n et " + ageMax + " ans \n - Durée Minimum de  : "
+                                resultEvaluation.setText("Rappel des paramètres :\n - Type de prêt : " + type + "\n  - Intervalle d'âge : " + ageMin + " et " + ageMax + " ans \n - Durée Minimum de  : "
                                         + durationMin + " ans \n - Durée maximum de : " + durationMax + " ans \n  - Apport personnel : " + contribution + "% du montant de l'opération \n  - Taux d'endettement : " + ratio + " % \n\nLes risques : \n" + viewRisk);
 
                             } catch (SQLException ex) {
