@@ -85,7 +85,7 @@ public class Simulation {
      * Returns an empty list if no simulation has been found
      * 
      * @param idClient
-     * @return List<Simulation>
+     * @return 
      * @throws SQLException
      * @throws ClassNotFoundException 
      */

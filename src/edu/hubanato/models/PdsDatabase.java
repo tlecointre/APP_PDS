@@ -11,8 +11,11 @@ public class PdsDatabase {
   protected static final String DRIVER_NAME = "oracle.jdbc.OracleDriver";
   protected static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
   
-  protected static final String USER = "pds";
-  protected static final String PASSWORD = "pds";
+  protected static final String USER = "system";
+  protected static final String PASSWORD = "root";
+//  protected static final String USER = "hubanato";
+//  protected static final String PASSWORD = "hubanato";
+
 
   public enum SortOrder { ASC, DESC; }
 

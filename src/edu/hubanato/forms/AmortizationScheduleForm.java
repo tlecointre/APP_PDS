@@ -1,6 +1,5 @@
 package edu.hubanato.forms;
 
-import edu.hubanato.controlers.AmortizationCalc;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -33,7 +32,6 @@ import org.jfree.data.general.DefaultPieDataset;
  */
 public class AmortizationScheduleForm extends javax.swing.JFrame {
 
-    private AmortizationCalc am;
     private DefaultCategoryDataset datasetLineChartAmount, datasetBarChartGlobal;
     private DefaultPieDataset datasetPieChartGlobal = new DefaultPieDataset();
 
