@@ -51,7 +51,7 @@ public class DecodeJSON {
      * Deserializes a list of clients
      * 
      * @param c
-     * @return List<Client>
+     * @return 
      */
     public static List<Client> deserializeClients(String c) {
         System.out.println("DecodeJSON - method deserializeRateParentClients " + c);
@@ -75,7 +75,7 @@ public class DecodeJSON {
      * deserializes a list of simulation
      * 
      * @param s
-     * @return List<Simulation>
+     * @return 
      */
     public static List<Simulation> deserializeSimulations(String s) {
         System.out.println("DecodeJSON - method deserializeSimulations " + s);
@@ -88,7 +88,7 @@ public class DecodeJSON {
      * deserializes a list of string
      * 
      * @param s
-     * @return List<String>
+     * @return 
      */
     public static List<String> deserializeListString(String s) {
         System.out.println("DecodeJSON - method deserializeListString " + s);
