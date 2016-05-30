@@ -1,7 +1,5 @@
 package edu.hubanato.entities;
 
-import edu.hubanato.models.PdsDatabase;
-import edu.hubanato.server.ConnectionPool;
 import edu.hubanato.server.InterfacePoolServer;
 import java.sql.*;
 import java.util.ArrayList;
