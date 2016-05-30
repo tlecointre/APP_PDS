@@ -263,26 +263,38 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
                     
                     if (!(loanType.equals("Prêt immobilier") && amount < 75000)) {
                         
-                        if (!(loanType.equals("Prêt immobilier") && duration < 84)) {
+                        if (!(loanType.equals("Prêt immobilier") && (duration < 84 || duration > 311))) {
                             
-                            Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), 
-                                                    amount, duration, Double.parseDouble(txtRate.getText()), 
-                                                    Double.parseDouble(txtInsuranceRate.getText()), 
-                                                    loanType);
+                            if (!((loanType.equals("Prêt à la consommation") || loanType.equals("Prêt automobile")) && duration >= 84)) {
+                            
+                                if (!(client.getAge() > 50 || client.getAge() < 18)) {
+                                    
+                                    Simulation s = new Simulation(simulation.getIdSimulation(), this.client.getIdClient(), 
+                                                            amount, duration, Double.parseDouble(txtRate.getText()), 
+                                                            Double.parseDouble(txtInsuranceRate.getText()), 
+                                                            loanType);
 
-                            TCPClient tcpClient = new TCPClient("localhost",9999);
-                            tcpClient.sendQuery("us", edu.hubanato.serialization.EncodeJSON.serializeSimulation(s));
-                            String response = tcpClient.receiveQuery();
-                            if (response.equals("ok")) {
-                                JOptionPane.showMessageDialog(null, "Simulation modifiée");
-                                this.setVisible(false);
-                                new SimulationManagementForm().setVisible(true);
+                                    TCPClient tcpClient = new TCPClient("localhost",9999);
+                                    tcpClient.sendQuery("us", edu.hubanato.serialization.EncodeJSON.serializeSimulation(s));
+                                    String response = tcpClient.receiveQuery();
+                                    if (response.equals("ok")) {
+                                        JOptionPane.showMessageDialog(null, "Simulation modifiée");
+                                        this.setVisible(false);
+                                        new SimulationManagementForm().setVisible(true);
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "La connexion au serveur a échoué.", 
+                                        "Erreur serveur", JOptionPane.ERROR_MESSAGE);
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "L'age du client doit être compris entre 18 et 50 ans.", 
+                                    "Incohérence", JOptionPane.ERROR_MESSAGE);
+                                }
                             } else {
-                                JOptionPane.showMessageDialog(null, "La connexion au serveur a échoué.", 
-                                "Erreur serveur", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "La durée d'un " + loanType + " ne peut être supérieure à 6 ans.", 
+                                    "Incohérence", JOptionPane.ERROR_MESSAGE);
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null, "La durée d'un crédit immobilier ne peut pas être inférieure à 7 ans.", 
+                            JOptionPane.showMessageDialog(null, "La durée d'un crédit immobilier ne peut être inférieure à 7 ans ou supérieure à 25 ans.", 
                                 "Incohérence", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
@@ -331,28 +343,43 @@ public class SimulationUpdateForm extends javax.swing.JFrame {
                 if (cmbDurationType.getSelectedIndex() == 1) { // duration in months
                     duration = duration / 12; // convert months in years (without rounding)
                 }
-            
-                TCPClient tcpClient = new TCPClient("localhost",9999);
-                List<String> infoParentRate = new ArrayList<String>();
-                infoParentRate.add(duration + ""); infoParentRate.add(cmbLoanType.getSelectedItem().toString());
-                tcpClient.sendQuery("pr", edu.hubanato.serialization.EncodeJSON.serializeListString(infoParentRate));
-                float parentRate = edu.hubanato.serialization.DecodeJSON.deserializeFloat(tcpClient.receiveQuery());
+                String loanType = cmbLoanType.getSelectedItem().toString();
                 
-                TCPClient tcpClient2 = new TCPClient("localhost",9999);
-                List<String> infoDirectorRate = new ArrayList<String>();
-                infoDirectorRate.add(duration + ""); infoDirectorRate.add(this.client.getAge() + "");
-                infoDirectorRate.add(cmbLoanType.getSelectedItem().toString());
-                tcpClient2.sendQuery("dr", edu.hubanato.serialization.EncodeJSON.serializeListString(infoDirectorRate));
-                float directorRate = edu.hubanato.serialization.DecodeJSON.deserializeFloat(tcpClient2.receiveQuery());
-                
-                if (parentRate == -1 || directorRate == -1) {
-                    JOptionPane.showMessageDialog(null, "la durée de prêt et/ou l'âge du client "
-                            + "ne peuvent être appliqués pour un " +
-                            cmbLoanType.getSelectedItem().toString() + ".", 
-                            "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+                if (!(loanType.equals("Prêt immobilier") && (duration < 7 || duration > 25))) {
+                            
+                    if (!((loanType.equals("Prêt à la consommation") || loanType.equals("Prêt automobile")) && duration >= 7)) {
+
+                        if (!(client.getAge() > 50 || client.getAge() < 18)) {
+                            TCPClient tcpClient = new TCPClient("localhost",9999);
+                            List<String> infoParentRate = new ArrayList<String>();
+                            infoParentRate.add(duration + ""); infoParentRate.add(cmbLoanType.getSelectedItem().toString());
+                            tcpClient.sendQuery("pr", edu.hubanato.serialization.EncodeJSON.serializeListString(infoParentRate));
+                            float parentRate = edu.hubanato.serialization.DecodeJSON.deserializeFloat(tcpClient.receiveQuery());
+
+                            TCPClient tcpClient2 = new TCPClient("localhost",9999);
+                            List<String> infoDirectorRate = new ArrayList<String>();
+                            infoDirectorRate.add(duration + ""); infoDirectorRate.add(this.client.getAge() + "");
+                            infoDirectorRate.add(cmbLoanType.getSelectedItem().toString());
+                            tcpClient2.sendQuery("dr", edu.hubanato.serialization.EncodeJSON.serializeListString(infoDirectorRate));
+                            float directorRate = edu.hubanato.serialization.DecodeJSON.deserializeFloat(tcpClient2.receiveQuery());
+
+                            if (parentRate != -1) {
+                                labelParentRate.setText(parentRate + "");
+                            }
+                            if (directorRate != -1) {
+                                labelDirectorRate.setText(directorRate + "");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "L'age du client doit être compris entre 18 et 50 ans.", 
+                            "Incohérence", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La durée d'un " + loanType + " ne peut pas être supérieure à 6 ans.", 
+                            "Incohérence", JOptionPane.ERROR_MESSAGE);
+                    }
                 } else {
-                    labelDirectorRate.setText(directorRate + "");
-                    labelParentRate.setText(parentRate + "");
+                    JOptionPane.showMessageDialog(null, "La durée d'un crédit immobilier ne peut être inférieure à 7 ans ou supérieure à 25 ans.", 
+                        "Incohérence", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Veuillez saisir des chiffres et non des lettres dans les champs appropriés.",
